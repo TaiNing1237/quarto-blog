@@ -13,6 +13,15 @@ website:
         href: https://github.com/
       # - icon: twitter
       #   href: https://twitter.com
+  comments:
+    giscus:
+      repo: TaiNing1237/quarto-blog
+      repo-id: "R_kgDOQX3NUw"       # Get this from giscus.app
+      category: "General"         # Must match what you chose on giscus.app
+      category-id: "DIC_kwDOQX3NU84Cx6xN" # Get this from giscus.app
+      mapping: "pathname"         # This maps blog posts to discussion titles
+      theme: "light"              # You can use "dark" or "preferred_color_scheme"
+
 format:
   html:
     theme:

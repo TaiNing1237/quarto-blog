@@ -1,0 +1,20 @@
+# Set the default behavior to auto-detect text files.
+    * text=auto
+    
+    # Explicitly declare files that are always text and should use LF (Unix) endings.
+    # This is the modern standard for all web/Quarto projects.
+    *.qmd   text eol=lf
+    *.yml   text eol=lf
+    *.yaml  text eol=lf
+    *.md    text eol=lf
+    *.html  text eol=lf
+    *.css   text eol=lf
+    *.js    text eol=lf
+    *.R     text eol=lf
+    *.py    text eol=lf
+    
+    # Tell Git to not mess with binary files (like images)
+    *.png   binary
+    *.jpg   binary
+    *.jpeg  binary
+    *.pdf   binary
