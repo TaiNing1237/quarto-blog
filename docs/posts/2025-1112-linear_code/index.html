@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-11-12">
+
+<title>聊聊 Error Correcting Code (ECC) 的基石：Linear Code – LTN’s Math Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">LTN’s Math Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">聊聊 Error Correcting Code (ECC) 的基石：Linear Code</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Cryptography</div>
+                <div class="quarto-category">Linear Algebra</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 12, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>今天我們來聊聊一個在資訊傳輸中超級重要，但也最基礎的概念：Error Correcting Code (ECC)，特別是其中的「<strong>Linear Code</strong>」（線性碼）。</p>
+<section id="什麼是-ecc" class="level3">
+<h3 class="anchored" data-anchor-id="什麼是-ecc">什麼是 ECC？</h3>
+<p>我們先快速回顧一下 ECC 的基本框架。想像一下：</p>
+<ul>
+<li><strong>Word Space (W):</strong> 這是你想傳送的「原文」空間，例如一串 01 bits。</li>
+<li><strong>Code Space (C):</strong> 這是實際在頻道中傳送的「編碼」空間，通常會比 W 更長（因為加入了冗餘）。</li>
+</ul>
+<p>我們需要兩個函數：</p>
+<ol type="1">
+<li><strong>Encode (編碼):</strong> <span class="math inline">\(Encode: W \to C\)</span>。把你的原文「加密」成更長的編碼。</li>
+<li><strong>Decode (解碼):</strong> <span class="math inline">\(Decode: C \to W\)</span>。把可能出錯的編碼「翻譯」回原文。</li>
+</ol>
+<p>我們的世界充滿了雜訊。所以我們假設一個簡單的錯誤模型：傳輸時，每個 bit 都有一個很小（<span class="math inline">\(p \ll 1\)</span>）的機率 <span class="math inline">\(p\)</span> 會被「翻轉」（0 變 1，1 變 0）。</p>
+<p>一個 ECC 演算法稱得上「好」，就是指它有很高的機率能「抗噪」：</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\mathbb{P}[Decode(Encode(w) + err) = w] \sim 1\)</span></p>
+</blockquote>
+<p>（即使 <span class="math inline">\(Encode(w)\)</span> 在傳輸中被加上了錯誤 <span class="math inline">\(err\)</span>，我們還是能成功還原 <span class="math inline">\(w\)</span>）</p>
+<section id="用-hamming-distance-來具體衡量" class="level4">
+<h4 class="anchored" data-anchor-id="用-hamming-distance-來具體衡量">用 Hamming Distance 來「具體」衡量</h4>
+<p>用機率來定義有點「飄」，我們來談談更具體（concrete）的定義：<strong>Hamming distance</strong>。</p>
+<p>Hamming distance 的定義很直觀：</p>
+<blockquote class="blockquote">
+<p>衡量兩個<strong>相同長度</strong>的 01 字串，它們「有幾個位置上的 bit 不一樣」。</p>
+</blockquote>
+<p>例如，<span class="math inline">\(\text{Dist}(01101, 00111) = 2\)</span>。</p>
+<p>如果我們把這個空間看作 <span class="math inline">\((\mathbb{Z}/2\mathbb{Z})^n\)</span>（也就是每個元素都是 0 或 1 的 n 維向量空間），這個 distance 顯然滿足三角不等式。</p>
+<p><strong>重點來了</strong>。如果一個編碼 <span class="math inline">\(C\)</span>（也就是 <span class="math inline">\(Encode\)</span> 函數的 image），裡面<strong>任兩個相異的 codeword</strong>，它們的 Hamming distance 都<strong>大於等於 <span class="math inline">\(2t+1\)</span></strong>（<span class="math inline">\(t\)</span> 是某個正整數），那麼：</p>
+<p>這個 ECC 就可以 <strong>100% 成功修正（correct）最多 <span class="math inline">\(t\)</span> 個 bits 的錯誤</strong>。</p>
+<p>這也很直觀：想像每個 codeword 都是一個中心，各自畫出一個半徑為 <span class="math inline">\(t\)</span> 的「勢力範圍」。<span class="math inline">\(2t+1\)</span> 的距離保證了這些「勢力範圍」彼此不會重疊。當你收到一個有 <span class="math inline">\(\le t\)</span> 個錯誤的訊息時，它雖然偏離了「正確答案」，但它仍然落在「正確答案」的勢力範圍內，而不會跑進「其他答案」的範圍裡。</p>
+<p>（反之，如果存在兩個 codeword 距離 <span class="math inline">\(\le 2d\)</span>，那當錯誤剛好發生在中間時，你就無法 100% 確定該 decode 成哪一個了。）</p>
+</section>
+</section>
+<section id="什麼是-linear-code" class="level3">
+<h3 class="anchored" data-anchor-id="什麼是-linear-code">什麼是 Linear Code？</h3>
+<p>OK，複習完畢。那什麼是 <strong>Linear Code</strong> 呢？</p>
+<p>它為 ECC 帶來了漂亮的代數結構。 所謂 Linear Code，就是指 <span class="math inline">\(W\)</span> 和 <span class="math inline">\(C\)</span> 都是 <span class="math inline">\(\mathbb{Z}/2\mathbb{Z}\)</span> 上的向量空間（分別是 <span class="math inline">\(k\)</span> 維和 <span class="math inline">\(n\)</span> 維，通常 <span class="math inline">\(k &lt; n\)</span>），並且 <strong>Encode 函數是一個線性函數（Linear Function）</strong>。</p>
+<p>也就是說，它滿足： <span class="math display">\[Encode(w_1 + w_2) = Encode(w_1) + Encode(w_2)\]</span></p>
+<p><strong>特別提醒：</strong> 這裡的「加法」非常重要。在 <span class="math inline">\((\mathbb{Z}/2\mathbb{Z})^n\)</span> 的向量空間中，我們談論的加法是<strong>逐位元 (bit-wise) 的 XOR（互斥或）</strong>。 簡單說，就是 <span class="math inline">\(1+1 = 0\)</span>，<strong>不進位</strong>。</p>
+<p>使用 Linear Code 的好處非常多，例如 <span class="math inline">\(Encode(0) = 0\)</span> 永遠成立，而且整個 Code Space C 會是一個 <span class="math inline">\(n\)</span> 維空間中的 <span class="math inline">\(k\)</span> 維子空間 (subspace)，這讓分析和計算都變得異常方便。</p>
+</section>
+<section id="linear-code-的基本限制-the-singleton-bound" class="level3">
+<h3 class="anchored" data-anchor-id="linear-code-的基本限制-the-singleton-bound">Linear Code 的基本限制 (The Singleton Bound)</h3>
+<p>好，終於來到今天的主角：一個衡量 Linear Code 效率的基本不等式。</p>
+<p>我們來定義幾個關鍵數字：</p>
+<ul>
+<li><span class="math inline">\(n = dim(C)\)</span>：Codeword 的長度（<span class="math inline">\(C\)</span> 空間的維度）。</li>
+<li><span class="math inline">\(k = dim(W)\)</span>：Word 的長度（<span class="math inline">\(W\)</span> 空間的維度）。</li>
+<li><span class="math inline">\(d\)</span>：這個 Code 的<strong>最小 Hamming distance</strong>（也就是 <span class="math inline">\(C\)</span> 中任兩個相異 codeword 之間距離的最小值）。</li>
+</ul>
+<p>(註: 我們稱滿足這樣條件的code為 <span class="math inline">\((n, k)\)</span>-code, 或是 <span class="math inline">\((n, k, d)\)</span>-code)</p>
+<p>那麼，這三個數字之間存在一個「鐵三角」限制，你不能什麼都要。這個最基礎的上限（upper bound）之一，就是 <strong>Singleton Bound</strong>：</p>
+<blockquote class="blockquote">
+<p><span class="math display">\[k + d \le n + 1\]</span></p>
+</blockquote>
+<p>這個不等式告訴我們一個殘酷的現實： 你不可能同時擁有<strong>極高的資訊率</strong>（<span class="math inline">\(k\)</span> 很大，接近 <span class="math inline">\(n\)</span>）和<strong>極強的糾錯能力</strong>（<span class="math inline">\(d\)</span> 很大）。</p>
+<ul>
+<li>想增加 <span class="math inline">\(k\)</span>（傳更多資訊）？你就必須犧牲 <span class="math inline">\(d\)</span>（糾錯能力下降）。</li>
+<li>想增加 <span class="math inline">\(d\)</span>（抵抗更多錯誤）？你就必須犧牲 <span class="math inline">\(k\)</span>（傳輸效率下降），或者…</li>
+<li>…把 <span class="math inline">\(n\)</span> 變得非常大（用更長的編碼），這會帶來額外的傳輸成本。</li>
+</ul>
+<p>這就是 ECC 世界中第一個，也是最重要的一個 trade-off。</p>
+<p><strong>註:</strong> 若用剛才的勢力範圍解釋，每個codeword可以有大小為 <span class="math inline">\(2^{\frac{d-1}{2}}\)</span> 的生得領域，會得到一個除以2的版本: <span class="math display">\[
+\begin{align}
+2^{k} \cdot 2^{\frac{d-1}{2}} &amp;\le 2^n  \\
+\implies k + \frac{d-1}{2} &amp;\le n
+\end{align}
+\]</span> 而這個singleton bound比這個還要更強。證明意外的簡單: 因為把C的前d-1個bits給遮起來的話，所有的codeword必須相異，所以 <span class="math display">\[
+2^k = |W| \le 2^{n-d+1}
+\]</span> 故得證。</p>
+<hr>
+</section>
+<section id="生成矩陣-generator-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="生成矩陣-generator-matrix">生成矩陣 (Generator Matrix)</h3>
+<p>因為線性函數的行為是完全被基底所決定，如果說 word space <span class="math inline">\(W\)</span> 是 <span class="math inline">\(k\)</span> 維，code space <span class="math inline">\(C\)</span> 是 <span class="math inline">\(n\)</span> 維，那麼我們的Encode函數其實就等價於給一個 <span class="math inline">\(k \times n\)</span> 的生成矩陣 <span class="math inline">\(G\)</span>。編碼過程就是一個簡單的矩陣乘法： <span class="math display">\[c = wG\]</span></p>
+<ul>
+<li><span class="math inline">\(w\)</span> 是一個 <span class="math inline">\(1 \times k\)</span> 的 row vector (你的原文)。</li>
+<li><span class="math inline">\(c\)</span> 是一個 <span class="math inline">\(1 \times n\)</span> 的 row vector (生成的 codeword)。</li>
+<li>(所有運算都在 <span class="math inline">\(\mathbb{Z}/2\mathbb{Z}\)</span> 上，也就是 XOR，不進位加法)。</li>
+</ul>
+<p><strong>例子 1：(3, 1, 3) Repetition Code</strong></p>
+<p>這是最簡單的 code：把一個 bit 重複三次。</p>
+<ul>
+<li><strong><span class="math inline">\(W\)</span> (訊息):</strong> <span class="math inline">\(k=1\)</span>。 (例如 <span class="math inline">\(w = [w_1]\)</span>)</li>
+<li><strong><span class="math inline">\(C\)</span> (編碼):</strong> <span class="math inline">\(n=3\)</span>。 (例如 <span class="math inline">\(c = [c_1, c_2, c_3]\)</span>)</li>
+<li><strong>編碼規則:</strong> <span class="math inline">\(0 \to 000\)</span>, <span class="math inline">\(1 \to 111\)</span>。</li>
+<li><strong>Generator Matrix (<span class="math inline">\(G\)</span>):</strong> 我們需要一個 <span class="math inline">\(1 \times 3\)</span> 的矩陣 <span class="math inline">\(G\)</span>，使得 <span class="math inline">\(wG = c\)</span>。 當 <span class="math inline">\(w=[1]\)</span> 時，我們要 <span class="math inline">\(c=[1, 1, 1]\)</span>。 所以 <span class="math inline">\(G = [1, 1, 1]\)</span>。 (驗證：<span class="math inline">\([0] \times [1, 1, 1] = [0, 0, 0]\)</span>。 <span class="math inline">\([1] \times [1, 1, 1] = [1, 1, 1]\)</span>。正確！)</li>
+<li><strong>Parameters:</strong>
+<ul>
+<li><span class="math inline">\(n=3\)</span> (codeword 長度)</li>
+<li><span class="math inline">\(k=1\)</span> (message 長度)</li>
+<li><span class="math inline">\(d=3\)</span> (最小距離， <span class="math inline">\(d(000, 111) = 3\)</span>)</li>
+</ul></li>
+<li><strong>Singleton Bound 檢查:</strong> <span class="math display">\[
+\begin{align}
+              k + d &amp;\le n + 1  \\
+\implies \quad   1 + 3 &amp;\le 3 + 1
+\end{align}
+\]</span> <strong>結論：</strong> 這個 code 剛剛好 “tight”（緊密）地滿足了這個不等式！這類 code 稱為 <strong>MDS (Maximum Distance Separable) code</strong>，它們在 <span class="math inline">\(n, k\)</span> 固定的情況下，達到了 <span class="math inline">\(d\)</span> 的理論最大值。</li>
+</ul>
+<p><strong>例子 2： (7, 4, 3) Hamming Code</strong></p>
+<p>讓我們來看一個更實用、更強大，但是<strong>沒有 tight</strong> 的例子：(7, 4) Hamming Code。</p>
+<ul>
+<li><p><strong><span class="math inline">\(W\)</span> (訊息):</strong> <span class="math inline">\(k=4\)</span>。 ( <span class="math inline">\(w = [w_1, w_2, w_3, w_4]\)</span> )</p></li>
+<li><p><strong><span class="math inline">\(C\)</span> (編碼):</strong> <span class="math inline">\(n=7\)</span>。 ( <span class="math inline">\(c = [c_1, ... c_7]\)</span> )</p></li>
+<li><p><strong>Generator Matrix (<span class="math inline">\(G\)</span>):</strong> 這是一個 <span class="math inline">\(4 \times 7\)</span> 矩陣。我們常用一種「<strong>系統性 (systematic)</strong>」的形式，它的結構是 <span class="math inline">\(G = [I_k | P]\)</span>，其中 <span class="math inline">\(I_k\)</span> 是 <span class="math inline">\(k \times k\)</span> 的單位矩陣， <span class="math inline">\(P\)</span> 是一個 <span class="math inline">\(k \times (n-k)\)</span> 矩陣。</p>
+<p>這樣做的好處是，編碼後的前 <span class="math inline">\(k\)</span> 個 bits <strong>就是原文 <span class="math inline">\(w\)</span></strong>，後面 <span class="math inline">\(n-k\)</span> 個 bits 才是「校驗位 (parity bits)」。</p>
+<p>一個 (7, 4) Hamming Code 的標準 <span class="math inline">\(G\)</span> 矩陣是： <span class="math display">\[
+  G = \begin{bmatrix}
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+  \end{bmatrix}
+  \]</span></p>
+<ul>
+<li>(解讀： <span class="math inline">\(c_1=w_1, c_2=w_2, c_3=w_3, c_4=w_4\)</span>。而 <span class="math inline">\(c_5 = w_1+w_2+w_4\)</span>, <span class="math inline">\(c_6 = w_1+w_3+w_4\)</span>, <span class="math inline">\(c_7 = w_2+w_3+w_4\)</span>)</li>
+</ul></li>
+<li><p><strong>Parameters:</strong></p>
+<ul>
+<li><span class="math inline">\(n=7\)</span></li>
+<li><span class="math inline">\(k=4\)</span></li>
+<li><span class="math inline">\(d=3\)</span> (這個 code 的最小距離是 3。這保證了它可以修正 1 bit 的錯誤)</li>
+</ul></li>
+<li><p><strong>Singleton Bound 檢查:</strong> <span class="math display">\[
+\begin{align}
+              k + d &amp;\le n + 1  \\
+\implies \quad   4 + 3 &amp;\le 7 + 1
+\end{align}
+\]</span> <strong>結論：</strong> <span class="math inline">\(7 &lt; 8\)</span>。這個 code 就<strong>沒有</strong> tight 這個不等式。</p>
+<p>這告訴我們，Singleton Bound 確實只是一個「上界」，許多非常優秀且實用的 code（像 Hamming code）並不會剛好壓在那條線上。</p></li>
+</ul>
+<hr>
+</section>
+<section id="怎麼快速的反解-error-correction" class="level3">
+<h3 class="anchored" data-anchor-id="怎麼快速的反解-error-correction">怎麼快速的「反解」？ (Error Correction)</h3>
+<p>如果 <span class="math inline">\(c = wG\)</span>，且傳輸<strong>沒有錯誤</strong>，那反解很簡單：因為 <span class="math inline">\(G\)</span> 是系統性的 <span class="math inline">\(G=[I_4 | P]\)</span>，我們收到的 <span class="math inline">\(c\)</span> 的前 4 個 bits 就是 <span class="math inline">\(w\)</span>。</p>
+<p>但重點是<strong>如果出錯了呢</strong>？</p>
+<p>我們收到的 <span class="math inline">\(r\)</span> (received vector) 可能不等於 <span class="math inline">\(c\)</span>。 <span class="math display">\[
+r = c + e \quad(e \text{是 error vector})
+\]</span></p>
+<p>這時，我們就要用一個神奇的反解矩陣叫做 <strong>Parity-Check Matrix (奇偶校驗矩陣)</strong>，記為 <span class="math inline">\(H\)</span>。</p>
+<p><span class="math inline">\(H\)</span> 是一個 <span class="math inline">\((n-k) \times n\)</span> 矩陣（對 (7, 4) code 來說，就是 <span class="math inline">\(3 \times 7\)</span>）。 它和 <span class="math inline">\(G\)</span> 有一個非常漂亮的「正交」關係： <span class="math display">\[GH^T = 0\]</span></p>
+<p>這意味著，<strong>任何一個合法的 codeword <span class="math inline">\(c\)</span></strong>，都滿足： <span class="math display">\[cH^T = 0\]</span></p>
+<p><strong>用 H 來抓出錯誤</strong></p>
+<p>當我們收到 <span class="math inline">\(r\)</span> 時，我們立刻計算一個東西，叫做 <strong>Syndrome (伴隨式)</strong>，記為 <span class="math inline">\(S\)</span>：</p>
+<p><span class="math display">\[S = rH^T\]</span></p>
+<p>現在，神奇的事情發生了。我們把 <span class="math inline">\(r = c + e\)</span> 代入：</p>
+<p><span class="math inline">\(S = (c + e)H^T = cH^T + eH^T\)</span></p>
+<p>因為 <span class="math inline">\(cH^T = 0\)</span>（c 是合法 codeword），所以：</p>
+<p><span class="math display">\[S = eH^T\]</span></p>
+<p><strong>這就是解碼的關鍵！</strong></p>
+<ol type="1">
+<li><strong><span class="math inline">\(S\)</span> 的值只跟 error <span class="math inline">\(e\)</span> 有關</strong>，跟原始訊息 <span class="math inline">\(w\)</span> 或 <span class="math inline">\(c\)</span> 完全無關！</li>
+<li>如果 <span class="math inline">\(S = 0\)</span>，代表 <span class="math inline">\(e=0\)</span>（或 <span class="math inline">\(e\)</span> 剛好是另一個合法的 codeword，機率很低），我們假設<strong>沒有錯誤</strong>。</li>
+<li>如果 <span class="math inline">\(S \neq 0\)</span>，代表<strong>發生了錯誤</strong>。</li>
+</ol>
+<p>對於 Hamming Code 這種「完美」的 code， <span class="math inline">\(S\)</span> 的值和「發生 1-bit 錯誤的位置」是一一對應的。</p>
+<p>(7, 4) Hamming code 的 <span class="math inline">\(H\)</span> 矩陣（對應上面那個 <span class="math inline">\(G\)</span>）是： <span class="math display">\[
+H = \begin{bmatrix}
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span> ( <span class="math inline">\(H = [P^T | I_{n-k}]\)</span> )</p>
+<p>如果你計算 <span class="math inline">\(S = eH^T\)</span>，你會發現：</p>
+<ul>
+<li>如果 <span class="math inline">\(e = [1,0,0,0,0,0,0]\)</span> (第1 bit 錯)，<span class="math inline">\(S = [1, 1, 0]\)</span>。</li>
+<li>如果 <span class="math inline">\(e = [0,1,0,0,0,0,0]\)</span> (第2 bit 錯)，<span class="math inline">\(S = [1, 0, 1]\)</span>。</li>
+<li>…</li>
+<li>如果 <span class="math inline">\(e = [0,0,0,0,0,0,1]\)</span> (第7 bit 錯)，<span class="math inline">\(S = [0, 0, 1]\)</span>。</li>
+</ul>
+<p>每個 1-bit 錯誤都會產生一個<strong>獨一無二</strong>的 <span class="math inline">\(S\)</span>。我們只要建立一個「<span class="math inline">\(S\)</span> -&gt; <span class="math inline">\(e\)</span>」的對照表，收到 <span class="math inline">\(r\)</span> -&gt; 計算 <span class="math inline">\(S\)</span> -&gt; 查表得到 <span class="math inline">\(e\)</span> -&gt; <span class="math inline">\(c = r + e\)</span>（XOR 回去） -&gt; 讀出 <span class="math inline">\(c\)</span> 的前 <span class="math inline">\(k\)</span> bits，就成功解碼 <span class="math inline">\(w\)</span> 了！</p>
+<p>來寫一下 <span class="math inline">\(GH^T\)</span> <span class="math display">\[
+GH^T = \begin{bmatrix}
+    1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+    0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 &amp; 1 &amp; 0 \\
+    1 &amp; 0 &amp; 1 \\
+    0 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1 \\
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1
+    \end{bmatrix} =
+    \begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0
+    \end{bmatrix}
+\]</span></p>
+</section>
+<section id="h-的誕生來自-c-的對偶空間" class="level3">
+<h3 class="anchored" data-anchor-id="h-的誕生來自-c-的對偶空間"><span class="math inline">\(H\)</span> 的誕生：來自 <span class="math inline">\(C\)</span> 的對偶空間</h3>
+<p>對於任意的 <span class="math inline">\((n, k, d)\)</span> 生成矩陣 <span class="math inline">\(G\)</span>，如果這個 <span class="math inline">\(H\)</span> 要存在的話，所有 <span class="math inline">\(H\)</span> 行向量 (row vectors) 跟每個 <span class="math inline">\(G\)</span> 的行向量內積都必須是 0。而 <span class="math inline">\(G\)</span> 有 <span class="math inline">\(k\)</span> 個行向量，它們生成了 <span class="math inline">\(C\)</span>。所以直觀上來說，<span class="math inline">\(H\)</span> 的 <span class="math inline">\((n-k)\)</span> 個行向量所生成的空間，就是 <span class="math inline">\(G\)</span> 的行向量空間 (Row Space) 的「正交補空間」。</p>
+<p>但是！這邊要特別小心。因為在 <span class="math inline">\(\mathbb{F}_2\)</span> 裡面做內積，跟一般實數的內積雖然形式極相似，但最大的差別是，一個非零向量自己跟自己的內積不一定大於 0！（應該說在 <span class="math inline">\(\mathbb{F}_2\)</span> 裡本來就沒有「大於0」這個概念，只有是否為 0）。</p>
+<p>如果一個向量有偶數個 1，例如 <span class="math inline">\(\mathbf{v} = [1, 1] \in \mathbb{F}_2^2\)</span>，自己跟自己內積就是 <span class="math inline">\(1 \cdot 1 + 1 \cdot 1 = 1 + 1 = 0\)</span>。 這個向量居然與自己「正交」！</p>
+<p>這導致了一個在 <span class="math inline">\(\mathbb{R}^n\)</span> 中不會發生的奇特現象：一個子空間 <span class="math inline">\(C\)</span> 和它的「正交補空間」 <span class="math inline">\(C^\perp\)</span> 是可以重疊的。在 <span class="math inline">\(\mathbb{F}_2^2\)</span> 中，由 <span class="math inline">\([1, 1]\)</span> 所生成的子空間 <span class="math inline">\(C\)</span>，其 <span class="math inline">\(C^\perp\)</span> 就是它自己！</p>
+<p>所以，<span class="math inline">\(C\)</span> 和 <span class="math inline">\(C^\perp\)</span> 的直和 (Direct Sum) 不一定是整個 <span class="math inline">\(\mathbb{F}_2^n\)</span> 空間： <span class="math display">\[C \oplus C^\perp \neq \mathbb{F}_2^n\]</span> 欸，但是，雖然正交空間不一定是我們直觀上的「補空間」，一個來自線性代數的關鍵定理拯救了我們：<strong>維度公式依然成立！</strong></p>
+<p><span class="math display">\[\text{dim}(C) + \text{dim}(C^\perp) = n\]</span> 這個事實，就是我們構建 <span class="math inline">\(H\)</span> 的數學保證。</p>
+<hr>
+<p>我們從 <span class="math inline">\(G\)</span> 出發。<span class="math inline">\(G\)</span> 是一個 <span class="math inline">\(k \times n\)</span> 矩陣，它的 <span class="math inline">\(k\)</span> 個行向量 (row vectors) 生成 (span) 了 <span class="math inline">\(C\)</span>。因此，<span class="math inline">\(C\)</span> 是 <span class="math inline">\(\mathbb{F}_2^n\)</span> 中一個維度為 <span class="math inline">\(k\)</span> 的子空間。</p>
+<p>接著，我們定義 <span class="math inline">\(C\)</span> 的<strong>對偶碼 (Dual Code)</strong> <span class="math inline">\(C^\perp\)</span>： <span class="math display">\[C^\perp = \{ \mathbf{v} \in \mathbb{F}_2^n \mid \mathbf{c} \cdot \mathbf{v}^T = 0 \text{ for all } \mathbf{c} \in C \}\]</span> (這裡 <span class="math inline">\(\mathbf{c} \cdot \mathbf{v}^T\)</span> 是指內積。)</p>
+<p>由於 <span class="math inline">\(G\)</span> 的行向量是 <span class="math inline">\(C\)</span> 的一組基底，一個向量 <span class="math inline">\(\mathbf{v}\)</span> 屬於 <span class="math inline">\(C^\perp\)</span> 的<strong>充分必要條件</strong>是：<span class="math inline">\(\mathbf{v}\)</span> 與 <span class="math inline">\(G\)</span> 的<em>每一個</em>行向量都正交。 <span class="math display">\[\mathbf{v} \in C^\perp \iff G \mathbf{v}^T = \mathbf{0}_{k \times 1}\]</span> <em>(註：<span class="math inline">\(G\)</span> 是 <span class="math inline">\(k \times n\)</span>，<span class="math inline">\(v^T\)</span> 是 <span class="math inline">\(n \times 1\)</span>，結果是 <span class="math inline">\(k \times 1\)</span> 的零向量)</em></p>
+<p>現在，我們使用關鍵的維度定理：<span class="math inline">\(\dim(C) + \dim(C^\perp) = n\)</span>。 代入 <span class="math inline">\(\dim(C) = k\)</span>，我們得到： <span class="math display">\[\dim(C^\perp) = n - k\]</span> <span class="math inline">\(C^\perp\)</span> 是一個維度為 <span class="math inline">\(n-k\)</span> 的子空間。既然是子空間，它就必然存在一組基底。</p>
+<p><strong>我們就此定義 <span class="math inline">\(H\)</span>：</strong></p>
+<blockquote class="blockquote">
+<p><strong>定義：</strong> 奇偶校驗矩陣 <span class="math inline">\(H\)</span> (Parity Check Matrix) 是一個 <span class="math inline">\((n-k) \times n\)</span> 矩陣，它的 <span class="math inline">\(n-k\)</span> 個行向量 (row vectors) 構成了 <span class="math inline">\(C^\perp\)</span> 的一組基底。</p>
+</blockquote>
+</section>
+<section id="h-的兩大特性" class="level3">
+<h3 class="anchored" data-anchor-id="h-的兩大特性"><span class="math inline">\(H\)</span> 的兩大特性</h3>
+<p>這個 <span class="math inline">\(H\)</span> 完美地滿足了 linear code 所需的一切。</p>
+<p><strong>特性一：<span class="math inline">\(GH^T = 0\)</span> (與 <span class="math inline">\(G\)</span> 的正交性)</strong></p>
+<p><span class="math inline">\(H^T\)</span> 是一個 <span class="math inline">\(n \times (n-k)\)</span> 矩陣，它的 <span class="math inline">\(n-k\)</span> 個列向量 (column vectors) <span class="math inline">\(\mathbf{h}_j^T\)</span> 就是 <span class="math inline">\(C^\perp\)</span> 的基底。 <span class="math inline">\(G\)</span> 是一個 <span class="math inline">\(k \times n\)</span> 矩陣，它的 <span class="math inline">\(k\)</span> 個行向量 (row vectors) <span class="math inline">\(\mathbf{g}_i\)</span> 是 <span class="math inline">\(C\)</span> 的基底。</p>
+<p>當我們計算矩陣乘積 <span class="math inline">\(GH^T\)</span> 時，其第 <span class="math inline">\((i, j)\)</span> 個元素的值是： <span class="math display">\[(GH^T)_{ij} = (\text{Row } i \text{ of } G) \cdot (\text{Column } j \text{ of } H^T) = \mathbf{g}_i \cdot \mathbf{h}_j^T\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbf{g}_i \in C\)</span></li>
+<li><span class="math inline">\(\mathbf{h}_j^T\)</span> 的轉置 <span class="math inline">\(\mathbf{h}_j \in C^\perp\)</span></li>
+</ul>
+<p>根據 <span class="math inline">\(C^\perp\)</span> 的定義， <span class="math inline">\(C\)</span> 中的向量 <span class="math inline">\(\mathbf{g}_i\)</span> 與 <span class="math inline">\(C^\perp\)</span> 中的向量 <span class="math inline">\(\mathbf{h}_j\)</span> 內積<em>必然</em>為 0。 因此，<span class="math inline">\((GH^T)_{ij} = 0\)</span> 對所有 <span class="math inline">\(i, j\)</span> 都成立。 <strong>得證：<span class="math inline">\(GH^T = 0_{k \times (n-k)}\)</span></strong>。</p>
+<p><strong>特性二：<span class="math inline">\(C = \text{NullSpace}(H)\)</span> (C 的另一種定義)</strong></p>
+<p><span class="math inline">\(H\)</span> 不只跟 <span class="math inline">\(G\)</span> 正交，它還提供了另一種描述 <span class="math inline">\(C\)</span> 的方式。 一個向量 <span class="math inline">\(\mathbf{c} \in \mathbb{F}_2^n\)</span> 是碼字 (codeword)，若且唯若 (if and only if)： <span class="math display">\[\mathbf{c} H^T = \mathbf{0}_{1 \times (n-k)}\]</span> * <span class="math inline">\(\mathbf{c} (1 \times n) \times H^T (n \times (n-k)) \to \mathbf{0} (1 \times (n-k))\)</span></p>
+<p><strong>證明：</strong> <span class="math inline">\(\mathbf{c} H^T = \mathbf{0}\)</span> 意味著 <span class="math inline">\(\mathbf{c}\)</span> 與 <span class="math inline">\(H^T\)</span> 的<em>所有</em>行向量 (columns) 內積為 0。而 <span class="math inline">\(H^T\)</span> 的行向量就是 <span class="math inline">\(C^\perp\)</span> 的基底。 如果 <span class="math inline">\(\mathbf{c}\)</span> 與 <span class="math inline">\(C^\perp\)</span> 的所有基底都正交，那它就與 <span class="math inline">\(C^\perp\)</span> 中的所有向量都正交。 哪些向量會與 <span class="math inline">\(C^\perp\)</span> 中的所有向量都正交？答案就是 <span class="math inline">\((C^\perp)^\perp\)</span> 裡面的向量。 而在 <span class="math inline">\(\mathbb{F}_2\)</span>（以及所有有限體）中，我們有 <span class="math inline">\((C^\perp)^\perp = C\)</span>。 因此，<span class="math inline">\(\mathbf{c} H^T = \mathbf{0} \iff \mathbf{c} \in C\)</span>。</p>
+<p><span class="math inline">\(G\)</span> 用來<strong>生成</strong> <span class="math inline">\(C\)</span>，<span class="math inline">\(H\)</span> 用來<strong>檢驗</strong> <span class="math inline">\(C\)</span>。</p>
+<hr>
+</section>
+<section id="h-的真正威力症候群解碼-syndrome-decoding" class="level3">
+<h3 class="anchored" data-anchor-id="h-的真正威力症候群解碼-syndrome-decoding"><span class="math inline">\(H\)</span> 的真正威力：症候群解碼 (Syndrome Decoding)</h3>
+<p>好了，我們證明了 <span class="math inline">\(H\)</span> 的存在。那它到底有什麼用？ <span class="math inline">\(H\)</span> 的存在，讓我們擁有了「解碼」的能力。</p>
+<p>假設我們傳送了碼字 <span class="math inline">\(\mathbf{c}\)</span> ( <span class="math inline">\(\in C\)</span> )。 在傳輸過程中，發生了錯誤，錯誤向量為 <span class="math inline">\(err\)</span>。 我們收到的向量是 <span class="math inline">\(\mathbf{r} = \mathbf{c} + err\)</span>。</p>
+<p>我們只拿得到 <span class="math inline">\(\mathbf{r}\)</span>。我們不知道 <span class="math inline">\(\mathbf{c}\)</span> 也還不知道 <span class="math inline">\(err\)</span>。 這時，<span class="math inline">\(H\)</span> 登場了。我們計算 <span class="math inline">\(\mathbf{r}\)</span> 的<strong>Syndrome</strong> <span class="math inline">\(S\)</span>：</p>
+<p><span class="math display">\[S = \mathbf{r} H^T\]</span> <span class="math inline">\(S\)</span> 是一個 <span class="math inline">\(1 \times (n-k)\)</span> 的向量。我們把它展開： <span class="math display">\[S = (\mathbf{c} + err) H^T = \mathbf{c} H^T + err H^T\]</span> 根據「特性二」，因為 <span class="math inline">\(\mathbf{c}\)</span> 是個合法的碼字，我們知道 <span class="math inline">\(\mathbf{c} H^T = \mathbf{0}\)</span>。 所以上式變為： <span class="math display">\[S = \mathbf{0} + err H^T = err H^T\]</span> <strong>這就是 <span class="math inline">\(H\)</span> 最神奇的地方！</strong></p>
+<blockquote class="blockquote">
+<p><strong>症候群 <span class="math inline">\(S\)</span> 完全由錯誤向量 <span class="math inline">\(err\)</span> 決定，而與原始碼字 <span class="math inline">\(\mathbf{c}\)</span> 無關。</strong></p>
+</blockquote>
+<ul>
+<li>如果 <span class="math inline">\(S = \mathbf{0}\)</span>，這意味著 <span class="math inline">\(err H^T = \mathbf{0}\)</span>。
+<ul>
+<li>這<em>可能</em>代表 <span class="math inline">\(err = \mathbf{0}\)</span> (沒有錯誤)。</li>
+<li>但也<em>可能</em>代表 <span class="math inline">\(err\)</span> 剛好也是一個合法的碼字 <span class="math inline">\(err \in C\)</span> (我們衰到剛好被錯誤推進了另一個碼字)。</li>
+</ul></li>
+<li>如果 <span class="math inline">\(S \neq \mathbf{0}\)</span>，我們可以 100% 確定：<strong>有錯誤發生！</strong></li>
+</ul>
+</section>
+<section id="定義解碼函數-hs" class="level3">
+<h3 class="anchored" data-anchor-id="定義解碼函數-hs">定義解碼函數 <span class="math inline">\(h(S)\)</span></h3>
+<p>我們的目標是從 <span class="math inline">\(S\)</span> 反推出 <span class="math inline">\(err\)</span>。 這就是 <span class="math inline">\(h\)</span> 函數，它是整個解碼策略的核心。</p>
+<blockquote class="blockquote">
+<p><strong>定義：</strong> 解碼函數 <span class="math inline">\(h\)</span> 是一個映射 <span class="math inline">\(h: \mathbb{F}_2^{n-k} \to \mathbb{F}_2^n\)</span>，它接受一個症候群 <span class="math inline">\(S\)</span>，並輸出一個「最有可能」的錯誤向量 <span class="math inline">\(\hat{err}\)</span>。</p>
+<p><span class="math display">\[\hat{err} = h(S)\]</span></p>
+</blockquote>
+<p><strong>「最有可能」是什麼意思？</strong> 在標準的二元對稱通道 (BSC) 中，我們假設錯誤是隨機且獨立發生的。這代表發生 1 個 bit 錯誤的機率，遠大於發生 2 個 bit 錯誤；2 個又遠大於 3 個… 所以，「最有可能」的錯誤向量，就是具有<strong>最小漢明權重 (Minimum Hamming Weight)</strong> 的那個。</p>
+<p>對於一個給定的 <span class="math inline">\(S\)</span>，滿足 <span class="math inline">\(err H^T = S\)</span> 的 <span class="math inline">\(err\)</span> 可能有很多個。 例如，如果 <span class="math inline">\(\mathbf{e}_1\)</span> 滿足 <span class="math inline">\(\mathbf{e}_1 H^T = S\)</span>，那麼 <span class="math inline">\(\mathbf{e}_1 + \mathbf{c}\)</span>（其中 <span class="math inline">\(\mathbf{c} \in C\)</span>）也會滿足： <span class="math inline">\((\mathbf{e}_1 + \mathbf{c})H^T = \mathbf{e}_1 H^T + \mathbf{c} H^T = S + \mathbf{0} = S\)</span>。 所有這些會產生同一個症候群 <span class="math inline">\(S\)</span> 的向量集合，稱為 <span class="math inline">\(C\)</span> 的一個<strong>陪集 (Coset)</strong>。</p>
+<p><span class="math inline">\(h(S)\)</span> 的任務，就是在這個陪集中，找出那個漢明權重最小的向量，我們稱之為<strong>陪集首領 (Coset Leader)</strong>。</p>
+<blockquote class="blockquote">
+<p><strong><span class="math inline">\(h(S)\)</span> 的正式定義：</strong> <span class="math inline">\(h(S) = \hat{err}\)</span>，其中 <span class="math inline">\(\hat{err}\)</span> 是集合 <span class="math inline">\(\{ \mathbf{e} \in \mathbb{F}_2^n \mid \mathbf{e} H^T = S \}\)</span> 中，具有最小漢明權重的向量。 (如果有多個最小權重向量，通常任選一個，例如按字典序排第一個)</p>
+</blockquote>
+</section>
+<section id="完整的解碼流程" class="level3">
+<h3 class="anchored" data-anchor-id="完整的解碼流程">完整的解碼流程</h3>
+<p>有了 <span class="math inline">\(H\)</span> 和 <span class="math inline">\(h(S)\)</span>，解碼流程如下：</p>
+<ol type="1">
+<li><strong>接收：</strong> 收到 <span class="math inline">\(\mathbf{r}\)</span>。</li>
+<li><strong>計算Syndrome：</strong> <span class="math inline">\(S = \mathbf{r} H^T\)</span>。</li>
+<li><strong>查找錯誤：</strong> <span class="math inline">\(\hat{err} = h(S)\)</span>。( <span class="math inline">\(h\)</span> 函數通常是預先算好存成一個查找表，稱為 Syndrome Look-up Table )</li>
+<li><strong>修正錯誤：</strong> <span class="math inline">\(\hat{\mathbf{c}} = \mathbf{r} + \hat{err}\)</span>。(在 <span class="math inline">\(\mathbb{F}_2\)</span> 中，加法和減法一樣)</li>
+<li><strong>解碼訊息：</strong> 從 <span class="math inline">\(\hat{\mathbf{c}}\)</span> 反解出 <span class="math inline">\(\hat{\mathbf{w}}\)</span> (例如，若 <span class="math inline">\(G\)</span> 是系統碼，直接取前 <span class="math inline">\(k\)</span> 個 bits)。</li>
+</ol>
+</section>
+<section id="hs-何時會成功" class="level3">
+<h3 class="anchored" data-anchor-id="hs-何時會成功"><span class="math inline">\(h(S)\)</span> 何時會成功？</h3>
+<p>這個解碼流程能成功的<strong>前提</strong>是：我們猜的 <span class="math inline">\(\hat{err}\)</span> <em>就是</em> 實際發生的 <span class="math inline">\(err\)</span>。 (<span class="math inline">\(\hat{err} = err\)</span>)</p>
+<p>而 <span class="math inline">\(h(S)\)</span> 策略是「猜最小權重」。所以，只要實際發生的 <span class="math inline">\(err\)</span> <em>剛好</em>就是它所屬陪集 (Coset) 裡的那個最小權重向量 (Coset Leader)，解碼就會成功！</p>
+<p>這就回到了 <span class="math inline">\((n, k, d)\)</span> 中的 <span class="math inline">\(d\)</span> (最小距離)： 一個 code 的最小距離為 <span class="math inline">\(d\)</span>，代表它能保證修正 <span class="math inline">\(t = \lfloor \frac{d-1}{2} \rfloor\)</span> 個錯誤。 這句話的數學意義是：<strong>所有權重 <span class="math inline">\(wt(err) \le t\)</span> 的錯誤向量 <span class="math inline">\(err\)</span>，都<em>必然</em>是它們各自陪集中的唯一首領。</strong></p>
+<p>因此，只要實際發生的錯誤數量 <span class="math inline">\(|err| \le \lfloor \frac{d-1}{2} \rfloor\)</span>， <span class="math inline">\(h(S)\)</span> 函數就<strong>保證</strong>能找到正確的 <span class="math inline">\(err\)</span>，解碼也<strong>保證</strong>會成功！</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

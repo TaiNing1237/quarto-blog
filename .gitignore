@@ -24,3 +24,4 @@ Desktop.ini
 
 # Environment variables (Protect your API keys!)
 .env
+**/*.quarto_ipynb
