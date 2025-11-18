@@ -1,0 +1,156 @@
+---
+title: "萬聖節快樂"
+author: "LTN"
+date: "2025-10-31"
+categories: [Linear Algebra, Cryptography]
+---
+
+萬聖節就是要講鬼故事! 
+
+由於看了計算 $\pi$ 的 BBP formula。
+
+我試著體驗重新發現這個公式的過程，覺得非常奇怪。
+
+讓我們從 $\frac{\pi}{4}$ 的萊布尼茲級數開始回顧。
+
+### 萊布尼茲級數
+
+由 $\arctan$ 函數的微分是的rational function:
+$$
+\int_0^t \frac{1}{1+x^2} dx = \arctan(t)
+$$
+我們可以將 $\frac{1}{1+x^2}$ 展開成無窮級數：
+$$
+\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + x^8 - x^{10} + \cdots = \sum_{n=0}^{\infty} (-1)^n x^{2n}
+$$  
+假設 $t<1$，此級數在 $x\in [0,t]$ 上是絕對收斂的，所以我們可以將積分和無窮級數交換順序：
+$$
+\begin{align}
+\arctan(t)
+&= \int_0^t \frac{1}{1+x^2} dx  \\
+&= \int_0^t \sum_{n=0}^{\infty} (-1)^n x^{2n} dx  \\
+&= \sum_{n=0}^{\infty} \int_0^t (-1)^n x^{2n} dx  \\
+&= \sum_{n=0}^{\infty} (-1)^n \frac{t^{2n+1}}{2n+1}  \tag{1}\label{eq:arctan_taylor}  \\
+\end{align}
+$$
+想像中，讓 $t$ 由小於 $1$ 漸漸趨近於 $1$，我們就得到萊布尼茲級數：
+$$
+\arctan(1) = \frac{\pi}{4} = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots  \quad\tag{2}\label{eq:leibniz}
+$$
+但由於右邊這個級數不是絕對收斂，所以我們要特別小心處理。
+我們可以使用「**Abel和式**」(Abel summation) 來嚴格證明這個極限過程是合法的。
+$$
+\begin{align}
+&\sum_{n=0}^{\infty} (-1)^n \frac{t^{2n+1}}{2n+1}  \\
+= &\lim_{N\to\infty} \sum_{n=0}^{N} (-1)^n \frac{t^{2n+1}}{2n+1}  \\
+\coloneqq &\lim_{N\to\infty} S_N(t)  \\
+\end{align}
+$$
+若此時直接對兩邊取極限 $t\to 1^-$，然後交換極限順序，結果會是對的，但我們需要 uniform convergence 來保證這個交換是合法的。
+
+> 極限之交換定理: 若 $S_N(t)$ 在 $t\in [0,1]$ 上對 $N$ 一致收斂 (uniform convergence) 到 $S_\infty(t)$，且每個 $S_N(t)$ 在 $t=1$ 處連續，則
+> $$
+> \lim_{t\to 1^-} \lim_{N\to\infty} S_N(t) = \lim_{N\to\infty} \lim_{t\to 1^-} S_N(t)
+> $$
+
+想像一個反例就是 $t^N$，所有小於 $1$ 的 $t$，當 $N\to\infty$ 時都會趨近於 $0$，但在 $t=1$ 處卻永遠是 $1$。
+
+也就是說 $\forall \epsilon>0$， 使 $|S_n(t) - S_\infty(t)| < \epsilon, \forall n > N_{\epsilon, t}$ 的那個 $N_{\epsilon, t}$，是否可以和 $t$ 無關。
+$$
+|S_n(t) - S_\infty(t)| 
+\le \left| \sum_{k=n+1}^{\infty} (-1)^{k}\frac{t^{2k+1}}{2k+1} \right|
+\le \frac{t^{2n+3}}{2n+3} \le \frac{1}{n}
+$$  
+所以我們取 $N_{\epsilon} = \lceil \frac{1}{\epsilon} \rceil$ 即可，這個 $N_{\epsilon}$ 和 $t$ 無關。故極限可以交換。
+
+是不是有點繞?
+
+### 更快的收斂
+我們回到\eqref{eq:leibniz}，他收斂很慢的原因我們也感受到了，就是因為級數展開的誤差項在 $x=1$ 大約是 $\frac{1}{N}$ 的量級。如果我們可以避開 $x=1$，例如利用 $\arctan(\pi/6)=1/\sqrt{3}$，帶入 \eqref{eq:arctan_taylor}，可以得到 
+$$
+\frac{\pi}{6} = \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{1}{\sqrt{3}})^{2n+1}}{2n+1}
+$$
+所以
+$$
+\frac{\sqrt{3}\pi}{6} = \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{1}{3})^{n}}{2n+1} = \frac{1}{1} \cdot \frac{1}{1} - \frac{1}{3} \cdot \frac{1}{3} + \frac{1}{5} \cdot \frac{1}{3^2} - \frac{1}{7} \cdot \frac{1}{3^3} + \cdots
+$$
+這個級數的誤差項大約是 $\frac{1}{N 3^N}$ 的量級，收斂速度快多了!
+
+讓我們來看看 BBP 公式，從 $\pi/4$ 出發，但是用了變數變換 $u = 1-x$:
+$$
+\begin{align}
+\frac{\pi}{4}
+&= \int_0^1 \frac{1}{1+x^2} dx  \\
+&= \int_0^1 \frac{1}{2 - 2u + u^2} du  \\
+&= \int_0^1 \frac{2 + 2u + u^2}{4 + u^4} du   \qquad\text{(國中學過的因式分解)} \\
+\end{align}
+$$
+兩邊同乘以 $4$：
+$$
+\begin{align}
+\pi = \int_0^1 \frac{2 + 2u + u^2}{1 + \frac{u^4}{4}} du \\
+\end{align}
+$$
+我們發現分母 $u^4$ 神奇地被除以 $4$，這樣把分母用無窮級數展開，會以 $\frac{1}{4^n}$ 的速度收斂(也是正負交替)。這條路可以走，也可以算出一種級數(可以自己動筆算算)。
+
+但 BBP 走的是另外一條路。讓我們回到最一開始: 
+$$
+\begin{align}
+\frac{\pi}{4}
+&= \int_0^1 \frac{1}{1+x^2} dx  \\
+&= \int_0^1 \frac{1+x}{1+x^2} dx - \int_0^1 \frac{x}{1+x^2} dx \qquad\text{(莫明地拆開)} \\
+&= \int_0^1 \frac{2 - u}{2 - 2u + u^2} du - \int_0^1 \frac{u}{2 - u^2} du  \qquad\text{(第二項是用} u^2=1-x^2 \text{做的代換)} \\
+&= \int_0^1  \frac{ (2 - u)(2 - u^2) - u(2 - 2u + u^2) }{(2 - 2u + u^2)(2 - u^2)} du  \qquad\text{(胡亂通分)} \\
+&= \int_0^1  \frac{ 4-4u }{(2 - 2u + u^2)(2 - u^2)} du  \qquad\text{(神奇地消除??)}  \\
+&= \int_0^1  \frac{4(1-u)(2+2u+u^2)(2+u^2)}{(4+u^4)(4-u^2)} du  \qquad\text{(反因式分解)} \\
+&= \int_0^1  \frac{4(4-2u^3-u^4-u^5)}{16-u^8} du  \tag{3}\label{eq:correct_path} \\
+\end{align}
+$$
+
+調整一下，我們得到
+$$
+\begin{align}
+\pi 
+&= \int_0^1  \frac{4-2u^3-u^4-u^5}{1 - \frac{u^8}{16}} du  \\
+&= \int_0^1 (4-2u^3-u^4-u^5) \sum_{n=0}^{\infty} \left(\frac{u^8}{16}\right)^n du  \qquad\text{(用幾何級數展開分母)} \\
+&= \sum_{n=0}^{\infty} \int_0^1 (4-2u^3-u^4-u^5) \left(\frac{u^8}{16}\right)^n du  \qquad\text{(積分和無窮級數交換順序)} \\
+&= \sum_{n=0}^{\infty} \frac{1}{16^n} \int_0^1 (4u^{8n} - 2u^{8n+3} - u^{8n+4} - u^{8n+5}) du  \\
+&= \sum_{n=0}^{\infty} \frac{1}{16^n} \left( \frac{4}{8n+1} - \frac{2}{8n+4} - \frac{1}{8n+5} - \frac{1}{8n+6} \right)  \tag{BBP}\label{eq:BBP}  \\
+\end{align}
+$$
+
+這就是 BBP 公式! 我只能說我也不理解是怎麼發現的，因為中間步驟如果稍微改一下，就會得到另外的公式。雖然也是對的，收斂也很快。
+
+這邊示範另一條路，
+$$
+\begin{align}
+\frac{\pi}{4}
+&= \int_0^1 \frac{1}{1+x^2} dx  \\
+&= \int_0^1 \frac{1-x}{1+x^2} dx + \int_0^1 \frac{x}{1+x^2} dx \qquad\text{(莫明地拆開)} \\
+&= \int_0^1 \frac{u}{2 - 2u + u^2} du + \int_0^1 \frac{u}{2 - u^2} du  \qquad\text{(第二項是用} u^2=1-x^2 \text{做的代換)} \\
+&= \int_0^1 \frac{u(2 + 2u + u^2)}{4 + u^4} du  + \int_0^1 \frac{u(2+u^2)}{4 - u^4} du  \qquad\text{(反因式分解)} \\
+&= \int_0^1 \frac{2u^2}{4 + u^4} + u(2+u^2) \left(\frac{1}{4+u^4}+\frac{1}{4-u^4} \right) du   \\
+&= \int_0^1  \frac{2u^2(4-u^4) + u(2+u^2)\cdot 8}{(4 + u^4)(4 - u^4)} du \\
+&= \int_0^1  \frac{16u + 8u^2 + 8u^3 - 2u^6}{16 - u^8} du  \qquad\text{(也是對的!?)} \\
+\end{align}
+$$
+
+這樣推出來的公式是
+
+$$
+\begin{align}
+\pi 
+&= \int_0^1  \frac{4u + 2u^2 + 2u^3 - 1/2u^6}{1 - \frac{u^8}{16}} du \\
+&= \sum_{n=0}^{\infty} \frac{1}{16^n} \left( \frac{4}{8n+2} + \frac{2}{8n+3} + \frac{2}{8n+4} - \frac{1}{2(8n+7)} \right)  
+\end{align}
+$$
+
+
+
+
+
+
+
+
+
+

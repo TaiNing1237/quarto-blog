@@ -1,0 +1,414 @@
+---
+title: "聊聊 Error Correcting Code (ECC) 的基石：Linear Code"
+author: "Tai-Ning Liao"
+date: "2025-11-12"
+categories: [Cryptography, Linear Algebra]
+---
+
+今天我們來聊聊一個在資訊傳輸中超級重要，但也最基礎的概念：Error Correcting Code (ECC)，特別是其中的「**Linear Code**」（線性碼）。
+
+### 什麼是 ECC？
+
+我們先快速回顧一下 ECC 的基本框架。想像一下：
+
+* **Word Space (W):** 這是你想傳送的「原文」空間，例如一串 01 bits。
+* **Code Space (C):** 這是實際在頻道中傳送的「編碼」空間，通常會比 W 更長（因為加入了冗餘）。
+
+我們需要兩個函數：
+
+1.  **Encode (編碼):** $Encode: W \to C$。把你的原文「加密」成更長的編碼。
+2.  **Decode (解碼):** $Decode: C \to W$。把可能出錯的編碼「翻譯」回原文。
+
+我們的世界充滿了雜訊。所以我們假設一個簡單的錯誤模型：傳輸時，每個 bit 都有一個很小（$p \ll 1$）的機率 $p$ 會被「翻轉」（0 變 1，1 變 0）。
+
+一個 ECC 演算法稱得上「好」，就是指它有很高的機率能「抗噪」：
+
+> $\mathbb{P}[Decode(Encode(w) + err) = w] \sim 1$
+
+（即使 $Encode(w)$ 在傳輸中被加上了錯誤 $err$，我們還是能成功還原 $w$）
+
+#### 用 Hamming Distance 來「具體」衡量
+
+用機率來定義有點「飄」，我們來談談更具體（concrete）的定義：**Hamming distance**。
+
+Hamming distance 的定義很直觀：
+
+> 衡量兩個**相同長度**的 01 字串，它們「有幾個位置上的 bit 不一樣」。
+
+例如，$\text{Dist}(01101, 00111) = 2$。
+
+如果我們把這個空間看作 $(\mathbb{Z}/2\mathbb{Z})^n$（也就是每個元素都是 0 或 1 的 n 維向量空間），這個 distance 顯然滿足三角不等式。
+
+**重點來了**。如果一個編碼 $C$（也就是 $Encode$ 函數的 image），裡面**任兩個相異的 codeword**，它們的 Hamming distance 都**大於等於 $2t+1$**（$t$ 是某個正整數），那麼：
+
+這個 ECC 就可以 **100% 成功修正（correct）最多 $t$ 個 bits 的錯誤**。
+
+這也很直觀：想像每個 codeword 都是一個中心，各自畫出一個半徑為 $t$ 的「勢力範圍」。$2t+1$ 的距離保證了這些「勢力範圍」彼此不會重疊。當你收到一個有 $\le t$ 個錯誤的訊息時，它雖然偏離了「正確答案」，但它仍然落在「正確答案」的勢力範圍內，而不會跑進「其他答案」的範圍裡。
+
+（反之，如果存在兩個 codeword 距離 $\le 2d$，那當錯誤剛好發生在中間時，你就無法 100% 確定該 decode 成哪一個了。）
+
+### 什麼是 Linear Code？
+
+OK，複習完畢。那什麼是 **Linear Code** 呢？
+
+它為 ECC 帶來了漂亮的代數結構。
+所謂 Linear Code，就是指 $W$ 和 $C$ 都是 $\mathbb{Z}/2\mathbb{Z}$ 上的向量空間（分別是 $k$ 維和 $n$ 維，通常 $k < n$），並且 **Encode 函數是一個線性函數（Linear Function）**。
+
+也就是說，它滿足：
+$$Encode(w_1 + w_2) = Encode(w_1) + Encode(w_2)$$
+
+**特別提醒：** 這裡的「加法」非常重要。在 $(\mathbb{Z}/2\mathbb{Z})^n$ 的向量空間中，我們談論的加法是**逐位元 (bit-wise) 的 XOR（互斥或）**。
+簡單說，就是 $1+1 = 0$，**不進位**。
+
+使用 Linear Code 的好處非常多，例如 $Encode(0) = 0$ 永遠成立，而且整個 Code Space C 會是一個 $n$ 維空間中的 $k$ 維子空間 (subspace)，這讓分析和計算都變得異常方便。
+
+### Linear Code 的基本限制 (The Singleton Bound)
+
+好，終於來到今天的主角：一個衡量 Linear Code 效率的基本不等式。
+
+我們來定義幾個關鍵數字：
+
+* $n = dim(C)$：Codeword 的長度（$C$ 空間的維度）。
+* $k = dim(W)$：Word 的長度（$W$ 空間的維度）。
+* $d$：這個 Code 的**最小 Hamming distance**（也就是 $C$ 中任兩個相異 codeword 之間距離的最小值）。
+
+(註: 我們稱滿足這樣條件的code為 $(n, k)$-code, 或是 $(n, k, d)$-code)
+
+那麼，這三個數字之間存在一個「鐵三角」限制，你不能什麼都要。這個最基礎的上限（upper bound）之一，就是 **Singleton Bound**：
+
+> $$k + d \le n + 1$$
+
+這個不等式告訴我們一個殘酷的現實：
+你不可能同時擁有**極高的資訊率**（$k$ 很大，接近 $n$）和**極強的糾錯能力**（$d$ 很大）。
+
+* 想增加 $k$（傳更多資訊）？你就必須犧牲 $d$（糾錯能力下降）。
+* 想增加 $d$（抵抗更多錯誤）？你就必須犧牲 $k$（傳輸效率下降），或者...
+* ...把 $n$ 變得非常大（用更長的編碼），這會帶來額外的傳輸成本。
+
+這就是 ECC 世界中第一個，也是最重要的一個 trade-off。
+
+**註:** 若用剛才的勢力範圍解釋，每個codeword可以有大小為 $2^{\frac{d-1}{2}}$ 的生得領域，會得到一個除以2的版本: 
+$$
+\begin{align}
+2^{k} \cdot 2^{\frac{d-1}{2}} &\le 2^n  \\
+\implies k + \frac{d-1}{2} &\le n
+\end{align}
+$$
+而這個singleton bound比這個還要更強。證明意外的簡單: 因為把C的前d-1個bits給遮起來的話，所有的codeword必須相異，所以
+$$
+2^k = |W| \le 2^{n-d+1}
+$$
+故得證。
+
+----
+
+### 生成矩陣 (Generator Matrix)
+
+因為線性函數的行為是完全被基底所決定，如果說 word space $W$ 是 $k$ 維，code space $C$ 是 $n$ 維，那麼我們的Encode函數其實就等價於給一個 $k \times n$ 的生成矩陣 $G$。編碼過程就是一個簡單的矩陣乘法：
+$$c = wG$$
+
+* $w$ 是一個 $1 \times k$ 的 row vector (你的原文)。
+* $c$ 是一個 $1 \times n$ 的 row vector (生成的 codeword)。
+* (所有運算都在 $\mathbb{Z}/2\mathbb{Z}$ 上，也就是 XOR，不進位加法)。
+
+**例子 1：(3, 1, 3) Repetition Code**
+
+這是最簡單的 code：把一個 bit 重複三次。
+
+* **$W$ (訊息):** $k=1$。 (例如 $w = [w_1]$)
+* **$C$ (編碼):** $n=3$。 (例如 $c = [c_1, c_2, c_3]$)
+* **編碼規則:** $0 \to 000$, $1 \to 111$。
+* **Generator Matrix ($G$):**
+    我們需要一個 $1 \times 3$ 的矩陣 $G$，使得 $wG = c$。
+    當 $w=[1]$ 時，我們要 $c=[1, 1, 1]$。
+    所以 $G = [1, 1, 1]$。
+    (驗證：$[0] \times [1, 1, 1] = [0, 0, 0]$。 $[1] \times [1, 1, 1] = [1, 1, 1]$。正確！)
+* **Parameters:**
+    * $n=3$ (codeword 長度)
+    * $k=1$ (message 長度)
+    * $d=3$ (最小距離， $d(000, 111) = 3$)
+* **Singleton Bound 檢查:**
+$$
+\begin{align}
+                k + d &\le n + 1  \\
+\implies \quad   1 + 3 &\le 3 + 1 
+\end{align}
+$$
+    **結論：** 這個 code 剛剛好 "tight"（緊密）地滿足了這個不等式！這類 code 稱為 **MDS (Maximum Distance Separable) code**，它們在 $n, k$ 固定的情況下，達到了 $d$ 的理論最大值。
+
+
+**例子 2： (7, 4, 3) Hamming Code**
+
+讓我們來看一個更實用、更強大，但是**沒有 tight** 的例子：(7, 4) Hamming Code。
+
+* **$W$ (訊息):** $k=4$。 ( $w = [w_1, w_2, w_3, w_4]$ )
+* **$C$ (編碼):** $n=7$。 ( $c = [c_1, ... c_7]$ )
+* **Generator Matrix ($G$):**
+    這是一個 $4 \times 7$ 矩陣。我們常用一種「**系統性 (systematic)**」的形式，它的結構是 $G = [I_k | P]$，其中 $I_k$ 是 $k \times k$ 的單位矩陣， $P$ 是一個 $k \times (n-k)$ 矩陣。
+    
+    這樣做的好處是，編碼後的前 $k$ 個 bits **就是原文 $w$**，後面 $n-k$ 個 bits 才是「校驗位 (parity bits)」。
+
+    一個 (7, 4) Hamming Code 的標準 $G$ 矩陣是：
+    $$
+    G = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 1
+    \end{bmatrix}
+    $$
+    * (解讀： $c_1=w_1, c_2=w_2, c_3=w_3, c_4=w_4$。而 $c_5 = w_1+w_2+w_4$, $c_6 = w_1+w_3+w_4$, $c_7 = w_2+w_3+w_4$)
+* **Parameters:**
+    * $n=7$
+    * $k=4$
+    * $d=3$ (這個 code 的最小距離是 3。這保證了它可以修正 1 bit 的錯誤)
+* **Singleton Bound 檢查:**
+$$
+\begin{align}
+                k + d &\le n + 1  \\
+\implies \quad   4 + 3 &\le 7 + 1 
+\end{align}
+$$
+    **結論：** $7 < 8$。這個 code 就**沒有** tight 這個不等式。
+    
+    這告訴我們，Singleton Bound 確實只是一個「上界」，許多非常優秀且實用的 code（像 Hamming code）並不會剛好壓在那條線上。
+
+---
+
+### 怎麼快速的「反解」？ (Error Correction)
+
+如果 $c = wG$，且傳輸**沒有錯誤**，那反解很簡單：因為 $G$ 是系統性的 $G=[I_4 | P]$，我們收到的 $c$ 的前 4 個 bits 就是 $w$。
+
+但重點是**如果出錯了呢**？
+
+我們收到的 $r$ (received vector) 可能不等於 $c$。
+$$
+r = c + e \quad(e \text{是 error vector})
+$$
+
+這時，我們就要用一個神奇的反解矩陣叫做 **Parity-Check Matrix (奇偶校驗矩陣)**，記為 $H$。
+
+$H$ 是一個 $(n-k) \times n$ 矩陣（對 (7, 4) code 來說，就是 $3 \times 7$）。
+它和 $G$ 有一個非常漂亮的「正交」關係：
+$$GH^T = 0$$
+
+這意味著，**任何一個合法的 codeword $c$**，都滿足：
+$$cH^T = 0$$
+
+**用 H 來抓出錯誤**
+
+當我們收到 $r$ 時，我們立刻計算一個東西，叫做 **Syndrome (伴隨式)**，記為 $S$：
+
+$$S = rH^T$$
+
+現在，神奇的事情發生了。我們把 $r = c + e$ 代入：
+
+$S = (c + e)H^T = cH^T + eH^T$
+
+因為 $cH^T = 0$（c 是合法 codeword），所以：
+
+$$S = eH^T$$
+
+**這就是解碼的關鍵！**
+
+1.  **$S$ 的值只跟 error $e$ 有關**，跟原始訊息 $w$ 或 $c$ 完全無關！
+2.  如果 $S = 0$，代表 $e=0$（或 $e$ 剛好是另一個合法的 codeword，機率很低），我們假設**沒有錯誤**。
+3.  如果 $S \neq 0$，代表**發生了錯誤**。
+
+對於 Hamming Code 這種「完美」的 code， $S$ 的值和「發生 1-bit 錯誤的位置」是一一對應的。
+
+(7, 4) Hamming code 的 $H$ 矩陣（對應上面那個 $G$）是：
+$$
+H = \begin{bmatrix}
+1 & 1 & 0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 & 0 & 1
+\end{bmatrix}
+$$
+( $H = [P^T | I_{n-k}]$ )
+
+如果你計算 $S = eH^T$，你會發現：
+
+* 如果 $e = [1,0,0,0,0,0,0]$ (第1 bit 錯)，$S = [1, 1, 0]$。
+* 如果 $e = [0,1,0,0,0,0,0]$ (第2 bit 錯)，$S = [1, 0, 1]$。
+* ...
+* 如果 $e = [0,0,0,0,0,0,1]$ (第7 bit 錯)，$S = [0, 0, 1]$。
+
+每個 1-bit 錯誤都會產生一個**獨一無二**的 $S$。我們只要建立一個「$S$ -> $e$」的對照表，收到 $r$ -> 計算 $S$ -> 查表得到 $e$ -> $c = r + e$（XOR 回去） -> 讀出 $c$ 的前 $k$ bits，就成功解碼 $w$ 了！
+
+來寫一下 $GH^T$
+$$
+GH^T = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 1 & 0 \\
+    1 & 0 & 1 \\
+    0 & 1 & 1 \\
+    1 & 1 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1 
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    0 & 0 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0 
+    \end{bmatrix}
+$$
+
+
+### $H$ 的誕生：來自 $C$ 的對偶空間
+
+對於任意的 $(n, k, d)$ 生成矩陣 $G$，如果這個 $H$ 要存在的話，所有 $H$ 行向量 (row vectors) 跟每個 $G$ 的行向量內積都必須是 0。而 $G$ 有 $k$ 個行向量，它們生成了 $C$。所以直觀上來說，$H$ 的 $(n-k)$ 個行向量所生成的空間，就是 $G$ 的行向量空間 (Row Space) 的「正交補空間」。
+
+但是！這邊要特別小心。因為在 $\mathbb{F}_2$ 裡面做內積，跟一般實數的內積雖然形式極相似，但最大的差別是，一個非零向量自己跟自己的內積不一定大於 0！（應該說在 $\mathbb{F}_2$ 裡本來就沒有「大於0」這個概念，只有是否為 0）。
+
+如果一個向量有偶數個 1，例如 $\mathbf{v} = [1, 1] \in \mathbb{F}_2^2$，自己跟自己內積就是 $1 \cdot 1 + 1 \cdot 1 = 1 + 1 = 0$。
+這個向量居然與自己「正交」！
+
+這導致了一個在 $\mathbb{R}^n$ 中不會發生的奇特現象：一個子空間 $C$ 和它的「正交補空間」 $C^\perp$ 是可以重疊的。在 $\mathbb{F}_2^2$ 中，由 $[1, 1]$ 所生成的子空間 $C$，其 $C^\perp$ 就是它自己！
+
+所以，$C$ 和 $C^\perp$ 的直和 (Direct Sum) 不一定是整個 $\mathbb{F}_2^n$ 空間：
+$$C \oplus C^\perp \neq \mathbb{F}_2^n$$
+欸，但是，雖然正交空間不一定是我們直觀上的「補空間」，一個來自線性代數的關鍵定理拯救了我們：**維度公式依然成立！**
+
+$$\text{dim}(C) + \text{dim}(C^\perp) = n$$
+這個事實，就是我們構建 $H$ 的數學保證。
+
+---
+
+我們從 $G$ 出發。$G$ 是一個 $k \times n$ 矩陣，它的 $k$ 個行向量 (row vectors) 生成 (span) 了 $C$。因此，$C$ 是 $\mathbb{F}_2^n$ 中一個維度為 $k$ 的子空間。
+
+接著，我們定義 $C$ 的**對偶碼 (Dual Code)** $C^\perp$：
+$$C^\perp = \{ \mathbf{v} \in \mathbb{F}_2^n \mid \mathbf{c} \cdot \mathbf{v}^T = 0 \text{ for all } \mathbf{c} \in C \}$$
+(這裡 $\mathbf{c} \cdot \mathbf{v}^T$ 是指內積。)
+
+由於 $G$ 的行向量是 $C$ 的一組基底，一個向量 $\mathbf{v}$ 屬於 $C^\perp$ 的**充分必要條件**是：$\mathbf{v}$ 與 $G$ 的*每一個*行向量都正交。
+$$\mathbf{v} \in C^\perp \iff G \mathbf{v}^T = \mathbf{0}_{k \times 1}$$
+*(註：$G$ 是 $k \times n$，$v^T$ 是 $n \times 1$，結果是 $k \times 1$ 的零向量)*
+
+現在，我們使用關鍵的維度定理：$\dim(C) + \dim(C^\perp) = n$。
+代入 $\dim(C) = k$，我們得到：
+$$\dim(C^\perp) = n - k$$
+$C^\perp$ 是一個維度為 $n-k$ 的子空間。既然是子空間，它就必然存在一組基底。
+
+**我們就此定義 $H$：**
+
+> **定義：** 奇偶校驗矩陣 $H$ (Parity Check Matrix) 是一個 $(n-k) \times n$ 矩陣，它的 $n-k$ 個行向量 (row vectors) 構成了 $C^\perp$ 的一組基底。
+
+### $H$ 的兩大特性
+
+這個 $H$ 完美地滿足了 linear code 所需的一切。
+
+**特性一：$GH^T = 0$ (與 $G$ 的正交性)**
+
+$H^T$ 是一個 $n \times (n-k)$ 矩陣，它的 $n-k$ 個列向量 (column vectors) $\mathbf{h}_j^T$ 就是 $C^\perp$ 的基底。
+$G$ 是一個 $k \times n$ 矩陣，它的 $k$ 個行向量 (row vectors) $\mathbf{g}_i$ 是 $C$ 的基底。
+
+當我們計算矩陣乘積 $GH^T$ 時，其第 $(i, j)$ 個元素的值是：
+$$(GH^T)_{ij} = (\text{Row } i \text{ of } G) \cdot (\text{Column } j \text{ of } H^T) = \mathbf{g}_i \cdot \mathbf{h}_j^T$$
+
+* $\mathbf{g}_i \in C$
+* $\mathbf{h}_j^T$ 的轉置 $\mathbf{h}_j \in C^\perp$
+
+根據 $C^\perp$ 的定義， $C$ 中的向量 $\mathbf{g}_i$ 與 $C^\perp$ 中的向量 $\mathbf{h}_j$ 內積*必然*為 0。
+因此，$(GH^T)_{ij} = 0$ 對所有 $i, j$ 都成立。
+**得證：$GH^T = 0_{k \times (n-k)}$**。
+
+**特性二：$C = \text{NullSpace}(H)$ (C 的另一種定義)**
+
+$H$ 不只跟 $G$ 正交，它還提供了另一種描述 $C$ 的方式。
+一個向量 $\mathbf{c} \in \mathbb{F}_2^n$ 是碼字 (codeword)，若且唯若 (if and only if)：
+$$\mathbf{c} H^T = \mathbf{0}_{1 \times (n-k)}$$
+* $\mathbf{c} (1 \times n) \times H^T (n \times (n-k)) \to \mathbf{0} (1 \times (n-k))$
+
+**證明：** $\mathbf{c} H^T = \mathbf{0}$ 意味著 $\mathbf{c}$ 與 $H^T$ 的*所有*行向量 (columns) 內積為 0。而 $H^T$ 的行向量就是 $C^\perp$ 的基底。
+如果 $\mathbf{c}$ 與 $C^\perp$ 的所有基底都正交，那它就與 $C^\perp$ 中的所有向量都正交。
+哪些向量會與 $C^\perp$ 中的所有向量都正交？答案就是 $(C^\perp)^\perp$ 裡面的向量。
+而在 $\mathbb{F}_2$（以及所有有限體）中，我們有 $(C^\perp)^\perp = C$。
+因此，$\mathbf{c} H^T = \mathbf{0} \iff \mathbf{c} \in C$。
+
+$G$ 用來**生成** $C$，$H$ 用來**檢驗** $C$。
+
+---
+
+### $H$ 的真正威力：症候群解碼 (Syndrome Decoding)
+
+好了，我們證明了 $H$ 的存在。那它到底有什麼用？
+$H$ 的存在，讓我們擁有了「解碼」的能力。
+
+假設我們傳送了碼字 $\mathbf{c}$ ( $\in C$ )。
+在傳輸過程中，發生了錯誤，錯誤向量為 $err$。
+我們收到的向量是 $\mathbf{r} = \mathbf{c} + err$。
+
+我們只拿得到 $\mathbf{r}$。我們不知道 $\mathbf{c}$ 也還不知道 $err$。
+這時，$H$ 登場了。我們計算 $\mathbf{r}$ 的**Syndrome** $S$：
+
+$$S = \mathbf{r} H^T$$
+$S$ 是一個 $1 \times (n-k)$ 的向量。我們把它展開：
+$$S = (\mathbf{c} + err) H^T = \mathbf{c} H^T + err H^T$$
+根據「特性二」，因為 $\mathbf{c}$ 是個合法的碼字，我們知道 $\mathbf{c} H^T = \mathbf{0}$。
+所以上式變為：
+$$S = \mathbf{0} + err H^T = err H^T$$
+**這就是 $H$ 最神奇的地方！**
+
+> **症候群 $S$ 完全由錯誤向量 $err$ 決定，而與原始碼字 $\mathbf{c}$ 無關。**
+
+* 如果 $S = \mathbf{0}$，這意味著 $err H^T = \mathbf{0}$。
+    * 這*可能*代表 $err = \mathbf{0}$ (沒有錯誤)。
+    * 但也*可能*代表 $err$ 剛好也是一個合法的碼字 $err \in C$ (我們衰到剛好被錯誤推進了另一個碼字)。
+* 如果 $S \neq \mathbf{0}$，我們可以 100% 確定：**有錯誤發生！**
+
+### 定義解碼函數 $h(S)$
+
+我們的目標是從 $S$ 反推出 $err$。
+這就是 $h$ 函數，它是整個解碼策略的核心。
+
+> **定義：** 解碼函數 $h$ 是一個映射 $h: \mathbb{F}_2^{n-k} \to \mathbb{F}_2^n$，它接受一個症候群 $S$，並輸出一個「最有可能」的錯誤向量 $\hat{err}$。
+>
+> $$\hat{err} = h(S)$$
+
+**「最有可能」是什麼意思？**
+在標準的二元對稱通道 (BSC) 中，我們假設錯誤是隨機且獨立發生的。這代表發生 1 個 bit 錯誤的機率，遠大於發生 2 個 bit 錯誤；2 個又遠大於 3 個...
+所以，「最有可能」的錯誤向量，就是具有**最小漢明權重 (Minimum Hamming Weight)** 的那個。
+
+對於一個給定的 $S$，滿足 $err H^T = S$ 的 $err$ 可能有很多個。
+例如，如果 $\mathbf{e}_1$ 滿足 $\mathbf{e}_1 H^T = S$，那麼 $\mathbf{e}_1 + \mathbf{c}$（其中 $\mathbf{c} \in C$）也會滿足：
+$(\mathbf{e}_1 + \mathbf{c})H^T = \mathbf{e}_1 H^T + \mathbf{c} H^T = S + \mathbf{0} = S$。
+所有這些會產生同一個症候群 $S$ 的向量集合，稱為 $C$ 的一個**陪集 (Coset)**。
+
+$h(S)$ 的任務，就是在這個陪集中，找出那個漢明權重最小的向量，我們稱之為**陪集首領 (Coset Leader)**。
+
+> **$h(S)$ 的正式定義：**
+> $h(S) = \hat{err}$，其中 $\hat{err}$ 是集合 $\{ \mathbf{e} \in \mathbb{F}_2^n \mid \mathbf{e} H^T = S \}$ 中，具有最小漢明權重的向量。
+> (如果有多個最小權重向量，通常任選一個，例如按字典序排第一個)
+
+### 完整的解碼流程
+
+有了 $H$ 和 $h(S)$，解碼流程如下：
+
+1.  **接收：** 收到 $\mathbf{r}$。
+2.  **計算Syndrome：** $S = \mathbf{r} H^T$。
+3.  **查找錯誤：** $\hat{err} = h(S)$。( $h$ 函數通常是預先算好存成一個查找表，稱為 Syndrome Look-up Table )
+4.  **修正錯誤：** $\hat{\mathbf{c}} = \mathbf{r} + \hat{err}$。(在 $\mathbb{F}_2$ 中，加法和減法一樣)
+5.  **解碼訊息：** 從 $\hat{\mathbf{c}}$ 反解出 $\hat{\mathbf{w}}$ (例如，若 $G$ 是系統碼，直接取前 $k$ 個 bits)。
+
+### $h(S)$ 何時會成功？
+
+這個解碼流程能成功的**前提**是：我們猜的 $\hat{err}$ *就是* 實際發生的 $err$。
+($\hat{err} = err$)
+
+而 $h(S)$ 策略是「猜最小權重」。所以，只要實際發生的 $err$ *剛好*就是它所屬陪集 (Coset) 裡的那個最小權重向量 (Coset Leader)，解碼就會成功！
+
+這就回到了 $(n, k, d)$ 中的 $d$ (最小距離)：
+一個 code 的最小距離為 $d$，代表它能保證修正 $t = \lfloor \frac{d-1}{2} \rfloor$ 個錯誤。
+這句話的數學意義是：**所有權重 $wt(err) \le t$ 的錯誤向量 $err$，都*必然*是它們各自陪集中的唯一首領。**
+
+因此，只要實際發生的錯誤數量 $|err| \le \lfloor \frac{d-1}{2} \rfloor$， $h(S)$ 函數就**保證**能找到正確的 $err$，解碼也**保證**會成功！
+
+---

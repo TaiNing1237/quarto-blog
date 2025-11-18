@@ -1,0 +1,26 @@
+# Quarto specific
+/.quarto/
+/_site/
+/_book/
+/_freeze/
+*.html
+!index.html
+
+# R / RStudio (if applicable)
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Python (if applicable)
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Windows / Mac System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment variables (Protect your API keys!)
+.env

@@ -1,0 +1,128 @@
+---
+title: "一天講一個Normal Distribution的性質 Day3"
+author: "Tai-Ning Liao"
+date: "2025-11-14"
+categories: [analysis, statistic, distribution]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+今天來講 $n$ 維空間的多變量常態分佈 (Multivariate Normal Distribution)。高維空間的常態分佈雖然在形式上只是把一維的做 $n$ 次方，但他豐富的特性，卻讓它在統計學、機器學習，甚至於密碼學、純數學理論中都有非常重要的應用。
+
+對一個 $n$ 維隨機向量 $\mathbf{X} = (X_1, X_2, \ldots, X_n)^T$，我們說它服從多變量常態分佈，記作 $\mathbf{X} \sim \mathcal{N}_n(\boldsymbol{\mu}, \Sigma)$，如果它的機率密度函數 (PDF) 為：
+$$
+f_{\mathbf{X}}(\mathbf{x}) = \frac{1}{(2\pi)^{n/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)
+$$
+其中 $\boldsymbol{\mu} \in \mathbb{R}^n$ 是均值向量 (mean vector)，$\Sigma \in \mathbb{R}^{n \times n}$ 是協方差矩陣 (covariance matrix)，且必須是正定矩陣 (positive definite matrix)。
+
+OK，老實說這個公式看起來有點嚇人，但其實我們知道所有對稱的實數正定矩陣都可以被對角化 (diagonalized)，寫成 $\Sigma = P D P^{-1}$，所以經過一個 orthogonal 轉換 $\mathbf{X}=P\mathbf{Y}$，$f_\mathbf{X}(x)$ 可以寫成
+$$
+f_{\mathbf{X}}(\mathbf{x}) = f_{\mathbf{Y}}(\mathbf{y}) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma_i^2}} \exp\left( -\frac{(y_i - \mu_i)^2}{2\sigma_i^2} \right)
+$$
+噹噹! 其實就是 $n$ 個獨立的一維常態分佈的乘積啦！
+
+**新手常犯的錯誤**：
+
+* 請注意這邊的用詞，我們刻意區分「多變量常態分佈 (Multivariate Normal Distribution)」和 「常態分佈(Normal Distribution)」。
+* 隨機變數 $X, Y$ 都是常態分佈，並 **不代表** $(X, Y)$ 這個二維向量服從多變量常態分佈，除非 $X$ 和 $Y$ 是獨立的 (independent)！這點非常重要。獨立是個很強的條件， $(X, Y)$ 的聯合分佈 (joint distribution) 可能會有非常複雜的形式。
+* 如果隨機變數 $(X, Y)$ 服從二維多變量常態分佈，而且 covariance 為 $0$ ，那麼 $X$ 和 $Y$ 一定是獨立的！這是個簡單推論，但卻是多變量常態分佈的一個非常特別的性質，其他分佈並不一定成立。
+* **Kac-Berstein Theorem [Optional]**。事實上，我們只需要假設 $X$ 和 $Y$ 是獨立的隨機變數(一維)，且 $X-Y$ 和 $X+Y$ 也是獨立的，那麼 $(X, Y)$ 必須服從二維的多變量常態分佈。(WHY?)
+* **Cramer's decomposition Theorem [Optional]**。如果 $X$ 和 $Y$ 是獨立的隨機變數，且 $X+Y$ 服從常態分佈，那麼 $X$ 和 $Y$ 必須服從常態分佈。(WHY?)
+
+
+### 旋轉不變性 (Rotational Invariance)
+
+如果我們取標準的多變量常態分佈 $\mathbf{X} \sim \mathcal{N}_n(\mathbf{0}, I_n)$，其中 $I_n$ 是 $n$ 維單位矩陣 (identity matrix)。那對於任意的正交矩陣 (orthogonal matrix) $Q$（即 $Q^T Q = I_n$），我們有:
+$$  
+\mathbf{Y} = Q \mathbf{X} \sim \mathcal{N}_n(\mathbf{0}, I_n) \quad \tag{1}\label{eq:rotate_invar}
+$$
+這是因為 $f_{\mathbf{X}}(\mathbf{x}) \propto e^{-\frac{1}{2} \mathbf{x}^T \mathbf{x}}$，而 $\mathbf{x}^T \mathbf{x}$ 在正交變換下是不變的。 
+
+而對於一般的多變量常態分佈 $\mathbf{X} \sim \mathcal{N}_n(\boldsymbol{\mu}, \sigma^2\mathbf{I}_n)$，我們需要做個平移:
+$$
+\mathbf{Y} = Q(\mathbf{X} - \mathbf{\mu}) \sim \mathcal{N}_n(\boldsymbol{0}, \sigma^2 I_n)  \tag{2}\label{eq:rotate_invar_shift}
+$$
+
+這其實是個非常奇妙的性質，以至於只有常態分佈才有這個特性。
+
+**從最直覺的觀點: PDF 函數**
+
+假設一個在 $n$ 維空間中的PDF函數 $f_\mathbf{X}(x)$ 具有旋轉不變性，同時又是 $n$ 個一維獨立變數的乘積。那首先，這些一維的變數必須都相同分佈 (identically distributed) 而且對原點對稱，否則旋轉後會改變分佈。那不妨假設一維的 PDF 是 $g(x)$，那旋轉不變性要求對於所有的 $n$ 維向量 $(x_1, x_2, \ldots, x_n)$，我們有：
+$$
+g\left(\sqrt{\sum_{i=1}^n x_i^2} \right) = \prod_{i=1}^{n} g(x_i)
+$$
+令 $h(t) = \ln(g(\sqrt{t}))$，我們有：
+$$
+h\left(\sum_{i=1}^n x_i^2\right) = \sum_{i=1}^{n} h(x_i^2)
+$$
+這是柯西函數方程，因為 $h$ 是連續的，所以我們有 $h(t) = kt$，因此 $g(x) = e^{kx^2}$。為了讓 $g(x)$ 成為一個合法的 PDF，我們需要 $k<0$，這正是常態分佈的形式！
+
+
+
+
+### 應用: 樣本均值(Sample Mean) 和 樣本變異數(Sample Variance) 是獨立的
+
+這算是一個神奇的應用場景吧! 假設有 $X_1, X_2, \ldots, X_n$ 是來自(一維)常態分佈 $\mathcal{N}(\mu, \sigma^2)$ 的獨立同分佈樣本 (i.i.d. samples)。我們定義樣本均值和樣本變異數如下：
+$$
+\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i, \quad S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2
+$$
+那麼 $\bar{X}$ 和 $S^2$ 是獨立的隨機變數！
+
+我們將 $n$ 個sample視為是 $n$ 維空間的隨機向量，$\mathbf{X} = [X_1, X_2, \ldots, X_n]^T$。
+因為i.i.d. 所以是multivariate normal，$\mathbf{X} \sim \mathcal{N}_n(\mu \mathbf{1}_n, \sigma^2 I_n)$。
+
+要減去常數向量 $\mu \mathbf{1}_n= [\mu, \mu, \ldots, \mu]^T$ 後，$\mathbf{X} - \mu \mathbf{1}_n$ 才有旋轉不變性 \eqref{eq:rotate_invar_shift}。(隨然實驗學家不知道真的 $\mu$ 是多少，但還是可以進行這樣的推導)。
+
+令 $u_1 = \frac{1}{\sqrt{n}}[1, 1, \ldots, 1]^T$，這是一個單位向量 (unit vector)，代表均值的方向。然後選擇 $n-1$ 個正交於 $u_1$ 的單位向量 $u_2, u_3, \ldots, u_n$，所以 $[u_1, u_2, \ldots, u_n]$ 形成一個正交矩陣 $Q$。令 
+$$
+\mathbf{Y} \coloneqq Q^T (\mathbf{X} - \mu \mathbf{1}_n)
+$$
+，其實也就是
+$$
+\begin{aligned}
+Y_1 &\coloneqq u_1^T \cdot (\mathbf{X} - \mu \mathbf{1}_n), \quad \\
+Y_i &\coloneqq u_i^T \cdot (\mathbf{X} - \mu \mathbf{1}_n) \quad \text{ for } i=2, 3, \ldots, n
+\end{aligned}
+$$
+根據旋轉不變性 \eqref{eq:rotate_invar_shift}，我們有 $Y_1, Y_2, \ldots, Y_n$ 是獨立的隨機變數，並且
+$$
+||\mathbf{Y}||^2 = ||\mathbf{X} - \mu \mathbf{1}_n||^2 = \sum_{i=1}^{n} (X_i - \mu)^2
+$$
+上面的等號就是個恆等式，僅代表作標轉換，並非取期望值什麼的。
+
+這時看出來了嗎? 
+
+* $\bar{X}$ 是 $Y_1$ 的函數。因為 $\bar{X} = \mu + \frac{1}{\sqrt{n}} Y_1$。
+* $S^2$ 是 $Y_2, Y_3, \ldots, Y_n$ 的函數。因為 
+$$
+\begin{aligned}
+(n-1)S^2 
+&= \sum_{i=1}^{n} (X_i - \bar{X})^2   \\
+&= \sum_{i=1}^{n} (X_i - \mu + \mu - \bar{X})^2   \\
+&= \sum_{i=1}^{n} (X_i - \mu)^2 + 2\sum_{i=1}^{n}(X_i - \mu)(\mu - \bar{X}) + n(\mu - \bar{X})^2   \\
+&= \sum_{i=1}^{n} (X_i - \mu)^2 - 2n(\mu - \bar{X})^2 + n(\mu - \bar{X})^2   \\
+&= \sum_{i=1}^{n} (X_i - \mu)^2 - n(\mu - \bar{X})^2  \\
+&= ||\mathbf{Y}||^2 - Y_1^2 = \sum_{i=2}^{n} Y_i^2
+\end{aligned}
+$$
+所以 $S^2 = \frac{1}{n-1} \sum_{i=2}^{n} Y_i^2$。
+
+> 若隨機變數 $A, B$ 是獨立的，則對於任意(可測)函數 $f, g$。必定有 $f(A)$ 和 $g(B)$ 也是獨立的。
+
+如此一來就證明了 $\bar{X}$ 和 $S^2$ 是獨立的隨機變數！  Q.E.D.
+
+這裡也順便證明了一個經典結果：對於 $X_i \sim \mathcal{N}(\mu, \sigma^2)$，我們有
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}
+$$
+這裡把高中時期統計學講的 「剩下$n-1$個自由度」給講得清清楚楚了。
+
+
+
+
+
+
+

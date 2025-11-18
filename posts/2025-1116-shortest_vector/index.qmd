@@ -1,0 +1,35 @@
+---
+title: "最短的向量"
+author: "Tai-Ning Liao"
+date: "2025-11-16"
+categories: [Cryptography, NP-Reduction, Linear Algebra]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+
+
+# 從無窮多組解中，找一組最小的
+
+假設在 $\mathbb{R}^n$ 空間中有 $n$ 個向量 $v_1, ..., v_n$，要找他們的整係數線性組合，使得其長度最小(但非零)。
+$$
+\begin{array}{cl}
+\min & \Big\| v \Big\|_2 \\
+\text{s.t.} & v = \sum_{i=1}^n a_i v_i, \quad a_i \in \mathbb{Z}, \quad v \neq 0
+\end{array}
+$$
+
+也可以考慮個整數版本的，但向量的個數要比 $n$ 多一些。假設 $v_1, ..., v_m$ 是 $\mathbb{Z}_q^n$ 中的 $m$ 個向量。
+
+$$
+\begin{array}{cl}
+\min & \sum_{i=1}^m a_i^2 \\
+\text{s.t.} & \sum_{i=1}^m a_i v_i \equiv 0 (mod q), \quad a_i \in \mathbb{Z}, \exists a_i \neq 0
+\end{array}
+$$
+
+在這個情形中，我們反過來是要求向量合為零時，最小的係數是多少。
+
