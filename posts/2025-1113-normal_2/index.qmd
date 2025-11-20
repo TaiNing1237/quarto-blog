@@ -1,8 +1,8 @@
 ---
-title: "一天講一個Normal Distribution的性質 Day2"
+title: "一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換"
 author: "Tai-Ning Liao"
 date: "2025-11-13"
-categories: [analysis, statistic, distribution]
+categories: [Normal Distribution]
 ---
 
 今天來講一下 moment generation function 跟 characteristic function。

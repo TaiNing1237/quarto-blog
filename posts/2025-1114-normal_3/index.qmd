@@ -1,8 +1,8 @@
 ---
-title: "一天講一個Normal Distribution的性質 Day3"
+title: "一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈"
 author: "Tai-Ning Liao"
 date: "2025-11-14"
-categories: [analysis, statistic, distribution]
+categories: [Normal Distribution]
 format:
     html:
         fig-align: center # 這會讓所有圖片都置中

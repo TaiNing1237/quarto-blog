@@ -5,34 +5,100 @@ date: "2025-11-14"
 categories: [analysis, statistic, distribution]
 ---
 
-Let's list 10 common continuous probability distributions along with their probability density functions (PDFs):
+Let's list 10 common continuous probability distributions along with their probability density functions (PDFs), I've ignored the constant normalization factors for simplicity. Here's a summary table:
 
-| Name, Notation | Parameters | PDF | Mean | Variance | CF |
-|:---------|:--------:|:---------:|:--------:|:---------:|---------:|
-| **Normal** <br> $\mathcal{N}(\mu, \sigma^2)$  | mean: $\mu$ <br> variance: $\sigma^2$ | $\displaystyle e^{-\frac{1}{2\sigma^2}x^2+\frac{\mu}{\sigma^2}x}$ | $\mu$ | $\sigma^2$ | $e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$ |
-| **Chi-Squared** <br> $\chi^2(k)$ | degree of freedom (d.o.f): $k$ | $\displaystyle x^{\frac{k}{2}-1}e^{-\frac{x}{2}}$ | $k$ | $2k$ | $(1 - 2it)^{-\frac{k}{2}}$ |
-| **Chi (Optional)** <br> $\chi(k)$ | degree of freedom (d.o.f): $k$ | $\displaystyle x^{k-1}e^{-\frac{x^2}{2}}$ | 
-| **Exponential** <br> $\mathrm{Exp}(\lambda)$ | rate: $\lambda$ | $\displaystyle e^{-\lambda x}$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | $\frac{\lambda}{\lambda - it}$ |
-| **Gamma** <br> $\mathrm{Gamma}(\alpha, \theta)$ | shape: $\alpha$ <br> scale: $\theta$ | $\displaystyle x^{\alpha-1} e^{-\frac{x}{\theta}}$ | $\alpha\theta$ | $\alpha\theta^2$ | | $\left(1 - i\theta t\right)^{-\alpha}$ |
-| **Rayleigh** <br> $\mathrm{Rayleigh}(\sigma)$ | scale: $\sigma$ | $\displaystyle x e^{-\frac{x^2}{2\sigma^2}}$ | $\sigma\sqrt{\frac{\pi}{2}}$ | $\frac{(4-\pi)}{2}\sigma^2$ | ugly |
-| **Beta** <br> $\mathrm{Beta}(\alpha, \beta)$ | shape1: $\alpha$ <br> shape2: $\beta$ | $\displaystyle x^{\alpha-1}(1-x)^{\beta-1}$ | $\frac{\alpha}{\alpha+\beta}$ | $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ | ugly |
-| **Uniform** <br> $\mathrm{Uniform}(a, b)$ | min: $a$ <br> max: $b$ | $\displaystyle 1$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ | $\frac{e^{itb}-e^{ita}}{it(b-a)}$ |
-| **Student's t** <br> $t(k)$ | dof: $k$ | $\displaystyle \left(1+\frac{x^2}{k}\right)^{-\frac{k+1}{2}}$ | $0$, for k>1 | $\frac{k}{k-2}$, for k>2 | $|t|^{k/2}K_{k/2}(\sqrt{k}|t|)$ |
-| **F-distribution** <br> $F(d_1, d_2)$ | dof 1: $d_1$ <br> dof 2: $d_2$ | $\left(\frac{d_1 x}{d_1 x + d_2}\right)^{\frac{d_1}{2}} \left(\frac{d_2}{d_1 x + d_2}\right)^{\frac{d_2}{2}} x^{-1}$ | $\frac{d_2}{d_2 - 2}$, for $d_2$ >2 | $\frac{2 d_2^2 (d_1 + d_2 - 2)}{d_1 (d_2 - 2)^2 (d_2 - 4)}$, for $d_2$ >4 | ugly | 
+### Continuous Probability Distributions Table
+
+| Name, Notation | Parameters | PDF | Range | Mean | Variance | CF |
+|:---------|:--------:|:---------:|:---------:|:--------:|:---------:|---------:|
+| **Normal** <br> $\mathcal{N}(\mu, \sigma^2)$  | mean: $\mu$ <br> variance: $\sigma^2$ | $\displaystyle e^{-\frac{1}{2\sigma^2}x^2+\frac{\mu}{\sigma^2}x}$ | $x \in (-\infty, \infty)$ | $\mu$ | $\sigma^2$ | $e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$ |
+| **Chi-Squared** <br> $\chi^2(k)$ | degree of freedom (d.o.f): $k$ | $\displaystyle x^{\frac{k}{2}-1}e^{-\frac{x}{2}}$ | $x\in(0, \infty)$ | $k$ | $2k$ | $(1 - 2it)^{-\frac{k}{2}}$ |
+| **Chi [Optional]** <br> $\chi(k)$ | degree of freedom (d.o.f): $k$ | $\displaystyle x^{k-1}e^{-\frac{x^2}{2}}$ | $x\in(0, \infty)$ | $\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}$ | $k - \left(\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}\right)^2$ | ugly | 
+| **Exponential** <br> $\mathrm{Exp}(\lambda)$ | rate: $\lambda$ | $\displaystyle e^{-\lambda x}$ | $x\in(0, \infty)$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | $\frac{\lambda}{\lambda - it}$ |
+| **Gamma** <br> $\mathrm{Gamma}(\alpha, \theta)$ | shape: $\alpha$ <br> scale: $\theta$ | $\displaystyle x^{\alpha-1} e^{-\frac{x}{\theta}}$ | $x\in(0, \infty)$ | $\alpha\theta$ | $\alpha\theta^2$ | $\left(1 - i\theta t\right)^{-\alpha}$ |
+| **Beta** <br> $\mathrm{Beta}(\alpha, \beta)$ | shape1: $\alpha$ <br> shape2: $\beta$ | $\displaystyle x^{\alpha-1}(1-x)^{\beta-1}$ | $x\in(0, 1)$ | $\frac{\alpha}{\alpha+\beta}$ | $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ | ${}_1F_1(\alpha; \alpha+\beta; it)$ |
+| **Uniform** <br> $\mathrm{Uniform}(-1, 1)$ | NA | $\displaystyle \text{constant}$ | $x\in(-1, 1)$ | $0$ | $\frac{1}{3}$ | $\frac{\sin(t)}{t}$ |
+| **Cauchy** <br> $\mathrm{Cauchy}$ | NA | $\displaystyle \frac{1}{1+x^2}$ | $x\in(-\infty, \infty)$ | undefined | undefined | $e^{-|t|}$ |
+| **Student's t** <br> $t(\nu)$ | dof: $\nu$ | $\displaystyle \left(1+\frac{x^2}{\nu}\right)^{-\frac{\nu+1}{2}}$ | $x\in(-\infty, \infty)$ | $0$ for $\nu>1$ | $\frac{\nu}{\nu-2}$, for $\nu>2$ | $\frac{K_{\frac{\nu}{2}}(\sqrt{\nu}|t|) (\sqrt{\nu}|t|)^{\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) 2^{\frac{\nu}{2}-1}}$ |  
+| **F-distribution** <br> $F(d_1, d_2)$ | dof 1: $d_1$ <br> dof 2: $d_2$ | $\left(\frac{d_1 x}{d_1 x + d_2}\right)^{\frac{d_1}{2}} \left(\frac{d_2}{d_1 x + d_2}\right)^{\frac{d_2}{2}} x^{-1}$ | $x\in(0, \infty)$ | $\frac{d_2}{d_2 - 2}$, for $d_2$ >2 | $\frac{2 d_2^2 (d_1 + d_2 - 2)}{d_1 (d_2 - 2)^2 (d_2 - 4)}$, for $d_2$ >4 | ugly | 
 
 : My Distribution Table {#tbl-simple}
 
+* ${\displaystyle K_{\nu }}$ is the [modified Bessel function of the second kind](https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1). 
+* ${}_1F_1(a; b; z)$ is the [confluent hypergeometric function](https://en.wikipedia.org/wiki/Confluent_hypergeometric_function).
 
-${\displaystyle K_{\nu }}$ is the modified Bessel function of the second kind. 
+
+### Discrete Distributions
+Here are lists for common discrete probability distributions:
+
+| Name, Notation | Parameters | PMF | Range | Mean | Variance | CF |
+|:---------|:--------:|:---------:|:--------:|:--------:|:---------:|---------:|
+| **Bernoulli** <br> $\mathrm{Bernoulli}(p)$ | success prob.: $p$ | $\displaystyle p^x (1-p)^{1-x}$ | $x\in\{0,1\}$ | $p$ | $p(1-p)$ | $1 - p + p e^{it}$ |
+| **Binomial** <br> $\mathrm{Binomial}(n, p)$ | trials: $n$ <br> success prob.: $p$ | $\displaystyle \binom{n}{x} p^x (1-p)^{n-x}$ | $x\in\{0,1,\ldots,n\}$ | $np$ | $np(1-p)$ | $(1 - p + p e^{it})^n$ |
+| **Poisson** <br> $\mathrm{Poisson}(\lambda)$ | rate: $\lambda$ | $\displaystyle \frac{\lambda^x e^{-\lambda}}{x!}$ | $x\in\{0,1,2,\ldots\}$ | $\lambda$ | $\lambda$ | $e^{\lambda(e^{it}-1)}$ |
+| **Geometric** <br> $\mathrm{Geometric}(p)$ | success prob.: $p$ | $\displaystyle (1-p)^{x} p$ | $x\in\{0,1,2,\ldots\}$ | $\frac{1-p}{p}$ | $\frac{1-p}{p^2}$ | $\frac{p e^{it}}{1 - (1-p)e^{it}}$ |
+| **Negative Binomial** <br> $\mathrm{NegBin}(r, p)$ | successes: $r$ <br> success prob.: $p$ | $\displaystyle \binom{x+r-1}{r-1} p^r (1-p)^x$ | $x\in\{0,1,2,\ldots\}$ | $\frac{r(1-p)}{p}$ | $\frac{r(1-p)}{p^2}$ | $\left(\frac{p e^{it}}{1 - (1-p)e^{it}}\right)^r$ |
+: My Discrete Distribution Table {#tbl-discrete}
 
 
-**Normal Families :**
+----
 
-The Chi-squared distribution, Student's t-distribution, and F-distribution are all related to the normal distribution. 
+### Relationships
 
-* $\displaystyle \chi^2(k) \sim \sum_{i=1}^k Z_i^2$, where $Z_i$ are i.i.d. standard normal variables.
-* $\displaystyle F(d_1, d_2) \sim \frac{\chi^2(d_1)/d_1}{\chi^2(d_2)/d_2}$, which is the ratio of two scaled Chi-squared distributions.
+**Obvious**:
 
+* Exponential is a special case of Gamma: $\mathrm{Exp}(\lambda) \sim \mathrm{Gamma}(1, \frac{1}{\lambda})$.
+* Chi-squared is a special case of Gamma: $\chi^2(k) \sim \mathrm{Gamma}(\frac{k}{2}, 2)$.
+* A special case of Chi-squared is Exponential: $\chi^2(2) \sim \mathrm{Exp}(\frac{1}{2})$. This is called the *Rayleigh distribution*.
+* Chi is the square root of Chi-squared: $\chi(k) \sim \sqrt{\chi^2(k)}$.
+* Normal is a special case of Chi: $\mathcal{N}(0, 1) \sim \chi(1)$.
+* Cauchy is a special case of Student's t: $\mathrm{Cauchy} \sim t(1)$.
+* The chi-squared, Student's t, and F distributions are all naturally come from the Normal distribution in the following senses:
+  * $\displaystyle \chi^2(k) \sim \sum_{i=1}^k Z_i^2$, where $Z_i$ are i.i.d. standard normal variables.
+  * $\displaystyle t(\nu) \sim \frac{Z}{\sqrt{\chi^2(\nu)/\nu}}$, where $Z$ is a standard normal variable independent of the Chi-squared variable.
+  * $\displaystyle F(d_1, d_2) \sim \frac{\chi^2(d_1)/d_1}{\chi^2(d_2)/d_2}$, which is the ratio of two scaled Chi-squared distributions.
+* Bernoulli is a special case of Binomial: $\mathrm{Bernoulli}(p) \sim \mathrm{Binomial}(1, p)$. 
+
+**Stability**:
+
+* $\displaystyle \mathcal{N}(\mu_1, \sigma_1^2) + \mathcal{N}(\mu_2, \sigma_2^2) \sim \mathcal{N}(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$.
+* $\displaystyle \mathrm{Gamma}(\alpha_1, \theta) + \mathrm{Gamma}(\alpha_2, \theta) \sim \mathrm{Gamma}(\alpha_1 + \alpha_2, \theta)$.
+* $\displaystyle \chi^2(k_1) + \chi^2(k_2) \sim \chi^2(k_1 + k_2)$.
+* $\displaystyle \mathrm{Binomial}(n_1, p) + \mathrm{Binomial}(n_2, p) \sim \mathrm{Binomial}(n_1 + n_2, p)$.
+* $\displaystyle \mathrm{Poisson}(\lambda_1) + \mathrm{Poisson}(\lambda_2) \sim \mathrm{Poisson}(\lambda_1 + \lambda_2)$.
+
+
+**Less Obvious**:
+
+* Beta is related to Gamma in the following way: 
+$$
+\begin{cases}
+X \sim \mathrm{Gamma}(\alpha, \theta),  \\
+Y \sim \mathrm{Gamma}(\beta, \theta),  \\
+X \perp Y
+\end{cases}
+\implies
+\begin{cases}
+\displaystyle \frac{X}{X+Y} \sim \mathrm{Beta}(\alpha, \beta),  \\
+X+Y \sim \mathrm{Gamma}(\alpha + \beta, \theta), \\
+\displaystyle \frac{X}{X+Y} \perp (X+Y)
+\end{cases}
+$$
+  * A special case of the above is that taking $n$ independent standard normal $Z_i \sim \mathcal{N}(0,1)$ variables, then for any $k < n$: 
+  $$
+  \displaystyle \frac{Z_1^2 + Z_2^2 + \cdots + Z_k^2}{Z_1^2 + Z_2^2 + \cdots + Z_n^2} \sim \mathrm{Beta}\left(\frac{k}{2}, \frac{n-k}{2}\right)
+  $$
+  Notice that comparing to the F-distribution, the numerator is using Chi-squared variable from the denominator.
+
+* Sample $n$ independent $U_i \sim \mathrm{Uniform}(0,1)$ variables. The $k$-th order statistic follows a Beta distribution: $X_{(k)} \sim \mathrm{Beta}(k, n-k+1)$.
+
+
+----
+(To be added)
+
+* Exponential is related to Poisson process:
+  * If events occur according to a Poisson process with rate $\lambda$, then the waiting time until the $k$-th event follows a Gamma distribution: $T_k \sim \mathrm{Gamma}(k, \frac{1}{\lambda})$.
+  * 
 The Exponential and Gamma distributions are related to the Poisson process, which models the occurrence of random events over time. 
 
 The Beta distribution is often used in Bayesian statistics as a prior distribution for probabilities.

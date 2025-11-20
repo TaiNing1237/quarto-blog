@@ -5,14 +5,160 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>LTN&#39;s Math Blog</title>
+<title>LTN&#39;s Blog</title>
 <link>https://your-website-url.example.com/</link>
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sun, 16 Nov 2025 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 18 Nov 2025 16:00:00 GMT</lastBuildDate>
 <item>
-  <title>一天講一個Normal Distribution的性質 Day4</title>
+  <title>一天證明一個 Normal Distribution 的性質 Day5：Cumulant 多項式</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1119-normal_5/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>今天來講個比較輕鬆的小主題：<strong>Cumulant 多項式</strong> vs <strong>Moment 多項式</strong>。</p>
+<p>對於一個隨機變數 <img src="https://latex.codecogs.com/png.latex?X">，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。</p>
+<section id="cumulant-and-moment" class="level3">
+<h3 class="anchored" data-anchor-id="cumulant-and-moment">Cumulant and Moment</h3>
+<p>還記得動差生成函數 (Moment Generating Function, MGF) 定義為： <img src="https://latex.codecogs.com/png.latex?%20%20%0AM_X(t)%20=%20%5Cmathbb%7BE%7D%5Be%5E%7BtX%7D%5D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cmathbb%7BE%7D%5BX%5E%7Bk%7D%5D%20%5Cfrac%7Bt%5Ek%7D%7Bk!%7D%0A"> 名符其實，他就是「動差」的生成函數，因為對 <img src="https://latex.codecogs.com/png.latex?M_X(t)"> 做泰勒展開 (Taylor Expansion) 後，係數正好是各階動差 (moment)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu_k%20:=%20%5Cmathbb%7BE%7D%5BX%5Ek%5D%20=%20M_X%5E%7B(k)%7D(0)%20=%20%5Cleft.%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20M_X(t)%20%5Cright%7C_%7Bt=0%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:moment_def_1%7D%0A"> 不過呢，有時候因為動差函數不存在 (例如 Cauchy 分佈)，我們會改用一定會存在的特徵函數 (Characteristic Function, CF)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cphi_X(t)%20=%20%5Cmathbb%7BE%7D%5Be%5E%7BitX%7D%5D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cmathbb%7BE%7D%5BX%5E%7Bk%7D%5D%20%5Cfrac%7B(it)%5Ek%7D%7Bk!%7D%0A"> 所以也可以用 <img src="https://latex.codecogs.com/png.latex?%5Cphi_X(t)"> 來計算動差： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5BX%5Ek%5D%20=%20%5Cfrac%7B1%7D%7Bi%5Ek%7D%20%5Cphi_X%5E%7B(k)%7D(0)%20=%20%5Cleft.%20%5Cfrac%7B1%7D%7Bi%5Ek%7D%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20%5Cphi_X(t)%20%5Cright%7C_%7Bt=0%7D%20%20%5Ctag%7B2%7D%5Clabel%7Beq:moment_def_2%7D%0A"> 這邊要稍微注意一下，CF 是個複數值函數，所以其實是個複變函數的微分!</p>
+<p><strong>舉例說明</strong>：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 22%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Cphi_X(t)"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%7D%7Bdt%7D%5Cphi_X(t)"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5BX%5D"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%5E2%7D%7Bdt%5E2%7D%5Cphi_X(t)"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5BX%5E2%5D"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bernoulli(<img src="https://latex.codecogs.com/png.latex?p">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?1%20-%20p%20+%20p%20e%5E%7Bit%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?ip%20e%5E%7Bit%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?p"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-p%20e%5E%7Bit%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?p"></td>
+</tr>
+<tr class="even">
+<td>Poisson(<img src="https://latex.codecogs.com/png.latex?%5Clambda">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?i%5Clambda%20e%5E%7Bit%7D%20e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-%5Clambda%20e%5E%7Bit%7D%20e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D%20+%20(i%5Clambda%20e%5E%7Bit%7D)%5E2%20e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda%20+%20%5Clambda%5E2"></td>
+</tr>
+<tr class="odd">
+<td>Normal(<img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma%5E2">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?i%5Cmu%20e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D%20-%20%5Csigma%5E2%20t%20e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Cmu"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-%5Csigma%5E2%20e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D%20+%20(i%5Cmu%20-%20%5Csigma%5E2%20t)%5E2%20e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2%20+%20%5Cmu%5E2"></td>
+</tr>
+<tr class="even">
+<td>Gamma(<img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Ctheta">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?(1%20-%20i%5Ctheta%20t)%5E%7B-%5Calpha%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?i%5Calpha%20%5Ctheta%20(1%20-%20i%5Ctheta%20t)%5E%7B-%5Calpha%20-%201%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Calpha%20%5Ctheta"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-%20%5Calpha%20(%5Calpha%20+%201)%20%5Ctheta%5E2%20(1%20-%20i%5Ctheta%20t)%5E%7B-%5Calpha%20-%202%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Calpha%20(%5Calpha%20+%201)%20%5Ctheta%5E2"></td>
+</tr>
+</tbody>
+</table>
+<p>而如果只是想算 moment 的話 CF 就很夠用，但他對於捕捉獨立性 (independence) 的效果並不理想。這時候我們就需要用到 <strong>Cumulant Generating Function (CGF)</strong>： <img src="https://latex.codecogs.com/png.latex?%0AK_X(t)%20=%20%5Clog%20M_X(t)%20=%20%5Clog%20%5Cmathbb%7BE%7D%5Be%5E%7BtX%7D%5D%20%20%5Ctag%7B3%7D%5Clabel%7Beq:cumulant_gf_def%7D%0A"><br>
+因此我們定義 Cumulant 為： <img src="https://latex.codecogs.com/png.latex?%0A%5Ckappa_k%20:=%20K_X%5E%7B(k)%7D(0)%20=%20%5Cleft.%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20K_X(t)%20%5Cright%7C_%7Bt=0%7D%20%20%5Ctag%7B4%7D%5Clabel%7Beq:cumulant_def_1%7D%0A"></p>
+<p>當然，也有複數版本，通常會叫 Second Characteristic Function： <img src="https://latex.codecogs.com/png.latex?%0AH_X(t)%20=%20%5Clog%20%5Cphi_X(t)%20=%20%5Clog%20%5Cmathbb%7BE%7D%5Be%5E%7BitX%7D%5D%20%20%5Ctag%7B5%7D%5Clabel%7Beq:second_char_def%7D%0A"> 但這有個問題，就是 <img src="https://latex.codecogs.com/png.latex?%5Cphi_X(t)"> 可能會是負數或複數，導致 <img src="https://latex.codecogs.com/png.latex?%5Clog%20%5Cphi_X(t)"> 會有多重值 (multi-valued) 的問題，所以我們通常還是用實數版本的 CGF。</p>
+<p>取了 <img src="https://latex.codecogs.com/png.latex?%5Clog"> 的好處就是：<strong>如果 <img src="https://latex.codecogs.com/png.latex?X"> 跟 <img src="https://latex.codecogs.com/png.latex?Y"> 獨立，那麼 <img src="https://latex.codecogs.com/png.latex?K_%7BX+Y%7D(t)%20=%20K_X(t)%20+%20K_Y(t)"></strong>。這點跟 MGF 不同，因為 MGF 是乘法關係 (<img src="https://latex.codecogs.com/png.latex?M_%7BX+Y%7D(t)%20=%20M_X(t)%20M_Y(t)">)。</p>
+<p>所以對於 moment 來說，兩個獨立隨機變數相加的第 <img src="https://latex.codecogs.com/png.latex?n"> 階動差，會是兩個變數各自前 <img src="https://latex.codecogs.com/png.latex?n"> 階動差的 convolution (加上一些組合係數)。 但對於 cumulant 來說，兩個獨立隨機變數相加的第 <img src="https://latex.codecogs.com/png.latex?n"> 階 cumulant，會是兩個變數各自第 <img src="https://latex.codecogs.com/png.latex?n"> 階 cumulant 的<strong>直接相加</strong>： <img src="https://latex.codecogs.com/png.latex?%0A%5Ckappa_n(X%20+%20Y)%20=%20%5Ckappa_n(X)%20+%20%5Ckappa_n(Y)%20%5Cquad%20%5Ctext%7Bif%20%7D%20X%20%5Cperp%20Y%20%20%5Ctag%7B6%7D%5Clabel%7Beq:cumulant_indep_add%7D%0A"></p>
+<p><strong>舉例說明</strong>：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 25%">
+<col style="width: 22%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Ckappa_1"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Ckappa_2"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Ckappa_3"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Ckappa_4"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bernoulli(<img src="https://latex.codecogs.com/png.latex?p">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?p"></td>
+<td><img src="https://latex.codecogs.com/png.latex?p(1-p)"></td>
+<td><img src="https://latex.codecogs.com/png.latex?p(1-p)(1-2p)"></td>
+<td><img src="https://latex.codecogs.com/png.latex?p(1-p)(1%20-%206p(1-p))"></td>
+</tr>
+<tr class="even">
+<td>Poisson(<img src="https://latex.codecogs.com/png.latex?%5Clambda">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+</tr>
+<tr class="odd">
+<td>Normal(<img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma%5E2">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Cmu"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"></td>
+<td><img src="https://latex.codecogs.com/png.latex?0"></td>
+<td><img src="https://latex.codecogs.com/png.latex?0"></td>
+</tr>
+<tr class="even">
+<td>Gamma(<img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Ctheta">)</td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Calpha%20%5Ctheta"></td>
+<td><img src="https://latex.codecogs.com/png.latex?%5Calpha%20%5Ctheta%5E2"></td>
+<td><img src="https://latex.codecogs.com/png.latex?2%20%5Calpha%20%5Ctheta%5E3"></td>
+<td><img src="https://latex.codecogs.com/png.latex?6%20%5Calpha%20%5Ctheta%5E4"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>註</strong>: 直覺上因為 distribution 完全被 CF 決定，所以知道了所有 moment (或 cumulant) 似乎也就等於知道了 distribution 本身。但是，其實有可能 CF 在 0 點附近並不解析 (analytic)，常見例子請參考 Log-Normal distribution。所以說，知道所有 moment 只是知道在 0 點的微分，並不保證能還原整個 CF。</p>
+<p>看著這個表，我們會想，是不是任意給 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_1,%20%5Ckappa_2,%20%5Cldots,%20%5Ckappa_n">，就能找到一個對應的分佈？答案是否定的。比方說，若要使 cumulant 只有有限項非零，那麼這個分佈只能是 Normal 分佈，這是個非常有名的結果：</p>
+<blockquote class="blockquote">
+<p><strong>大定理(Marcinkiewicz Theorem)</strong>: 如果一個隨機變數的 cumulant generating function 是個(有限階)多項式，那麼這個多項式的階數最多是 2。</p>
+</blockquote>
+<p>為了保證 CGF 的存在性，該定理本來的敘述是說，若 CF 可以寫成 <img src="https://latex.codecogs.com/png.latex?%5Cphi_X(t)%20=%20e%5E%7BP(t)%7D">，其中 <img src="https://latex.codecogs.com/png.latex?P(t)"> 是個(複係數)多項式，那麼 <img src="https://latex.codecogs.com/png.latex?P(t)"> 的階數最多是 2。</p>
+<p>我們先跳過證明，提供一些直覺上的理解：主要是因為 CF 是 PDF 的傅立葉變換，而 PDF 必須非負 (non-negative)，這使得 CF 的形式受到很大限制。<span class="citation" data-cites="lukacs1970">Lukacs (1970, Theorem 7.3.3)</span> 有詳細的證明。</p>
+<!-- ### 參考資料 -->
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-lukacs1970" class="csl-entry">
+Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
+</div>
+</div></section></div> ]]></description>
+  <category>Normal Distribution</category>
+  <guid>https://your-website-url.example.com/posts/2025-1119-normal_5/</guid>
+  <pubDate>Tue, 18 Nov 2025 16:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1117-normal_4/</link>
   <description><![CDATA[ 
@@ -21,26 +167,39 @@
 
 
 
-<p>今天來講統計學中，參數估計(Parameter Estimation)的一個有趣概念，Sufficient Statistic。</p>
-<p>假設我們從一個distribution i.i.d. 取樣了 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點， <img src="https://latex.codecogs.com/png.latex?%0AX_1,%20%5Cldots,%20X_n%20%5Csim%20%5Cmathbf%7BX_%5Ctheta%7D%0A"> 而這個distribution有個未知的參數 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">，我們原則上是想要估計這個 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">，(例如Maximal Likelihood Estimation就是其中一種方式)。但是在這之前，我們來看看有沒有辦法先把這 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點「壓縮」成一個更小的統計量 (statistic)，而不損失任何關於 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的資訊。這個概念就叫做 Sufficient Statistic。</p>
-<p>比方說最簡單的丟硬幣例子，假設我們有一個未知偏置的硬幣，正面朝上的機率是 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">，我們丟了 <img src="https://latex.codecogs.com/png.latex?n"> 次硬幣，得到 <img src="https://latex.codecogs.com/png.latex?X_1,%20X_2,%20%5Cldots,%20X_n">，每個 <img src="https://latex.codecogs.com/png.latex?X_i"> 是 <img src="https://latex.codecogs.com/png.latex?0"> (反面) 或 <img src="https://latex.codecogs.com/png.latex?1"> (正面)。我們想要估計這個 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。</p>
-<p>來算算看，這 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點的聯合機率分佈(joint distribution)是： <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)%20%5Ccoloneqq%20P(X_1=x_1,%20X_2=x_2,%20%5Cldots,%20X_n=x_n%20%5Cmid%20%5Ctheta)%20=%20%5Ctheta%5E%7B%5Csum_%7Bi=1%7D%5En%20x_i%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Csum_%7Bi=1%7D%5En%20x_i%7D%0A"> 我們想要用這次的實驗結果 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bx%7D%20=%20(x_1,%20x_2,%20%5Cldots,%20x_n)"> 來估計 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。但是注意到，這個聯合分佈，跟實驗數據有關的部分只依賴於 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7Bx%7D)%20=%20%5Csum_%7Bi=1%7D%5En%20x_i">，(以及 <img src="https://latex.codecogs.com/png.latex?n"> ，但這邊設 <img src="https://latex.codecogs.com/png.latex?n"> 為固定值)，也就是正面朝上的次數，而不是每一次丟硬幣的具體結果。換句話說，所有這些 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7Bx%7D)"> 相同的實驗結果，形成了一個等高線。而在這個等高線上 <img src="https://latex.codecogs.com/png.latex?x"> 的所有可能的方法數跟 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 無關。所以我們有，若 <img src="https://latex.codecogs.com/png.latex?%5Cmu%20%5Ccoloneqq%20T(%5Cmathbf%7Bx%7D)">: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D)%20=%20%5Cmu)%0A&amp;=%20%5Cfrac%7BP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D,%20T(%5Cmathbf%7BX%7D)%20=%20%5Cmu%20%5Cmid%20%5Ctheta)%7D%7BP(T(%5Cmathbf%7BX%7D)%20=%20%5Cmu%20%5Cmid%20%5Ctheta)%7D%20%20%5C%5C%0A&amp;=%20%5Cfrac%7BP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)%7D%7BP(T(%5Cmathbf%7BX%7D)%20=%20%5Cmu%20%5Cmid%20%5Ctheta)%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5Ctheta%5E%7B%5Csum_%7Bi=1%7D%5En%20x_i%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Csum_%7Bi=1%7D%5En%20x_i%7D%7D%7B%5Csum_%7BT(%5Cmathbf%7Bx%7D)=%5Cmu%7D%20%20%5Ctheta%5E%7B%5Cmu%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Cmu%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5Ctheta%5E%7B%5Cmu%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Cmu%7D%7D%7B%5Csum_%7BT(%5Cmathbf%7Bx%7D)=%5Cmu%7D%20%20%5Ctheta%5E%7B%5Cmu%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Cmu%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Csum_%7BT(%5Cmathbf%7Bx%7D)=%5Cmu%7D%20%201%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Cbinom%7Bn%7D%7B%5Cmu%7D%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
-<p>而這跟 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 是無關的。這個結論有個很直觀的推導，就是擲 <img src="https://latex.codecogs.com/png.latex?n"> 次硬幣，給定正面朝上的次數是 <img src="https://latex.codecogs.com/png.latex?%5Cmu">，則某一種特定的結果出現的機率，就是 <img src="https://latex.codecogs.com/png.latex?1/%5Cbinom%7Bn%7D%7B%5Cmu%7D">。也就是這個簡化的計算偷偷用到了「每一種結果出現機率均等」的條件。</p>
-<p>通常記這個結果為 <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D)%20=%20%5Cmu)%20=%20P(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D)%20=%20%5Cmu)%0A"> 這些 <img src="https://latex.codecogs.com/png.latex?P"> 裡面的「等於」記號其實有點冗，我們通常省略，簡記為 <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D))%20=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A%5Ctag%7B1%7D%5Clabel%7Beq:suff_stat_def%7D%0A"> 我們稱滿足這個條件的統計量 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 為 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的 Sufficient Statistic。</p>
-<p>也就是說，conditioning on <img src="https://latex.codecogs.com/png.latex?T(X)">，<img src="https://latex.codecogs.com/png.latex?X"> 的分佈不再依賴於 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。換句話說，給定 <img src="https://latex.codecogs.com/png.latex?T(X)"> 後，<img src="https://latex.codecogs.com/png.latex?X"> 不再提供任何關於 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的額外資訊。</p>
-<section id="information-theory" class="level3">
-<h3 class="anchored" data-anchor-id="information-theory">Information Theory</h3>
-<p>消息理論是個基於機率論的東西，但他所定義的 mutual information 這個概念完美捕捉了 兩個隨機變數跟獨立性的「差距」。</p>
-<p>先定義一個隨機變數的資訊熵(Shannon Entropy)，若是離散: <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Csum_%7Bx%7D%20P(X=x)%20%5Clog%20P(X=x)%0A"> 若是連續函數，則改成積分: <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Cint%20f_X(x)%20%5Clog%20f_X(x)%20dx%0A"> 還記得在 <a href="../../posts/2025-1111-normal_1/index.html#sec-max_entropy">前面文章</a>，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。</p>
+<p>今天來講統計學中「參數估計」(Parameter Estimation) 一個非常優雅的概念：<strong>充分統計量 (Sufficient Statistic)</strong>。</p>
+<p>假設我們從一個分佈 i.i.d. 取樣了 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點： <img src="https://latex.codecogs.com/png.latex?%0AX_1,%20%5Cldots,%20X_n%20%5Csim%20P_%5Ctheta%0A"> 這個分佈包含一個未知的參數 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。原則上我們想估計這個 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">（例如使用 Maximum Likelihood Estimation）。但在進行複雜估計之前，我們先思考一個問題：<strong>有沒有辦法把這 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點「壓縮」成一個更小的統計量 (statistic)，同時完全不損失任何關於 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的資訊？</strong> 這就是 Sufficient Statistic 的核心精神。</p>
+<section id="從丟硬幣開始直觀的推導" class="level3">
+<h3 class="anchored" data-anchor-id="從丟硬幣開始直觀的推導">從丟硬幣開始：直觀的推導</h3>
+<p>以最簡單的丟硬幣為例。假設硬幣正面朝上的機率是未知的 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">，<img src="https://latex.codecogs.com/png.latex?(0%20%3C%20%5Ctheta%20%3C%201)">。我們丟了 <img src="https://latex.codecogs.com/png.latex?n"> 次，得到結果 <img src="https://latex.codecogs.com/png.latex?X_1,%20%5Cldots,%20X_n">，其中 <img src="https://latex.codecogs.com/png.latex?X_i%20%5Cin%20%5C%7B0,%201%5C%7D">。</p>
+<p>這 <img src="https://latex.codecogs.com/png.latex?n"> 個數據點的聯合機率分佈 (Joint Distribution) 為： <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)%0A:=%20P(X_1=x_1,%20X_2=x_2,%20%5Cldots,%20X_n=x_n%20%5Cmid%20%5Ctheta)%0A=%20%5Ctheta%5E%7B%5Csum%20x_i%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Csum%20x_i%7D%0A"> 觀察這個式子，你會發現它只依賴於 <img src="https://latex.codecogs.com/png.latex?%5Csum%20x_i">（也就是正面朝上的總次數），而不在乎 <img src="https://latex.codecogs.com/png.latex?0"> 和 <img src="https://latex.codecogs.com/png.latex?1"> 出現的具體順序。</p>
+<p>令 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7Bx%7D)%20=%20%5Csum_%7Bi=1%7D%5En%20x_i"> 為統計量。若我們固定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7Bx%7D)%20=%20%5Cmu">，也就是已知正面出現了 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 次，那麼原本實驗結果 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bx%7D"> 的條件機率分佈為何？</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D)%20=%20%5Cmu)%0A&amp;=%20%5Cfrac%7BP(%5Cmathbf%7BX%7D%20=%20%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)%7D%7BP(T(%5Cmathbf%7BX%7D)%20=%20%5Cmu%20%5Cmid%20%5Ctheta)%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5Ctheta%5E%7B%5Cmu%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Cmu%7D%7D%7B%5Cbinom%7Bn%7D%7B%5Cmu%7D%20%5Ctheta%5E%7B%5Cmu%7D%20(1-%5Ctheta)%5E%7Bn%20-%20%5Cmu%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Cbinom%7Bn%7D%7B%5Cmu%7D%7D%20%5Cqquad%20%5Ctextbf%7B(%E8%B7%9F%20$%5Ctheta$%20%E7%84%A1%E9%97%9C%EF%BC%81)%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
+<p><strong>注意到最後的結果完全不包含 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">！</strong></p>
+<p>這意味著：一旦我們知道正面出現了幾次（<img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)">），具體是「正反正」還是「反正正」出現的機率都是 <img src="https://latex.codecogs.com/png.latex?1/%5Cbinom%7Bn%7D%7B%5Cmu%7D">，這純粹是排列組合問題，與硬幣本身的性質 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 無關。</p>
+<p>因此，我們定義：如果滿足下式，則 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 是 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的 <strong>Sufficient Statistic</strong>： <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D))%20=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Ctag%7B1%7D%5Clabel%7Beq:suff_stat_def%7D%0A"> 換句話說，給定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 後，原始數據 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> 分佈不再依賴於參數 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。</p>
+</section>
+<section id="引進-information-theory-的語言" class="level3">
+<h3 class="anchored" data-anchor-id="引進-information-theory-的語言">引進 Information Theory 的語言</h3>
+<p>消息理論完全是基於機率論的東西，但他所定義的各種概念，似乎捕捉到了甚麼「資訊」的本質。可以從今天這個角度來欣賞一下。</p>
+<p>先定義一個隨機變數的資訊熵(Shannon Entropy)，若是離散: <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Csum_%7Bx%7D%20P(X=x)%20%5Clog%20P(X=x)%0A"> 若是連續函數，則改成積分(稱之為 differential entropy，可能取值為負): <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Cint%20f_X(x)%20%5Clog%20f_X(x)%20dx%0A"> 還記得在 <a href="../../posts/2025-1111-normal_1/index.html#sec-max_entropy">前面文章</a>，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。</p>
 <p>接著，mutual information 定義為: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AI(X;%20Y)%0A&amp;=%20H(X)%20-%20H(X%7CY)%20%20%20%5C%5C%0A&amp;=%20H(Y)%20-%20H(Y%7CX)%20%20%20%5C%5C%0A&amp;=%20H(X)%20+%20H(Y)%20-%20H(X,%20Y)%20%20%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 以上這些定義都是等價的。</p>
 <p>如果 <img src="https://latex.codecogs.com/png.latex?X"> 和 <img src="https://latex.codecogs.com/png.latex?Y"> 是獨立的，那麼 <img src="https://latex.codecogs.com/png.latex?H(X%7CY)%20=%20H(X)">，所以 <img src="https://latex.codecogs.com/png.latex?I(X;%20Y)%20=%200">。反過來說，如果 <img src="https://latex.codecogs.com/png.latex?I(X;%20Y)%20=%200">，那麼 <img src="https://latex.codecogs.com/png.latex?X"> 和 <img src="https://latex.codecogs.com/png.latex?Y"> 必須是獨立的。所以 mutual information 衡量了兩個隨機變數與獨立性的差距。</p>
 </section>
-<section id="sufficient-statistic" class="level3">
-<h3 class="anchored" data-anchor-id="sufficient-statistic">Sufficient Statistic</h3>
+<section id="sufficient-statistic-的各種等價定義" class="level3">
+<h3 class="anchored" data-anchor-id="sufficient-statistic-的各種等價定義">Sufficient Statistic 的各種等價定義</h3>
 <p>還記得我們只關心 likelihood function，就是 <img src="https://latex.codecogs.com/png.latex?P(%5Cmathbf%7BX%7D%20%5Cmid%20%5Ctheta)">。</p>
-<p>如果說 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 也是隨機變數，那我們就可以開始討論 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的分布、資訊熵、mutual information 之類的。但這邊的設定 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 只是一個待定的參數，若要討論 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的分布，那就是開始對 prior distribution 做假設了，而我們很不喜歡亂假設東西。而這邊很巧妙的是，對於所有prior，我們都必然有的性質: (假設 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 有個分布)，假設 <img src="https://latex.codecogs.com/png.latex?T"> 是個 Sufficient Statistic 滿足 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_def%7D">，那麼我們有: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AP(%5Cmathbf%7BX%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D))%0A&amp;=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Cqquad%20%5Ctext%7B(Sufficient%20Statistic%20%E5%AE%9A%E7%BE%A9)%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 同乘以 <img src="https://latex.codecogs.com/png.latex?P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))">， <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Ctag%7B2%7D%5Clabel%7Beq:suff_stat_indep%7D%20%20%20%0A"></p>
-<p>這個式子的解讀就是: 給定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 後，<img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> 和 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 是條件獨立的 (conditionally independent)。 其實立刻就可以得到Entropy的等式，然後推論mutual information，但我喜歡帶大家走一下這一段。</p>
-<p>同時取 <img src="https://latex.codecogs.com/png.latex?%5Clog">: <img src="https://latex.codecogs.com/png.latex?%0A%5Clog%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A"> 將上式對 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D,%20%5Ctheta"> 取期望值，但固定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)">: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%0A&amp;=%20%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%20%5C%5C%0A&amp;=%20%5Cint%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cint%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Ctheta%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 所以同乘以 <img src="https://latex.codecogs.com/png.latex?-1">，我們有: <img src="https://latex.codecogs.com/png.latex?%0AH(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20H(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20H(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Ctag%7B3%7D%5Clabel%7Beq:suff_stat_entropy%7D%0A"></p>
+<p>如果說 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 也是隨機變數，那我們就可以開始討論 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的分布、資訊熵、mutual information 之類的。但這邊的設定 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 只是一個待定的參數，若要討論 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的分布，那就是開始對 prior distribution 做假設了。而這邊很巧妙的是，我們可以推導出一些性質，是不論 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的prior是怎樣，都會成立的性質! 所以說</p>
+<blockquote class="blockquote">
+<p>消息理論假設「有prior」，但不在乎prior是什麼。</p>
+</blockquote>
+<p>以下假設 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 有個 prior 分布，並假設 <img src="https://latex.codecogs.com/png.latex?T"> 是個 Sufficient Statistic 滿足 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_def%7D">，那麼我們有: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AP(%5Cmathbf%7BX%7D%20%5Cmid%20%5Ctheta,%20T(%5Cmathbf%7BX%7D))%0A&amp;=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Cqquad%20%5Ctext%7B(Sufficient%20Statistic%20%E5%AE%9A%E7%BE%A9)%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 同乘以 <img src="https://latex.codecogs.com/png.latex?P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))">， <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Ctag%7B2%7D%5Clabel%7Beq:suff_stat_indep%7D%20%20%20%0A"></p>
+<p>這個式子的解讀就是: 給定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 後，<img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> 和 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 是條件獨立的 (conditionally independent)。 一般的推導很可能會直接跳結論:</p>
+<blockquote class="blockquote">
+<p>Conditioning on <img src="https://latex.codecogs.com/png.latex?T(X)">, <img src="https://latex.codecogs.com/png.latex?X"> and <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> have mutual information equals <img src="https://latex.codecogs.com/png.latex?0">。</p>
+</blockquote>
+<p>但我想帶大家走一下這段推導。</p>
+<p>同時取 <img src="https://latex.codecogs.com/png.latex?%5Clog">: <img src="https://latex.codecogs.com/png.latex?%0A%5Clog%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A"> 將上式對 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D,%20%5Ctheta"> 取條件期望值(限制在 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)">): <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%0A&amp;=%20%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cint%20P(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20d%5Ctheta%20%5C%5C%0A&amp;=%20%5Cint%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Cmathbf%7BX%7D%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cint%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Clog%20P(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20d%5Ctheta%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 所以同乘以 <img src="https://latex.codecogs.com/png.latex?-1">，我們有: <img src="https://latex.codecogs.com/png.latex?%0AH(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A=%20H(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20H(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%5Ctag%7B3%7D%5Clabel%7Beq:suff_stat_entropy%7D%0A"></p>
 <p>這個式子的解讀就是: 給定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 後，<img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> 和 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的條件熵是可加的 (additive)。</p>
 <p>再進一步，這也是 conditional mutual information 的定義: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AI(%5Cmathbf%7BX%7D;%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%0A&amp;%5Ccoloneqq%20H(%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20H(%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20-%20H(%5Cmathbf%7BX%7D,%20%5Ctheta%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%20%20%5C%5C%0A&amp;=%200%20%20%5Ctag%7B4%7D%5Clabel%7Beq:suff_stat_mutual_info%7D%0A%5Cend%7Balign%7D%0A"></p>
 <p>因為這個結構的特殊性 ( <img src="https://latex.codecogs.com/png.latex?%5Ctheta%20%5Crightarrow%20%5Cmathbf%7BX%7D%20%5Crightarrow%20T(%5Cmathbf%7BX%7D)"> 是個馬可夫鏈)，我們本來就會有: <img src="https://latex.codecogs.com/png.latex?%0AI(%5Ctheta;%20T(%5Cmathbf%7BX%7D)%20%5Cmid%20%5Cmathbf%7BX%7D)%20=%200%20%20%5Ctag%7BMarkov-chain%7D%5Clabel%7Beq:markov_chain%7D%0A"> 根據</p>
@@ -49,18 +208,32 @@
 </blockquote>
 <p><img src="https://latex.codecogs.com/png.latex?%0AI(%5Ctheta;%20T(%5Cmathbf%7BX%7D)%20%5Cmid%20%5Cmathbf%7BX%7D)%20+%20I(%5Ctheta;%20%5Cmathbf%7BX%7D)%0A=%20I(%5Ctheta;%20%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20+%20I(%5Ctheta;%20T(%5Cmathbf%7BX%7D))%0A"> 因為是 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:markov_chain%7D">，所以左邊第一項是 <img src="https://latex.codecogs.com/png.latex?0">，因此我們有: <img src="https://latex.codecogs.com/png.latex?%0AI(%5Ctheta;%20%5Cmathbf%7BX%7D)%20-%20I(%5Ctheta;%20T(%5Cmathbf%7BX%7D))%0A=%20I(%5Ctheta;%20%5Cmathbf%7BX%7D%20%5Cmid%20T(%5Cmathbf%7BX%7D))%20%5Cge%200%20%5Ctag%7BData-Processing%20Inequality%7D%5Clabel%7Beq:data_processing_ineq%7D%0A"> 而等號成立當且僅當 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> 和 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 在給定 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 後是條件獨立的，也就是說 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 是個 Sufficient Statistic。</p>
 <p>所以如果 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 是個 Sufficient Statistic，那麼 <img src="https://latex.codecogs.com/png.latex?%0AI(%5Ctheta;%20%5Cmathbf%7BX%7D)%20=%20I(%5Ctheta;%20T(%5Cmathbf%7BX%7D))%20%20%5Ctag%7B5%7D%5Clabel%7Beq:suff_stat_info_eq%7D%0A"></p>
+<p><strong>綜合以上</strong>: <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_def%7D">、<img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_indep%7D">、<img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_entropy%7D">、<img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_mutual_info%7D">、<img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_info_eq%7D">，都是等價的定義。</p>
 </section>
 <section id="normal-distribution-的-sufficient-statistic-很簡單就是樣本均值和樣本變異數" class="level3">
 <h3 class="anchored" data-anchor-id="normal-distribution-的-sufficient-statistic-很簡單就是樣本均值和樣本變異數">Normal Distribution 的 Sufficient Statistic 很簡單，就是樣本均值和樣本變異數:</h3>
 <p>假設我們有 <img src="https://latex.codecogs.com/png.latex?X_1,%20X_2,%20%5Cldots,%20X_n"> 是來自常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)"> 的 i.i.d. 樣本，則 <img src="https://latex.codecogs.com/png.latex?%5Ctheta%20=%20(%5Cmu,%20%5Csigma%5E2)"> 的 Sufficient Statistic 就是樣本均值和樣本變異數: <img src="https://latex.codecogs.com/png.latex?%0AT(%5Cmathbf%7BX%7D)%20=%20%5Cleft(%20%5Cbar%7BX%7D,%20S%5E2%20%5Cright)%20=%20%5Cleft(%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20X_i,%20%5Cfrac%7B1%7D%7Bn-1%7D%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20(X_i%20-%20%5Cbar%7BX%7D)%5E2%20%5Cright)%0A"> 也就是說，給定樣本均值和樣本變異數後，原本的樣本數據對於 <img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma%5E2"> 不再提供任何額外資訊。</p>
+<p>為什麼哩? 因為常態分佈的 likelihood function 只依賴於樣本均值和樣本變異數: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AP(%5Cmathbf%7BX%7D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)%0A&amp;=%20%5Cprod_%7Bi=1%7D%5E%7Bn%7D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20%5Cexp%5Cleft(%20-%5Cfrac%7B(X_i%20-%20%5Cmu)%5E2%7D%7B2%20%5Csigma%5E2%7D%20%5Cright)%20%20%5C%5C%0A&amp;=%20%5Cleft(%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20%5Cright)%5En%20%5Cexp%5Cleft(%20-%5Cfrac%7B1%7D%7B2%20%5Csigma%5E2%7D%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20(X_i%20-%20%5Cmu)%5E2%20%5Cright)%20%5C%5C%0A&amp;=%20%5Cleft(%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%20%5Cpi%20%5Csigma%5E2%7D%7D%20%5Cright)%5En%20%5Cexp%5Cleft(%20-%5Cfrac%7B1%7D%7B2%20%5Csigma%5E2%7D%20%5Cleft%5B%20(n-1)%20S%5E2%20+%20n%20(%5Cbar%7BX%7D%20-%20%5Cmu)%5E2%20%5Cright%5D%20%5Cright)%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>直觀上來說，這個 likelihood function 跟 <img src="https://latex.codecogs.com/png.latex?X"> 有關的部分只剩下 <img src="https://latex.codecogs.com/png.latex?%5Cbar%7BX%7D"> 和 <img src="https://latex.codecogs.com/png.latex?S%5E2">，所以這兩個統計量已經「充分」地捕捉了關於 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的所有資訊。</p>
+<p>但根據定義 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:suff_stat_def%7D">，我們需要計算 <img src="https://latex.codecogs.com/png.latex?P(%5Cmathbf%7BX%7D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2,%20T(%5Cmathbf%7BX%7D))">，並驗證它不依賴於 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">。</p>
+<p>嘿! 但這裡出現了小麻煩，因為是連續的機率密函數，所以不知道怎麼處理 OAO (請參見: 硬核系列-測度論)。</p>
+</section>
+<section id="直覺是對的-fisher-neyman-factorization-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="直覺是對的-fisher-neyman-factorization-theorem">直覺是對的: Fisher-Neyman Factorization Theorem</h3>
+<p>我們直觀上覺得應該可以從 likelihood function 看出來 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 是 Sufficient Statistic。這也就是以下定理:</p>
+<blockquote class="blockquote">
+<p><strong>(Fisher-Neyman Factorization Theorem)</strong> 若 <img src="https://latex.codecogs.com/png.latex?X_1,%20%5Cldots,%20X_n"> 的聯合機率密度函數 (joint pdf/pmf) 為 <img src="https://latex.codecogs.com/png.latex?f(%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)">。則 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7BX%7D)"> 是 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的 Sufficient Statistic 若且唯若 存在兩個非負函數 <img src="https://latex.codecogs.com/png.latex?g"> 和 <img src="https://latex.codecogs.com/png.latex?h">，使得： <img src="https://latex.codecogs.com/png.latex?%0Af(%5Cmathbf%7Bx%7D%20%5Cmid%20%5Ctheta)%20=%20g(T(%5Cmathbf%7Bx%7D),%20%5Ctheta)%20%5Ccdot%20h(%5Cmathbf%7Bx%7D)%0A"></p>
+<ul>
+<li><p><img src="https://latex.codecogs.com/png.latex?g(T(%5Cmathbf%7Bx%7D),%20%5Ctheta)">：這部分包含了 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">，但它只透過 <img src="https://latex.codecogs.com/png.latex?T(%5Cmathbf%7Bx%7D)"> 來依賴數據 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bx%7D">。</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?h(%5Cmathbf%7Bx%7D)">：這部分可以依賴所有的數據 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bx%7D">，但絕對不能包含 <img src="https://latex.codecogs.com/png.latex?%5Ctheta">。</p></li>
+</ul>
+</blockquote>
 
 
 </section>
 
  ]]></description>
-  <category>analysis</category>
-  <category>statistic</category>
-  <category>distribution</category>
+  <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/2025-1117-normal_4/</guid>
   <pubDate>Sun, 16 Nov 2025 16:00:00 GMT</pubDate>
 </item>
@@ -120,7 +293,9 @@
 
 
 
-<p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs):</p>
+<p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs), I’ve ignored the constant normalization factors for simplicity. Here’s a summary table:</p>
+<section id="continuous-probability-distributions-table" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-probability-distributions-table">Continuous Probability Distributions Table</h3>
 <div id="tbl-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -129,18 +304,20 @@ Table&nbsp;1: My Distribution Table
 <div aria-describedby="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 17%">
-<col style="width: 16%">
-<col style="width: 17%">
-<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PDF</th>
+<th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
 <th style="text-align: right;">CF</th>
@@ -151,6 +328,7 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Normal</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)"></td>
 <td style="text-align: center;">mean: <img src="https://latex.codecogs.com/png.latex?%5Cmu"> <br> variance: <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20e%5E%7B-%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7Dx%5E2+%5Cfrac%7B%5Cmu%7D%7B%5Csigma%5E2%7Dx%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%20%5Cin%20(-%5Cinfty,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cmu"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"></td>
 <td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
@@ -159,22 +337,25 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Chi-Squared</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2(k)"></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Cfrac%7Bk%7D%7B2%7D-1%7De%5E%7B-%5Cfrac%7Bx%7D%7B2%7D%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?2k"></td>
 <td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?(1%20-%202it)%5E%7B-%5Cfrac%7Bk%7D%7B2%7D%7D"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Chi (Optional)</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cchi(k)"></td>
+<td style="text-align: left;"><strong>Chi [Optional]</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cchi(k)"></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7Bk-1%7De%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B2%7D%20%5Cfrac%7B%5CGamma(%5Cfrac%7Bk+1%7D%7B2%7D)%7D%7B%5CGamma(%5Cfrac%7Bk%7D%7B2%7D)%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?k%20-%20%5Cleft(%5Csqrt%7B2%7D%20%5Cfrac%7B%5CGamma(%5Cfrac%7Bk+1%7D%7B2%7D)%7D%7B%5CGamma(%5Cfrac%7Bk%7D%7B2%7D)%7D%5Cright)%5E2"></td>
+<td style="text-align: right;">ugly</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Exponential</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BExp%7D(%5Clambda)"></td>
 <td style="text-align: center;">rate: <img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20e%5E%7B-%5Clambda%20x%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Clambda%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Clambda%5E2%7D"></td>
 <td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Clambda%7D%7B%5Clambda%20-%20it%7D"></td>
@@ -183,46 +364,52 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Gamma</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BGamma%7D(%5Calpha,%20%5Ctheta)"></td>
 <td style="text-align: center;">shape: <img src="https://latex.codecogs.com/png.latex?%5Calpha"> <br> scale: <img src="https://latex.codecogs.com/png.latex?%5Ctheta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cfrac%7Bx%7D%7B%5Ctheta%7D%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Calpha%5Ctheta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Calpha%5Ctheta%5E2"></td>
-<td style="text-align: right;"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(1%20-%20i%5Ctheta%20t%5Cright)%5E%7B-%5Calpha%7D"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Rayleigh</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BRayleigh%7D(%5Csigma)"></td>
-<td style="text-align: center;">scale: <img src="https://latex.codecogs.com/png.latex?%5Csigma"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%5Csigma%5E2%7D%7D"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Csigma%5Csqrt%7B%5Cfrac%7B%5Cpi%7D%7B2%7D%7D"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B(4-%5Cpi)%7D%7B2%7D%5Csigma%5E2"></td>
-<td style="text-align: right;">ugly</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"><strong>Beta</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBeta%7D(%5Calpha,%20%5Cbeta)"></td>
 <td style="text-align: center;">shape1: <img src="https://latex.codecogs.com/png.latex?%5Calpha"> <br> shape2: <img src="https://latex.codecogs.com/png.latex?%5Cbeta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Calpha-1%7D(1-x)%5E%7B%5Cbeta-1%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%201)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Calpha%7D%7B%5Calpha+%5Cbeta%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Calpha%5Cbeta%7D%7B(%5Calpha+%5Cbeta)%5E2(%5Calpha+%5Cbeta+1)%7D"></td>
-<td style="text-align: right;">ugly</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Uniform</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BUniform%7D(a,%20b)"></td>
-<td style="text-align: center;">min: <img src="https://latex.codecogs.com/png.latex?a"> <br> max: <img src="https://latex.codecogs.com/png.latex?b"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%201"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Ba+b%7D%7B2%7D"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B(b-a)%5E2%7D%7B12%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Be%5E%7Bitb%7D-e%5E%7Bita%7D%7D%7Bit(b-a)%7D"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(%5Calpha;%20%5Calpha+%5Cbeta;%20it)"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Student’s t</strong> <br> <img src="https://latex.codecogs.com/png.latex?t(k)"></td>
-<td style="text-align: center;">dof: <img src="https://latex.codecogs.com/png.latex?k"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cleft(1+%5Cfrac%7Bx%5E2%7D%7Bk%7D%5Cright)%5E%7B-%5Cfrac%7Bk+1%7D%7B2%7D%7D"></td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?0">, for k&gt;1</td>
-<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bk%7D%7Bk-2%7D">, for k&gt;2</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%7Ct%7C%5E%7Bk/2%7DK_%7Bk/2%7D(%5Csqrt%7Bk%7D%7Ct%7C)"></td>
+<td style="text-align: left;"><strong>Uniform</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BUniform%7D(-1,%201)"></td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Ctext%7Bconstant%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-1,%201)"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?0"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B3%7D"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Csin(t)%7D%7Bt%7D"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Cauchy</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BCauchy%7D"></td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B1%7D%7B1+x%5E2%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-%5Cinfty,%20%5Cinfty)"></td>
+<td style="text-align: center;">undefined</td>
+<td style="text-align: center;">undefined</td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B-%7Ct%7C%7D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Student’s t</strong> <br> <img src="https://latex.codecogs.com/png.latex?t(%5Cnu)"></td>
+<td style="text-align: center;">dof: <img src="https://latex.codecogs.com/png.latex?%5Cnu"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cleft(1+%5Cfrac%7Bx%5E2%7D%7B%5Cnu%7D%5Cright)%5E%7B-%5Cfrac%7B%5Cnu+1%7D%7B2%7D%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-%5Cinfty,%20%5Cinfty)"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?0"> for <img src="https://latex.codecogs.com/png.latex?%5Cnu%3E1"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cnu%7D%7B%5Cnu-2%7D">, for <img src="https://latex.codecogs.com/png.latex?%5Cnu%3E2"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BK_%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%20(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D%7D%7B%5CGamma(%5Cfrac%7B%5Cnu%7D%7B2%7D)%202%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D-1%7D%7D"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>F-distribution</strong> <br> <img src="https://latex.codecogs.com/png.latex?F(d_1,%20d_2)"></td>
 <td style="text-align: center;">dof 1: <img src="https://latex.codecogs.com/png.latex?d_1"> <br> dof 2: <img src="https://latex.codecogs.com/png.latex?d_2"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(%5Cfrac%7Bd_1%20x%7D%7Bd_1%20x%20+%20d_2%7D%5Cright)%5E%7B%5Cfrac%7Bd_1%7D%7B2%7D%7D%20%5Cleft(%5Cfrac%7Bd_2%7D%7Bd_1%20x%20+%20d_2%7D%5Cright)%5E%7B%5Cfrac%7Bd_2%7D%7B2%7D%7D%20x%5E%7B-1%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd_2%7D%7Bd_2%20-%202%7D">, for <img src="https://latex.codecogs.com/png.latex?d_2"> &gt;2</td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B2%20d_2%5E2%20(d_1%20+%20d_2%20-%202)%7D%7Bd_1%20(d_2%20-%202)%5E2%20(d_2%20-%204)%7D">, for <img src="https://latex.codecogs.com/png.latex?d_2"> &gt;4</td>
 <td style="text-align: right;">ugly</td>
@@ -232,17 +419,141 @@ Table&nbsp;1: My Distribution Table
 </div>
 </figure>
 </div>
-<p><img src="https://latex.codecogs.com/png.latex?%7B%5Cdisplaystyle%20K_%7B%5Cnu%20%7D%7D"> is the modified Bessel function of the second kind.</p>
-<p><strong>Normal Families :</strong></p>
-<p>The Chi-squared distribution, Student’s t-distribution, and F-distribution are all related to the normal distribution.</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%7B%5Cdisplaystyle%20K_%7B%5Cnu%20%7D%7D"> is the <a href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1">modified Bessel function of the second kind</a>.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(a;%20b;%20z)"> is the <a href="https://en.wikipedia.org/wiki/Confluent_hypergeometric_function">confluent hypergeometric function</a>.</li>
+</ul>
+</section>
+<section id="discrete-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-distributions">Discrete Distributions</h3>
+<p>Here are lists for common discrete probability distributions:</p>
+<div id="tbl-discrete" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: My Discrete Distribution Table
+</figcaption>
+<div aria-describedby="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name, Notation</th>
+<th style="text-align: center;">Parameters</th>
+<th style="text-align: center;">PMF</th>
+<th style="text-align: center;">Range</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Variance</th>
+<th style="text-align: right;">CF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bernoulli</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBernoulli%7D(p)"></td>
+<td style="text-align: center;">success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20p%5Ex%20(1-p)%5E%7B1-x%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1%5C%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?p(1-p)"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?1%20-%20p%20+%20p%20e%5E%7Bit%7D"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Binomial</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBinomial%7D(n,%20p)"></td>
+<td style="text-align: center;">trials: <img src="https://latex.codecogs.com/png.latex?n"> <br> success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbinom%7Bn%7D%7Bx%7D%20p%5Ex%20(1-p)%5E%7Bn-x%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,%5Cldots,n%5C%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?np"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?np(1-p)"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?(1%20-%20p%20+%20p%20e%5E%7Bit%7D)%5En"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Poisson</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BPoisson%7D(%5Clambda)"></td>
+<td style="text-align: center;">rate: <img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B%5Clambda%5Ex%20e%5E%7B-%5Clambda%7D%7D%7Bx!%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Geometric</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BGeometric%7D(p)"></td>
+<td style="text-align: center;">success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20(1-p)%5E%7Bx%7D%20p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1-p%7D%7Bp%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1-p%7D%7Bp%5E2%7D"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Negative Binomial</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BNegBin%7D(r,%20p)"></td>
+<td style="text-align: center;">successes: <img src="https://latex.codecogs.com/png.latex?r"> <br> success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbinom%7Bx+r-1%7D%7Br-1%7D%20p%5Er%20(1-p)%5Ex"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Br(1-p)%7D%7Bp%7D"></td>
+<td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Br(1-p)%7D%7Bp%5E2%7D"></td>
+<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D%5Cright)%5Er"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+</section>
+<section id="relationships" class="level3">
+<h3 class="anchored" data-anchor-id="relationships">Relationships</h3>
+<p><strong>Obvious</strong>:</p>
+<ul>
+<li>Exponential is a special case of Gamma: <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BExp%7D(%5Clambda)%20%5Csim%20%5Cmathrm%7BGamma%7D(1,%20%5Cfrac%7B1%7D%7B%5Clambda%7D)">.</li>
+<li>Chi-squared is a special case of Gamma: <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2(k)%20%5Csim%20%5Cmathrm%7BGamma%7D(%5Cfrac%7Bk%7D%7B2%7D,%202)">.</li>
+<li>A special case of Chi-squared is Exponential: <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2(2)%20%5Csim%20%5Cmathrm%7BExp%7D(%5Cfrac%7B1%7D%7B2%7D)">. This is called the <em>Rayleigh distribution</em>.</li>
+<li>Chi is the square root of Chi-squared: <img src="https://latex.codecogs.com/png.latex?%5Cchi(k)%20%5Csim%20%5Csqrt%7B%5Cchi%5E2(k)%7D">.</li>
+<li>Normal is a special case of Chi: <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(0,%201)%20%5Csim%20%5Cchi(1)">.</li>
+<li>Cauchy is a special case of Student’s t: <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BCauchy%7D%20%5Csim%20t(1)">.</li>
+<li>The chi-squared, Student’s t, and F distributions are all naturally come from the Normal distribution in the following senses:
 <ul>
 <li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cchi%5E2(k)%20%5Csim%20%5Csum_%7Bi=1%7D%5Ek%20Z_i%5E2">, where <img src="https://latex.codecogs.com/png.latex?Z_i"> are i.i.d. standard normal variables.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20t(%5Cnu)%20%5Csim%20%5Cfrac%7BZ%7D%7B%5Csqrt%7B%5Cchi%5E2(%5Cnu)/%5Cnu%7D%7D">, where <img src="https://latex.codecogs.com/png.latex?Z"> is a standard normal variable independent of the Chi-squared variable.</li>
 <li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20F(d_1,%20d_2)%20%5Csim%20%5Cfrac%7B%5Cchi%5E2(d_1)/d_1%7D%7B%5Cchi%5E2(d_2)/d_2%7D">, which is the ratio of two scaled Chi-squared distributions.</li>
+</ul></li>
+<li>Bernoulli is a special case of Binomial: <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBernoulli%7D(p)%20%5Csim%20%5Cmathrm%7BBinomial%7D(1,%20p)">.</li>
 </ul>
-<p>The Exponential and Gamma distributions are related to the Poisson process, which models the occurrence of random events over time.</p>
+<p><strong>Stability</strong>:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathcal%7BN%7D(%5Cmu_1,%20%5Csigma_1%5E2)%20+%20%5Cmathcal%7BN%7D(%5Cmu_2,%20%5Csigma_2%5E2)%20%5Csim%20%5Cmathcal%7BN%7D(%5Cmu_1%20+%20%5Cmu_2,%20%5Csigma_1%5E2%20+%20%5Csigma_2%5E2)">.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathrm%7BGamma%7D(%5Calpha_1,%20%5Ctheta)%20+%20%5Cmathrm%7BGamma%7D(%5Calpha_2,%20%5Ctheta)%20%5Csim%20%5Cmathrm%7BGamma%7D(%5Calpha_1%20+%20%5Calpha_2,%20%5Ctheta)">.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cchi%5E2(k_1)%20+%20%5Cchi%5E2(k_2)%20%5Csim%20%5Cchi%5E2(k_1%20+%20k_2)">.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathrm%7BBinomial%7D(n_1,%20p)%20+%20%5Cmathrm%7BBinomial%7D(n_2,%20p)%20%5Csim%20%5Cmathrm%7BBinomial%7D(n_1%20+%20n_2,%20p)">.</li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathrm%7BPoisson%7D(%5Clambda_1)%20+%20%5Cmathrm%7BPoisson%7D(%5Clambda_2)%20%5Csim%20%5Cmathrm%7BPoisson%7D(%5Clambda_1%20+%20%5Clambda_2)">.</li>
+</ul>
+<p><strong>Less Obvious</strong>:</p>
+<ul>
+<li>Beta is related to Gamma in the following way: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bcases%7D%0AX%20%5Csim%20%5Cmathrm%7BGamma%7D(%5Calpha,%20%5Ctheta),%20%20%5C%5C%0AY%20%5Csim%20%5Cmathrm%7BGamma%7D(%5Cbeta,%20%5Ctheta),%20%20%5C%5C%0AX%20%5Cperp%20Y%0A%5Cend%7Bcases%7D%0A%5Cimplies%0A%5Cbegin%7Bcases%7D%0A%5Cdisplaystyle%20%5Cfrac%7BX%7D%7BX+Y%7D%20%5Csim%20%5Cmathrm%7BBeta%7D(%5Calpha,%20%5Cbeta),%20%20%5C%5C%0AX+Y%20%5Csim%20%5Cmathrm%7BGamma%7D(%5Calpha%20+%20%5Cbeta,%20%5Ctheta),%20%5C%5C%0A%5Cdisplaystyle%20%5Cfrac%7BX%7D%7BX+Y%7D%20%5Cperp%20(X+Y)%0A%5Cend%7Bcases%7D%0A">
+<ul>
+<li>A special case of the above is that taking <img src="https://latex.codecogs.com/png.latex?n"> independent standard normal <img src="https://latex.codecogs.com/png.latex?Z_i%20%5Csim%20%5Cmathcal%7BN%7D(0,1)"> variables, then for any <img src="https://latex.codecogs.com/png.latex?k%20%3C%20n">: <img src="https://latex.codecogs.com/png.latex?%0A%5Cdisplaystyle%20%5Cfrac%7BZ_1%5E2%20+%20Z_2%5E2%20+%20%5Ccdots%20+%20Z_k%5E2%7D%7BZ_1%5E2%20+%20Z_2%5E2%20+%20%5Ccdots%20+%20Z_n%5E2%7D%20%5Csim%20%5Cmathrm%7BBeta%7D%5Cleft(%5Cfrac%7Bk%7D%7B2%7D,%20%5Cfrac%7Bn-k%7D%7B2%7D%5Cright)%0A"> Notice that comparing to the F-distribution, the numerator is using Chi-squared variable from the denominator.</li>
+</ul></li>
+<li>Sample <img src="https://latex.codecogs.com/png.latex?n"> independent <img src="https://latex.codecogs.com/png.latex?U_i%20%5Csim%20%5Cmathrm%7BUniform%7D(0,1)"> variables. The <img src="https://latex.codecogs.com/png.latex?k">-th order statistic follows a Beta distribution: <img src="https://latex.codecogs.com/png.latex?X_%7B(k)%7D%20%5Csim%20%5Cmathrm%7BBeta%7D(k,%20n-k+1)">.</li>
+</ul>
+<hr>
+<p>(To be added)</p>
+<ul>
+<li>Exponential is related to Poisson process:
+<ul>
+<li>If events occur according to a Poisson process with rate <img src="https://latex.codecogs.com/png.latex?%5Clambda">, then the waiting time until the <img src="https://latex.codecogs.com/png.latex?k">-th event follows a Gamma distribution: <img src="https://latex.codecogs.com/png.latex?T_k%20%5Csim%20%5Cmathrm%7BGamma%7D(k,%20%5Cfrac%7B1%7D%7B%5Clambda%7D)">.</li>
+<li>The Exponential and Gamma distributions are related to the Poisson process, which models the occurrence of random events over time.</li>
+</ul></li>
+</ul>
 <p>The Beta distribution is often used in Bayesian statistics as a prior distribution for probabilities.</p>
 
 
+</section>
 
  ]]></description>
   <category>analysis</category>
@@ -252,7 +563,7 @@ Table&nbsp;1: My Distribution Table
   <pubDate>Thu, 13 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>一天講一個Normal Distribution的性質 Day3</title>
+  <title>一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1114-normal_3/</link>
   <description><![CDATA[ 
@@ -301,14 +612,12 @@ Table&nbsp;1: My Distribution Table
 </section>
 
  ]]></description>
-  <category>analysis</category>
-  <category>statistic</category>
-  <category>distribution</category>
+  <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/2025-1114-normal_3/</guid>
   <pubDate>Thu, 13 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>一天講一個Normal Distribution的性質 Day2</title>
+  <title>一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1113-normal_2/</link>
   <description><![CDATA[ 
@@ -358,9 +667,7 @@ Table&nbsp;1: My Distribution Table
 </section>
 
  ]]></description>
-  <category>analysis</category>
-  <category>statistic</category>
-  <category>distribution</category>
+  <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/2025-1113-normal_2/</guid>
   <pubDate>Wed, 12 Nov 2025 16:00:00 GMT</pubDate>
 </item>
@@ -927,7 +1234,7 @@ Table&nbsp;1: My Distribution Table
   <pubDate>Tue, 11 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>一天講一個Normal Distribution的性質 Day1</title>
+  <title>一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1111-normal_1/</link>
   <description><![CDATA[ 
@@ -967,9 +1274,7 @@ Table&nbsp;1: My Distribution Table
 </section>
 
  ]]></description>
-  <category>analysis</category>
-  <category>statistic</category>
-  <category>distribution</category>
+  <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/2025-1111-normal_1/</guid>
   <pubDate>Mon, 10 Nov 2025 16:00:00 GMT</pubDate>
 </item>

@@ -1,0 +1,89 @@
+---
+title: "一天證明一個 Normal Distribution 的性質 Day5：Cumulant 多項式"
+author: "Tai-Ning Liao"
+date: "2025-11-19"
+categories: [Normal Distribution]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+今天來講個比較輕鬆的小主題：**Cumulant 多項式** vs **Moment 多項式**。
+
+對於一個隨機變數 $X$，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。
+
+### Cumulant and Moment 
+還記得動差生成函數 (Moment Generating Function, MGF) 定義為：
+$$  
+M_X(t) = \mathbb{E}[e^{tX}] = \sum_{k=0}^{\infty} \mathbb{E}[X^{k}] \frac{t^k}{k!} 
+$$
+名符其實，他就是「動差」的生成函數，因為對 $M_X(t)$ 做泰勒展開 (Taylor Expansion) 後，係數正好是各階動差 (moment)：
+$$
+\mu_k := \mathbb{E}[X^k] = M_X^{(k)}(0) = \left. \frac{d^k}{dt^k} M_X(t) \right|_{t=0}  \tag{1}\label{eq:moment_def_1}
+$$
+不過呢，有時候因為動差函數不存在 (例如 Cauchy 分佈)，我們會改用一定會存在的特徵函數 (Characteristic Function, CF)：
+$$
+\phi_X(t) = \mathbb{E}[e^{itX}] = \sum_{k=0}^{\infty} \mathbb{E}[X^{k}] \frac{(it)^k}{k!}
+$$
+所以也可以用 $\phi_X(t)$ 來計算動差：
+$$
+\mathbb{E}[X^k] = \frac{1}{i^k} \phi_X^{(k)}(0) = \left. \frac{1}{i^k} \frac{d^k}{dt^k} \phi_X(t) \right|_{t=0}  \tag{2}\label{eq:moment_def_2}
+$$
+這邊要稍微注意一下，CF 是個複數值函數，所以其實是個複變函數的微分!
+
+**舉例說明**：
+
+| Distribution | $\phi_X(t)$ | $\frac{d}{dt}\phi_X(t)$ | $\mathbb{E}[X]$ | $\frac{d^2}{dt^2}\phi_X(t)$ | $\mathbb{E}[X^2]$ |
+|------|------------------|-------------------------|----------------------|-----------------------------|---------------------------|
+| Bernoulli($p$) | $1 - p + p e^{it}$ | $ip e^{it}$ | $p$ | $-p e^{it}$ | $p$ |
+| Poisson($\lambda$) | $e^{\lambda(e^{it}-1)}$ | $i\lambda e^{it} e^{\lambda(e^{it}-1)}$ | $\lambda$ | $-\lambda e^{it} e^{\lambda(e^{it}-1)} + (i\lambda e^{it})^2 e^{\lambda(e^{it}-1)}$ | $\lambda + \lambda^2$ |
+| Normal($\mu, \sigma^2$) | $e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$ | $i\mu e^{i\mu t - \frac{1}{2}\sigma^2 t^2} - \sigma^2 t e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$ | $\mu$ | $-\sigma^2 e^{i\mu t - \frac{1}{2}\sigma^2 t^2} + (i\mu - \sigma^2 t)^2 e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$ | $\sigma^2 + \mu^2$ |
+| Gamma($\alpha, \theta$) | $(1 - i\theta t)^{-\alpha}$ | $i\alpha \theta (1 - i\theta t)^{-\alpha - 1}$ | $\alpha \theta$ | $- \alpha (\alpha + 1) \theta^2 (1 - i\theta t)^{-\alpha - 2}$ | $\alpha (\alpha + 1) \theta^2$ |
+
+而如果只是想算 moment 的話 CF 就很夠用，但他對於捕捉獨立性 (independence) 的效果並不理想。這時候我們就需要用到 **Cumulant Generating Function (CGF)**：
+$$
+K_X(t) = \log M_X(t) = \log \mathbb{E}[e^{tX}]  \tag{3}\label{eq:cumulant_gf_def}
+$$  
+因此我們定義 Cumulant 為：
+$$
+\kappa_k := K_X^{(k)}(0) = \left. \frac{d^k}{dt^k} K_X(t) \right|_{t=0}  \tag{4}\label{eq:cumulant_def_1}
+$$
+
+當然，也有複數版本，通常會叫 Second Characteristic Function：
+$$
+H_X(t) = \log \phi_X(t) = \log \mathbb{E}[e^{itX}]  \tag{5}\label{eq:second_char_def}
+$$
+但這有個問題，就是 $\phi_X(t)$ 可能會是負數或複數，導致 $\log \phi_X(t)$ 會有多重值 (multi-valued) 的問題，所以我們通常還是用實數版本的 CGF。
+
+取了 $\log$ 的好處就是：**如果 $X$ 跟 $Y$ 獨立，那麼 $K_{X+Y}(t) = K_X(t) + K_Y(t)$**。這點跟 MGF 不同，因為 MGF 是乘法關係 ($M_{X+Y}(t) = M_X(t) M_Y(t)$)。
+
+所以對於 moment 來說，兩個獨立隨機變數相加的第 $n$ 階動差，會是兩個變數各自前 $n$ 階動差的 convolution (加上一些組合係數)。
+但對於 cumulant 來說，兩個獨立隨機變數相加的第 $n$ 階 cumulant，會是兩個變數各自第 $n$ 階 cumulant 的**直接相加**：
+$$
+\kappa_n(X + Y) = \kappa_n(X) + \kappa_n(Y) \quad \text{if } X \perp Y  \tag{6}\label{eq:cumulant_indep_add}
+$$  
+
+**舉例說明**：
+
+| Distribution | $\kappa_1$ | $\kappa_2$ | $\kappa_3$ | $\kappa_4$ |
+|------|------------------|-------------------------|----------------------|---------------------------|
+| Bernoulli($p$) | $p$ | $p(1-p)$ | $p(1-p)(1-2p)$ | $p(1-p)(1 - 6p(1-p))$ |
+| Poisson($\lambda$) | $\lambda$ | $\lambda$ | $\lambda$ | $\lambda$ |
+| Normal($\mu, \sigma^2$) | $\mu$ | $\sigma^2$ | $0$ | $0$ |
+| Gamma($\alpha, \theta$) | $\alpha \theta$ | $\alpha \theta^2$ | $2 \alpha \theta^3$ | $6 \alpha \theta^4$ |
+
+**註**: 直覺上因為 distribution 完全被 CF 決定，所以知道了所有 moment (或 cumulant) 似乎也就等於知道了 distribution 本身。但是，其實有可能 CF 在 0 點附近並不解析 (analytic)，常見例子請參考 Log-Normal distribution。所以說，知道所有 moment 只是知道在 0 點的微分，並不保證能還原整個 CF。
+
+看著這個表，我們會想，是不是任意給 $\kappa_1, \kappa_2, \ldots, \kappa_n$，就能找到一個對應的分佈？答案是否定的。比方說，若要使 cumulant 只有有限項非零，那麼這個分佈只能是 Normal 分佈，這是個非常有名的結果：
+
+> **大定理(Marcinkiewicz Theorem)**: 如果一個隨機變數的 cumulant generating function 是個(有限階)多項式，那麼這個多項式的階數最多是 2。
+
+為了保證 CGF 的存在性，該定理本來的敘述是說，若 CF 可以寫成 $\phi_X(t) = e^{P(t)}$，其中 $P(t)$ 是個(複係數)多項式，那麼 $P(t)$ 的階數最多是 2。
+
+我們先跳過證明，提供一些直覺上的理解：主要是因為 CF 是 PDF 的傅立葉變換，而 PDF 必須非負 (non-negative)，這使得 CF 的形式受到很大限制。@lukacs1970 [Theorem 7.3.3] 有詳細的證明。
+
+
+
+<!-- ### 參考資料 -->

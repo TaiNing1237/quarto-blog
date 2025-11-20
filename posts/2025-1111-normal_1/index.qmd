@@ -1,8 +1,8 @@
 ---
-title: "一天講一個Normal Distribution的性質 Day1"
+title: "一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)"
 author: "Tai-Ning Liao"
 date: "2025-11-11"
-categories: [analysis, statistic, distribution]
+categories: [Normal Distribution]
 ---
 
 我們將介紹的第一個分佈，是統計學中最著名的——常態分佈（Normal Distribution）。它通常被稱為高斯分佈 (Gaussian distribution)，以紀念偉大的數學家卡爾·弗里德里希·高斯 (Carl Friedrich Gauss)。

@@ -9,7 +9,7 @@
 <meta name="author" content="Tai-Ning Liao">
 <meta name="dcterms.date" content="2025-11-14">
 
-<title>10 Types of Common Distributions – LTN’s Math Blog</title>
+<title>10 Types of Common Distributions – LTN’s Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ window.Quarto = {
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">LTN’s Math Blog</span>
+    <span class="navbar-title">LTN’s Blog</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -128,7 +128,7 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/TaiNing1237/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -184,7 +184,9 @@ window.Quarto = {
 
 
 
-<p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs):</p>
+<p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs), I’ve ignored the constant normalization factors for simplicity. Here’s a summary table:</p>
+<section id="continuous-probability-distributions-table" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-probability-distributions-table">Continuous Probability Distributions Table</h3>
 <div id="tbl-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -193,18 +195,20 @@ Table&nbsp;1: My Distribution Table
 <div aria-describedby="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 17%">
-<col style="width: 16%">
-<col style="width: 17%">
-<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PDF</th>
+<th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
 <th style="text-align: right;">CF</th>
@@ -215,6 +219,7 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Normal</strong> <br> <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span></td>
 <td style="text-align: center;">mean: <span class="math inline">\(\mu\)</span> <br> variance: <span class="math inline">\(\sigma^2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle e^{-\frac{1}{2\sigma^2}x^2+\frac{\mu}{\sigma^2}x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x \in (-\infty, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(e^{i\mu t - \frac{1}{2}\sigma^2 t^2}\)</span></td>
@@ -223,22 +228,25 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Chi-Squared</strong> <br> <span class="math inline">\(\chi^2(k)\)</span></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\frac{k}{2}-1}e^{-\frac{x}{2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(2k\)</span></td>
 <td style="text-align: right;"><span class="math inline">\((1 - 2it)^{-\frac{k}{2}}\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Chi (Optional)</strong> <br> <span class="math inline">\(\chi(k)\)</span></td>
+<td style="text-align: left;"><strong>Chi [Optional]</strong> <br> <span class="math inline">\(\chi(k)\)</span></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{k-1}e^{-\frac{x^2}{2}}\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(k - \left(\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}\right)^2\)</span></td>
+<td style="text-align: right;">ugly</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Exponential</strong> <br> <span class="math inline">\(\mathrm{Exp}(\lambda)\)</span></td>
 <td style="text-align: center;">rate: <span class="math inline">\(\lambda\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle e^{-\lambda x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(\frac{\lambda}{\lambda - it}\)</span></td>
@@ -247,46 +255,52 @@ Table&nbsp;1: My Distribution Table
 <td style="text-align: left;"><strong>Gamma</strong> <br> <span class="math inline">\(\mathrm{Gamma}(\alpha, \theta)\)</span></td>
 <td style="text-align: center;">shape: <span class="math inline">\(\alpha\)</span> <br> scale: <span class="math inline">\(\theta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\alpha-1} e^{-\frac{x}{\theta}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\alpha\theta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\alpha\theta^2\)</span></td>
-<td style="text-align: right;"></td>
+<td style="text-align: right;"><span class="math inline">\(\left(1 - i\theta t\right)^{-\alpha}\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Rayleigh</strong> <br> <span class="math inline">\(\mathrm{Rayleigh}(\sigma)\)</span></td>
-<td style="text-align: center;">scale: <span class="math inline">\(\sigma\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\displaystyle x e^{-\frac{x^2}{2\sigma^2}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\sigma\sqrt{\frac{\pi}{2}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{(4-\pi)}{2}\sigma^2\)</span></td>
-<td style="text-align: right;">ugly</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"><strong>Beta</strong> <br> <span class="math inline">\(\mathrm{Beta}(\alpha, \beta)\)</span></td>
 <td style="text-align: center;">shape1: <span class="math inline">\(\alpha\)</span> <br> shape2: <span class="math inline">\(\beta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\alpha-1}(1-x)^{\beta-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, 1)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{\alpha}{\alpha+\beta}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span></td>
-<td style="text-align: right;">ugly</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Uniform</strong> <br> <span class="math inline">\(\mathrm{Uniform}(a, b)\)</span></td>
-<td style="text-align: center;">min: <span class="math inline">\(a\)</span> <br> max: <span class="math inline">\(b\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\displaystyle 1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{a+b}{2}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{(b-a)^2}{12}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\frac{e^{itb}-e^{ita}}{it(b-a)}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\({}_1F_1(\alpha; \alpha+\beta; it)\)</span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Student’s t</strong> <br> <span class="math inline">\(t(k)\)</span></td>
-<td style="text-align: center;">dof: <span class="math inline">\(k\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\displaystyle \left(1+\frac{x^2}{k}\right)^{-\frac{k+1}{2}}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(0\)</span>, for k&gt;1</td>
-<td style="text-align: center;"><span class="math inline">\(\frac{k}{k-2}\)</span>, for k&gt;2</td>
-<td style="text-align: right;"><span class="math inline">\(|t|^{k/2}K_{k/2}(\sqrt{k}|t|)\)</span></td>
+<td style="text-align: left;"><strong>Uniform</strong> <br> <span class="math inline">\(\mathrm{Uniform}(-1, 1)\)</span></td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \text{constant}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(-1, 1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{3}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\frac{\sin(t)}{t}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Cauchy</strong> <br> <span class="math inline">\(\mathrm{Cauchy}\)</span></td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \frac{1}{1+x^2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(-\infty, \infty)\)</span></td>
+<td style="text-align: center;">undefined</td>
+<td style="text-align: center;">undefined</td>
+<td style="text-align: right;"><span class="math inline">\(e^{-|t|}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Student’s t</strong> <br> <span class="math inline">\(t(\nu)\)</span></td>
+<td style="text-align: center;">dof: <span class="math inline">\(\nu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \left(1+\frac{x^2}{\nu}\right)^{-\frac{\nu+1}{2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(-\infty, \infty)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span> for <span class="math inline">\(\nu&gt;1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\nu}{\nu-2}\)</span>, for <span class="math inline">\(\nu&gt;2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\frac{K_{\frac{\nu}{2}}(\sqrt{\nu}|t|) (\sqrt{\nu}|t|)^{\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) 2^{\frac{\nu}{2}-1}}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>F-distribution</strong> <br> <span class="math inline">\(F(d_1, d_2)\)</span></td>
 <td style="text-align: center;">dof 1: <span class="math inline">\(d_1\)</span> <br> dof 2: <span class="math inline">\(d_2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\left(\frac{d_1 x}{d_1 x + d_2}\right)^{\frac{d_1}{2}} \left(\frac{d_2}{d_1 x + d_2}\right)^{\frac{d_2}{2}} x^{-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{d_2}{d_2 - 2}\)</span>, for <span class="math inline">\(d_2\)</span> &gt;2</td>
 <td style="text-align: center;"><span class="math inline">\(\frac{2 d_2^2 (d_1 + d_2 - 2)}{d_1 (d_2 - 2)^2 (d_2 - 4)}\)</span>, for <span class="math inline">\(d_2\)</span> &gt;4</td>
 <td style="text-align: right;">ugly</td>
@@ -296,17 +310,155 @@ Table&nbsp;1: My Distribution Table
 </div>
 </figure>
 </div>
-<p><span class="math inline">\({\displaystyle K_{\nu }}\)</span> is the modified Bessel function of the second kind.</p>
-<p><strong>Normal Families :</strong></p>
-<p>The Chi-squared distribution, Student’s t-distribution, and F-distribution are all related to the normal distribution.</p>
+<ul>
+<li><span class="math inline">\({\displaystyle K_{\nu }}\)</span> is the <a href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1">modified Bessel function of the second kind</a>.</li>
+<li><span class="math inline">\({}_1F_1(a; b; z)\)</span> is the <a href="https://en.wikipedia.org/wiki/Confluent_hypergeometric_function">confluent hypergeometric function</a>.</li>
+</ul>
+</section>
+<section id="discrete-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-distributions">Discrete Distributions</h3>
+<p>Here are lists for common discrete probability distributions:</p>
+<div id="tbl-discrete" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: My Discrete Distribution Table
+</figcaption>
+<div aria-describedby="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name, Notation</th>
+<th style="text-align: center;">Parameters</th>
+<th style="text-align: center;">PMF</th>
+<th style="text-align: center;">Range</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Variance</th>
+<th style="text-align: right;">CF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bernoulli</strong> <br> <span class="math inline">\(\mathrm{Bernoulli}(p)\)</span></td>
+<td style="text-align: center;">success prob.: <span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle p^x (1-p)^{1-x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in\{0,1\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p(1-p)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(1 - p + p e^{it}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Binomial</strong> <br> <span class="math inline">\(\mathrm{Binomial}(n, p)\)</span></td>
+<td style="text-align: center;">trials: <span class="math inline">\(n\)</span> <br> success prob.: <span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \binom{n}{x} p^x (1-p)^{n-x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in\{0,1,\ldots,n\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(np\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(np(1-p)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\((1 - p + p e^{it})^n\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Poisson</strong> <br> <span class="math inline">\(\mathrm{Poisson}(\lambda)\)</span></td>
+<td style="text-align: center;">rate: <span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \frac{\lambda^x e^{-\lambda}}{x!}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(e^{\lambda(e^{it}-1)}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Geometric</strong> <br> <span class="math inline">\(\mathrm{Geometric}(p)\)</span></td>
+<td style="text-align: center;">success prob.: <span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle (1-p)^{x} p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1-p}{p}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1-p}{p^2}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\frac{p e^{it}}{1 - (1-p)e^{it}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Negative Binomial</strong> <br> <span class="math inline">\(\mathrm{NegBin}(r, p)\)</span></td>
+<td style="text-align: center;">successes: <span class="math inline">\(r\)</span> <br> success prob.: <span class="math inline">\(p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\displaystyle \binom{x+r-1}{r-1} p^r (1-p)^x\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\left(\frac{p e^{it}}{1 - (1-p)e^{it}}\right)^r\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+</section>
+<section id="relationships" class="level3">
+<h3 class="anchored" data-anchor-id="relationships">Relationships</h3>
+<p><strong>Obvious</strong>:</p>
+<ul>
+<li>Exponential is a special case of Gamma: <span class="math inline">\(\mathrm{Exp}(\lambda) \sim \mathrm{Gamma}(1, \frac{1}{\lambda})\)</span>.</li>
+<li>Chi-squared is a special case of Gamma: <span class="math inline">\(\chi^2(k) \sim \mathrm{Gamma}(\frac{k}{2}, 2)\)</span>.</li>
+<li>A special case of Chi-squared is Exponential: <span class="math inline">\(\chi^2(2) \sim \mathrm{Exp}(\frac{1}{2})\)</span>. This is called the <em>Rayleigh distribution</em>.</li>
+<li>Chi is the square root of Chi-squared: <span class="math inline">\(\chi(k) \sim \sqrt{\chi^2(k)}\)</span>.</li>
+<li>Normal is a special case of Chi: <span class="math inline">\(\mathcal{N}(0, 1) \sim \chi(1)\)</span>.</li>
+<li>Cauchy is a special case of Student’s t: <span class="math inline">\(\mathrm{Cauchy} \sim t(1)\)</span>.</li>
+<li>The chi-squared, Student’s t, and F distributions are all naturally come from the Normal distribution in the following senses:
 <ul>
 <li><span class="math inline">\(\displaystyle \chi^2(k) \sim \sum_{i=1}^k Z_i^2\)</span>, where <span class="math inline">\(Z_i\)</span> are i.i.d. standard normal variables.</li>
+<li><span class="math inline">\(\displaystyle t(\nu) \sim \frac{Z}{\sqrt{\chi^2(\nu)/\nu}}\)</span>, where <span class="math inline">\(Z\)</span> is a standard normal variable independent of the Chi-squared variable.</li>
 <li><span class="math inline">\(\displaystyle F(d_1, d_2) \sim \frac{\chi^2(d_1)/d_1}{\chi^2(d_2)/d_2}\)</span>, which is the ratio of two scaled Chi-squared distributions.</li>
+</ul></li>
+<li>Bernoulli is a special case of Binomial: <span class="math inline">\(\mathrm{Bernoulli}(p) \sim \mathrm{Binomial}(1, p)\)</span>.</li>
 </ul>
-<p>The Exponential and Gamma distributions are related to the Poisson process, which models the occurrence of random events over time.</p>
+<p><strong>Stability</strong>:</p>
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{N}(\mu_1, \sigma_1^2) + \mathcal{N}(\mu_2, \sigma_2^2) \sim \mathcal{N}(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle \mathrm{Gamma}(\alpha_1, \theta) + \mathrm{Gamma}(\alpha_2, \theta) \sim \mathrm{Gamma}(\alpha_1 + \alpha_2, \theta)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle \chi^2(k_1) + \chi^2(k_2) \sim \chi^2(k_1 + k_2)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle \mathrm{Binomial}(n_1, p) + \mathrm{Binomial}(n_2, p) \sim \mathrm{Binomial}(n_1 + n_2, p)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle \mathrm{Poisson}(\lambda_1) + \mathrm{Poisson}(\lambda_2) \sim \mathrm{Poisson}(\lambda_1 + \lambda_2)\)</span>.</li>
+</ul>
+<p><strong>Less Obvious</strong>:</p>
+<ul>
+<li>Beta is related to Gamma in the following way: <span class="math display">\[
+\begin{cases}
+X \sim \mathrm{Gamma}(\alpha, \theta),  \\
+Y \sim \mathrm{Gamma}(\beta, \theta),  \\
+X \perp Y
+\end{cases}
+\implies
+\begin{cases}
+\displaystyle \frac{X}{X+Y} \sim \mathrm{Beta}(\alpha, \beta),  \\
+X+Y \sim \mathrm{Gamma}(\alpha + \beta, \theta), \\
+\displaystyle \frac{X}{X+Y} \perp (X+Y)
+\end{cases}
+\]</span>
+<ul>
+<li>A special case of the above is that taking <span class="math inline">\(n\)</span> independent standard normal <span class="math inline">\(Z_i \sim \mathcal{N}(0,1)\)</span> variables, then for any <span class="math inline">\(k &lt; n\)</span>: <span class="math display">\[
+\displaystyle \frac{Z_1^2 + Z_2^2 + \cdots + Z_k^2}{Z_1^2 + Z_2^2 + \cdots + Z_n^2} \sim \mathrm{Beta}\left(\frac{k}{2}, \frac{n-k}{2}\right)
+\]</span> Notice that comparing to the F-distribution, the numerator is using Chi-squared variable from the denominator.</li>
+</ul></li>
+<li>Sample <span class="math inline">\(n\)</span> independent <span class="math inline">\(U_i \sim \mathrm{Uniform}(0,1)\)</span> variables. The <span class="math inline">\(k\)</span>-th order statistic follows a Beta distribution: <span class="math inline">\(X_{(k)} \sim \mathrm{Beta}(k, n-k+1)\)</span>.</li>
+</ul>
+<hr>
+<p>(To be added)</p>
+<ul>
+<li>Exponential is related to Poisson process:
+<ul>
+<li>If events occur according to a Poisson process with rate <span class="math inline">\(\lambda\)</span>, then the waiting time until the <span class="math inline">\(k\)</span>-th event follows a Gamma distribution: <span class="math inline">\(T_k \sim \mathrm{Gamma}(k, \frac{1}{\lambda})\)</span>.</li>
+<li>The Exponential and Gamma distributions are related to the Poisson process, which models the occurrence of random events over time.</li>
+</ul></li>
+</ul>
 <p>The Beta distribution is often used in Bayesian statistics as a prior distribution for probabilities.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
