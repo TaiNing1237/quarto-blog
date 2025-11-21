@@ -10,11 +10,11 @@ format:
         fig-cap-align: center # 這是控制圖標置中的關鍵
 ---
 
-今天來講個比較輕鬆的小主題：**Cumulant 多項式** vs **Moment 多項式**。
+今天來講個比較輕鬆的小主題：**Cumulant 多項式** 
 
 對於一個隨機變數 $X$，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。
 
-### Cumulant and Moment 
+### Cumulant Generating Function 
 還記得動差生成函數 (Moment Generating Function, MGF) 定義為：
 $$  
 M_X(t) = \mathbb{E}[e^{tX}] = \sum_{k=0}^{\infty} \mathbb{E}[X^{k}] \frac{t^k}{k!} 
@@ -85,5 +85,7 @@ $$
 我們先跳過證明，提供一些直覺上的理解：主要是因為 CF 是 PDF 的傅立葉變換，而 PDF 必須非負 (non-negative)，這使得 CF 的形式受到很大限制。@lukacs1970 [Theorem 7.3.3] 有詳細的證明。
 
 
+### Cumulant vs Moment 
+在一階和二階，cumulant 跟 moment 是一樣的：
 
-<!-- ### 參考資料 -->
+
