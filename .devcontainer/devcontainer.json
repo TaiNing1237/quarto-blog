@@ -1,0 +1,26 @@
+{
+  "name": "Quarto Blog Development",
+  // Use the Universal Base Image for a good starting point
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+
+  // Install the Quarto CLI as a feature
+  "features": {
+    "ghcr.io/quarto-dev/quarto-devcontainers/quarto:1": {
+      "version": "latest"
+    }
+  },
+
+  // Set up ports and extensions
+  "postCreateCommand": "quarto install extension quarto-ext/blog", // Example: Installs a common Quarto blog extension
+  "forwardPorts": [4200], // Default port for Quarto preview
+
+  // Recommended VS Code extensions for Quarto
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "quarto.quarto",
+        "vscode-icons-team.vscode-icons"
+      ]
+    }
+  }
+}
