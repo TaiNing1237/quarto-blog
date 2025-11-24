@@ -2,7 +2,7 @@
 title: "10 Types of Common Distributions"
 author: "Tai-Ning Liao"
 date: "2025-11-14"
-categories: [analysis, statistic, distribution]
+categories: [statistic, Cheat Sheet]
 ---
 
 Let's list 10 common continuous probability distributions along with their probability density functions (PDFs), I've ignored the constant normalization factors for simplicity. Here's a summary table:

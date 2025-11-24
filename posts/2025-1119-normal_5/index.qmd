@@ -1,5 +1,5 @@
 ---
-title: "一天證明一個 Normal Distribution 的性質 Day5：Cumulant 多項式"
+title: "一天證明一個 Normal Distribution 的性質 Day5：獨立性的視角 Cumulant"
 author: "Tai-Ning Liao"
 date: "2025-11-19"
 categories: [Normal Distribution]
@@ -19,17 +19,26 @@ format:
 $$  
 M_X(t) = \mathbb{E}[e^{tX}] = \sum_{k=0}^{\infty} \mathbb{E}[X^{k}] \frac{t^k}{k!} 
 $$
-名符其實，他就是「動差」的生成函數，因為對 $M_X(t)$ 做泰勒展開 (Taylor Expansion) 後，係數正好是各階動差 (moment)：
+名符其實，他就是「動差」的生成函數，因為對 $M_X(t)$ 做泰勒展開 (Taylor Expansion) 後，係數正好是各階 **動差** (moment)：
 $$
-\mu_k := \mathbb{E}[X^k] = M_X^{(k)}(0) = \left. \frac{d^k}{dt^k} M_X(t) \right|_{t=0}  \tag{1}\label{eq:moment_def_1}
+\mu_k' := \mathbb{E}[X^k] = M_X^{(k)}(0) = \left. \frac{d^k}{dt^k} M_X(t) \right|_{t=0}  \tag{1}\label{eq:moment_def_1}
 $$
+另外一種比較常用的是減掉常數項的**中心動差** (central moment)：
+$$
+\mu_k := \mathbb{E}[(X - \mathbb{E}[X])^k]
+$$
+
 不過呢，有時候因為動差函數不存在 (例如 Cauchy 分佈)，我們會改用一定會存在的特徵函數 (Characteristic Function, CF)：
 $$
 \phi_X(t) = \mathbb{E}[e^{itX}] = \sum_{k=0}^{\infty} \mathbb{E}[X^{k}] \frac{(it)^k}{k!}
 $$
 所以也可以用 $\phi_X(t)$ 來計算動差：
 $$
-\mathbb{E}[X^k] = \frac{1}{i^k} \phi_X^{(k)}(0) = \left. \frac{1}{i^k} \frac{d^k}{dt^k} \phi_X(t) \right|_{t=0}  \tag{2}\label{eq:moment_def_2}
+\mu_k' = \mathbb{E}[X^k] = \frac{1}{i^k} \phi_X^{(k)}(0) = \left. \frac{1}{i^k} \frac{d^k}{dt^k} \phi_X(t) \right|_{t=0}  \tag{2}\label{eq:moment_def_2}
+$$
+至於 central moment，
+$$
+\mu_k = \mathbb{E}[(X - \mathbb{E}[X])^k] = \frac{1}{i^k} \frac{d^k}{dt^k} \left[ e^{-it \mu_1'} \phi_X(t) \right]_{t=0}
 $$
 這邊要稍微注意一下，CF 是個複數值函數，所以其實是個複變函數的微分!
 
@@ -86,6 +95,135 @@ $$
 
 
 ### Cumulant vs Moment 
-在一階和二階，cumulant 跟 moment 是一樣的：
+在一階、二階和三階，cumulant 跟 central moment 是一樣的:
+$$
+\frac{d}{dt} K_X(t) = \frac{M_X'(t)}{M_X(t)} \implies \kappa_1 = K_X'(0) = M_X'(0) = \mu_1' = \mathbb{E}[X]
+$$
+$$
+\begin{align}
+&\frac{d^2}{dt^2} K_X(t) = \frac{M_X''(t)}{M_X(t)} - \frac{M_X'(t)^2}{(M_X(t))^2} \\
+\implies &\kappa_2 = K_X''(0) = M_X''(0) - (M_X'(0))^2 = \mu_2' - \mu_1'^2 = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mu_2
+\end{align}
+$$
+三階 cumulant 是：
+$$
+\begin{align}
+&\frac{d^3}{dt^3} K_X(t) = \frac{M_X'''(t)}{M_X(t)} - 3 \frac{M_X''(t) M_X'(t)}{(M_X(t))^2} + 2 \frac{(M_X'(t))^3}{(M_X(t))^3} \\ 
+\implies &\kappa_3 = K_X'''(0) = M_X'''(0) - 3 M_X''(0) M_X'(0) + 2 (M_X'(0))^3 \\
+&\quad = \mu_3' - 3 \mu_2' \mu_1' + 2 (\mu_1')^3 = \mathbb{E}[(X - \mathbb{E}[X])^3] = \mu_3
+\end{align}
+$$
+但是從四階開始，cumulant 跟 central moment 就不一樣了：
+$$
+\frac{d^4}{dt^4} K_X(t) = \frac{M_X^{(4)}(t)}{M_X(t)} - 4 \frac{M_X^{(3)}(t) M_X'(t)}{(M_X(t))^2} - 3 \frac{(M_X''(t))^2}{(M_X(t))^2} + 12 \frac{M_X''(t) (M_X'(t))^2}{(M_X(t))^3} - 6 \frac{(M_X'(t))^4}{(M_X(t))^4}
+$$
+所以我們有：
+$$
+\begin{align}
+\implies &\kappa_4 = K_X^{(4)}(0) = M_X^{(4)}(0) - 4 M_X^{(3)}(0) M_X'(0) - 3 (M_X''(0))^2 + 12 M_X''(0) (M_X'(0))^2 - 6 (M_X'(0))^4 \\
+&\quad = \mu_4' - 4 \mu_3' \mu_1' - 3 (\mu_2')^2 + 12 \mu_2' (\mu_1')^2 - 6 (\mu_1')^4 \\
+&\quad = \mathbb{E}[(X - \mathbb{E}[X])^4] - 3 (\mathbb{E}[(X - \mathbb{E}[X])^2])^2 = \mu_4 - 3 \mu_2^2
+\end{align}
+$$
+
+由 cumulant 對於獨立變數相加的可加性質，我們可以由此看出，兩個獨立的隨機變數相加，平均值、變異數、偏度 都會相加，但峰度卻不會相加，因為峰度差了 $3 \mu_2^2$。而一般峰度的定義是 $\text{Kurt}[X] = \frac{\mu_4}{\mu_2^2}$，所以峰度減去 3 (稱之為 excess kurtosis)，再搭配上適當的 variance scaling 就會有可加性。
+
+
+**一般式的推導**
+
+徒手算到這邊也差不多了。對於更高階的 cumulant，我們應該系統化地研究他們的係數。
+因為 $M_X(t) = e^{K_X(t)}$，所以 $\frac{dM_X(t)}{dt} = K_X'(t) e^{K_X(t)} = K_X'(t) M_X(t)$。
+
+> 乘法的微分 $n$ 階就會跟 二項式係數 有關:
+$$
+\frac{d^n}{dt^n} [f(t) g(t)] = \sum_{k=0}^{n} \binom{n}{k} f^{(k)}(t) g^{(n-k)}(t)
+$$
+
+所以，
+$$
+\begin{align}
+M_X^{(n)}(t) &= \frac{d^{n-1}}{dt^{n-1}} [K_X'(t) M_X(t)] \\
+&= \sum_{m=0}^{n-1} \binom{n-1}{m} K_X^{(n-m)}(t) M_X^{(m)}(t) 
+\end{align}
+$$
+將 $t=0$ 代入，因為 $M_X^{(0)}(0) = 1$ ，而 $M_X(t)$ 的 $n$ 階導數在 $0$ 就是動差 $\mu_n'$，我們得到：
+$$
+\mu_n' = \kappa_{n} + \sum_{m=1}^{n-1} \binom{n-1}{m} \kappa_{n-m} \mu_{m}'  \tag{7}\label{eq:moment_cumulant_relation}
+$$
+寫成矩陣形式會比較清楚：
+$$
+\begin{bmatrix}
+\mu_1' \\
+\mu_2' \\
+\mu_3' \\
+\mu_4' \\
+\mu_5' \\
+\vdots
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & \cdots \\
+\binom{1}{1} \mu_1' & 1 & 0 & 0 & 0 & \cdots \\
+\binom{2}{2} \mu_2' & \binom{2}{1} \mu_1' & 1 & 0 & 0 & \cdots \\
+\binom{3}{3} \mu_3' & \binom{3}{2} \mu_2' & \binom{3}{1} \mu_1' & 1 & 0 & \cdots \\
+\binom{4}{4} \mu_4' & \binom{4}{3} \mu_3' & \binom{4}{2} \mu_2' & \binom{4}{1} \mu_1' & 1 & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{bmatrix}
+\begin{bmatrix}
+\kappa_1 \\
+\kappa_2 \\
+\kappa_3 \\
+\kappa_4 \\
+\kappa_5 \\
+\vdots
+\end{bmatrix}
+$$
+還是把 $\mu_n'$ 全部寫在一起好了：
+$$
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & \cdots \\
+\mu_1' & 1 & 0 & 0 & 0 & 0 & \cdots \\
+\mu_2' & \binom{1}{1} \mu_1' & 1 & 0 & 0 & 0 & \cdots \\
+\mu_3' & \binom{2}{2} \mu_2' & \binom{2}{1} \mu_1' & 1 & 0 & 0 & \cdots \\
+\mu_4' & \binom{3}{3} \mu_3' & \binom{3}{2} \mu_2' & \binom{3}{1} \mu_1' & 1 & 0 & \cdots \\
+\mu_5' & \binom{4}{4} \mu_4' & \binom{4}{3} \mu_3' & \binom{4}{2} \mu_2' & \binom{4}{1} \mu_1' & 1 & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{bmatrix}
+\begin{bmatrix}
+-1 \\
+\kappa_1 \\
+\kappa_2 \\     
+\kappa_3 \\
+\kappa_4 \\
+\kappa_5 \\
+\vdots  
+\end{bmatrix}
+=
+\begin{bmatrix}
+-1 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+\vdots
+\end{bmatrix}
+$$
+所以說要算任意的 $\kappa_n$，我們就看這個矩陣的前 $(n+1) \times (n+1)$ 子矩陣，然後套克拉瑪公式 (Cramer's Rule)。
+而且因為左邊矩陣行列式為 1，所以分母總是1。比方說來算 $\kappa_5$，(最後一列是代右邊)：
+$$
+\kappa_5 = 
+\begin{vmatrix}
+1 & 0 & 0 & 0 & 0 & \textcolor{blue}{-1} \\
+\mu_1' & 1 & 0 & 0 & 0 & \textcolor{blue}{0} \\
+\mu_2' & \binom{2}{1} \mu_1' & 1 & 0 & 0 & \textcolor{blue}{0} \\
+\mu_3' & \binom{3}{2} \mu_2' & \binom{3}{1} \mu_1' & 1 & 0 & \textcolor{blue}{0} \\
+\mu_4' & \binom{4}{3} \mu_3' & \binom{4}{2} \mu_2' & \binom{4}{1} \mu_1' & 1 & \textcolor{blue}{0} \\
+\mu_5' & \binom{5}{4} \mu_4' & \binom{5}{3} \mu_3' & \binom{5}{2} \mu_2' & \binom{5}{1} \mu_1' & \textcolor{blue}{0}
+\end{vmatrix}
+$$
+
+
+
 
 

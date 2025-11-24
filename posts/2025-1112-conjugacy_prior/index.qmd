@@ -2,7 +2,7 @@
 title: "Conjugate Prior"
 author: "Tai-Ning Liao"
 date: "2025-11-12"
-categories: [analysis, statistic]
+categories: [statistic]
 format:
     html:
         fig-align: center # 這會讓所有圖片都置中

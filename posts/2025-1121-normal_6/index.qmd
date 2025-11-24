@@ -1,0 +1,373 @@
+---
+title: "一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test"
+author: "Tai-Ning Liao"
+date: "2025-11-21"
+categories: [Normal Distribution]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+# jupyter: python3
+freeze: auto
+---
+
+### Chi-squared Test 複習
+
+假設我們有個 contingency table (列聯表) 如下：
+
+|           | Category 1 | Category 2 | Category 3 | Total |
+|-----------|------------|------------|------------|-------|
+| Group A   |    10      |     20     |     30    |  60   |
+| Group B   |    10      |     15     |     15    |  40   |
+| Total     |    20      |     35     |     45    |  100   |
+
+我們想知道 Group A 跟 Group B 在這三個 category 上是否有顯著差異 (independence)。我們可以使用 Chi-squared test 來檢驗這個假設。
+
+**步驟一、計算期望值 (Expected Counts)**：
+根據獨立性的假設，也就是這個 contingency table 是一個 rank 1 矩陣，我們可以計算每個 cell 的期望值：
+
+|           | Category 1 | Category 2 | Category 3 |
+|-----------|------------|------------|------------|
+| Group A   |  (60*20)/100 = 12  |  (60*35)/100 = 21  |  (60*45)/100 = 27  |
+| Group B   |  (40*20)/100 = 8   |  (40*35)/100 = 14  |  (40*45)/100 = 18  |    
+
+**步驟二、計算 Chi-squared 統計量**：
+$$
+\chi^2 = \sum \frac{(O - E)^2}{E}
+$$
+其中 $O$ 是觀察值 (Observed Counts)，$E$ 是期望值 (Expected Counts)。
+計算如下：
+$$
+\chi^2 = \frac{(10-12)^2}{12} + \frac{(20-21)^2}{21} + \frac{(30-27)^2}{27} + \frac{(10-8)^2}{8} + \frac{(15-14)^2}{14} + \frac{(15-18)^2}{18} \approx 2.38
+$$  
+
+**步驟三、決定自由度 (Degrees of Freedom)**：
+自由度計算公式為：
+$$
+df = (r - 1)(c - 1)
+$$
+其中 $r$ 是列數，$c$ 是行數。在這個例子中，$r=2$，$c=3$，所以 $df = (2-1)(3-1) = 2$。
+
+**步驟四、查表或計算 p-value**：
+我們可以使用 Chi-squared 分布表或計算 p-value 來判斷。我們查表發現，當 $\chi^2 \approx 2.38$ 且 $df=2$ 時，p-value 約為 0.3。
+
+由於 p-value 大於常見的顯著水準 (如 0.05)，我們無法拒絕獨立性的假設，表示 Group A 跟 Group B 在這三個 category 上沒有顯著差異。
+
+Chi-squared Test 是說，當樣本數很大(超過30)，這個統計量會趨近於 Chi-squared 分布 (degrees of freedom = (r-1)(c-1))。本質上他本來就永遠不會真正等於 Chi-squared 分布，因為他是離散的。所以這邊談的是個趨近的概念。
+
+其實第一次看到這個公式覺得很不舒服，為什麼要這樣算? 更直觀的算法應該是某種 statistic distance，比方說
+$$
+\sum |p_i - q_i|
+$$
+其中 $p_i$ 是觀察到的比例，$q_i$ 是期望的比例。
+
+身為數學家想要最優化的靈魂開始作祟，這樣位甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。
+
+
+### Intuition 解釋版本1
+我們直觀地理解 Chi-squared test，應該這樣解讀公式
+$$
+\sum \frac{(O-E)^2}{E} = \sum \left(\frac{O-E}{\sqrt{E}}\right)^2
+$$
+還記得如果是 binomial 分佈(或者看成 multinomial 分布的其中一項)，期望值是 $np$，標準差是 $\sqrt{np(1-p)}$，所以若 $E$ 是期望值，那 $\sqrt{E}$ 大概是標準差 (忽略掉 $1-p$ 部分)。所以我們就是在算 實際值 $O$ 減去 期望值 $E$ 再除以標準差 $\sqrt{E}$，這就是標準化 (standardization) z-score的概念。然後我們把每個 category 的標準化結果平方後加總起來，這就是 Chi-squared 統計量。
+
+這個解釋對於公式來說是最直觀的，但也忽略了很多細節，比方說這忽略的 $(1-p)$ 感覺不會趨近於 0，而且為甚麼自由度是 $(r-1)(c-1)$，這些不同z-score之間並沒有獨立，怎麼可以說是Chi-squared?
+
+### Intution 解釋版本2
+另一個角度，我們證明這其實是個 likelihood ratio test 的近似，而 likelihood ratio test 本身就是最有效力的檢定方法 (Neyman-Pearson lemma)。
+
+* $H_0$: Contigency table 是 rank 1 矩陣 (independent)。用 $r+c-2$ 個參數描述。
+* $H_1$: Contigency table 是 任意的矩陣。用 $rc -1$ 個參數描述。
+
+我們可以計算在 $H_0$ 跟 $H_1$ 下的 likelihood ratio。
+
+**先算 $H_0$:** 
+
+假設我們實驗得到的表是 $O_{ij}$，$N = \sum_{i,j} O_{ij}$。用 rank 1 矩陣去算 likelihood 就是待定 $a_i$ 跟 $b_j$ (滿足 $\sum_i a_i = 1$ 且 $\sum_j b_j = 1$)，把 $a_i b_j N$ 當成期望值。
+
+likelihood function 是 multinomial distribution:
+$$
+L(H_0) := \mathbb{P}_0(O \mid a_i, b_j) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} (a_i b_j)^{O_{ij}}
+$$
+這邊我們要選 $a_i, b_j$ 使得 likelihood 最大化。不防忽略常數項，然後取 log:
+$$
+\log L(H_0) = \sum_{i,j} O_{ij} (\log a_i + \log b_j)
+$$
+因為還有約束條件 $\sum_i a_i = 1$，$\sum_j b_j = 1$，我們用拉格朗日乘數法 (Lagrange multipliers)，引入 $\lambda, \mu$，考慮
+$$
+\mathcal{L}(a_i, b_j, \lambda, \mu) = \sum_{i,j} O_{ij} (\log a_i + \log b_j) + \lambda (1 - \sum_i a_i) + \mu (1 - \sum_j b_j)
+$$
+分別對 $a_i$, $b_j$ 求導數並設為 0:
+$$
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial a_i} &= \sum_j \frac{O_{ij}}{a_i} - \lambda = 0 \implies a_i = \frac{\sum_j O_{ij}}{\lambda} \\
+\frac{\partial \mathcal{L}}{\partial b_j} &= \sum_i \frac{O_{ij}}{b_j} - \mu = 0 \implies b_j = \frac{\sum_i O_{ij}}{\mu}
+\end{align}
+$$
+利用約束條件，我們可以解出 $\lambda=\mu=\sum_{i,j} O_{ij} = N$，所以期望值
+$$
+a_i b_j N = \frac{\sum_j O_{ij} \sum_i O_{ij}}{N} = E_{ij}
+$$
+這就是我們在 Chi-squared test 裡面計算的期望值。
+代回去 likelihood function:
+$$
+L(H_0) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} \left(\frac{E_{ij}}{N}\right)^{O_{ij}}
+= \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \frac{1}{N^N}\prod_{i,j} E_{ij}^{O_{ij}}
+$$
+
+**接著來算 $H_1$:**
+
+過程很類似，但現在有 $rc-1$ 個參數 $p_{ij}$，且約束條件是 $\sum_{i,j} p_{ij} = 1$。直接算 Lagrangian:
+$$
+\mathcal{L}(p_{ij}, \lambda) = \sum_{i,j} O_{ij} \log p_{ij} + \lambda (1 - \sum_{i,j} p_{ij})
+$$
+取偏導並設為 0:
+$$
+\frac{\partial \mathcal{L}}{\partial p_{ij}} = \frac{O_{ij}}{p_{ij}} - \lambda = 0 \implies p_{ij} = \frac{O_{ij}}{\lambda} = \frac{O_{ij}}{N}
+$$
+所以期望值就是觀察值本身 $O_{ij}$，非常符合直覺。代回去 likelihood function:
+$$
+L(H_1) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} \left(\frac{O_{ij}}{N}\right)^{O_{ij}}
+= \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \frac{1}{N^N}\prod_{i,j} O_{ij}^{O_{ij}}
+$$
+
+**最後計算 likelihood ratio:**
+
+$$
+\begin{align}
+\Lambda &= \frac{L(H_0)}{L(H_1)} \\
+&= \frac{\prod_{i,j} E_{ij}^{O_{ij}}}{\prod_{i,j} O_{ij}^{O_{ij}}} \\
+&= \prod_{i,j} \left(\frac{E_{ij}}{O_{ij}}\right)^{O_{ij}}
+\end{align}
+$$
+
+異常眼熟的公式! 這取 log 不就是熟悉的 KL divergence 嗎? 這其實稱為 [G-test](https://en.wikipedia.org/wiki/G-test)，是一種基於 likelihood ratio 的檢定方法。但我們先不展開。
+
+**最後一步: 從 likelihood ratio 到 Chi-squared 統計量**
+
+我們要用 Wilks' theorem，根據這個定理，當樣本數 $N$ 很大時，$-2 \log \Lambda$ 會趨近於 Chi-squared 分布，且自由度是參數數量的差值:
+$$
+df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
+$$
+計算 $-2 \log \Lambda$:
+$$
+\begin{align}
+-2 \log \Lambda &= -2 \sum_{i,j} O_{ij} \log \left(\frac{E_{ij}}{O_{ij}}\right) \\
+&= 2 \sum_{i,j} O_{ij} \log \left(\frac{O_{ij}}{E_{ij}}\right)
+\end{align}
+$$
+這時，假設 $O_{ij}$ 很接近 $E_{ij}$，我們可以用 Taylor expansion 對 $\log(x)$ 在 $x=1$ 附近展開，假設 $O_{ij} = E_{ij} + \delta_{ij}$，其中 $\delta_{ij}$ 很小:
+$$
+\log\left(\frac{O_{ij}}{E_{ij}}\right) = \log\left(1 + \frac{\delta_{ij}}{E_{ij}}\right) \approx \frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2
+$$
+代回去:
+$$
+\begin{align}
+-2 \log \Lambda &\approx 2 \sum_{i,j} (E_{ij} + \delta_{ij}) \left(\frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2\right) \\
+&= 2 \sum_{i,j} \left(\delta_{ij} + \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^3}{E_{ij}^2}\right) \\
+&\approx 2 \sum_{i,j} \left(\delta_{ij} + \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}}\right) \
+\end{align}
+$$
+注意到 $\sum_{i,j} \delta_{ij} = \sum_{i,j} (O_{ij} - E_{ij}) = 0$，所以第一項消失:
+$$
+-2 \log \Lambda \approx \sum_{i,j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} = \chi^2
+$$
+
+因此，當樣本數很大時，Chi-squared 統計量 $\chi^2$ 會趨近於 Chi-squared 分布，且自由度為 $(r-1)(c-1)$。這證明了為什麼 Chi-squared test 是一個有效的檢定方法。
+
+
+---
+
+底下我們看一下當樣本數有限時，Chi-squared 統計量的分布與理論上的 Chi-squared 分布有什麼差異。
+
+### Interactive: Finite Chi-Square CDF (Log Scale)
+
+Adjust $n$ to see how the discrete CDF steps approximate the smooth curve.
+
+```{ojs}
+//| echo: false
+viewof n = Inputs.range([2, 50], {value: 5, step: 1, label: "Sample Size (n)"})
+```
+
+```{ojs}
+//| echo: false
+//| panel: fill
+
+// --- 1. CONFIGURATION ---
+// Three user-adjustable probabilities (keeps exactly 3 bins).
+// The inputs are normalized so they always sum to 1.
+viewof p1 = Inputs.range([0, 1], {value: 0.2, step: 0.01, label: "p1"})
+viewof p2 = Inputs.range([0, 1], {value: 0.5, step: 0.01, label: "p2"})
+viewof p3 = Inputs.range([0, 1], {value: 0.3, step: 0.01, label: "p3"})
+// When user releases a slider, normalize the three sliders so their values sum to 1
+function normalizeSliders() {
+  // Prevent re-entry: when we programmatically change values we don't want
+  // the handler to be called recursively.
+  if (normalizeSliders._running) return;
+  normalizeSliders._running = true;
+
+  // `viewof p1` / `viewof p2` / `viewof p3` are the input DOM elements
+  const a = viewof p1, b = viewof p2, c = viewof p3;
+  const rawA = +a.value, rawB = +b.value, rawC = +c.value;
+  const totalRaw = rawA + rawB + rawC;
+  if (totalRaw === 0) {
+    // fallback to equal split
+    a.value = 0.33; b.value = 0.33; c.value = 0.34;
+  } else {
+    // normalize and round to two decimals while ensuring sum exactly 1
+    let na100 = Math.round((rawA / totalRaw) * 100);
+    let nb100 = Math.round((rawB / totalRaw) * 100);
+    let nc100 = 100 - na100 - nb100;
+    // if rounding produced negative for nc, fix by clamping
+    if (nc100 < 0) {
+      nc100 = 0;
+      if (nb100 > 0) nb100 = Math.max(0, 100 - na100 - nc100);
+    }
+    a.value = na100 / 100;
+    b.value = nb100 / 100;
+    c.value = nc100 / 100;
+  }
+
+  // Dispatch only `input` so we update Observable reactive cells without
+  // re-triggering the `change` handler (which would cause recursion).
+  ['input'].forEach(ev => {
+    a.dispatchEvent(new Event(ev, {bubbles: true}));
+    b.dispatchEvent(new Event(ev, {bubbles: true}));
+    c.dispatchEvent(new Event(ev, {bubbles: true}));
+  });
+
+  normalizeSliders._running = false;
+}
+
+total = p1 + p2 + p3;
+probs = total > 0 ? [p1/total, p2/total, p3/total] : [1/3, 1/3, 1/3];
+// single definition of k
+k = probs.length
+expected = probs.map(p => p * n)
+
+// --- 2. MATH LOGIC ---
+
+// Recursive function to get partitions (compositions of integer n)
+function getCompositions(target, bins) {
+  if (bins === 1) return [[target]];
+  const results = [];
+  for (let i = 0; i <= target; i++) {
+    const sub = getCompositions(target - i, bins - 1);
+    sub.forEach(s => results.push([i, ...s]));
+  }
+  return results;
+}
+
+// Generate Raw Data
+outcomes = getCompositions(n, k)
+
+rawData = outcomes.map(counts => {
+  // Factorial helper
+  const fact = (num) => {
+    if (num <= 1) return 1;
+    let r = 1; 
+    for(let i=2; i<=num; i++) r *= i; 
+    return r;
+  }
+  
+  // Multinomial Prob
+  let denom = 1;
+  let probTerm = 1;
+  counts.forEach((c, i) => {
+    denom *= fact(c);
+    probTerm *= Math.pow(probs[i], c);
+  });
+  const p = (fact(n) / denom) * probTerm;
+  
+  // Chi Sq Statistic
+  let q = 0;
+  counts.forEach((c, i) => {
+    q += Math.pow(c - expected[i], 2) / expected[i];
+  });
+  
+  return {q: q, p: p};
+})
+
+// --- 3. AGGREGATE & CALCULATE CDF ---
+
+groupedCDF = {
+  // A. Group by Q (sum probabilities for identical Q statistics)
+  const map = new Map();
+  rawData.forEach(d => {
+    const key = d.q.toFixed(6); 
+    const existing = map.get(key) || 0;
+    map.set(key, existing + d.p);
+  });
+  
+  // B. Sort by Q
+  let sorted = Array.from(map, ([q, p]) => ({q: +q, p: p})).sort((a,b) => a.q - b.q);
+  
+  // C. Calculate Cumulative Sum
+  let cumSum = 0;
+  return sorted.map(d => {
+    cumSum += d.p;
+    // Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis
+    const plotQ = d.q === 0 ? 0.01 : d.q;
+    // For discrete distributions: cdf = P(X <= q) includes P(X=q).
+    // - sf (strict) = P(X > q) = 1 - cdf
+    // - pvalue (right-tail, inclusive) = P(X >= q) = 1 - P(X < q) = 1 - (cdf - P(X=q)) = 1 - cdf + p
+    const sf = 1 - cumSum;
+    const pvalue = 1 - cumSum + d.p;
+    return {
+      realQ: d.q,
+      plotQ: plotQ,
+      cdf: cumSum,
+      sf: sf,
+      pvalue: pvalue
+    };
+  });
+}
+
+// --- 4. PLOTTING ---
+
+Plot.plot({
+  title: `p-value (P(X >= q)) for n=${n} (Log Scale)`,
+  grid: true,
+  x: {
+    type: "log", 
+    label: "Chi-Square Statistic (Q)",
+    domain: [0.01, d3.max(groupedCDF, d => d.realQ) * 1.2] // Ensure plot fits
+  },
+  y: {
+    label: "p-value (P(X >= q))", 
+    domain: [0, 1.05]
+  },
+  marks: [
+    // The "Sticks" (Discrete p-value P(X >= q))
+    Plot.ruleY(groupedCDF, {x: "plotQ", y: "pvalue", stroke: "#2563eb", strokeWidth: 2}),
+    Plot.dot(groupedCDF, {x: "plotQ", y: "pvalue", fill: "#2563eb", r: 3, title: d => `Q: ${d.realQ.toFixed(2)}\np-value: ${d.pvalue.toFixed(4)}`}),
+    
+    // The Continuous Chi-Square CDF Curve (df = 2)
+    // Formula: 1 - exp(-x/2)
+    Plot.line(
+       d3.range(0.01, d3.max(groupedCDF, d => d.realQ) + 5, 0.1).map(x => ({x: x, y: Math.exp(-x/2)})),
+      {x: "x", y: "y", stroke: "#dc2626", strokeWidth: 2}
+    ),
+    
+    // Add a text annotation explaining the log clamp if needed
+    Plot.text([{x: 0.01, y: 0.1, text: "← Q=0 (Clamped)"}], {x: "x", y: "y", textAnchor: "start", fontSize: 10, fill: "gray"})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+//| include: false
+// Attach normalize on change (fires when user releases the slider)
+(() => {
+  viewof p1.addEventListener('change', normalizeSliders);
+  viewof p2.addEventListener('change', normalizeSliders);
+  viewof p3.addEventListener('change', normalizeSliders);
+  return null;
+})();
+```
+
+*Note:* I hardcoded the Chi-Square PDF for $k=3$ (df=2) as $0.5e^{-x/2}$ to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities ($k$), you will need to update that formula.
+
+所以說，p-value很小，代表觀察到的結果在 $H_0$ 下很不可能發生，因此我們有理由拒絕 $H_0$。

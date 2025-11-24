@@ -2,7 +2,7 @@
 title: "QR Code Mechanism"
 author: "Tai-Ning Liao"
 date: "2025-11-15"
-categories: [Cryptography, Coding Theory]
+categories: [Cryptography, Linear Algebra]
 format:
     html:
         fig-align: center # 這會讓所有圖片都置中

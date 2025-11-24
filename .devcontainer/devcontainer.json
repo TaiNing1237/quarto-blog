@@ -1,20 +1,14 @@
 {
-  "name": "Quarto Blog Development",
-  // Use the Universal Base Image for a good starting point
-  "image": "mcr.microsoft.com/devcontainers/universal:latest",
-
-  // Install the Quarto CLI as a feature
-  "features": {
-    "ghcr.io/quarto-dev/quarto-devcontainers/quarto:1": {
-      "version": "latest"
-    }
-  },
-
-  // Set up ports and extensions
-  "postCreateCommand": "quarto install extension quarto-ext/blog", // Example: Installs a common Quarto blog extension
-  "forwardPorts": [4200], // Default port for Quarto preview
-
-  // Recommended VS Code extensions for Quarto
+  "name": "Quarto Blog Development (Default GitHub Image)",
+  
+  // *** 這裡我們移除了 "image" 設定，讓 GitHub 選擇最穩定的預設映像 ***
+  
+  // 使用 postCreateCommand 來安裝 Quarto CLI
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y wget && wget -O quarto-linux.deb https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.550/quarto-1.4.550-linux-amd64.deb && sudo dpkg -i quarto-linux.deb && rm quarto-linux.deb", 
+  
+  // 確保埠口轉發
+  "forwardPorts": [4200], 
+  
   "customizations": {
     "vscode": {
       "extensions": [
