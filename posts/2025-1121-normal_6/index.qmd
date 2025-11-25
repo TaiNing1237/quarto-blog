@@ -62,7 +62,7 @@ $$
 $$
 其中 $p_i$ 是觀察到的比例，$q_i$ 是期望的比例。
 
-身為數學家想要最優化的靈魂開始作祟，這樣位甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。
+身為數學家想要最優化的靈魂開始作祟，這樣為甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。
 
 
 ### Intuition 解釋版本1
@@ -133,7 +133,6 @@ L(H_1) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} \left(\frac{O_{ij
 $$
 
 **最後計算 likelihood ratio:**
-
 $$
 \begin{align}
 \Lambda &= \frac{L(H_0)}{L(H_1)} \\
@@ -142,44 +141,10 @@ $$
 \end{align}
 $$
 
-異常眼熟的公式! 這取 log 不就是熟悉的 KL divergence 嗎? 這其實稱為 [G-test](https://en.wikipedia.org/wiki/G-test)，是一種基於 likelihood ratio 的檢定方法。但我們先不展開。
-
-**最後一步: 從 likelihood ratio 到 Chi-squared 統計量**
-
-我們要用 Wilks' theorem，根據這個定理，當樣本數 $N$ 很大時，$-2 \log \Lambda$ 會趨近於 Chi-squared 分布，且自由度是參數數量的差值:
-$$
-df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
-$$
-計算 $-2 \log \Lambda$:
-$$
-\begin{align}
--2 \log \Lambda &= -2 \sum_{i,j} O_{ij} \log \left(\frac{E_{ij}}{O_{ij}}\right) \\
-&= 2 \sum_{i,j} O_{ij} \log \left(\frac{O_{ij}}{E_{ij}}\right)
-\end{align}
-$$
-這時，假設 $O_{ij}$ 很接近 $E_{ij}$，我們可以用 Taylor expansion 對 $\log(x)$ 在 $x=1$ 附近展開，假設 $O_{ij} = E_{ij} + \delta_{ij}$，其中 $\delta_{ij}$ 很小:
-$$
-\log\left(\frac{O_{ij}}{E_{ij}}\right) = \log\left(1 + \frac{\delta_{ij}}{E_{ij}}\right) \approx \frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2
-$$
-代回去:
-$$
-\begin{align}
--2 \log \Lambda &\approx 2 \sum_{i,j} (E_{ij} + \delta_{ij}) \left(\frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2\right) \\
-&= 2 \sum_{i,j} \left(\delta_{ij} + \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^3}{E_{ij}^2}\right) \\
-&\approx 2 \sum_{i,j} \left(\delta_{ij} + \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}}\right) \
-\end{align}
-$$
-注意到 $\sum_{i,j} \delta_{ij} = \sum_{i,j} (O_{ij} - E_{ij}) = 0$，所以第一項消失:
-$$
--2 \log \Lambda \approx \sum_{i,j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} = \chi^2
-$$
-
-因此，當樣本數很大時，Chi-squared 統計量 $\chi^2$ 會趨近於 Chi-squared 分布，且自由度為 $(r-1)(c-1)$。這證明了為什麼 Chi-squared test 是一個有效的檢定方法。
 
 
----
 
-底下我們看一下當樣本數有限時，Chi-squared 統計量的分布與理論上的 Chi-squared 分布有什麼差異。
+
 
 ### Interactive: Finite Chi-Square CDF (Log Scale)
 
@@ -195,54 +160,7 @@ viewof n = Inputs.range([2, 50], {value: 5, step: 1, label: "Sample Size (n)"})
 //| panel: fill
 
 // --- 1. CONFIGURATION ---
-// Three user-adjustable probabilities (keeps exactly 3 bins).
-// The inputs are normalized so they always sum to 1.
-viewof p1 = Inputs.range([0, 1], {value: 0.2, step: 0.01, label: "p1"})
-viewof p2 = Inputs.range([0, 1], {value: 0.5, step: 0.01, label: "p2"})
-viewof p3 = Inputs.range([0, 1], {value: 0.3, step: 0.01, label: "p3"})
-// When user releases a slider, normalize the three sliders so their values sum to 1
-function normalizeSliders() {
-  // Prevent re-entry: when we programmatically change values we don't want
-  // the handler to be called recursively.
-  if (normalizeSliders._running) return;
-  normalizeSliders._running = true;
-
-  // `viewof p1` / `viewof p2` / `viewof p3` are the input DOM elements
-  const a = viewof p1, b = viewof p2, c = viewof p3;
-  const rawA = +a.value, rawB = +b.value, rawC = +c.value;
-  const totalRaw = rawA + rawB + rawC;
-  if (totalRaw === 0) {
-    // fallback to equal split
-    a.value = 0.33; b.value = 0.33; c.value = 0.34;
-  } else {
-    // normalize and round to two decimals while ensuring sum exactly 1
-    let na100 = Math.round((rawA / totalRaw) * 100);
-    let nb100 = Math.round((rawB / totalRaw) * 100);
-    let nc100 = 100 - na100 - nb100;
-    // if rounding produced negative for nc, fix by clamping
-    if (nc100 < 0) {
-      nc100 = 0;
-      if (nb100 > 0) nb100 = Math.max(0, 100 - na100 - nc100);
-    }
-    a.value = na100 / 100;
-    b.value = nb100 / 100;
-    c.value = nc100 / 100;
-  }
-
-  // Dispatch only `input` so we update Observable reactive cells without
-  // re-triggering the `change` handler (which would cause recursion).
-  ['input'].forEach(ev => {
-    a.dispatchEvent(new Event(ev, {bubbles: true}));
-    b.dispatchEvent(new Event(ev, {bubbles: true}));
-    c.dispatchEvent(new Event(ev, {bubbles: true}));
-  });
-
-  normalizeSliders._running = false;
-}
-
-total = p1 + p2 + p3;
-probs = total > 0 ? [p1/total, p2/total, p3/total] : [1/3, 1/3, 1/3];
-// single definition of k
+probs = [0.2, 0.5, 0.3] // Change probabilities here
 k = probs.length
 expected = probs.map(p => p * n)
 
@@ -309,17 +227,10 @@ groupedCDF = {
     cumSum += d.p;
     // Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis
     const plotQ = d.q === 0 ? 0.01 : d.q;
-    // For discrete distributions: cdf = P(X <= q) includes P(X=q).
-    // - sf (strict) = P(X > q) = 1 - cdf
-    // - pvalue (right-tail, inclusive) = P(X >= q) = 1 - P(X < q) = 1 - (cdf - P(X=q)) = 1 - cdf + p
-    const sf = 1 - cumSum;
-    const pvalue = 1 - cumSum + d.p;
     return {
       realQ: d.q,
-      plotQ: plotQ,
-      cdf: cumSum,
-      sf: sf,
-      pvalue: pvalue
+      plotQ: plotQ, 
+      cdf: cumSum
     };
   });
 }
@@ -327,7 +238,7 @@ groupedCDF = {
 // --- 4. PLOTTING ---
 
 Plot.plot({
-  title: `p-value (P(X >= q)) for n=${n} (Log Scale)`,
+  title: `CDF for n=${n} (Log Scale)`,
   grid: true,
   x: {
     type: "log", 
@@ -335,18 +246,18 @@ Plot.plot({
     domain: [0.01, d3.max(groupedCDF, d => d.realQ) * 1.2] // Ensure plot fits
   },
   y: {
-    label: "p-value (P(X >= q))", 
+    label: "Cumulative Probability", 
     domain: [0, 1.05]
   },
   marks: [
-    // The "Sticks" (Discrete p-value P(X >= q))
-    Plot.ruleY(groupedCDF, {x: "plotQ", y: "pvalue", stroke: "#2563eb", strokeWidth: 2}),
-    Plot.dot(groupedCDF, {x: "plotQ", y: "pvalue", fill: "#2563eb", r: 3, title: d => `Q: ${d.realQ.toFixed(2)}\np-value: ${d.pvalue.toFixed(4)}`}),
+    // The "Sticks" (Discrete CDF)
+    Plot.ruleY(groupedCDF, {x: "plotQ", y: "cdf", stroke: "#2563eb", strokeWidth: 2}),
+    Plot.dot(groupedCDF, {x: "plotQ", y: "cdf", fill: "#2563eb", r: 3, title: d => `Q: ${d.realQ.toFixed(2)}\nCDF: ${d.cdf.toFixed(4)}`}),
     
     // The Continuous Chi-Square CDF Curve (df = 2)
     // Formula: 1 - exp(-x/2)
     Plot.line(
-       d3.range(0.01, d3.max(groupedCDF, d => d.realQ) + 5, 0.1).map(x => ({x: x, y: Math.exp(-x/2)})),
+       d3.range(0.01, d3.max(groupedCDF, d => d.realQ) + 5, 0.1).map(x => ({x: x, y: 1 - Math.exp(-x/2)})),
       {x: "x", y: "y", stroke: "#dc2626", strokeWidth: 2}
     ),
     
@@ -356,18 +267,9 @@ Plot.plot({
 })
 ```
 
-```{ojs}
-//| echo: false
-//| include: false
-// Attach normalize on change (fires when user releases the slider)
-(() => {
-  viewof p1.addEventListener('change', normalizeSliders);
-  viewof p2.addEventListener('change', normalizeSliders);
-  viewof p3.addEventListener('change', normalizeSliders);
-  return null;
-})();
-```
+### Why this works:
+1.  **`viewof n = Inputs.range(...)`**: Creates the HTML slider.
+2.  **`{ojs}` block**: This JavaScript code runs in the user's browser, not on your server.
+3.  **Reactivity**: When the user drags the slider, `n` updates, the `data` array recalculates, and `Plot.plot` re-renders automatically.
 
-*Note:* I hardcoded the Chi-Square PDF for $k=3$ (df=2) as $0.5e^{-x/2}$ to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities ($k$), you will need to update that formula.
-
-所以說，p-value很小，代表觀察到的結果在 $H_0$ 下很不可能發生，因此我們有理由拒絕 $H_0$。
+**Note:** I hardcoded the Chi-Square PDF for $k=3$ (df=2) as $0.5e^{-x/2}$ to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities ($k$), you will need to update that formula.

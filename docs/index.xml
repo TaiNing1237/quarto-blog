@@ -10,7 +10,511 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Fri, 21 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 25 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1125-normal_7/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>今天回到我們的小數學風格，談點輕鬆的 Hermite Polynomials。</p>
+<p>如同其他正交多項式，Hermite polynomial也是一組正交多項式。我們來看一下他的生成函數 (generating function)： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20:=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:hermite-generating%7D%0A"></p>
+<p>欸，這個生成函數根本就是常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(x,1)"> 的 MGF (moment generating function)！</p>
+<p>所以說，第 <img src="https://latex.codecogs.com/png.latex?n"> 階 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"> 的定義其實就是常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(x,1)"> 的 n-th moment 乘上 <img src="https://latex.codecogs.com/png.latex?n!">。</p>
+<p>這邊我們用的是 機率學家的埃爾米特多項式 (probabilists’ Hermite polynomials)，另外還有物理學家的 (physicists’ Hermite polynomials)，記做 <img src="https://latex.codecogs.com/png.latex?H_n(x)">，其中 <img src="https://latex.codecogs.com/png.latex?H_n(x)%20=%202%5E%7B%5Cfrac%7Bn%7D%7B2%7D%7D%20%5Ctext%7BHe%7D_n(%5Csqrt%7B2%7Dx)">，也就是在定義上差了兩倍的標準差。本質上是一樣的，所以我們先專注在前者。</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><img src="https://latex.codecogs.com/png.latex?n"></th>
+<th>機率學家的 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"></th>
+<th>物理學家的 <img src="https://latex.codecogs.com/png.latex?H_n(x)"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><img src="https://latex.codecogs.com/png.latex?x"></td>
+<td><img src="https://latex.codecogs.com/png.latex?2x"></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><img src="https://latex.codecogs.com/png.latex?x%5E2%20-%201"></td>
+<td><img src="https://latex.codecogs.com/png.latex?4x%5E2%20-%202"></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><img src="https://latex.codecogs.com/png.latex?x%5E3%20-%203x"></td>
+<td><img src="https://latex.codecogs.com/png.latex?8x%5E3%20-%2012x"></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><img src="https://latex.codecogs.com/png.latex?x%5E4%20-%206x%5E2%20+%203"></td>
+<td><img src="https://latex.codecogs.com/png.latex?16x%5E4%20-%2048x%5E2%20+%2012"></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="43" data-source-offset="-45" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb1-43"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">He</span>(n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> x) {</span>
+<span id="cb1-44">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-45">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-46">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-47">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-48">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-49">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-50">}</span>
+<span id="cb1-51"></span>
+<span id="cb1-52"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 生成數據點 (-4 到 4)</span></span>
+<span id="cb1-53">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-54">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> points <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-55">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">for</span> (<span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span>) {</span>
+<span id="cb1-56">    [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forEach</span>(n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> {</span>
+<span id="cb1-57">      points<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">push</span>({</span>
+<span id="cb1-58">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-59">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">He</span>(n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> x)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-60">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">n</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`He</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 分組標籤</span></span>
+<span id="cb1-61">      })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-62">    })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-63">  }</span>
+<span id="cb1-64">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> points<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-65">}</span>
+<span id="cb1-66"></span>
+<span id="cb1-67"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 繪圖</span></span>
+<span id="cb1-68">Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>({</span>
+<span id="cb1-69">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// title: "Probabilistic Hermite Polynomials (He0 - He4)",</span></span>
+<span id="cb1-70">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-71">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 移除 Observable Plot 的版權標記</span></span>
+<span id="cb1-72">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"He_n(x)"</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-73">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">color</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">legend</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">true</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 自動生成圖例</span></span>
+<span id="cb1-74">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb1-75">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ruleY</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// X軸基準線</span></span>
+<span id="cb1-76">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">line</span>(data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {</span>
+<span id="cb1-77">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-78">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-79">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stroke</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"n"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb1-80">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">strokeWidth</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> </span>
+<span id="cb1-81">    })</span>
+<span id="cb1-82">  ]</span>
+<span id="cb1-83">})</span></code></pre></div>
+<div id="fig-hermite-polynomials" class="cell quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-polynomials-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-polynomials-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-hermite-polynomials-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-1-3" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="計算-hermite-多項式" class="level3">
+<h3 class="anchored" data-anchor-id="計算-hermite-多項式">計算 Hermite 多項式</h3>
+<p><strong>對 <img src="https://latex.codecogs.com/png.latex?x"> 微分:</strong></p>
+<p>若將 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-generating%7D"> 兩邊對 <img src="https://latex.codecogs.com/png.latex?x"> 微分，我們可以得到一個遞迴關係式： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%20x%7D%20e%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20=%20t%20e%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20%5C%5C%0A%5Cimplies%20&amp;%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n'(x)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_%7Bn%7D(x)%20%5Cfrac%7Bt%5E%7Bn+1%7D%7D%7Bn!%7D%20=%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_%7Bn-1%7D(x)%20%5Cfrac%7Bt%5E%7Bn%7D%7D%7B(n-1)!%7D%0A%5Cend%7Balign%7D%0A"> 所以我們有： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_n'(x)%20=%20n%20%5Ctext%7BHe%7D_%7Bn-1%7D(x)%20%5Ctag%7B2%7D%5Clabel%7Beq:hermite-recursion%7D%0A"> 這就足以讓我們依序積分計算出 <img src="https://latex.codecogs.com/png.latex?n"> 階的 Hermite 多項式，但還差常數項。 而常數項 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(0)"> 可以直接從原本的生成函數 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-generating%7D"> 帶入 <img src="https://latex.codecogs.com/png.latex?x=0"> 得到： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7B-%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n(0)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%0A"> 注意到左邊其實是偶函數，所以所有奇數階的 Hermite 多項式在 <img src="https://latex.codecogs.com/png.latex?x=0"> 都是 0。 而偶數階的話，我們可以將指數函數展開： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7B-%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B(-1)%5Ek%20(t%5E2/2)%5Ek%7D%7Bk!%7D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B(-1)%5Ek%20t%5E%7B2k%7D%7D%7B2%5Ek%20k!%7D%0A"> 所以 <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_%7B2k%7D(0)%20=%20%5Cfrac%7B(-1)%5Ek%20(2k)!%7D%7B2%5Ek%20k!%7D,%20%5Cquad%20%5Ctext%7BHe%7D_%7B2k+1%7D(0)%20=%200%20%20%5Ctag%7B3%7D%5Clabel%7Beq:hermite-constant%7D%0A"></p>
+<p>但從這個遞迴式實在看不出為什麼 Hermite 多項式一定是整係數。畢竟一直積分是可能會產生分母的。</p>
+<p><strong>對 <img src="https://latex.codecogs.com/png.latex?t"> 微分:</strong></p>
+<p>應該來試試看對 <img src="https://latex.codecogs.com/png.latex?t"> 微分會得到什麼？</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%20t%7D%20e%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20=%20(x%20-%20t)%20e%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20%20%20%5C%5C%0A%5Cimplies%20&amp;%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5E%7Bn-1%7D%7D%7B(n-1)!%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%20x%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%20-%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5E%7Bn+1%7D%7D%7Bn!%7D%20%20%5C%5C%0A%5Cimplies%20&amp;%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_%7Bn+1%7D(x)%20%5Cfrac%7Bt%5E%7Bn%7D%7D%7Bn!%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%20x%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%20-%20%5Csum_%7Bn=1%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_%7Bn-1%7D(x)%20%5Cfrac%7Bt%5E%7Bn%7D%7D%7B(n-1)!%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 所以我們有另一個遞迴關係式： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_%7Bn+1%7D(x)%20=%20x%20%5Ctext%7BHe%7D_n(x)%20-%20n%20%5Ctext%7BHe%7D_%7Bn-1%7D(x)%20%5Ctag%7B4%7D%5Clabel%7Beq:hermite-recursion-2%7D%0A"> 我們再用剛才的的遞迴式 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-recursion%7D"> 把 <img src="https://latex.codecogs.com/png.latex?n%5Ctext%7BHe%7D_%7Bn-1%7D(x)"> 換成微分： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_%7Bn+1%7D(x)%20=%20x%20%5Ctext%7BHe%7D_n(x)%20-%20%5Ctext%7BHe%7D_n'(x)%20=%20%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%20%5Ctext%7BHe%7D_n(x)%20=%20%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bn+1%7D%20%5Ccdot%201%20%20%5Ctag%7B5%7D%5Clabel%7Beq:hermite-operator%7D%0A"> 疑? 原本 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-recursion%7D"> 告訴我們要算 <img src="https://latex.codecogs.com/png.latex?n"> 階 Hermite 多項式是一直積分，現在變成了一直乘以 <img src="https://latex.codecogs.com/png.latex?x"> 和微分!</p>
+<p>至少我們可以確定，Hermite 多項式的係數一定是整數，因為每一步運算都不會產生分母。</p>
+<p>既然是整數，是否可以問他的係數的組合數學的意義? 從 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-operator%7D"> 出發，我們可以展開 <img src="https://latex.codecogs.com/png.latex?(x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D)%5E%7Bn%7D">： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_n(x)%20=%20%5Csum_%7Bk=0%7D%5E%7Bn%7D%20%5Cbinom%7Bn%7D%7Bk%7D%20x%5E%7Bn-k%7D%20%5Cleft(-%5Cfrac%7Bd%7D%7Bdx%7D%5Cright)%5E%7Bk%7D%20%5Ccdot%201%20=%20%5Csum_%7Bk=0%7D%5E%7Bn%7D%20%5Cbinom%7Bn%7D%7Bk%7D%20x%5E%7Bn-k%7D%20(-1)%5Ek%20%5Cfrac%7Bd%5Ek%7D%7Bdx%5Ek%7D%201%20%20=%20x%5E%7Bn%7D%0A%5Ctag%7BWrong!%7D%0A"> 因為 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%5Ek%7D%7Bdx%5Ek%7D%201%20=%200"> 當 <img src="https://latex.codecogs.com/png.latex?k%20%5Cgeq%201">，所以只有 <img src="https://latex.codecogs.com/png.latex?k=0"> 的項會留下來，這似乎跟我們之前的結論矛盾? 當然不是!! 因為乘以 <img src="https://latex.codecogs.com/png.latex?x"> 和 微分作用是不能交換的，所以不能套用二項式展開式。</p>
+<blockquote class="blockquote">
+<p><strong>P.S. 組合數意義:</strong></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"> 的係數其實對應於 完全圖 (Complete Graph) <img src="https://latex.codecogs.com/png.latex?K_n"> 的匹配數 (Matchings)。 具體來說： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_n(x)%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Clfloor%20n/2%20%5Crfloor%7D%20(-1)%5Ek%20N(n,%20k)%20x%5E%7Bn-2k%7D%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?N(n,%20k)"> 是 在 <img src="https://latex.codecogs.com/png.latex?n"> 個頂點的完全圖中，選出 <img src="https://latex.codecogs.com/png.latex?k"> 條不相鄰邊 (disjoint edges) 的方法數。</p>
+<p><strong>例子 <img src="https://latex.codecogs.com/png.latex?n=4">: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_4(x)%20=%20x%5E4%20-%206x%5E2%20+%203"></strong></p>
+<ul>
+<li><p><img src="https://latex.codecogs.com/png.latex?x%5E4"> 項 (<img src="https://latex.codecogs.com/png.latex?k=0">): 選 0 條邊。方法數 = 1。</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?x%5E2"> 項 (<img src="https://latex.codecogs.com/png.latex?k=1">): 在 4 個點中選 1 條邊。<img src="https://latex.codecogs.com/png.latex?C(4,%202)%20=%206"> 種。</p></li>
+<li><p>常數項 (<img src="https://latex.codecogs.com/png.latex?k=2">): 在 4 個點中選 2 條不相鄰的邊 (也就是完美匹配 Perfect Matching) -&gt; 3 種。</p></li>
+<li><p>係數正好是 <img src="https://latex.codecogs.com/png.latex?1,%20-6,%203"> (正負號來自公式裡的 <img src="https://latex.codecogs.com/png.latex?(-1)%5Ek">)。這完美的解釋了為什麼係數都是整數！</p></li>
+</ul>
+</blockquote>
+<p><strong>解微分方程:</strong></p>
+<p>我們來思考一下這個微分算符，他在物理學上有重要的意義，叫做 創生-消滅算符 (creation-annihilation operator)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%0A"> 但我們先不談物理意義，之後有機會再補充。如果說要解微分方程: <img src="https://latex.codecogs.com/png.latex?%0A%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%20y%20=%20f(x)%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?f(x)"> 是已知。大家以前在大學可能有學過個技巧，叫做 積分因子 (integrating factor)，我們可以試著同乘以一個函數 <img src="https://latex.codecogs.com/png.latex?u(x)"> 來讓左邊變成「一個微分」，而非現在這樣的「乘法減微分」。我這邊不寫通式(因為原理是一樣的)，直接給出結果，取 <img src="https://latex.codecogs.com/png.latex?u(x)%20=%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D">： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%20y%20=%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20f(x)%0A%5Cimplies%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cleft(%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20y%20%5Cright)%20=%20-%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20f(x)%0A"> 因此就可以寫出通解： <img src="https://latex.codecogs.com/png.latex?%0Ay%20=%20e%5E%7B%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Cleft(%20C%20-%20%5Cint%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20f(x)%20dx%20%5Cright)%0A"></p>
+<p>所以說，從算符的角度來看，其實 <img src="https://latex.codecogs.com/png.latex?%0A%5Cleft(%20x%20-%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%20%20=%20e%5E%7B%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Cleft(%20-%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%20%5Ctag%7B6%7D%5Clabel%7Beq:hermite-operator-2%7D%0A"> 因此我們寫出了第三種 Hermite 多項式的定義： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BHe%7D_n(x)%20=%20e%5E%7B%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Cleft(%20-%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bn%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%20%5Ctag%7B7%7D%5Clabel%7Beq:hermite-definition-3%7D%0A"><br>
+其實回到 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-operator-2%7D">，這個等式是一個算符的等式，我們目前只是看到他作用在 1上的特例，而這個轉換不覺得很眼熟嗎? 感覺就像在對矩陣做對角化! 前後乘一個轉換矩陣和它的反矩陣，然後中間是簡單的對角矩陣 (這邊是微分算符)。</p>
+</section>
+<section id="正交性質" class="level3">
+<h3 class="anchored" data-anchor-id="正交性質">正交性質</h3>
+<p>在函數空間中，多項式正交就是指內積為零，而內積的定義通常是相乘後在某個權重函數下積分(也可以想成是期望值)。那這組多項式在什麼權重函數下是正交的呢？</p>
+<p>我們想選個適當的權重函數 <img src="https://latex.codecogs.com/png.latex?w(x)"> 使得對所有 <img src="https://latex.codecogs.com/png.latex?m%20%5Cneq%20n">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_m(x)%20%5Ctext%7BHe%7D_n(x)%20w(x)%20dx%20=%200%0A"> 利用 Hermite 多項式的定義 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-definition-3%7D">，我們有： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_m(x)%20%5Ctext%7BHe%7D_n(x)%20w(x)%20dx%20%5C%5C%0A=&amp;%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Cleft(%20-%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bm%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Ccdot%20%5Ctext%7BHe%7D_n(x)%20w(x)%20dx%20%5C%5C%0A=&amp;%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Cleft(%20-%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bm%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Ccdot%20%5Cleft(%20e%5E%7B%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Ctext%7BHe%7D_n(x)%20w(x)%20%5Cright)%20dx%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 最直覺的想法是讓 <img src="https://latex.codecogs.com/png.latex?w(x)%20=%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D">，這樣就消掉了。然後不斷地做分部積分，直到把 <img src="https://latex.codecogs.com/png.latex?m"> 次微分都移到 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"> 上面： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Cleft(%20-%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bm%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Ccdot%20%5Cleft(%20%5Ctext%7BHe%7D_n(x)%20%5Cright)%20dx%20%5C%5C%0A=&amp;%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20%5Ccdot%20%5Cleft(%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bm%7D%20%5Ctext%7BHe%7D_n(x)%20dx%0A%5Cend%7Balign%7D%0A"> 當 <img src="https://latex.codecogs.com/png.latex?m%20%5Cneq%20n">，我們不妨假設 <img src="https://latex.codecogs.com/png.latex?m%20%3E%20n">，那麼因為 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"> 是 <img src="https://latex.codecogs.com/png.latex?n"> 次多項式，所以經過 <img src="https://latex.codecogs.com/png.latex?m"> 次微分後會變成 0，因此整個積分結果是 0。</p>
+<p>若 <img src="https://latex.codecogs.com/png.latex?m=n">，我們可以利用 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hermite-recursion%7D"> 計算出 <img src="https://latex.codecogs.com/png.latex?%5Cleft(%20%5Cfrac%7Bd%7D%7Bdx%7D%20%5Cright)%5E%7Bn%7D%20%5Ctext%7BHe%7D_n(x)%20=%20n!">，所以整個積分結果是 <img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20n!%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20dx%20=%20n!%20%5Csqrt%7B2%5Cpi%7D">。</p>
+<p>因此我們推導出 Hermite 多項式的正交性質： <img src="https://latex.codecogs.com/png.latex?%0A%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_m(x)%20%5Ctext%7BHe%7D_n(x)%20e%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D%20dx%20=%20n!%20%5Csqrt%7B2%5Cpi%7D%20%5Cdelta_%7Bmn%7D%0A%5Ctag%7B8%7D%5Clabel%7Beq:hermite-orthogonality%7D%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?%5Cdelta_%7Bmn%7D"> 是 Kronecker delta。</p>
+</section>
+<section id="小結" class="level3">
+<h3 class="anchored" data-anchor-id="小結">小結</h3>
+<p>Hermite 多項式會出現在很多地方，他會是 Fourier Transform 的本徵函數 (eigenfunction)! 敬請期待未來的文章。</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Normal Distribution</category>
+  <guid>https://your-website-url.example.com/posts/2025-1125-normal_7/</guid>
+  <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
@@ -96,7 +600,7 @@
 <p>由於 p-value 大於常見的顯著水準 (如 0.05)，我們無法拒絕獨立性的假設，表示 Group A 跟 Group B 在這三個 category 上沒有顯著差異。</p>
 <p>Chi-squared Test 是說，當樣本數很大(超過30)，這個統計量會趨近於 Chi-squared 分布 (degrees of freedom = (r-1)(c-1))。本質上他本來就永遠不會真正等於 Chi-squared 分布，因為他是離散的。所以這邊談的是個趨近的概念。</p>
 <p>其實第一次看到這個公式覺得很不舒服，為什麼要這樣算? 更直觀的算法應該是某種 statistic distance，比方說 <img src="https://latex.codecogs.com/png.latex?%0A%5Csum%20%7Cp_i%20-%20q_i%7C%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?p_i"> 是觀察到的比例，<img src="https://latex.codecogs.com/png.latex?q_i"> 是期望的比例。</p>
-<p>身為數學家想要最優化的靈魂開始作祟，這樣位甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。</p>
+<p>身為數學家想要最優化的靈魂開始作祟，這樣為甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。</p>
 </section>
 <section id="intuition-解釋版本1" class="level3">
 <h3 class="anchored" data-anchor-id="intuition-解釋版本1">Intuition 解釋版本1</h3>
@@ -116,20 +620,13 @@
 <p>likelihood function 是 multinomial distribution: <img src="https://latex.codecogs.com/png.latex?%0AL(H_0)%20:=%20%5Cmathbb%7BP%7D_0(O%20%5Cmid%20a_i,%20b_j)%20=%20%5Cbinom%7BN%7D%7BO_%7B11%7D,%20O_%7B12%7D,%20%5Cldots,%20O_%7Brc%7D%7D%20%5Cprod_%7Bi,j%7D%20(a_i%20b_j)%5E%7BO_%7Bij%7D%7D%0A"> 這邊我們要選 <img src="https://latex.codecogs.com/png.latex?a_i,%20b_j"> 使得 likelihood 最大化。不防忽略常數項，然後取 log: <img src="https://latex.codecogs.com/png.latex?%0A%5Clog%20L(H_0)%20=%20%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20(%5Clog%20a_i%20+%20%5Clog%20b_j)%0A"> 因為還有約束條件 <img src="https://latex.codecogs.com/png.latex?%5Csum_i%20a_i%20=%201">，<img src="https://latex.codecogs.com/png.latex?%5Csum_j%20b_j%20=%201">，我們用拉格朗日乘數法 (Lagrange multipliers)，引入 <img src="https://latex.codecogs.com/png.latex?%5Clambda,%20%5Cmu">，考慮 <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathcal%7BL%7D(a_i,%20b_j,%20%5Clambda,%20%5Cmu)%20=%20%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20(%5Clog%20a_i%20+%20%5Clog%20b_j)%20+%20%5Clambda%20(1%20-%20%5Csum_i%20a_i)%20+%20%5Cmu%20(1%20-%20%5Csum_j%20b_j)%0A"> 分別對 <img src="https://latex.codecogs.com/png.latex?a_i">, <img src="https://latex.codecogs.com/png.latex?b_j"> 求導數並設為 0: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BL%7D%7D%7B%5Cpartial%20a_i%7D%20&amp;=%20%5Csum_j%20%5Cfrac%7BO_%7Bij%7D%7D%7Ba_i%7D%20-%20%5Clambda%20=%200%20%5Cimplies%20a_i%20=%20%5Cfrac%7B%5Csum_j%20O_%7Bij%7D%7D%7B%5Clambda%7D%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BL%7D%7D%7B%5Cpartial%20b_j%7D%20&amp;=%20%5Csum_i%20%5Cfrac%7BO_%7Bij%7D%7D%7Bb_j%7D%20-%20%5Cmu%20=%200%20%5Cimplies%20b_j%20=%20%5Cfrac%7B%5Csum_i%20O_%7Bij%7D%7D%7B%5Cmu%7D%0A%5Cend%7Balign%7D%0A"> 利用約束條件，我們可以解出 <img src="https://latex.codecogs.com/png.latex?%5Clambda=%5Cmu=%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20=%20N">，所以期望值 <img src="https://latex.codecogs.com/png.latex?%0Aa_i%20b_j%20N%20=%20%5Cfrac%7B%5Csum_j%20O_%7Bij%7D%20%5Csum_i%20O_%7Bij%7D%7D%7BN%7D%20=%20E_%7Bij%7D%0A"> 這就是我們在 Chi-squared test 裡面計算的期望值。 代回去 likelihood function: <img src="https://latex.codecogs.com/png.latex?%0AL(H_0)%20=%20%5Cbinom%7BN%7D%7BO_%7B11%7D,%20O_%7B12%7D,%20%5Cldots,%20O_%7Brc%7D%7D%20%5Cprod_%7Bi,j%7D%20%5Cleft(%5Cfrac%7BE_%7Bij%7D%7D%7BN%7D%5Cright)%5E%7BO_%7Bij%7D%7D%0A=%20%5Cbinom%7BN%7D%7BO_%7B11%7D,%20O_%7B12%7D,%20%5Cldots,%20O_%7Brc%7D%7D%20%5Cfrac%7B1%7D%7BN%5EN%7D%5Cprod_%7Bi,j%7D%20E_%7Bij%7D%5E%7BO_%7Bij%7D%7D%0A"></p>
 <p><strong>接著來算 <img src="https://latex.codecogs.com/png.latex?H_1">:</strong></p>
 <p>過程很類似，但現在有 <img src="https://latex.codecogs.com/png.latex?rc-1"> 個參數 <img src="https://latex.codecogs.com/png.latex?p_%7Bij%7D">，且約束條件是 <img src="https://latex.codecogs.com/png.latex?%5Csum_%7Bi,j%7D%20p_%7Bij%7D%20=%201">。直接算 Lagrangian: <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathcal%7BL%7D(p_%7Bij%7D,%20%5Clambda)%20=%20%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20%5Clog%20p_%7Bij%7D%20+%20%5Clambda%20(1%20-%20%5Csum_%7Bi,j%7D%20p_%7Bij%7D)%0A"> 取偏導並設為 0: <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cpartial%20%5Cmathcal%7BL%7D%7D%7B%5Cpartial%20p_%7Bij%7D%7D%20=%20%5Cfrac%7BO_%7Bij%7D%7D%7Bp_%7Bij%7D%7D%20-%20%5Clambda%20=%200%20%5Cimplies%20p_%7Bij%7D%20=%20%5Cfrac%7BO_%7Bij%7D%7D%7B%5Clambda%7D%20=%20%5Cfrac%7BO_%7Bij%7D%7D%7BN%7D%0A"> 所以期望值就是觀察值本身 <img src="https://latex.codecogs.com/png.latex?O_%7Bij%7D">，非常符合直覺。代回去 likelihood function: <img src="https://latex.codecogs.com/png.latex?%0AL(H_1)%20=%20%5Cbinom%7BN%7D%7BO_%7B11%7D,%20O_%7B12%7D,%20%5Cldots,%20O_%7Brc%7D%7D%20%5Cprod_%7Bi,j%7D%20%5Cleft(%5Cfrac%7BO_%7Bij%7D%7D%7BN%7D%5Cright)%5E%7BO_%7Bij%7D%7D%0A=%20%5Cbinom%7BN%7D%7BO_%7B11%7D,%20O_%7B12%7D,%20%5Cldots,%20O_%7Brc%7D%7D%20%5Cfrac%7B1%7D%7BN%5EN%7D%5Cprod_%7Bi,j%7D%20O_%7Bij%7D%5E%7BO_%7Bij%7D%7D%0A"></p>
-<p><strong>最後計算 likelihood ratio:</strong></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5CLambda%20&amp;=%20%5Cfrac%7BL(H_0)%7D%7BL(H_1)%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5Cprod_%7Bi,j%7D%20E_%7Bij%7D%5E%7BO_%7Bij%7D%7D%7D%7B%5Cprod_%7Bi,j%7D%20O_%7Bij%7D%5E%7BO_%7Bij%7D%7D%7D%20%5C%5C%0A&amp;=%20%5Cprod_%7Bi,j%7D%20%5Cleft(%5Cfrac%7BE_%7Bij%7D%7D%7BO_%7Bij%7D%7D%5Cright)%5E%7BO_%7Bij%7D%7D%0A%5Cend%7Balign%7D%0A"></p>
-<p>異常眼熟的公式! 這取 log 不就是熟悉的 KL divergence 嗎? 這其實稱為 <a href="https://en.wikipedia.org/wiki/G-test">G-test</a>，是一種基於 likelihood ratio 的檢定方法。但我們先不展開。</p>
-<p><strong>最後一步: 從 likelihood ratio 到 Chi-squared 統計量</strong></p>
-<p>我們要用 Wilks’ theorem，根據這個定理，當樣本數 <img src="https://latex.codecogs.com/png.latex?N"> 很大時，<img src="https://latex.codecogs.com/png.latex?-2%20%5Clog%20%5CLambda"> 會趨近於 Chi-squared 分布，且自由度是參數數量的差值: <img src="https://latex.codecogs.com/png.latex?%0Adf%20=%20(rc%20-%201)%20-%20(r%20+%20c%20-%202)%20=%20(r%20-%201)(c%20-%201)%0A"> 計算 <img src="https://latex.codecogs.com/png.latex?-2%20%5Clog%20%5CLambda">: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-2%20%5Clog%20%5CLambda%20&amp;=%20-2%20%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20%5Clog%20%5Cleft(%5Cfrac%7BE_%7Bij%7D%7D%7BO_%7Bij%7D%7D%5Cright)%20%5C%5C%0A&amp;=%202%20%5Csum_%7Bi,j%7D%20O_%7Bij%7D%20%5Clog%20%5Cleft(%5Cfrac%7BO_%7Bij%7D%7D%7BE_%7Bij%7D%7D%5Cright)%0A%5Cend%7Balign%7D%0A"> 這時，假設 <img src="https://latex.codecogs.com/png.latex?O_%7Bij%7D"> 很接近 <img src="https://latex.codecogs.com/png.latex?E_%7Bij%7D">，我們可以用 Taylor expansion 對 <img src="https://latex.codecogs.com/png.latex?%5Clog(x)"> 在 <img src="https://latex.codecogs.com/png.latex?x=1"> 附近展開，假設 <img src="https://latex.codecogs.com/png.latex?O_%7Bij%7D%20=%20E_%7Bij%7D%20+%20%5Cdelta_%7Bij%7D">，其中 <img src="https://latex.codecogs.com/png.latex?%5Cdelta_%7Bij%7D"> 很小: <img src="https://latex.codecogs.com/png.latex?%0A%5Clog%5Cleft(%5Cfrac%7BO_%7Bij%7D%7D%7BE_%7Bij%7D%7D%5Cright)%20=%20%5Clog%5Cleft(1%20+%20%5Cfrac%7B%5Cdelta_%7Bij%7D%7D%7BE_%7Bij%7D%7D%5Cright)%20%5Capprox%20%5Cfrac%7B%5Cdelta_%7Bij%7D%7D%7BE_%7Bij%7D%7D%20-%20%5Cfrac%7B1%7D%7B2%7D%20%5Cleft(%5Cfrac%7B%5Cdelta_%7Bij%7D%7D%7BE_%7Bij%7D%7D%5Cright)%5E2%0A"> 代回去: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-2%20%5Clog%20%5CLambda%20&amp;%5Capprox%202%20%5Csum_%7Bi,j%7D%20(E_%7Bij%7D%20+%20%5Cdelta_%7Bij%7D)%20%5Cleft(%5Cfrac%7B%5Cdelta_%7Bij%7D%7D%7BE_%7Bij%7D%7D%20-%20%5Cfrac%7B1%7D%7B2%7D%20%5Cleft(%5Cfrac%7B%5Cdelta_%7Bij%7D%7D%7BE_%7Bij%7D%7D%5Cright)%5E2%5Cright)%20%5C%5C%0A&amp;=%202%20%5Csum_%7Bi,j%7D%20%5Cleft(%5Cdelta_%7Bij%7D%20+%20%5Cfrac%7B%5Cdelta_%7Bij%7D%5E2%7D%7BE_%7Bij%7D%7D%20-%20%5Cfrac%7B1%7D%7B2%7D%20%5Cfrac%7B%5Cdelta_%7Bij%7D%5E2%7D%7BE_%7Bij%7D%7D%20-%20%5Cfrac%7B1%7D%7B2%7D%20%5Cfrac%7B%5Cdelta_%7Bij%7D%5E3%7D%7BE_%7Bij%7D%5E2%7D%5Cright)%20%5C%5C%0A&amp;%5Capprox%202%20%5Csum_%7Bi,j%7D%20%5Cleft(%5Cdelta_%7Bij%7D%20+%20%5Cfrac%7B1%7D%7B2%7D%20%5Cfrac%7B%5Cdelta_%7Bij%7D%5E2%7D%7BE_%7Bij%7D%7D%5Cright)%20%5C%0A%5Cend%7Balign%7D%0A"> 注意到 <img src="https://latex.codecogs.com/png.latex?%5Csum_%7Bi,j%7D%20%5Cdelta_%7Bij%7D%20=%20%5Csum_%7Bi,j%7D%20(O_%7Bij%7D%20-%20E_%7Bij%7D)%20=%200">，所以第一項消失: <img src="https://latex.codecogs.com/png.latex?%0A-2%20%5Clog%20%5CLambda%20%5Capprox%20%5Csum_%7Bi,j%7D%20%5Cfrac%7B(O_%7Bij%7D%20-%20E_%7Bij%7D)%5E2%7D%7BE_%7Bij%7D%7D%20=%20%5Cchi%5E2%0A"></p>
-<p>因此，當樣本數很大時，Chi-squared 統計量 <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2"> 會趨近於 Chi-squared 分布，且自由度為 <img src="https://latex.codecogs.com/png.latex?(r-1)(c-1)">。這證明了為什麼 Chi-squared test 是一個有效的檢定方法。</p>
-<hr>
-<p>底下我們看一下當樣本數有限時，Chi-squared 統計量的分布與理論上的 Chi-squared 分布有什麼差異。</p>
+<p><strong>最後計算 likelihood ratio:</strong> <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5CLambda%20&amp;=%20%5Cfrac%7BL(H_0)%7D%7BL(H_1)%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B%5Cprod_%7Bi,j%7D%20E_%7Bij%7D%5E%7BO_%7Bij%7D%7D%7D%7B%5Cprod_%7Bi,j%7D%20O_%7Bij%7D%5E%7BO_%7Bij%7D%7D%7D%20%5C%5C%0A&amp;=%20%5Cprod_%7Bi,j%7D%20%5Cleft(%5Cfrac%7BE_%7Bij%7D%7D%7BO_%7Bij%7D%7D%5Cright)%5E%7BO_%7Bij%7D%7D%0A%5Cend%7Balign%7D%0A"></p>
 </section>
 <section id="interactive-finite-chi-square-cdf-log-scale" class="level3">
 <h3 class="anchored" data-anchor-id="interactive-finite-chi-square-cdf-log-scale">Interactive: Finite Chi-Square CDF (Log Scale)</h3>
 <p>Adjust <img src="https://latex.codecogs.com/png.latex?n"> to see how the discrete CDF steps approximate the smooth curve.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="189" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 188;"><span id="cb1-189">viewof n <span class="op" style="color: #5E5E5E;
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="154" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 153;"><span id="cb1-154">viewof n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -175,554 +672,29 @@ font-style: inherit;">"Sample Size (n)"</span>})</span></code></pre></div>
 <div class="panel-fill panel-grid">
 <div class="g-col-24">
 <div class="cell panel-fill">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="200" data-source-offset="-146" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 199;"><span id="cb2-200">viewof p1 <span class="op" style="color: #5E5E5E;
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="163" data-source-offset="-29" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb2-163">probs <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.2</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.01</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"p1"</span>})</span>
-<span id="cb2-201">viewof p2 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+font-style: inherit;">,</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.5</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+font-style: inherit;">,</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.3</span>] <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.01</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"p2"</span>})</span>
-<span id="cb2-202">viewof p3 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.3</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.01</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"p3"</span>})</span>
-<span id="cb2-203"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// When user releases a slider, normalize the three sliders so their values sum to 1</span></span>
-<span id="cb2-204"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">normalizeSliders</span>() {</span>
-<span id="cb2-205">  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// Prevent re-entry: when we programmatically change values we don't want</span></span>
-<span id="cb2-206">  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// the handler to be called recursively.</span></span>
-<span id="cb2-207">  <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">if</span> (normalizeSliders<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">_running</span>) <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-208">  normalizeSliders<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">_running</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-209"></span>
-<span id="cb2-210">  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// `viewof p1` / `viewof p2` / `viewof p3` are the input DOM elements</span></span>
-<span id="cb2-211">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">const</span> a <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> viewof p1<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> b <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> viewof p2<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> c <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> viewof p3<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-212">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">const</span> rawA <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span>a<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> rawB <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span>b<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> rawC <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span>c<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-213">  <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">const</span> totalRaw <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> rawA <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> rawB <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> rawC<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-214">  <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">if</span> (totalRaw <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>) {</span>
-<span id="cb2-215">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// fallback to equal split</span></span>
-<span id="cb2-216">    a<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span> b<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span> c<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.34</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-217">  } <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">else</span> {</span>
-<span id="cb2-218">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// normalize and round to two decimals while ensuring sum exactly 1</span></span>
-<span id="cb2-219">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">let</span> na100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">round</span>((rawA <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> totalRaw) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span>)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-220">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">let</span> nb100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">round</span>((rawB <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> totalRaw) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span>)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-221">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">let</span> nc100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> na100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> nb100<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-222">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// if rounding produced negative for nc, fix by clamping</span></span>
-<span id="cb2-223">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">if</span> (nc100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>) {</span>
-<span id="cb2-224">      nc100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-225">      <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">if</span> (nb100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>) nb100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">max</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> na100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> nc100)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-226">    }</span>
-<span id="cb2-227">    a<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> na100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-228">    b<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> nb100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-229">    c<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">value</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> nc100 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-230">  }</span>
-<span id="cb2-231"></span>
-<span id="cb2-232">  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// Dispatch only `input` so we update Observable reactive cells without</span></span>
-<span id="cb2-233">  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// re-triggering the `change` handler (which would cause recursion).</span></span>
-<span id="cb2-234">  [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'input'</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">forEach</span>(ev <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-235">    a<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">dispatchEvent</span>(<span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">new</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Event</span>(ev<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">bubbles</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">true</span>}))<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-236">    b<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">dispatchEvent</span>(<span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">new</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Event</span>(ev<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">bubbles</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">true</span>}))<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-237">    c<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">dispatchEvent</span>(<span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">new</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">Event</span>(ev<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">bubbles</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">true</span>}))<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-238">  })<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-239"></span>
-<span id="cb2-240">  normalizeSliders<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">_running</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">false</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-241">}</span>
-<span id="cb2-242"></span>
-<span id="cb2-243">total <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> p1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> p2 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> p3<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-244">probs <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> total <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">?</span> [p1<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>total<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> p2<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>total<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> p3<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span>total] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> [<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>]<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-245"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// single definition of k</span></span>
-<span id="cb2-246">k <span class="op" style="color: #5E5E5E;
+font-style: inherit;">// Change probabilities here</span></span>
+<span id="cb2-164">k <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> probs<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">length</span></span>
-<span id="cb2-247">expected <span class="op" style="color: #5E5E5E;
+<span id="cb2-165">expected <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> probs<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -733,22 +705,22 @@ background-color: null;
 font-style: inherit;">=&gt;</span> p <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> n)</span>
-<span id="cb2-248"></span>
-<span id="cb2-249"><span class="co" style="color: #5E5E5E;
+<span id="cb2-166"></span>
+<span id="cb2-167"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// --- 2. MATH LOGIC ---</span></span>
-<span id="cb2-250"></span>
-<span id="cb2-251"><span class="co" style="color: #5E5E5E;
+<span id="cb2-168"></span>
+<span id="cb2-169"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Recursive function to get partitions (compositions of integer n)</span></span>
-<span id="cb2-252"><span class="kw" style="color: #003B4F;
+<span id="cb2-170"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">getCompositions</span>(target<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> bins) {</span>
-<span id="cb2-253">  <span class="cf" style="color: #003B4F;
+<span id="cb2-171">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">if</span> (bins <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -759,14 +731,14 @@ background-color: null;
 font-style: inherit;">return</span> [[target]]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-254">  <span class="kw" style="color: #003B4F;
+<span id="cb2-172">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> results <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-255">  <span class="cf" style="color: #003B4F;
+<span id="cb2-173">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">for</span> (<span class="kw" style="color: #003B4F;
 background-color: null;
@@ -783,7 +755,7 @@ background-color: null;
 font-style: inherit;">;</span> i<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">++</span>) {</span>
-<span id="cb2-256">    <span class="kw" style="color: #003B4F;
+<span id="cb2-174">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> sub <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -800,7 +772,7 @@ background-color: null;
 font-style: inherit;">1</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-257">    sub<span class="op" style="color: #5E5E5E;
+<span id="cb2-175">    sub<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -817,26 +789,26 @@ background-color: null;
 font-style: inherit;">...</span>s]))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-258">  }</span>
-<span id="cb2-259">  <span class="cf" style="color: #003B4F;
+<span id="cb2-176">  }</span>
+<span id="cb2-177">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> results<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-260">}</span>
-<span id="cb2-261"></span>
-<span id="cb2-262"><span class="co" style="color: #5E5E5E;
+<span id="cb2-178">}</span>
+<span id="cb2-179"></span>
+<span id="cb2-180"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Generate Raw Data</span></span>
-<span id="cb2-263">outcomes <span class="op" style="color: #5E5E5E;
+<span id="cb2-181">outcomes <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">getCompositions</span>(n<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> k)</span>
-<span id="cb2-264"></span>
-<span id="cb2-265">rawData <span class="op" style="color: #5E5E5E;
+<span id="cb2-182"></span>
+<span id="cb2-183">rawData <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> outcomes<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -845,17 +817,17 @@ background-color: null;
 font-style: inherit;">map</span>(counts <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-266">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-184">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Factorial helper</span></span>
-<span id="cb2-267">  <span class="kw" style="color: #003B4F;
+<span id="cb2-185">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> fact <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> (num) <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-268">    <span class="cf" style="color: #003B4F;
+<span id="cb2-186">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">if</span> (num <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -868,7 +840,7 @@ background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-269">    <span class="kw" style="color: #003B4F;
+<span id="cb2-187">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> r <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -877,7 +849,7 @@ background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span> </span>
-<span id="cb2-270">    <span class="cf" style="color: #003B4F;
+<span id="cb2-188">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">for</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
@@ -898,17 +870,17 @@ background-color: null;
 font-style: inherit;">*=</span> i<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span> </span>
-<span id="cb2-271">    <span class="cf" style="color: #003B4F;
+<span id="cb2-189">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> r<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-272">  }</span>
-<span id="cb2-273">  </span>
-<span id="cb2-274">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-190">  }</span>
+<span id="cb2-191">  </span>
+<span id="cb2-192">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Multinomial Prob</span></span>
-<span id="cb2-275">  <span class="kw" style="color: #003B4F;
+<span id="cb2-193">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> denom <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -917,7 +889,7 @@ background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-276">  <span class="kw" style="color: #003B4F;
+<span id="cb2-194">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> probTerm <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -926,7 +898,7 @@ background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-277">  counts<span class="op" style="color: #5E5E5E;
+<span id="cb2-195">  counts<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -935,14 +907,14 @@ background-color: null;
 font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-278">    denom <span class="op" style="color: #5E5E5E;
+<span id="cb2-196">    denom <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">fact</span>(c)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-279">    probTerm <span class="op" style="color: #5E5E5E;
+<span id="cb2-197">    probTerm <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*=</span> <span class="bu" style="color: null;
 background-color: null;
@@ -955,10 +927,10 @@ background-color: null;
 font-style: inherit;">,</span> c)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-280">  })<span class="op" style="color: #5E5E5E;
+<span id="cb2-198">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-281">  <span class="kw" style="color: #003B4F;
+<span id="cb2-199">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> p <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -971,11 +943,11 @@ background-color: null;
 font-style: inherit;">*</span> probTerm<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-282">  </span>
-<span id="cb2-283">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-200">  </span>
+<span id="cb2-201">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Chi Sq Statistic</span></span>
-<span id="cb2-284">  <span class="kw" style="color: #003B4F;
+<span id="cb2-202">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> q <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -984,7 +956,7 @@ background-color: null;
 font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-285">  counts<span class="op" style="color: #5E5E5E;
+<span id="cb2-203">  counts<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -993,7 +965,7 @@ background-color: null;
 font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-286">    q <span class="op" style="color: #5E5E5E;
+<span id="cb2-204">    q <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+=</span> <span class="bu" style="color: null;
 background-color: null;
@@ -1012,11 +984,11 @@ background-color: null;
 font-style: inherit;">/</span> expected[i]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-287">  })<span class="op" style="color: #5E5E5E;
+<span id="cb2-205">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-288">  </span>
-<span id="cb2-289">  <span class="cf" style="color: #003B4F;
+<span id="cb2-206">  </span>
+<span id="cb2-207">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> {<span class="dt" style="color: #AD0000;
 background-color: null;
@@ -1031,19 +1003,19 @@ background-color: null;
 font-style: inherit;">:</span> p}<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-290">})</span>
-<span id="cb2-291"></span>
-<span id="cb2-292"><span class="co" style="color: #5E5E5E;
+<span id="cb2-208">})</span>
+<span id="cb2-209"></span>
+<span id="cb2-210"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// --- 3. AGGREGATE &amp; CALCULATE CDF ---</span></span>
-<span id="cb2-293"></span>
-<span id="cb2-294">groupedCDF <span class="op" style="color: #5E5E5E;
+<span id="cb2-211"></span>
+<span id="cb2-212">groupedCDF <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> {</span>
-<span id="cb2-295">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-213">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// A. Group by Q (sum probabilities for identical Q statistics)</span></span>
-<span id="cb2-296">  <span class="kw" style="color: #003B4F;
+<span id="cb2-214">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> map <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1054,14 +1026,14 @@ background-color: null;
 font-style: inherit;">Map</span>()<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-297">  rawData<span class="op" style="color: #5E5E5E;
+<span id="cb2-215">  rawData<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">forEach</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-298">    <span class="kw" style="color: #003B4F;
+<span id="cb2-216">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> key <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1078,7 +1050,7 @@ background-color: null;
 font-style: inherit;">6</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span> </span>
-<span id="cb2-299">    <span class="kw" style="color: #003B4F;
+<span id="cb2-217">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> existing <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1093,7 +1065,7 @@ background-color: null;
 font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-300">    map<span class="op" style="color: #5E5E5E;
+<span id="cb2-218">    map<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1108,14 +1080,14 @@ background-color: null;
 font-style: inherit;">p</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-301">  })<span class="op" style="color: #5E5E5E;
+<span id="cb2-219">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-302">  </span>
-<span id="cb2-303">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-220">  </span>
+<span id="cb2-221">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// B. Sort by Q</span></span>
-<span id="cb2-304">  <span class="kw" style="color: #003B4F;
+<span id="cb2-222">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> sorted <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1164,11 +1136,11 @@ background-color: null;
 font-style: inherit;">q</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-305">  </span>
-<span id="cb2-306">  <span class="co" style="color: #5E5E5E;
+<span id="cb2-223">  </span>
+<span id="cb2-224">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// C. Calculate Cumulative Sum</span></span>
-<span id="cb2-307">  <span class="kw" style="color: #003B4F;
+<span id="cb2-225">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">let</span> cumSum <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1177,7 +1149,7 @@ background-color: null;
 font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-308">  <span class="cf" style="color: #003B4F;
+<span id="cb2-226">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> sorted<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1186,7 +1158,7 @@ background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=&gt;</span> {</span>
-<span id="cb2-309">    cumSum <span class="op" style="color: #5E5E5E;
+<span id="cb2-227">    cumSum <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+=</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1195,10 +1167,10 @@ background-color: null;
 font-style: inherit;">p</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-310">    <span class="co" style="color: #5E5E5E;
+<span id="cb2-228">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis</span></span>
-<span id="cb2-311">    <span class="kw" style="color: #003B4F;
+<span id="cb2-229">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> plotQ <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1223,47 +1195,10 @@ background-color: null;
 font-style: inherit;">q</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-312">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// For discrete distributions: cdf = P(X &lt;= q) includes P(X=q).</span></span>
-<span id="cb2-313">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// - sf (strict) = P(X &gt; q) = 1 - cdf</span></span>
-<span id="cb2-314">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// - pvalue (right-tail, inclusive) = P(X &gt;= q) = 1 - P(X &lt; q) = 1 - (cdf - P(X=q)) = 1 - cdf + p</span></span>
-<span id="cb2-315">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">const</span> sf <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> cumSum<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-316">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">const</span> pvalue <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span> cumSum <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> d<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">p</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb2-317">    <span class="cf" style="color: #003B4F;
+<span id="cb2-230">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> {</span>
-<span id="cb2-318">      <span class="dt" style="color: #AD0000;
+<span id="cb2-231">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">realQ</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1274,56 +1209,42 @@ background-color: null;
 font-style: inherit;">q</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-319">      <span class="dt" style="color: #AD0000;
+<span id="cb2-232">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">plotQ</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> plotQ<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-320">      <span class="dt" style="color: #AD0000;
+font-style: inherit;">,</span> </span>
+<span id="cb2-233">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">cdf</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:</span> cumSum<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-321">      <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">sf</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> sf<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-322">      <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">pvalue</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> pvalue</span>
-<span id="cb2-323">    }<span class="op" style="color: #5E5E5E;
+font-style: inherit;">:</span> cumSum</span>
+<span id="cb2-234">    }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-324">  })<span class="op" style="color: #5E5E5E;
+<span id="cb2-235">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-325">}</span>
-<span id="cb2-326"></span>
-<span id="cb2-327"><span class="co" style="color: #5E5E5E;
+<span id="cb2-236">}</span>
+<span id="cb2-237"></span>
+<span id="cb2-238"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// --- 4. PLOTTING ---</span></span>
-<span id="cb2-328"></span>
-<span id="cb2-329">Plot<span class="op" style="color: #5E5E5E;
+<span id="cb2-239"></span>
+<span id="cb2-240">Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot</span>({</span>
-<span id="cb2-330">  <span class="dt" style="color: #AD0000;
+<span id="cb2-241">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">`p-value (P(X &gt;= q)) for n=</span><span class="sc" style="color: #5E5E5E;
+font-style: inherit;">`CDF for n=</span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">${</span>n<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1332,7 +1253,7 @@ background-color: null;
 font-style: inherit;"> (Log Scale)`</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-331">  <span class="dt" style="color: #AD0000;
+<span id="cb2-242">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1341,12 +1262,12 @@ background-color: null;
 font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-332">  <span class="dt" style="color: #AD0000;
+<span id="cb2-243">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb2-333">    <span class="dt" style="color: #AD0000;
+<span id="cb2-244">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1355,7 +1276,7 @@ background-color: null;
 font-style: inherit;">"log"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> </span>
-<span id="cb2-334">    <span class="dt" style="color: #AD0000;
+<span id="cb2-245">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1364,7 +1285,7 @@ background-color: null;
 font-style: inherit;">"Chi-Square Statistic (Q)"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-335">    <span class="dt" style="color: #AD0000;
+<span id="cb2-246">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1391,24 +1312,24 @@ background-color: null;
 font-style: inherit;">1.2</span>] <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Ensure plot fits</span></span>
-<span id="cb2-336">  }<span class="op" style="color: #5E5E5E;
+<span id="cb2-247">  }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-337">  <span class="dt" style="color: #AD0000;
+<span id="cb2-248">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb2-338">    <span class="dt" style="color: #AD0000;
+<span id="cb2-249">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"p-value (P(X &gt;= q))"</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">"Cumulative Probability"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> </span>
-<span id="cb2-339">    <span class="dt" style="color: #AD0000;
+<span id="cb2-250">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1419,18 +1340,18 @@ background-color: null;
 font-style: inherit;">,</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.05</span>]</span>
-<span id="cb2-340">  }<span class="op" style="color: #5E5E5E;
+<span id="cb2-251">  }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-341">  <span class="dt" style="color: #AD0000;
+<span id="cb2-252">  <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> [</span>
-<span id="cb2-342">    <span class="co" style="color: #5E5E5E;
+<span id="cb2-253">    <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">// The "Sticks" (Discrete p-value P(X &gt;= q))</span></span>
-<span id="cb2-343">    Plot<span class="op" style="color: #5E5E5E;
+font-style: inherit;">// The "Sticks" (Discrete CDF)</span></span>
+<span id="cb2-254">    Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1450,7 +1371,7 @@ font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"pvalue"</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">"cdf"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
 background-color: null;
@@ -1469,7 +1390,7 @@ background-color: null;
 font-style: inherit;">2</span>})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-344">    Plot<span class="op" style="color: #5E5E5E;
+<span id="cb2-255">    Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1489,7 +1410,7 @@ font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"pvalue"</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">"cdf"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
 background-color: null;
@@ -1531,13 +1452,13 @@ font-style: inherit;">2</span>)<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">}\n</span><span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">p-value: </span><span class="sc" style="color: #5E5E5E;
+font-style: inherit;">CDF: </span><span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">${</span>d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">pvalue</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">cdf</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1550,19 +1471,19 @@ background-color: null;
 font-style: inherit;">`</span>})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-345">    </span>
-<span id="cb2-346">    <span class="co" style="color: #5E5E5E;
+<span id="cb2-256">    </span>
+<span id="cb2-257">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// The Continuous Chi-Square CDF Curve (df = 2)</span></span>
-<span id="cb2-347">    <span class="co" style="color: #5E5E5E;
+<span id="cb2-258">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Formula: 1 - exp(-x/2)</span></span>
-<span id="cb2-348">    Plot<span class="op" style="color: #5E5E5E;
+<span id="cb2-259">    Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">line</span>(</span>
-<span id="cb2-349">       d3<span class="op" style="color: #5E5E5E;
+<span id="cb2-260">       d3<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1606,7 +1527,11 @@ font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:</span> <span class="bu" style="color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1621,7 +1546,7 @@ background-color: null;
 font-style: inherit;">2</span>)}))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-350">      {<span class="dt" style="color: #AD0000;
+<span id="cb2-261">      {<span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1652,14 +1577,14 @@ background-color: null;
 font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>}</span>
-<span id="cb2-351">    )<span class="op" style="color: #5E5E5E;
+<span id="cb2-262">    )<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-352">    </span>
-<span id="cb2-353">    <span class="co" style="color: #5E5E5E;
+<span id="cb2-263">    </span>
+<span id="cb2-264">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Add a text annotation explaining the log clamp if needed</span></span>
-<span id="cb2-354">    Plot<span class="op" style="color: #5E5E5E;
+<span id="cb2-265">    Plot<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1726,8 +1651,8 @@ background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"gray"</span>})</span>
-<span id="cb2-355">  ]</span>
-<span id="cb2-356">})</span></code></pre></div>
+<span id="cb2-266">  ]</span>
+<span id="cb2-267">})</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -1779,42 +1704,7 @@ font-style: inherit;">"gray"</span>})</span>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-2-8" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-9" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-10" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-11" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-12" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-13" data-nodetype="expression">
+<div id="ojs-cell-2-8" data-nodetype="expression">
 
 </div>
 </div>
@@ -1822,64 +1712,15 @@ font-style: inherit;">"gray"</span>})</span>
 </div>
 </div>
 </div>
-<div class="cell" data-include="false">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="361" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 360;"><span id="cb3-361"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">// Attach normalize on change (fires when user releases the slider)</span></span>
-<span id="cb3-362">(() <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=&gt;</span> {</span>
-<span id="cb3-363">  viewof p1<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">addEventListener</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'change'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> normalizeSliders)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb3-364">  viewof p2<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">addEventListener</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'change'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> normalizeSliders)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb3-365">  viewof p3<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">addEventListener</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'change'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span> normalizeSliders)<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb3-366">  <span class="cf" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">return</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span>
-<span id="cb3-367">})()<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-3" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<p><em>Note:</em> I hardcoded the Chi-Square PDF for <img src="https://latex.codecogs.com/png.latex?k=3"> (df=2) as <img src="https://latex.codecogs.com/png.latex?0.5e%5E%7B-x/2%7D"> to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities (<img src="https://latex.codecogs.com/png.latex?k">), you will need to update that formula.</p>
-<p>所以說，p-value很小，代表觀察到的結果在 <img src="https://latex.codecogs.com/png.latex?H_0"> 下很不可能發生，因此我們有理由拒絕 <img src="https://latex.codecogs.com/png.latex?H_0">。</p>
+</section>
+<section id="why-this-works" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-works">Why this works:</h3>
+<ol type="1">
+<li><strong><code>viewof n = Inputs.range(...)</code></strong>: Creates the HTML slider.</li>
+<li><strong><code>{ojs}</code> block</strong>: This JavaScript code runs in the user’s browser, not on your server.</li>
+<li><strong>Reactivity</strong>: When the user drags the slider, <code>n</code> updates, the <code>data</code> array recalculates, and <code>Plot.plot</code> re-renders automatically.</li>
+</ol>
+<p><strong>Note:</strong> I hardcoded the Chi-Square PDF for <img src="https://latex.codecogs.com/png.latex?k=3"> (df=2) as <img src="https://latex.codecogs.com/png.latex?0.5e%5E%7B-x/2%7D"> to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities (<img src="https://latex.codecogs.com/png.latex?k">), you will need to update that formula.</p>
 
 
 </section>

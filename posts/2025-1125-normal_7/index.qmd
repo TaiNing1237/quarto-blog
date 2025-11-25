@@ -1,0 +1,228 @@
+---
+title: "一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials"
+author: "Tai-Ning Liao"
+date: "2025-11-25"
+categories: [Normal Distribution]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+# jupyter: python3
+freeze: auto
+---
+
+今天回到我們的小數學風格，談點輕鬆的 Hermite Polynomials。
+
+如同其他正交多項式，Hermite polynomial也是一組正交多項式。我們來看一下他的生成函數 (generating function)：
+$$
+e^{xt - \frac{t^2}{2}} := \sum_{n=0}^{\infty} \text{He}_n(x) \frac{t^n}{n!}  \tag{1}\label{eq:hermite-generating}
+$$
+
+欸，這個生成函數根本就是常態分佈 $\mathcal{N}(x,1)$ 的 MGF (moment generating function)！
+
+所以說，第 $n$ 階 $\text{He}_n(x)$ 的定義其實就是常態分佈 $\mathcal{N}(x,1)$ 的 n-th moment 乘上 $n!$。
+
+這邊我們用的是 機率學家的埃爾米特多項式 (probabilists' Hermite polynomials)，另外還有物理學家的 (physicists' Hermite polynomials)，記做 $H_n(x)$，其中 $H_n(x) = 2^{\frac{n}{2}} \text{He}_n(\sqrt{2}x)$，也就是在定義上差了兩倍的標準差。本質上是一樣的，所以我們先專注在前者。
+
+| $n$ | 機率學家的 $\text{He}_n(x)$ | 物理學家的 $H_n(x)$ |
+|---|---------|---------|
+| 0 | 1       | 1       |
+| 1 | $x$       | $2x$      |
+| 2 | $x^2 - 1$ | $4x^2 - 2$ |
+| 3 | $x^3 - 3x$| $8x^3 - 12x$|
+| 4 | $x^4 - 6x^2 + 3$ | $16x^4 - 48x^2 + 12$ |
+
+
+```{ojs}
+//| echo: false
+//| label: fig-hermite-polynomials
+//| fig-cap: "機率學家的 Hermite 多項式 (He₀ - He₄)"
+
+// 定義 Hermite 多項式函數 (Probabilistic version)
+function He(n, x) {
+  if (n === 0) return 1;
+  if (n === 1) return x;
+  if (n === 2) return x**2 - 1;
+  if (n === 3) return x**3 - 3*x;
+  if (n === 4) return x**4 - 6*x**2 + 3;
+  return 0;
+}
+
+// 生成數據點 (-4 到 4)
+data = {
+  const points = [];
+  for (let x = -5; x <= 5; x += 0.05) {
+    [0, 1, 2, 3, 4].forEach(n => {
+      points.push({
+        x: x,
+        y: He(n, x),
+        n: `He${n}` // 分組標籤
+      });
+    });
+  }
+  return points;
+}
+
+// 繪圖
+Plot.plot({
+  // title: "Probabilistic Hermite Polynomials (He0 - He4)",
+  grid: true,
+  caption: null, // 移除 Observable Plot 的版權標記
+  y: { domain: [-6, 6], label: "He_n(x)" },
+  color: { legend: true }, // 自動生成圖例
+  marks: [
+    Plot.ruleY([0]), // X軸基準線
+    Plot.line(data, {
+      x: "x", 
+      y: "y", 
+      stroke: "n", 
+      strokeWidth: 2 
+    })
+  ]
+})
+```
+
+### 計算 Hermite 多項式
+
+**對 $x$ 微分:**
+
+若將 \eqref{eq:hermite-generating} 兩邊對 $x$ 微分，我們可以得到一個遞迴關係式：
+$$
+\begin{align}
+&\frac{\partial}{\partial x} e^{xt - \frac{t^2}{2}} = t e^{xt - \frac{t^2}{2}} \\
+\implies &\sum_{n=0}^{\infty} \text{He}_n'(x) \frac{t^n}{n!} = \sum_{n=0}^{\infty} \text{He}_{n}(x) \frac{t^{n+1}}{n!} = \sum_{n=1}^{\infty} \text{He}_{n-1}(x) \frac{t^{n}}{(n-1)!}
+\end{align}
+$$
+所以我們有：
+$$
+\text{He}_n'(x) = n \text{He}_{n-1}(x) \tag{2}\label{eq:hermite-recursion}
+$$
+這就足以讓我們依序積分計算出 $n$ 階的 Hermite 多項式，但還差常數項。 而常數項 $\text{He}_n(0)$ 可以直接從原本的生成函數 \eqref{eq:hermite-generating} 帶入 $x=0$ 得到：
+$$
+e^{-\frac{t^2}{2}} = \sum_{n=0}^{\infty} \text{He}_n(0) \frac{t^n}{n!}
+$$
+注意到左邊其實是偶函數，所以所有奇數階的 Hermite 多項式在 $x=0$ 都是 0。 而偶數階的話，我們可以將指數函數展開：
+$$
+e^{-\frac{t^2}{2}} = \sum_{k=0}^{\infty} \frac{(-1)^k (t^2/2)^k}{k!} = \sum_{k=0}^{\infty} \frac{(-1)^k t^{2k}}{2^k k!}
+$$
+所以
+$$
+\text{He}_{2k}(0) = \frac{(-1)^k (2k)!}{2^k k!}, \quad \text{He}_{2k+1}(0) = 0  \tag{3}\label{eq:hermite-constant}
+$$
+
+但從這個遞迴式實在看不出為什麼 Hermite 多項式一定是整係數。畢竟一直積分是可能會產生分母的。
+
+**對 $t$ 微分:**
+
+應該來試試看對 $t$ 微分會得到什麼？
+
+$$
+\begin{align}
+&\frac{\partial}{\partial t} e^{xt - \frac{t^2}{2}} = (x - t) e^{xt - \frac{t^2}{2}}   \\
+\implies &\sum_{n=0}^{\infty} \text{He}_n(x) \frac{t^{n-1}}{(n-1)!} = \sum_{n=0}^{\infty}  x \text{He}_n(x) \frac{t^n}{n!} - \sum_{n=0}^{\infty} \text{He}_n(x) \frac{t^{n+1}}{n!}  \\
+\implies &\sum_{n=0}^{\infty} \text{He}_{n+1}(x) \frac{t^{n}}{n!} = \sum_{n=0}^{\infty}  x \text{He}_n(x) \frac{t^n}{n!} - \sum_{n=1}^{\infty} \text{He}_{n-1}(x) \frac{t^{n}}{(n-1)!} \\
+\end{align}
+$$
+所以我們有另一個遞迴關係式：
+$$
+\text{He}_{n+1}(x) = x \text{He}_n(x) - n \text{He}_{n-1}(x) \tag{4}\label{eq:hermite-recursion-2}
+$$
+我們再用剛才的的遞迴式 \eqref{eq:hermite-recursion} 把 $n\text{He}_{n-1}(x)$ 換成微分：
+$$
+\text{He}_{n+1}(x) = x \text{He}_n(x) - \text{He}_n'(x) = \left( x - \frac{d}{dx} \right) \text{He}_n(x) = \left( x - \frac{d}{dx} \right)^{n+1} \cdot 1  \tag{5}\label{eq:hermite-operator}
+$$
+疑? 原本 \eqref{eq:hermite-recursion} 告訴我們要算 $n$ 階 Hermite 多項式是一直積分，現在變成了一直乘以 $x$ 和微分!
+
+至少我們可以確定，Hermite 多項式的係數一定是整數，因為每一步運算都不會產生分母。
+
+既然是整數，是否可以問他的係數的組合數學的意義? 從 \eqref{eq:hermite-operator} 出發，我們可以展開 $(x - \frac{d}{dx})^{n}$：
+$$
+\text{He}_n(x) = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} \left(-\frac{d}{dx}\right)^{k} \cdot 1 = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} (-1)^k \frac{d^k}{dx^k} 1  = x^{n}
+\tag{Wrong!}
+$$
+因為 $\frac{d^k}{dx^k} 1 = 0$ 當 $k \geq 1$，所以只有 $k=0$ 的項會留下來，這似乎跟我們之前的結論矛盾? 
+當然不是!! 因為乘以 $x$ 和 微分作用是不能交換的，所以不能套用二項式展開式。
+
+> **P.S. 組合數意義:**
+> 
+> $\text{He}_n(x)$ 的係數其實對應於 完全圖 (Complete Graph) $K_n$ 的匹配數 (Matchings)。
+> 具體來說：
+$$
+\text{He}_n(x) = \sum_{k=0}^{\lfloor n/2 \rfloor} (-1)^k N(n, k) x^{n-2k}
+$$
+> 其中 $N(n, k)$ 是 在 $n$ 個頂點的完全圖中，選出 $k$ 條不相鄰邊 (disjoint edges) 的方法數。
+>
+> **例子 $n=4$: $\text{He}_4(x) = x^4 - 6x^2 + 3$**
+> 
+>  * $x^4$ 項 ($k=0$): 選 0 條邊。方法數 = 1。
+>  * $x^2$ 項 ($k=1$): 在 4 個點中選 1 條邊。$C(4, 2) = 6$ 種。
+>  * 常數項 ($k=2$): 在 4 個點中選 2 條不相鄰的邊 (也就是完美匹配 Perfect Matching) -> 3 種。
+> 
+> * 係數正好是 $1, -6, 3$ (正負號來自公式裡的 $(-1)^k$)。這完美的解釋了為什麼係數都是整數！
+
+**解微分方程:**
+
+我們來思考一下這個微分算符，他在物理學上有重要的意義，叫做 創生-消滅算符 (creation-annihilation operator)：
+$$
+\left( x - \frac{d}{dx} \right) 
+$$
+但我們先不談物理意義，之後有機會再補充。如果說要解微分方程:
+$$
+\left( x - \frac{d}{dx} \right) y = f(x)
+$$
+其中 $f(x)$ 是已知。大家以前在大學可能有學過個技巧，叫做 積分因子 (integrating factor)，我們可以試著同乘以一個函數 $u(x)$ 來讓左邊變成「一個微分」，而非現在這樣的「乘法減微分」。我這邊不寫通式(因為原理是一樣的)，直接給出結果，取 $u(x) = e^{-\frac{x^2}{2}}$：
+$$
+e^{-\frac{x^2}{2}} \left( x - \frac{d}{dx} \right) y = e^{-\frac{x^2}{2}} f(x) 
+\implies \frac{d}{dx} \left( e^{-\frac{x^2}{2}} y \right) = - e^{-\frac{x^2}{2}} f(x)
+$$
+因此就可以寫出通解：
+$$
+y = e^{\frac{x^2}{2}} \left( C - \int e^{-\frac{x^2}{2}} f(x) dx \right)
+$$
+
+所以說，從算符的角度來看，其實
+$$
+\left( x - \frac{d}{dx} \right)  = e^{\frac{x^2}{2}} \left( -\frac{d}{dx} \right) e^{-\frac{x^2}{2}}  \tag{6}\label{eq:hermite-operator-2}
+$$
+因此我們寫出了第三種 Hermite 多項式的定義：
+$$
+\text{He}_n(x) = e^{\frac{x^2}{2}} \left( -\frac{d}{dx} \right)^{n} e^{-\frac{x^2}{2}}  \tag{7}\label{eq:hermite-definition-3}
+$$  
+其實回到 \eqref{eq:hermite-operator-2}，這個等式是一個算符的等式，我們目前只是看到他作用在 1上的特例，而這個轉換不覺得很眼熟嗎? 感覺就像在對矩陣做對角化! 前後乘一個轉換矩陣和它的反矩陣，然後中間是簡單的對角矩陣 (這邊是微分算符)。
+
+### 正交性質
+在函數空間中，多項式正交就是指內積為零，而內積的定義通常是相乘後在某個權重函數下積分(也可以想成是期望值)。那這組多項式在什麼權重函數下是正交的呢？
+
+我們想選個適當的權重函數 $w(x)$ 使得對所有 $m \neq n$：
+$$
+\int_{-\infty}^{\infty} \text{He}_m(x) \text{He}_n(x) w(x) dx = 0
+$$
+利用 Hermite 多項式的定義 \eqref{eq:hermite-definition-3}，我們有：
+$$
+\begin{align}
+&\int_{-\infty}^{\infty} \text{He}_m(x) \text{He}_n(x) w(x) dx \\
+=& \int_{-\infty}^{\infty} e^{\frac{x^2}{2}} \left( -\frac{d}{dx} \right)^{m} e^{-\frac{x^2}{2}} \cdot \text{He}_n(x) w(x) dx \\
+=& \int_{-\infty}^{\infty} \left( -\frac{d}{dx} \right)^{m} e^{-\frac{x^2}{2}} \cdot \left( e^{\frac{x^2}{2}} \text{He}_n(x) w(x) \right) dx \\
+\end{align}
+$$
+最直覺的想法是讓 $w(x) = e^{-\frac{x^2}{2}}$，這樣就消掉了。然後不斷地做分部積分，直到把 $m$ 次微分都移到 $\text{He}_n(x)$ 上面：
+$$
+\begin{align}
+&\int_{-\infty}^{\infty} \left( -\frac{d}{dx} \right)^{m} e^{-\frac{x^2}{2}} \cdot \left( \text{He}_n(x) \right) dx \\
+=& \int_{-\infty}^{\infty} e^{-\frac{x^2}{2}} \cdot \left( \frac{d}{dx} \right)^{m} \text{He}_n(x) dx 
+\end{align}
+$$
+當 $m \neq n$，我們不妨假設 $m > n$，那麼因為 $\text{He}_n(x)$ 是 $n$ 次多項式，所以經過 $m$ 次微分後會變成 0，因此整個積分結果是 0。
+
+若 $m=n$，我們可以利用 \eqref{eq:hermite-recursion} 計算出 $\left( \frac{d}{dx} \right)^{n} \text{He}_n(x) = n!$，所以整個積分結果是 $\displaystyle n! \int_{-\infty}^{\infty} e^{-\frac{x^2}{2}} dx = n! \sqrt{2\pi}$。
+
+因此我們推導出 Hermite 多項式的正交性質：
+$$
+\int_{-\infty}^{\infty} \text{He}_m(x) \text{He}_n(x) e^{-\frac{x^2}{2}} dx = n! \sqrt{2\pi} \delta_{mn} 
+\tag{8}\label{eq:hermite-orthogonality}
+$$
+其中 $\delta_{mn}$ 是 Kronecker delta。
+
+### 小結
+Hermite 多項式會出現在很多地方，他會是 Fourier Transform 的本徵函數 (eigenfunction)! 敬請期待未來的文章。

@@ -297,7 +297,7 @@ df = (r - 1)(c - 1)
 <p>其實第一次看到這個公式覺得很不舒服，為什麼要這樣算? 更直觀的算法應該是某種 statistic distance，比方說 <span class="math display">\[
 \sum |p_i - q_i|
 \]</span> 其中 <span class="math inline">\(p_i\)</span> 是觀察到的比例，<span class="math inline">\(q_i\)</span> 是期望的比例。</p>
-<p>身為數學家想要最優化的靈魂開始作祟，這樣位甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。</p>
+<p>身為數學家想要最優化的靈魂開始作祟，這樣為甚麼是最好的? 我們通常想找一個「最有效力的檢定方法 (most powerful test)」，而實在看不出來這個是。</p>
 </section>
 <section id="intuition-解釋版本1" class="level3">
 <h3 class="anchored" data-anchor-id="intuition-解釋版本1">Intuition 解釋版本1</h3>
@@ -342,43 +342,19 @@ L(H_0) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} \left(\frac{E_{ij
 L(H_1) = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \prod_{i,j} \left(\frac{O_{ij}}{N}\right)^{O_{ij}}
 = \binom{N}{O_{11}, O_{12}, \ldots, O_{rc}} \frac{1}{N^N}\prod_{i,j} O_{ij}^{O_{ij}}
 \]</span></p>
-<p><strong>最後計算 likelihood ratio:</strong></p>
-<p><span class="math display">\[
+<p><strong>最後計算 likelihood ratio:</strong> <span class="math display">\[
 \begin{align}
 \Lambda &amp;= \frac{L(H_0)}{L(H_1)} \\
 &amp;= \frac{\prod_{i,j} E_{ij}^{O_{ij}}}{\prod_{i,j} O_{ij}^{O_{ij}}} \\
 &amp;= \prod_{i,j} \left(\frac{E_{ij}}{O_{ij}}\right)^{O_{ij}}
 \end{align}
 \]</span></p>
-<p>異常眼熟的公式! 這取 log 不就是熟悉的 KL divergence 嗎? 這其實稱為 <a href="https://en.wikipedia.org/wiki/G-test">G-test</a>，是一種基於 likelihood ratio 的檢定方法。但我們先不展開。</p>
-<p><strong>最後一步: 從 likelihood ratio 到 Chi-squared 統計量</strong></p>
-<p>我們要用 Wilks’ theorem，根據這個定理，當樣本數 <span class="math inline">\(N\)</span> 很大時，<span class="math inline">\(-2 \log \Lambda\)</span> 會趨近於 Chi-squared 分布，且自由度是參數數量的差值: <span class="math display">\[
-df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
-\]</span> 計算 <span class="math inline">\(-2 \log \Lambda\)</span>: <span class="math display">\[
-\begin{align}
--2 \log \Lambda &amp;= -2 \sum_{i,j} O_{ij} \log \left(\frac{E_{ij}}{O_{ij}}\right) \\
-&amp;= 2 \sum_{i,j} O_{ij} \log \left(\frac{O_{ij}}{E_{ij}}\right)
-\end{align}
-\]</span> 這時，假設 <span class="math inline">\(O_{ij}\)</span> 很接近 <span class="math inline">\(E_{ij}\)</span>，我們可以用 Taylor expansion 對 <span class="math inline">\(\log(x)\)</span> 在 <span class="math inline">\(x=1\)</span> 附近展開，假設 <span class="math inline">\(O_{ij} = E_{ij} + \delta_{ij}\)</span>，其中 <span class="math inline">\(\delta_{ij}\)</span> 很小: <span class="math display">\[
-\log\left(\frac{O_{ij}}{E_{ij}}\right) = \log\left(1 + \frac{\delta_{ij}}{E_{ij}}\right) \approx \frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2
-\]</span> 代回去: <span class="math display">\[
-\begin{align}
--2 \log \Lambda &amp;\approx 2 \sum_{i,j} (E_{ij} + \delta_{ij}) \left(\frac{\delta_{ij}}{E_{ij}} - \frac{1}{2} \left(\frac{\delta_{ij}}{E_{ij}}\right)^2\right) \\
-&amp;= 2 \sum_{i,j} \left(\delta_{ij} + \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}} - \frac{1}{2} \frac{\delta_{ij}^3}{E_{ij}^2}\right) \\
-&amp;\approx 2 \sum_{i,j} \left(\delta_{ij} + \frac{1}{2} \frac{\delta_{ij}^2}{E_{ij}}\right) \
-\end{align}
-\]</span> 注意到 <span class="math inline">\(\sum_{i,j} \delta_{ij} = \sum_{i,j} (O_{ij} - E_{ij}) = 0\)</span>，所以第一項消失: <span class="math display">\[
--2 \log \Lambda \approx \sum_{i,j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} = \chi^2
-\]</span></p>
-<p>因此，當樣本數很大時，Chi-squared 統計量 <span class="math inline">\(\chi^2\)</span> 會趨近於 Chi-squared 分布，且自由度為 <span class="math inline">\((r-1)(c-1)\)</span>。這證明了為什麼 Chi-squared test 是一個有效的檢定方法。</p>
-<hr>
-<p>底下我們看一下當樣本數有限時，Chi-squared 統計量的分布與理論上的 Chi-squared 分布有什麼差異。</p>
 </section>
 <section id="interactive-finite-chi-square-cdf-log-scale" class="level3">
 <h3 class="anchored" data-anchor-id="interactive-finite-chi-square-cdf-log-scale">Interactive: Finite Chi-Square CDF (Log Scale)</h3>
 <p>Adjust <span class="math inline">\(n\)</span> to see how the discrete CDF steps approximate the smooth curve.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="189" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 188;"><span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>viewof n <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Sample Size (n)"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="154" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 153;"><span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>viewof n <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Sample Size (n)"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -388,163 +364,111 @@ df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
 <div class="panel-fill panel-grid">
 <div class="g-col-24">
 <div class="cell panel-fill">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="200" data-source-offset="-146"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 199;"><span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>viewof p1 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.2</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"p1"</span>})</span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>viewof p2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"p2"</span>})</span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>viewof p3 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"p3"</span>})</span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a><span class="co">// When user releases a slider, normalize the three sliders so their values sum to 1</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normalizeSliders</span>() {</span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Prevent re-entry: when we programmatically change values we don't want</span></span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the handler to be called recursively.</span></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (normalizeSliders<span class="op">.</span><span class="at">_running</span>) <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>  normalizeSliders<span class="op">.</span><span class="at">_running</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="163" data-source-offset="-29"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> [<span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.3</span>] <span class="co">// Change probabilities here</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> probs<span class="op">.</span><span class="at">length</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> probs<span class="op">.</span><span class="fu">map</span>(p <span class="kw">=&gt;</span> p <span class="op">*</span> n)</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 2. MATH LOGIC ---</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="co">// Recursive function to get partitions (compositions of integer n)</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getCompositions</span>(target<span class="op">,</span> bins) {</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (bins <span class="op">===</span> <span class="dv">1</span>) <span class="cf">return</span> [[target]]<span class="op">;</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> results <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> target<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> sub <span class="op">=</span> <span class="fu">getCompositions</span>(target <span class="op">-</span> i<span class="op">,</span> bins <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>    sub<span class="op">.</span><span class="fu">forEach</span>(s <span class="kw">=&gt;</span> results<span class="op">.</span><span class="fu">push</span>([i<span class="op">,</span> <span class="op">...</span>s]))<span class="op">;</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> results<span class="op">;</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="co">// Generate Raw Data</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>outcomes <span class="op">=</span> <span class="fu">getCompositions</span>(n<span class="op">,</span> k)</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>rawData <span class="op">=</span> outcomes<span class="op">.</span><span class="fu">map</span>(counts <span class="kw">=&gt;</span> {</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Factorial helper</span></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fact <span class="op">=</span> (num) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (num <span class="op">&lt;=</span> <span class="dv">1</span>) <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> </span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(<span class="kw">let</span> i<span class="op">=</span><span class="dv">2</span><span class="op">;</span> i<span class="op">&lt;=</span>num<span class="op">;</span> i<span class="op">++</span>) r <span class="op">*=</span> i<span class="op">;</span> </span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r<span class="op">;</span></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Multinomial Prob</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> denom <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> probTerm <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>  counts<span class="op">.</span><span class="fu">forEach</span>((c<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">*=</span> <span class="fu">fact</span>(c)<span class="op">;</span></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>    probTerm <span class="op">*=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(probs[i]<span class="op">,</span> c)<span class="op">;</span></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> (<span class="fu">fact</span>(n) <span class="op">/</span> denom) <span class="op">*</span> probTerm<span class="op">;</span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Chi Sq Statistic</span></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> q <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>  counts<span class="op">.</span><span class="fu">forEach</span>((c<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>    q <span class="op">+=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(c <span class="op">-</span> expected[i]<span class="op">,</span> <span class="dv">2</span>) <span class="op">/</span> expected[i]<span class="op">;</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">q</span><span class="op">:</span> q<span class="op">,</span> <span class="dt">p</span><span class="op">:</span> p}<span class="op">;</span></span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>  <span class="co">// `viewof p1` / `viewof p2` / `viewof p3` are the input DOM elements</span></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a <span class="op">=</span> viewof p1<span class="op">,</span> b <span class="op">=</span> viewof p2<span class="op">,</span> c <span class="op">=</span> viewof p3<span class="op">;</span></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rawA <span class="op">=</span> <span class="op">+</span>a<span class="op">.</span><span class="at">value</span><span class="op">,</span> rawB <span class="op">=</span> <span class="op">+</span>b<span class="op">.</span><span class="at">value</span><span class="op">,</span> rawC <span class="op">=</span> <span class="op">+</span>c<span class="op">.</span><span class="at">value</span><span class="op">;</span></span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalRaw <span class="op">=</span> rawA <span class="op">+</span> rawB <span class="op">+</span> rawC<span class="op">;</span></span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (totalRaw <span class="op">===</span> <span class="dv">0</span>) {</span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>    <span class="co">// fallback to equal split</span></span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fl">0.33</span><span class="op">;</span> b<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fl">0.33</span><span class="op">;</span> c<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fl">0.34</span><span class="op">;</span></span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>    <span class="co">// normalize and round to two decimals while ensuring sum exactly 1</span></span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> na100 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>((rawA <span class="op">/</span> totalRaw) <span class="op">*</span> <span class="dv">100</span>)<span class="op">;</span></span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nb100 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>((rawB <span class="op">/</span> totalRaw) <span class="op">*</span> <span class="dv">100</span>)<span class="op">;</span></span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nc100 <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> na100 <span class="op">-</span> nb100<span class="op">;</span></span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>    <span class="co">// if rounding produced negative for nc, fix by clamping</span></span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (nc100 <span class="op">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>      nc100 <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (nb100 <span class="op">&gt;</span> <span class="dv">0</span>) nb100 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span> <span class="op">-</span> na100 <span class="op">-</span> nc100)<span class="op">;</span></span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span><span class="at">value</span> <span class="op">=</span> na100 <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>    b<span class="op">.</span><span class="at">value</span> <span class="op">=</span> nb100 <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>    c<span class="op">.</span><span class="at">value</span> <span class="op">=</span> nc100 <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Dispatch only `input` so we update Observable reactive cells without</span></span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>  <span class="co">// re-triggering the `change` handler (which would cause recursion).</span></span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'input'</span>]<span class="op">.</span><span class="fu">forEach</span>(ev <span class="kw">=&gt;</span> {</span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(ev<span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))<span class="op">;</span></span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>    b<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(ev<span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))<span class="op">;</span></span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>    c<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(ev<span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))<span class="op">;</span></span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 3. AGGREGATE &amp; CALCULATE CDF ---</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>groupedCDF <span class="op">=</span> {</span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="co">// A. Group by Q (sum probabilities for identical Q statistics)</span></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>  rawData<span class="op">.</span><span class="fu">forEach</span>(d <span class="kw">=&gt;</span> {</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> key <span class="op">=</span> d<span class="op">.</span><span class="at">q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">6</span>)<span class="op">;</span> </span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> existing <span class="op">=</span> map<span class="op">.</span><span class="fu">get</span>(key) <span class="op">||</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">set</span>(key<span class="op">,</span> existing <span class="op">+</span> d<span class="op">.</span><span class="at">p</span>)<span class="op">;</span></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>  <span class="co">// B. Sort by Q</span></span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> sorted <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(map<span class="op">,</span> ([q<span class="op">,</span> p]) <span class="kw">=&gt;</span> ({<span class="dt">q</span><span class="op">:</span> <span class="op">+</span>q<span class="op">,</span> <span class="dt">p</span><span class="op">:</span> p}))<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span>b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">q</span> <span class="op">-</span> b<span class="op">.</span><span class="at">q</span>)<span class="op">;</span></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>  <span class="co">// C. Calculate Cumulative Sum</span></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> cumSum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sorted<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> {</span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>    cumSum <span class="op">+=</span> d<span class="op">.</span><span class="at">p</span><span class="op">;</span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis</span></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> plotQ <span class="op">=</span> d<span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="fl">0.01</span> <span class="op">:</span> d<span class="op">.</span><span class="at">q</span><span class="op">;</span></span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>      <span class="dt">realQ</span><span class="op">:</span> d<span class="op">.</span><span class="at">q</span><span class="op">,</span></span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>      <span class="dt">plotQ</span><span class="op">:</span> plotQ<span class="op">,</span> </span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cdf</span><span class="op">:</span> cumSum</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 4. PLOTTING ---</span></span>
 <span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>  normalizeSliders<span class="op">.</span><span class="at">_running</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> p1 <span class="op">+</span> p2 <span class="op">+</span> p3<span class="op">;</span></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> total <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> [p1<span class="op">/</span>total<span class="op">,</span> p2<span class="op">/</span>total<span class="op">,</span> p3<span class="op">/</span>total] <span class="op">:</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="co">// single definition of k</span></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> probs<span class="op">.</span><span class="at">length</span></span>
-<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>expected <span class="op">=</span> probs<span class="op">.</span><span class="fu">map</span>(p <span class="kw">=&gt;</span> p <span class="op">*</span> n)</span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 2. MATH LOGIC ---</span></span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="co">// Recursive function to get partitions (compositions of integer n)</span></span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getCompositions</span>(target<span class="op">,</span> bins) {</span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (bins <span class="op">===</span> <span class="dv">1</span>) <span class="cf">return</span> [[target]]<span class="op">;</span></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> results <span class="op">=</span> []<span class="op">;</span></span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> target<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> sub <span class="op">=</span> <span class="fu">getCompositions</span>(target <span class="op">-</span> i<span class="op">,</span> bins <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>    sub<span class="op">.</span><span class="fu">forEach</span>(s <span class="kw">=&gt;</span> results<span class="op">.</span><span class="fu">push</span>([i<span class="op">,</span> <span class="op">...</span>s]))<span class="op">;</span></span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> results<span class="op">;</span></span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a><span class="co">// Generate Raw Data</span></span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>outcomes <span class="op">=</span> <span class="fu">getCompositions</span>(n<span class="op">,</span> k)</span>
-<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>rawData <span class="op">=</span> outcomes<span class="op">.</span><span class="fu">map</span>(counts <span class="kw">=&gt;</span> {</span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Factorial helper</span></span>
-<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fact <span class="op">=</span> (num) <span class="kw">=&gt;</span> {</span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (num <span class="op">&lt;=</span> <span class="dv">1</span>) <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> </span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(<span class="kw">let</span> i<span class="op">=</span><span class="dv">2</span><span class="op">;</span> i<span class="op">&lt;=</span>num<span class="op">;</span> i<span class="op">++</span>) r <span class="op">*=</span> i<span class="op">;</span> </span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r<span class="op">;</span></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Multinomial Prob</span></span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> denom <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> probTerm <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a>  counts<span class="op">.</span><span class="fu">forEach</span>((c<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">*=</span> <span class="fu">fact</span>(c)<span class="op">;</span></span>
-<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>    probTerm <span class="op">*=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(probs[i]<span class="op">,</span> c)<span class="op">;</span></span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> (<span class="fu">fact</span>(n) <span class="op">/</span> denom) <span class="op">*</span> probTerm<span class="op">;</span></span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Chi Sq Statistic</span></span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> q <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a>  counts<span class="op">.</span><span class="fu">forEach</span>((c<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>    q <span class="op">+=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(c <span class="op">-</span> expected[i]<span class="op">,</span> <span class="dv">2</span>) <span class="op">/</span> expected[i]<span class="op">;</span></span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">q</span><span class="op">:</span> q<span class="op">,</span> <span class="dt">p</span><span class="op">:</span> p}<span class="op">;</span></span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 3. AGGREGATE &amp; CALCULATE CDF ---</span></span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>groupedCDF <span class="op">=</span> {</span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>  <span class="co">// A. Group by Q (sum probabilities for identical Q statistics)</span></span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>  rawData<span class="op">.</span><span class="fu">forEach</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> key <span class="op">=</span> d<span class="op">.</span><span class="at">q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">6</span>)<span class="op">;</span> </span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> existing <span class="op">=</span> map<span class="op">.</span><span class="fu">get</span>(key) <span class="op">||</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">set</span>(key<span class="op">,</span> existing <span class="op">+</span> d<span class="op">.</span><span class="at">p</span>)<span class="op">;</span></span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>  <span class="co">// B. Sort by Q</span></span>
-<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> sorted <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(map<span class="op">,</span> ([q<span class="op">,</span> p]) <span class="kw">=&gt;</span> ({<span class="dt">q</span><span class="op">:</span> <span class="op">+</span>q<span class="op">,</span> <span class="dt">p</span><span class="op">:</span> p}))<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span>b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">q</span> <span class="op">-</span> b<span class="op">.</span><span class="at">q</span>)<span class="op">;</span></span>
-<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>  <span class="co">// C. Calculate Cumulative Sum</span></span>
-<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> cumSum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sorted<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>    cumSum <span class="op">+=</span> d<span class="op">.</span><span class="at">p</span><span class="op">;</span></span>
-<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis</span></span>
-<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> plotQ <span class="op">=</span> d<span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="fl">0.01</span> <span class="op">:</span> d<span class="op">.</span><span class="at">q</span><span class="op">;</span></span>
-<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>    <span class="co">// For discrete distributions: cdf = P(X &lt;= q) includes P(X=q).</span></span>
-<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>    <span class="co">// - sf (strict) = P(X &gt; q) = 1 - cdf</span></span>
-<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>    <span class="co">// - pvalue (right-tail, inclusive) = P(X &gt;= q) = 1 - P(X &lt; q) = 1 - (cdf - P(X=q)) = 1 - cdf + p</span></span>
-<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> sf <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> cumSum<span class="op">;</span></span>
-<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pvalue <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> cumSum <span class="op">+</span> d<span class="op">.</span><span class="at">p</span><span class="op">;</span></span>
-<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>      <span class="dt">realQ</span><span class="op">:</span> d<span class="op">.</span><span class="at">q</span><span class="op">,</span></span>
-<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>      <span class="dt">plotQ</span><span class="op">:</span> plotQ<span class="op">,</span></span>
-<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>      <span class="dt">cdf</span><span class="op">:</span> cumSum<span class="op">,</span></span>
-<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sf</span><span class="op">:</span> sf<span class="op">,</span></span>
-<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>      <span class="dt">pvalue</span><span class="op">:</span> pvalue</span>
-<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
-<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a><span class="co">// --- 4. PLOTTING ---</span></span>
-<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="vs">`p-value (P(X &gt;= q)) for n=</span><span class="sc">${</span>n<span class="sc">}</span><span class="vs"> (Log Scale)`</span><span class="op">,</span></span>
-<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> </span>
-<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Chi-Square Statistic (Q)"</span><span class="op">,</span></span>
-<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.01</span><span class="op">,</span> d3<span class="op">.</span><span class="fu">max</span>(groupedCDF<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">realQ</span>) <span class="op">*</span> <span class="fl">1.2</span>] <span class="co">// Ensure plot fits</span></span>
-<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"p-value (P(X &gt;= q))"</span><span class="op">,</span> </span>
-<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]</span>
-<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The "Sticks" (Discrete p-value P(X &gt;= q))</span></span>
-<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>(groupedCDF<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"plotQ"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"pvalue"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
-<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(groupedCDF<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"plotQ"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"pvalue"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Q: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">realQ</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}\n</span><span class="vs">p-value: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">pvalue</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">`</span>})<span class="op">,</span></span>
-<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The Continuous Chi-Square CDF Curve (df = 2)</span></span>
-<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Formula: 1 - exp(-x/2)</span></span>
-<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
-<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>       d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.01</span><span class="op">,</span> d3<span class="op">.</span><span class="fu">max</span>(groupedCDF<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">realQ</span>) <span class="op">+</span> <span class="dv">5</span><span class="op">,</span> <span class="fl">0.1</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x<span class="op">/</span><span class="dv">2</span>)}))<span class="op">,</span></span>
-<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>      {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>}</span>
-<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add a text annotation explaining the log clamp if needed</span></span>
-<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"← Q=0 (Clamped)"</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"gray"</span>})</span>
-<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="vs">`CDF for n=</span><span class="sc">${</span>n<span class="sc">}</span><span class="vs"> (Log Scale)`</span><span class="op">,</span></span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> </span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Chi-Square Statistic (Q)"</span><span class="op">,</span></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.01</span><span class="op">,</span> d3<span class="op">.</span><span class="fu">max</span>(groupedCDF<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">realQ</span>) <span class="op">*</span> <span class="fl">1.2</span>] <span class="co">// Ensure plot fits</span></span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Cumulative Probability"</span><span class="op">,</span> </span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The "Sticks" (Discrete CDF)</span></span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>(groupedCDF<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"plotQ"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"cdf"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(groupedCDF<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"plotQ"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"cdf"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`Q: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">realQ</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}\n</span><span class="vs">CDF: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">cdf</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">`</span>})<span class="op">,</span></span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The Continuous Chi-Square CDF Curve (df = 2)</span></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Formula: 1 - exp(-x/2)</span></span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>       d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.01</span><span class="op">,</span> d3<span class="op">.</span><span class="fu">max</span>(groupedCDF<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">realQ</span>) <span class="op">+</span> <span class="dv">5</span><span class="op">,</span> <span class="fl">0.1</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span> <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x<span class="op">/</span><span class="dv">2</span>)}))<span class="op">,</span></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>      {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>}</span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add a text annotation explaining the log clamp if needed</span></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"← Q=0 (Clamped)"</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"gray"</span>})</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -596,42 +520,7 @@ df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-2-8" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-9" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-10" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-11" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-12" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-13" data-nodetype="expression">
+<div id="ojs-cell-2-8" data-nodetype="expression">
 
 </div>
 </div>
@@ -639,29 +528,22 @@ df = (rc - 1) - (r + c - 2) = (r - 1)(c - 1)
 </div>
 </div>
 </div>
-<div class="cell" data-include="false">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="361" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 360;"><span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a><span class="co">// Attach normalize on change (fires when user releases the slider)</span></span>
-<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a>  viewof p1<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'change'</span><span class="op">,</span> normalizeSliders)<span class="op">;</span></span>
-<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a>  viewof p2<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'change'</span><span class="op">,</span> normalizeSliders)<span class="op">;</span></span>
-<span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a>  viewof p3<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">'change'</span><span class="op">,</span> normalizeSliders)<span class="op">;</span></span>
-<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
-<span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a>})()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display hidden">
-<div id="ojs-cell-3" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<p><em>Note:</em> I hardcoded the Chi-Square PDF for <span class="math inline">\(k=3\)</span> (df=2) as <span class="math inline">\(0.5e^{-x/2}\)</span> to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities (<span class="math inline">\(k\)</span>), you will need to update that formula.</p>
-<p>所以說，p-value很小，代表觀察到的結果在 <span class="math inline">\(H_0\)</span> 下很不可能發生，因此我們有理由拒絕 <span class="math inline">\(H_0\)</span>。</p>
+</section>
+<section id="why-this-works" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-works">Why this works:</h3>
+<ol type="1">
+<li><strong><code>viewof n = Inputs.range(...)</code></strong>: Creates the HTML slider.</li>
+<li><strong><code>{ojs}</code> block</strong>: This JavaScript code runs in the user’s browser, not on your server.</li>
+<li><strong>Reactivity</strong>: When the user drags the slider, <code>n</code> updates, the <code>data</code> array recalculates, and <code>Plot.plot</code> re-renders automatically.</li>
+</ol>
+<p><strong>Note:</strong> I hardcoded the Chi-Square PDF for <span class="math inline">\(k=3\)</span> (df=2) as <span class="math inline">\(0.5e^{-x/2}\)</span> to avoid needing a complex Gamma function library in JavaScript. If you change the number of probabilities (<span class="math inline">\(k\)</span>), you will need to update that formula.</p>
 
 
 </section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBuID0gSW5wdXRzLnJhbmdlKFsyLCA1MF0sIHt2YWx1ZTogNSwgc3RlcDogMSwgbGFiZWw6IFwiU2FtcGxlIFNpemUgKG4pXCJ9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyAtLS0gMS4gQ09ORklHVVJBVElPTiAtLS1cbi8vIFRocmVlIHVzZXItYWRqdXN0YWJsZSBwcm9iYWJpbGl0aWVzIChrZWVwcyBleGFjdGx5IDMgYmlucykuXG4vLyBUaGUgaW5wdXRzIGFyZSBub3JtYWxpemVkIHNvIHRoZXkgYWx3YXlzIHN1bSB0byAxLlxudmlld29mIHAxID0gSW5wdXRzLnJhbmdlKFswLCAxXSwge3ZhbHVlOiAwLjIsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcInAxXCJ9KVxudmlld29mIHAyID0gSW5wdXRzLnJhbmdlKFswLCAxXSwge3ZhbHVlOiAwLjUsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcInAyXCJ9KVxudmlld29mIHAzID0gSW5wdXRzLnJhbmdlKFswLCAxXSwge3ZhbHVlOiAwLjMsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcInAzXCJ9KVxuLy8gV2hlbiB1c2VyIHJlbGVhc2VzIGEgc2xpZGVyLCBub3JtYWxpemUgdGhlIHRocmVlIHNsaWRlcnMgc28gdGhlaXIgdmFsdWVzIHN1bSB0byAxXG5mdW5jdGlvbiBub3JtYWxpemVTbGlkZXJzKCkge1xuICAvLyBQcmV2ZW50IHJlLWVudHJ5OiB3aGVuIHdlIHByb2dyYW1tYXRpY2FsbHkgY2hhbmdlIHZhbHVlcyB3ZSBkb24ndCB3YW50XG4gIC8vIHRoZSBoYW5kbGVyIHRvIGJlIGNhbGxlZCByZWN1cnNpdmVseS5cbiAgaWYgKG5vcm1hbGl6ZVNsaWRlcnMuX3J1bm5pbmcpIHJldHVybjtcbiAgbm9ybWFsaXplU2xpZGVycy5fcnVubmluZyA9IHRydWU7XG5cbiAgLy8gYHZpZXdvZiBwMWAgLyBgdmlld29mIHAyYCAvIGB2aWV3b2YgcDNgIGFyZSB0aGUgaW5wdXQgRE9NIGVsZW1lbnRzXG4gIGNvbnN0IGEgPSB2aWV3b2YgcDEsIGIgPSB2aWV3b2YgcDIsIGMgPSB2aWV3b2YgcDM7XG4gIGNvbnN0IHJhd0EgPSArYS52YWx1ZSwgcmF3QiA9ICtiLnZhbHVlLCByYXdDID0gK2MudmFsdWU7XG4gIGNvbnN0IHRvdGFsUmF3ID0gcmF3QSArIHJhd0IgKyByYXdDO1xuICBpZiAodG90YWxSYXcgPT09IDApIHtcbiAgICAvLyBmYWxsYmFjayB0byBlcXVhbCBzcGxpdFxuICAgIGEudmFsdWUgPSAwLjMzOyBiLnZhbHVlID0gMC4zMzsgYy52YWx1ZSA9IDAuMzQ7XG4gIH0gZWxzZSB7XG4gICAgLy8gbm9ybWFsaXplIGFuZCByb3VuZCB0byB0d28gZGVjaW1hbHMgd2hpbGUgZW5zdXJpbmcgc3VtIGV4YWN0bHkgMVxuICAgIGxldCBuYTEwMCA9IE1hdGgucm91bmQoKHJhd0EgLyB0b3RhbFJhdykgKiAxMDApO1xuICAgIGxldCBuYjEwMCA9IE1hdGgucm91bmQoKHJhd0IgLyB0b3RhbFJhdykgKiAxMDApO1xuICAgIGxldCBuYzEwMCA9IDEwMCAtIG5hMTAwIC0gbmIxMDA7XG4gICAgLy8gaWYgcm91bmRpbmcgcHJvZHVjZWQgbmVnYXRpdmUgZm9yIG5jLCBmaXggYnkgY2xhbXBpbmdcbiAgICBpZiAobmMxMDAgPCAwKSB7XG4gICAgICBuYzEwMCA9IDA7XG4gICAgICBpZiAobmIxMDAgPiAwKSBuYjEwMCA9IE1hdGgubWF4KDAsIDEwMCAtIG5hMTAwIC0gbmMxMDApO1xuICAgIH1cbiAgICBhLnZhbHVlID0gbmExMDAgLyAxMDA7XG4gICAgYi52YWx1ZSA9IG5iMTAwIC8gMTAwO1xuICAgIGMudmFsdWUgPSBuYzEwMCAvIDEwMDtcbiAgfVxuXG4gIC8vIERpc3BhdGNoIG9ubHkgYGlucHV0YCBzbyB3ZSB1cGRhdGUgT2JzZXJ2YWJsZSByZWFjdGl2ZSBjZWxscyB3aXRob3V0XG4gIC8vIHJlLXRyaWdnZXJpbmcgdGhlIGBjaGFuZ2VgIGhhbmRsZXIgKHdoaWNoIHdvdWxkIGNhdXNlIHJlY3Vyc2lvbikuXG4gIFsnaW5wdXQnXS5mb3JFYWNoKGV2ID0+IHtcbiAgICBhLmRpc3BhdGNoRXZlbnQobmV3IEV2ZW50KGV2LCB7YnViYmxlczogdHJ1ZX0pKTtcbiAgICBiLmRpc3BhdGNoRXZlbnQobmV3IEV2ZW50KGV2LCB7YnViYmxlczogdHJ1ZX0pKTtcbiAgICBjLmRpc3BhdGNoRXZlbnQobmV3IEV2ZW50KGV2LCB7YnViYmxlczogdHJ1ZX0pKTtcbiAgfSk7XG5cbiAgbm9ybWFsaXplU2xpZGVycy5fcnVubmluZyA9IGZhbHNlO1xufVxuXG50b3RhbCA9IHAxICsgcDIgKyBwMztcbnByb2JzID0gdG90YWwgPiAwID8gW3AxL3RvdGFsLCBwMi90b3RhbCwgcDMvdG90YWxdIDogWzEvMywgMS8zLCAxLzNdO1xuLy8gc2luZ2xlIGRlZmluaXRpb24gb2Yga1xuayA9IHByb2JzLmxlbmd0aFxuZXhwZWN0ZWQgPSBwcm9icy5tYXAocCA9PiBwICogbilcblxuLy8gLS0tIDIuIE1BVEggTE9HSUMgLS0tXG5cbi8vIFJlY3Vyc2l2ZSBmdW5jdGlvbiB0byBnZXQgcGFydGl0aW9ucyAoY29tcG9zaXRpb25zIG9mIGludGVnZXIgbilcbmZ1bmN0aW9uIGdldENvbXBvc2l0aW9ucyh0YXJnZXQsIGJpbnMpIHtcbiAgaWYgKGJpbnMgPT09IDEpIHJldHVybiBbW3RhcmdldF1dO1xuICBjb25zdCByZXN1bHRzID0gW107XG4gIGZvciAobGV0IGkgPSAwOyBpIDw9IHRhcmdldDsgaSsrKSB7XG4gICAgY29uc3Qgc3ViID0gZ2V0Q29tcG9zaXRpb25zKHRhcmdldCAtIGksIGJpbnMgLSAxKTtcbiAgICBzdWIuZm9yRWFjaChzID0+IHJlc3VsdHMucHVzaChbaSwgLi4uc10pKTtcbiAgfVxuICByZXR1cm4gcmVzdWx0cztcbn1cblxuLy8gR2VuZXJhdGUgUmF3IERhdGFcbm91dGNvbWVzID0gZ2V0Q29tcG9zaXRpb25zKG4sIGspXG5cbnJhd0RhdGEgPSBvdXRjb21lcy5tYXAoY291bnRzID0+IHtcbiAgLy8gRmFjdG9yaWFsIGhlbHBlclxuICBjb25zdCBmYWN0ID0gKG51bSkgPT4ge1xuICAgIGlmIChudW0gPD0gMSkgcmV0dXJuIDE7XG4gICAgbGV0IHIgPSAxOyBcbiAgICBmb3IobGV0IGk9MjsgaTw9bnVtOyBpKyspIHIgKj0gaTsgXG4gICAgcmV0dXJuIHI7XG4gIH1cbiAgXG4gIC8vIE11bHRpbm9taWFsIFByb2JcbiAgbGV0IGRlbm9tID0gMTtcbiAgbGV0IHByb2JUZXJtID0gMTtcbiAgY291bnRzLmZvckVhY2goKGMsIGkpID0+IHtcbiAgICBkZW5vbSAqPSBmYWN0KGMpO1xuICAgIHByb2JUZXJtICo9IE1hdGgucG93KHByb2JzW2ldLCBjKTtcbiAgfSk7XG4gIGNvbnN0IHAgPSAoZmFjdChuKSAvIGRlbm9tKSAqIHByb2JUZXJtO1xuICBcbiAgLy8gQ2hpIFNxIFN0YXRpc3RpY1xuICBsZXQgcSA9IDA7XG4gIGNvdW50cy5mb3JFYWNoKChjLCBpKSA9PiB7XG4gICAgcSArPSBNYXRoLnBvdyhjIC0gZXhwZWN0ZWRbaV0sIDIpIC8gZXhwZWN0ZWRbaV07XG4gIH0pO1xuICBcbiAgcmV0dXJuIHtxOiBxLCBwOiBwfTtcbn0pXG5cbi8vIC0tLSAzLiBBR0dSRUdBVEUgJiBDQUxDVUxBVEUgQ0RGIC0tLVxuXG5ncm91cGVkQ0RGID0ge1xuICAvLyBBLiBHcm91cCBieSBRIChzdW0gcHJvYmFiaWxpdGllcyBmb3IgaWRlbnRpY2FsIFEgc3RhdGlzdGljcylcbiAgY29uc3QgbWFwID0gbmV3IE1hcCgpO1xuICByYXdEYXRhLmZvckVhY2goZCA9PiB7XG4gICAgY29uc3Qga2V5ID0gZC5xLnRvRml4ZWQoNik7IFxuICAgIGNvbnN0IGV4aXN0aW5nID0gbWFwLmdldChrZXkpIHx8IDA7XG4gICAgbWFwLnNldChrZXksIGV4aXN0aW5nICsgZC5wKTtcbiAgfSk7XG4gIFxuICAvLyBCLiBTb3J0IGJ5IFFcbiAgbGV0IHNvcnRlZCA9IEFycmF5LmZyb20obWFwLCAoW3EsIHBdKSA9PiAoe3E6ICtxLCBwOiBwfSkpLnNvcnQoKGEsYikgPT4gYS5xIC0gYi5xKTtcbiAgXG4gIC8vIEMuIENhbGN1bGF0ZSBDdW11bGF0aXZlIFN1bVxuICBsZXQgY3VtU3VtID0gMDtcbiAgcmV0dXJuIHNvcnRlZC5tYXAoZCA9PiB7XG4gICAgY3VtU3VtICs9IGQucDtcbiAgICAvLyBMb2cgc2NhbGUgZml4OiBJZiBRIGlzIGV4YWN0bHkgMCwgYnVtcCBpdCB0byAwLjAxIHNvIGl0IHNob3dzIHVwIG9uIGxvZyBheGlzXG4gICAgY29uc3QgcGxvdFEgPSBkLnEgPT09IDAgPyAwLjAxIDogZC5xO1xuICAgIC8vIEZvciBkaXNjcmV0ZSBkaXN0cmlidXRpb25zOiBjZGYgPSBQKFggPD0gcSkgaW5jbHVkZXMgUChYPXEpLlxuICAgIC8vIC0gc2YgKHN0cmljdCkgPSBQKFggPiBxKSA9IDEgLSBjZGZcbiAgICAvLyAtIHB2YWx1ZSAocmlnaHQtdGFpbCwgaW5jbHVzaXZlKSA9IFAoWCA+PSBxKSA9IDEgLSBQKFggPCBxKSA9IDEgLSAoY2RmIC0gUChYPXEpKSA9IDEgLSBjZGYgKyBwXG4gICAgY29uc3Qgc2YgPSAxIC0gY3VtU3VtO1xuICAgIGNvbnN0IHB2YWx1ZSA9IDEgLSBjdW1TdW0gKyBkLnA7XG4gICAgcmV0dXJuIHtcbiAgICAgIHJlYWxROiBkLnEsXG4gICAgICBwbG90UTogcGxvdFEsXG4gICAgICBjZGY6IGN1bVN1bSxcbiAgICAgIHNmOiBzZixcbiAgICAgIHB2YWx1ZTogcHZhbHVlXG4gICAgfTtcbiAgfSk7XG59XG5cbi8vIC0tLSA0LiBQTE9UVElORyAtLS1cblxuUGxvdC5wbG90KHtcbiAgdGl0bGU6IGBwLXZhbHVlIChQKFggPj0gcSkpIGZvciBuPSR7bn0gKExvZyBTY2FsZSlgLFxuICBncmlkOiB0cnVlLFxuICB4OiB7XG4gICAgdHlwZTogXCJsb2dcIiwgXG4gICAgbGFiZWw6IFwiQ2hpLVNxdWFyZSBTdGF0aXN0aWMgKFEpXCIsXG4gICAgZG9tYWluOiBbMC4wMSwgZDMubWF4KGdyb3VwZWRDREYsIGQgPT4gZC5yZWFsUSkgKiAxLjJdIC8vIEVuc3VyZSBwbG90IGZpdHNcbiAgfSxcbiAgeToge1xuICAgIGxhYmVsOiBcInAtdmFsdWUgKFAoWCA+PSBxKSlcIiwgXG4gICAgZG9tYWluOiBbMCwgMS4wNV1cbiAgfSxcbiAgbWFya3M6IFtcbiAgICAvLyBUaGUgXCJTdGlja3NcIiAoRGlzY3JldGUgcC12YWx1ZSBQKFggPj0gcSkpXG4gICAgUGxvdC5ydWxlWShncm91cGVkQ0RGLCB7eDogXCJwbG90UVwiLCB5OiBcInB2YWx1ZVwiLCBzdHJva2U6IFwiIzI1NjNlYlwiLCBzdHJva2VXaWR0aDogMn0pLFxuICAgIFBsb3QuZG90KGdyb3VwZWRDREYsIHt4OiBcInBsb3RRXCIsIHk6IFwicHZhbHVlXCIsIGZpbGw6IFwiIzI1NjNlYlwiLCByOiAzLCB0aXRsZTogZCA9PiBgUTogJHtkLnJlYWxRLnRvRml4ZWQoMil9XFxucC12YWx1ZTogJHtkLnB2YWx1ZS50b0ZpeGVkKDQpfWB9KSxcbiAgICBcbiAgICAvLyBUaGUgQ29udGludW91cyBDaGktU3F1YXJlIENERiBDdXJ2ZSAoZGYgPSAyKVxuICAgIC8vIEZvcm11bGE6IDEgLSBleHAoLXgvMilcbiAgICBQbG90LmxpbmUoXG4gICAgICAgZDMucmFuZ2UoMC4wMSwgZDMubWF4KGdyb3VwZWRDREYsIGQgPT4gZC5yZWFsUSkgKyA1LCAwLjEpLm1hcCh4ID0+ICh7eDogeCwgeTogTWF0aC5leHAoLXgvMil9KSksXG4gICAgICB7eDogXCJ4XCIsIHk6IFwieVwiLCBzdHJva2U6IFwiI2RjMjYyNlwiLCBzdHJva2VXaWR0aDogMn1cbiAgICApLFxuICAgIFxuICAgIC8vIEFkZCBhIHRleHQgYW5ub3RhdGlvbiBleHBsYWluaW5nIHRoZSBsb2cgY2xhbXAgaWYgbmVlZGVkXG4gICAgUGxvdC50ZXh0KFt7eDogMC4wMSwgeTogMC4xLCB0ZXh0OiBcIuKGkCBRPTAgKENsYW1wZWQpXCJ9XSwge3g6IFwieFwiLCB5OiBcInlcIiwgdGV4dEFuY2hvcjogXCJzdGFydFwiLCBmb250U2l6ZTogMTAsIGZpbGw6IFwiZ3JheVwifSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIEF0dGFjaCBub3JtYWxpemUgb24gY2hhbmdlIChmaXJlcyB3aGVuIHVzZXIgcmVsZWFzZXMgdGhlIHNsaWRlcilcbigoKSA9PiB7XG4gIHZpZXdvZiBwMS5hZGRFdmVudExpc3RlbmVyKCdjaGFuZ2UnLCBub3JtYWxpemVTbGlkZXJzKTtcbiAgdmlld29mIHAyLmFkZEV2ZW50TGlzdGVuZXIoJ2NoYW5nZScsIG5vcm1hbGl6ZVNsaWRlcnMpO1xuICB2aWV3b2YgcDMuYWRkRXZlbnRMaXN0ZW5lcignY2hhbmdlJywgbm9ybWFsaXplU2xpZGVycyk7XG4gIHJldHVybiBudWxsO1xufSkoKTtcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnbicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwMScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwMicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwMycpIn1dfQ==
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBuID0gSW5wdXRzLnJhbmdlKFsyLCA1MF0sIHt2YWx1ZTogNSwgc3RlcDogMSwgbGFiZWw6IFwiU2FtcGxlIFNpemUgKG4pXCJ9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyAtLS0gMS4gQ09ORklHVVJBVElPTiAtLS1cbnByb2JzID0gWzAuMiwgMC41LCAwLjNdIC8vIENoYW5nZSBwcm9iYWJpbGl0aWVzIGhlcmVcbmsgPSBwcm9icy5sZW5ndGhcbmV4cGVjdGVkID0gcHJvYnMubWFwKHAgPT4gcCAqIG4pXG5cbi8vIC0tLSAyLiBNQVRIIExPR0lDIC0tLVxuXG4vLyBSZWN1cnNpdmUgZnVuY3Rpb24gdG8gZ2V0IHBhcnRpdGlvbnMgKGNvbXBvc2l0aW9ucyBvZiBpbnRlZ2VyIG4pXG5mdW5jdGlvbiBnZXRDb21wb3NpdGlvbnModGFyZ2V0LCBiaW5zKSB7XG4gIGlmIChiaW5zID09PSAxKSByZXR1cm4gW1t0YXJnZXRdXTtcbiAgY29uc3QgcmVzdWx0cyA9IFtdO1xuICBmb3IgKGxldCBpID0gMDsgaSA8PSB0YXJnZXQ7IGkrKykge1xuICAgIGNvbnN0IHN1YiA9IGdldENvbXBvc2l0aW9ucyh0YXJnZXQgLSBpLCBiaW5zIC0gMSk7XG4gICAgc3ViLmZvckVhY2gocyA9PiByZXN1bHRzLnB1c2goW2ksIC4uLnNdKSk7XG4gIH1cbiAgcmV0dXJuIHJlc3VsdHM7XG59XG5cbi8vIEdlbmVyYXRlIFJhdyBEYXRhXG5vdXRjb21lcyA9IGdldENvbXBvc2l0aW9ucyhuLCBrKVxuXG5yYXdEYXRhID0gb3V0Y29tZXMubWFwKGNvdW50cyA9PiB7XG4gIC8vIEZhY3RvcmlhbCBoZWxwZXJcbiAgY29uc3QgZmFjdCA9IChudW0pID0+IHtcbiAgICBpZiAobnVtIDw9IDEpIHJldHVybiAxO1xuICAgIGxldCByID0gMTsgXG4gICAgZm9yKGxldCBpPTI7IGk8PW51bTsgaSsrKSByICo9IGk7IFxuICAgIHJldHVybiByO1xuICB9XG4gIFxuICAvLyBNdWx0aW5vbWlhbCBQcm9iXG4gIGxldCBkZW5vbSA9IDE7XG4gIGxldCBwcm9iVGVybSA9IDE7XG4gIGNvdW50cy5mb3JFYWNoKChjLCBpKSA9PiB7XG4gICAgZGVub20gKj0gZmFjdChjKTtcbiAgICBwcm9iVGVybSAqPSBNYXRoLnBvdyhwcm9ic1tpXSwgYyk7XG4gIH0pO1xuICBjb25zdCBwID0gKGZhY3QobikgLyBkZW5vbSkgKiBwcm9iVGVybTtcbiAgXG4gIC8vIENoaSBTcSBTdGF0aXN0aWNcbiAgbGV0IHEgPSAwO1xuICBjb3VudHMuZm9yRWFjaCgoYywgaSkgPT4ge1xuICAgIHEgKz0gTWF0aC5wb3coYyAtIGV4cGVjdGVkW2ldLCAyKSAvIGV4cGVjdGVkW2ldO1xuICB9KTtcbiAgXG4gIHJldHVybiB7cTogcSwgcDogcH07XG59KVxuXG4vLyAtLS0gMy4gQUdHUkVHQVRFICYgQ0FMQ1VMQVRFIENERiAtLS1cblxuZ3JvdXBlZENERiA9IHtcbiAgLy8gQS4gR3JvdXAgYnkgUSAoc3VtIHByb2JhYmlsaXRpZXMgZm9yIGlkZW50aWNhbCBRIHN0YXRpc3RpY3MpXG4gIGNvbnN0IG1hcCA9IG5ldyBNYXAoKTtcbiAgcmF3RGF0YS5mb3JFYWNoKGQgPT4ge1xuICAgIGNvbnN0IGtleSA9IGQucS50b0ZpeGVkKDYpOyBcbiAgICBjb25zdCBleGlzdGluZyA9IG1hcC5nZXQoa2V5KSB8fCAwO1xuICAgIG1hcC5zZXQoa2V5LCBleGlzdGluZyArIGQucCk7XG4gIH0pO1xuICBcbiAgLy8gQi4gU29ydCBieSBRXG4gIGxldCBzb3J0ZWQgPSBBcnJheS5mcm9tKG1hcCwgKFtxLCBwXSkgPT4gKHtxOiArcSwgcDogcH0pKS5zb3J0KChhLGIpID0+IGEucSAtIGIucSk7XG4gIFxuICAvLyBDLiBDYWxjdWxhdGUgQ3VtdWxhdGl2ZSBTdW1cbiAgbGV0IGN1bVN1bSA9IDA7XG4gIHJldHVybiBzb3J0ZWQubWFwKGQgPT4ge1xuICAgIGN1bVN1bSArPSBkLnA7XG4gICAgLy8gTG9nIHNjYWxlIGZpeDogSWYgUSBpcyBleGFjdGx5IDAsIGJ1bXAgaXQgdG8gMC4wMSBzbyBpdCBzaG93cyB1cCBvbiBsb2cgYXhpc1xuICAgIGNvbnN0IHBsb3RRID0gZC5xID09PSAwID8gMC4wMSA6IGQucTtcbiAgICByZXR1cm4ge1xuICAgICAgcmVhbFE6IGQucSxcbiAgICAgIHBsb3RROiBwbG90USwgXG4gICAgICBjZGY6IGN1bVN1bVxuICAgIH07XG4gIH0pO1xufVxuXG4vLyAtLS0gNC4gUExPVFRJTkcgLS0tXG5cblBsb3QucGxvdCh7XG4gIHRpdGxlOiBgQ0RGIGZvciBuPSR7bn0gKExvZyBTY2FsZSlgLFxuICBncmlkOiB0cnVlLFxuICB4OiB7XG4gICAgdHlwZTogXCJsb2dcIiwgXG4gICAgbGFiZWw6IFwiQ2hpLVNxdWFyZSBTdGF0aXN0aWMgKFEpXCIsXG4gICAgZG9tYWluOiBbMC4wMSwgZDMubWF4KGdyb3VwZWRDREYsIGQgPT4gZC5yZWFsUSkgKiAxLjJdIC8vIEVuc3VyZSBwbG90IGZpdHNcbiAgfSxcbiAgeToge1xuICAgIGxhYmVsOiBcIkN1bXVsYXRpdmUgUHJvYmFiaWxpdHlcIiwgXG4gICAgZG9tYWluOiBbMCwgMS4wNV1cbiAgfSxcbiAgbWFya3M6IFtcbiAgICAvLyBUaGUgXCJTdGlja3NcIiAoRGlzY3JldGUgQ0RGKVxuICAgIFBsb3QucnVsZVkoZ3JvdXBlZENERiwge3g6IFwicGxvdFFcIiwgeTogXCJjZGZcIiwgc3Ryb2tlOiBcIiMyNTYzZWJcIiwgc3Ryb2tlV2lkdGg6IDJ9KSxcbiAgICBQbG90LmRvdChncm91cGVkQ0RGLCB7eDogXCJwbG90UVwiLCB5OiBcImNkZlwiLCBmaWxsOiBcIiMyNTYzZWJcIiwgcjogMywgdGl0bGU6IGQgPT4gYFE6ICR7ZC5yZWFsUS50b0ZpeGVkKDIpfVxcbkNERjogJHtkLmNkZi50b0ZpeGVkKDQpfWB9KSxcbiAgICBcbiAgICAvLyBUaGUgQ29udGludW91cyBDaGktU3F1YXJlIENERiBDdXJ2ZSAoZGYgPSAyKVxuICAgIC8vIEZvcm11bGE6IDEgLSBleHAoLXgvMilcbiAgICBQbG90LmxpbmUoXG4gICAgICAgZDMucmFuZ2UoMC4wMSwgZDMubWF4KGdyb3VwZWRDREYsIGQgPT4gZC5yZWFsUSkgKyA1LCAwLjEpLm1hcCh4ID0+ICh7eDogeCwgeTogMSAtIE1hdGguZXhwKC14LzIpfSkpLFxuICAgICAge3g6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIiNkYzI2MjZcIiwgc3Ryb2tlV2lkdGg6IDJ9XG4gICAgKSxcbiAgICBcbiAgICAvLyBBZGQgYSB0ZXh0IGFubm90YXRpb24gZXhwbGFpbmluZyB0aGUgbG9nIGNsYW1wIGlmIG5lZWRlZFxuICAgIFBsb3QudGV4dChbe3g6IDAuMDEsIHk6IDAuMSwgdGV4dDogXCLihpAgUT0wIChDbGFtcGVkKVwifV0sIHt4OiBcInhcIiwgeTogXCJ5XCIsIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZm9udFNpemU6IDEwLCBmaWxsOiBcImdyYXlcIn0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ24nKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
