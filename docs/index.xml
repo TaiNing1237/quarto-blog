@@ -10,7 +10,188 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Tue, 25 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 27 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Poker Lesson 2 - 一次只能買到一張牌</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>假設 limit Texas Hold’em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。</p>
+<ul>
+<li>Player A 手上有 A♠ K♠。</li>
+<li>Player B 手上有 J♥ 3♥。</li>
+</ul>
+<p>現在 Player A bet 60 元，Player B 該如何決定要不要跟注 (call) 呢?</p>
+<div id="fig-poker-game-status" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/poker_buyonecard-processed.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Poker Game
+</figcaption>
+</figure>
+</div>
+<hr>
+<p>先來算一下彩池賠率 (pot odds)。加上 Player A 的下注，彩池變成 150 元 (90 + 60)，Player B 需要付出 60 元來跟注，所以彩池賠率是 150:60，也就是 2.5:1。</p>
+<p>對應到需要的勝率 (required equity)：<img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B1%7D%7B2.5%20+%201%7D%20=%200.2857">，也就是說 Player B 需要有至少 28.57% 的勝率才能跟注。</p>
+<p>Player B 目前局勢落後，因為 Player A 是 two-pairs，而 Player B 目前只有 high card J。</p>
+<p>但 Player B 只差一張紅心就能組成 flush (同花)。來計算組成紅心的機率。</p>
+<p>這邊有個小陷阱，如果是紅心 K，那麼 Player A 就會組成 full house (葫蘆)，比同花更大，所以要扣除紅心 K。</p>
+<p>翻牌後還剩下 45 張牌 (52 - 7)，其中有 9 張紅心 (13 - 4)，扣掉紅心 K 後還剩 8 張紅心。所以 Player B 組成 flush 的機率是 <img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B8%7D%7B45%7D%20%5Capprox%2017.78%5C%25">。</p>
+<p>這是在第四張牌 (the turn) Player B 就組成 flush 的機率。問題來了，我們該算第四張牌，還是算到第五張牌(the river) 呢? 這勝率 (Equity) 大約多了一倍。</p>
+<p>這就牽扯到 Player A 目前的狀況，如果 Player A 已經 all-in，或者判斷在下一輪 Player A 高機率不會再下注。那 Player B 就可以算到第五張牌，直覺上 Player B 用這一個跟注的 call 「買到」看兩張牌的機會。</p>
+<p>但一般情況，Player A 很可能在第四張牌後繼續下注，(而且 Player A組成 full house 的機率也不低)。</p>
+<p>所以我們來算算看期望值 (EV)：</p>
+<ol type="1">
+<li>此時彩池有 210 元，其中 60 元是 Player B 即將跟注進去的錢。
+<ul>
+<li>Player B 在第四張牌就組成 flush 的機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B8%7D%7B45%7D">。Player A 之後就不會再加注或跟注。所以假設最好情況，Player B 直接贏得彩池 150 元。(也就是不考慮 Player A 可能組成 full house 翻盤的情況)。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B8%7D%7B45%7D%20%5Ctimes%20150%20%5Capprox%2026.67"> 元。</li>
+<li>如果第四張牌讓 Player A 組成 full house (還有兩張 K和兩張 A)，Player B 就直接輸掉這手牌。這機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B4%7D%7B45%7D">。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B4%7D%7B45%7D%20%5Ctimes%20(-60)%20%5Capprox%20-5.33"> 元。</li>
+<li>如果第四張牌沒讓 Player A 組成 full house，也沒讓 Player B 組成 flush (機率 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B33%7D%7B45%7D">)，比賽繼續，到了第五張牌。</li>
+</ul></li>
+<li>這時候 Player A 很可能會繼續下注 60 元，Player B 跟注，彩池變成 330 元。其中 120 元是 Player B 跟注進去的錢。
+<ul>
+<li>Player B 在第五張牌組成 flush 的機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B8%7D%7B44%7D">。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B33%7D%7B45%7D%20*%20%5Cfrac%7B8%7D%7B44%7D%20*%20(330%20-%20120)%20=%2028"> 元。</li>
+<li>如果第五張牌沒讓 Player B 組成 flush (機率 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B36%7D%7B44%7D">)，Player B 就輸掉這手牌。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B33%7D%7B45%7D%20%5Ctimes%20%5Cfrac%7B36%7D%7B44%7D%20%5Ctimes%20(-120)%20=%20-72"> 元。</li>
+</ul></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-decision-tree" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-decision-tree">graph TD
+    %% 定義節點樣式
+    R4((The Turn))
+    Node2((The River))
+    
+    %% 定義結構與連接線標籤
+    R4 -- "33/45" --&gt; Node2
+    R4 -- "4/45" --&gt; A1[A win: -60]
+    R4 -- "8/45" --&gt; B1[B win: +150]
+
+    Node2 -- "36/44" --&gt; A2[A win: -120]
+    Node2 -- "8/44" --&gt; B2[B win: +210]
+    
+    %% 樣式調整
+    style Node2 fill:#f9fff0, stroke:#333,stroke-width:2px
+    style A1 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style A2 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style B1 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+    style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>綜合以上情況，Player B 的總 EV 是： <img src="https://latex.codecogs.com/png.latex?%0AEV%20=%2026.67%20-%205.33%20+%2028%20-%2072%20=%20-22.66%0A"> 所以是負的，不建議跟注。</p>
+<p>關鍵在最後一個case，也是機率最大的case。若兩輪都沒中 Player B 的flush，從現在看來，損失是 120 元。</p>
+<section id="if-player-a-checks-on-the-river" class="level3">
+<h3 class="anchored" data-anchor-id="if-player-a-checks-on-the-river">If Player A checks on the River:</h3>
+<p>我們可以看一下如果 Player A 在第四張牌後不繼續下注，Player B 輸的話就只損失 60 元，但贏的話可以贏 150 元，這樣 Player B 的 EV 會變成正的。</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-decision-tree-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-decision-tree-2">graph TD
+    %% 定義節點樣式
+    R4((The Turn))
+    Node2((The River))
+    
+    %% 定義結構與連接線標籤
+    R4 -- "33/45" --&gt; Node2
+    R4 -- "4/45" --&gt; A1[A win: -60]
+    R4 -- "8/45" --&gt; B1[B win: +150]
+
+    Node2 -- "36/44" --&gt; A2["&lt;b&gt;A win: &lt;span style='color:red'&gt;-60&lt;/span&gt;&lt;/b&gt;"]
+    Node2 -- "8/44" --&gt; B2["&lt;b&gt;B win: &lt;span style='color:green'&gt;+150&lt;/span&gt;&lt;/b&gt;"]
+    
+    %% 樣式調整
+    style Node2 fill:#f9fff0, stroke:#333,stroke-width:2px
+    style A1 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style A2 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style B1 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+    style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Player A checks on the River
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?%0AEV%20=%20%5Cfrac%7B8%7D%7B45%7D%20%5Ctimes%20150%20-%20%5Cfrac%7B4%7D%7B45%7D%20%5Ctimes%2060%20+%20%5Cfrac%7B33%7D%7B45%7D%20%5Ctimes%20%5Cleft(%20%5Cfrac%7B8%7D%7B44%7D%20%5Ctimes%20150%20-%20%5Cfrac%7B36%7D%7B44%7D%20%5Ctimes%2060%20%5Cright)%20=%207.27%0A"></p>
+</section>
+<section id="小結" class="level3">
+<h3 class="anchored" data-anchor-id="小結">小結</h3>
+<p>回到最一開始，我們計算 Pot Odds 是 2.5:1，對應需要的勝率是 28.57%。 Player B 實際上只有大約 17.78% 的機率在第四張牌就組成 flush，並不足夠跟注。</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Poker</category>
+  <guid>https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/</guid>
+  <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Poker Lesson 1 - 池底賠率 (Pot Odds)</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1126-poker_potodds/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>先來談談賭博中最小的一步，要 <strong>繼續遊戲 (call)</strong> 還是 <strong>忍痛放棄 (fold)</strong>。</p>
+<p>所謂的 Pot Odds，指的是你為了繼續參與遊戲 (call 或 raise) 所需要投入的金額，和你可能贏得的彩池 (pot) 之間的比例。</p>
+<p>舉例來說，假設彩池中有 100 美元，而你需要投入 20 美元來繼續參與遊戲，那麼你的 Pot Odds 就是 20:100，或者簡化為 1:5。</p>
+<p>那我們該如何判斷是否該繼續參與呢? 假設我們目前評估勝率為 <img src="https://latex.codecogs.com/png.latex?p">，那麼我們可以計算出期望值 (Expected Value, EV)： <img src="https://latex.codecogs.com/png.latex?%0AEV%20=%20p%20%5Ctimes%20%5Ctext%7BPot%20Size%7D%20-%20(1%20-%20p)%20%5Ctimes%20%5Ctext%7BCost%20to%20Call%7D%20%5Ctag%7B1%7D%5Clabel%7Beq:ev-pot-odds%7D%0A"> 若 <img src="https://latex.codecogs.com/png.latex?EV%20%3E%200">，表示長期下來這是一個有利可圖的決策，反之則不然。也就是我們希望 <img src="https://latex.codecogs.com/png.latex?%0Ap%20%3E%20%5Cfrac%7B%5Ctext%7BCost%20to%20Call%7D%7D%7B%5Ctext%7BPot%20Size%7D%20+%20%5Ctext%7BCost%20to%20Call%7D%7D%20%5Ctag%7B2%7D%5Clabel%7Beq:pot-odds-threshold%7D%0A"></p>
+<p>在上面例子中，就是 <img src="https://latex.codecogs.com/png.latex?20%20/%20(100%20+%2020)%20=%201/6%20%5Capprox%2016.67%5C%25">。也就是說，如果我們認為自己的勝率超過 16.67%，那麼繼續參與遊戲是有利可圖的。</p>
+<div id="fig-poker-pot-odds" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/2025-1126-poker_potodds/poker_potodds_20-processed.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Poker Pot Odds
+</figcaption>
+</figure>
+</div>
+<section id="odds-vs-probability" class="level3">
+<h3 class="anchored" data-anchor-id="odds-vs-probability">Odds vs Probability</h3>
+<p>在撲克中，Odds 和 Probability 是兩個相關但不同的概念。 Probability 是指某事件發生的可能性，通常以百分比表示 (例如 25% 的機率)。而 Odds 則是指某事件發生與不發生的比率。</p>
+<ul>
+<li>1:3 的 Odds 意味著該事件發生的機率是 1/ (1+3) = 25%。</li>
+<li>3:1 的 Odds 意味著該事件發生的機率是 3/ (3+1) = 75%。</li>
+<li>2:5 的 Odds 意味著該事件發生的機率是 2/ (2+5) ≈ 28.57%。</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Poker</category>
+  <guid>https://your-website-url.example.com/posts/2025-1126-poker_potodds/</guid>
+  <pubDate>Wed, 26 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials</title>
   <dc:creator>Tai-Ning Liao</dc:creator>

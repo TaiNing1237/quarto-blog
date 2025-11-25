@@ -1,0 +1,38 @@
+---
+title: "Poker Lesson 1 - 池底賠率 (Pot Odds)"
+author: "Tai-Ning Liao"
+date: "2025-11-26"
+categories: [Poker]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+先來談談賭博中最小的一步，要 **繼續遊戲 (call)** 還是 **忍痛放棄 (fold)**。
+
+所謂的 Pot Odds，指的是你為了繼續參與遊戲 (call 或 raise) 所需要投入的金額，和你可能贏得的彩池 (pot) 之間的比例。
+
+舉例來說，假設彩池中有 100 美元，而你需要投入 20 美元來繼續參與遊戲，那麼你的 Pot Odds 就是 20:100，或者簡化為 1:5。
+
+那我們該如何判斷是否該繼續參與呢? 假設我們目前評估勝率為 $p$，那麼我們可以計算出期望值 (Expected Value, EV)：
+$$
+EV = p \times \text{Pot Size} - (1 - p) \times \text{Cost to Call} \tag{1}\label{eq:ev-pot-odds}
+$$
+若 $EV > 0$，表示長期下來這是一個有利可圖的決策，反之則不然。也就是我們希望
+$$
+p > \frac{\text{Cost to Call}}{\text{Pot Size} + \text{Cost to Call}} \tag{2}\label{eq:pot-odds-threshold}
+$$
+
+在上面例子中，就是 $20 / (100 + 20) = 1/6 \approx 16.67\%$。也就是說，如果我們認為自己的勝率超過 16.67%，那麼繼續參與遊戲是有利可圖的。
+
+![Poker Pot Odds](poker_potodds_20-processed.png){#fig-poker-pot-odds}
+
+### Odds vs Probability
+
+在撲克中，Odds 和 Probability 是兩個相關但不同的概念。 Probability 是指某事件發生的可能性，通常以百分比表示 (例如 25% 的機率)。而 Odds 則是指某事件發生與不發生的比率。
+
+* 1:3 的 Odds 意味著該事件發生的機率是 1/ (1+3) = 25%。
+* 3:1 的 Odds 意味著該事件發生的機率是 3/ (3+1) = 75%。
+* 2:5 的 Odds 意味著該事件發生的機率是 2/ (2+5) ≈ 28.57%。

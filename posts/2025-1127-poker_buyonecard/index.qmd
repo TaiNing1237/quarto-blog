@@ -1,0 +1,122 @@
+---
+title: "Poker Lesson 2 - 一次只能買到一張牌"
+author: "Tai-Ning Liao"
+date: "2025-11-27"
+categories: [Poker]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+假設 limit Texas Hold'em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。
+
+* Player A 手上有 A♠ K♠。
+* Player B 手上有 J♥ 3♥。
+
+現在 Player A bet 60 元，Player B 該如何決定要不要跟注 (call) 呢?
+
+![Poker Game](poker_buyonecard-processed.jpg){#fig-poker-game-status}
+
+
+---
+
+先來算一下彩池賠率 (pot odds)。加上 Player A 的下注，彩池變成 150 元 (90 + 60)，Player B 需要付出 60 元來跟注，所以彩池賠率是 150:60，也就是 2.5:1。
+
+對應到需要的勝率 (required equity)：$\displaystyle \frac{1}{2.5 + 1} = 0.2857$，也就是說 Player B 需要有至少 28.57% 的勝率才能跟注。
+
+Player B 目前局勢落後，因為 Player A 是 two-pairs，而 Player B 目前只有 high card J。
+
+但 Player B 只差一張紅心就能組成 flush (同花)。來計算組成紅心的機率。
+
+這邊有個小陷阱，如果是紅心 K，那麼 Player A 就會組成 full house (葫蘆)，比同花更大，所以要扣除紅心 K。
+
+翻牌後還剩下 45 張牌 (52 - 7)，其中有 9 張紅心 (13 - 4)，扣掉紅心 K 後還剩 8 張紅心。所以 Player B 組成 flush 的機率是 $\displaystyle \frac{8}{45} \approx 17.78\%$。
+
+這是在第四張牌 (the turn) Player B 就組成 flush 的機率。問題來了，我們該算第四張牌，還是算到第五張牌(the river) 呢? 這勝率 (Equity) 大約多了一倍。
+
+這就牽扯到 Player A 目前的狀況，如果 Player A 已經 all-in，或者判斷在下一輪 Player A 高機率不會再下注。那 Player B 就可以算到第五張牌，直覺上 Player B 用這一個跟注的 call 「買到」看兩張牌的機會。
+
+但一般情況，Player A 很可能在第四張牌後繼續下注，(而且 Player A組成 full house 的機率也不低)。
+
+所以我們來算算看期望值 (EV)：
+
+1. 此時彩池有 210 元，其中 60 元是 Player B 即將跟注進去的錢。
+   - Player B 在第四張牌就組成 flush 的機率是 $\frac{8}{45}$。Player A 之後就不會再加注或跟注。所以假設最好情況，Player B 直接贏得彩池 150 元。(也就是不考慮 Player A 可能組成 full house 翻盤的情況)。這邊的 EV 是 $\frac{8}{45} \times 150 \approx 26.67$ 元。
+   - 如果第四張牌讓 Player A 組成 full house (還有兩張 K和兩張 A)，Player B 就直接輸掉這手牌。這機率是 $\frac{4}{45}$。這邊的 EV 是 $\frac{4}{45} \times (-60) \approx -5.33$ 元。
+   - 如果第四張牌沒讓 Player A 組成 full house，也沒讓 Player B 組成 flush (機率 $\frac{33}{45}$)，比賽繼續，到了第五張牌。
+2. 這時候 Player A 很可能會繼續下注 60 元，Player B 跟注，彩池變成 330 元。其中 120 元是 Player B 跟注進去的錢。
+   - Player B 在第五張牌組成 flush 的機率是 $\frac{8}{44}$。這邊的 EV 是 $\frac{33}{45} * \frac{8}{44} * (330 - 120) = 28$ 元。
+   - 如果第五張牌沒讓 Player B 組成 flush (機率 $\frac{36}{44}$)，Player B 就輸掉這手牌。這邊的 EV 是 $\frac{33}{45} \times \frac{36}{44} \times (-120) = -72$ 元。
+
+
+```{mermaid}
+%%| label: fig-decision-tree
+%%| fig-cap: "Player A bet 60 on Turn and bet 60 on River"
+graph TD
+    %% 定義節點樣式
+    R4((The Turn))
+    Node2((The River))
+    
+    %% 定義結構與連接線標籤
+    R4 -- "33/45" --> Node2
+    R4 -- "4/45" --> A1[A win: -60]
+    R4 -- "8/45" --> B1[B win: +150]
+
+    Node2 -- "36/44" --> A2[A win: -120]
+    Node2 -- "8/44" --> B2[B win: +210]
+    
+    %% 樣式調整
+    style Node2 fill:#f9fff0, stroke:#333,stroke-width:2px
+    style A1 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style A2 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style B1 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+    style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+```
+
+綜合以上情況，Player B 的總 EV 是：
+$$
+EV = 26.67 - 5.33 + 28 - 72 = -22.66
+$$
+所以是負的，不建議跟注。
+
+關鍵在最後一個case，也是機率最大的case。若兩輪都沒中 Player B 的flush，從現在看來，損失是 120 元。
+
+### If Player A checks on the River:
+
+我們可以看一下如果 Player A 在第四張牌後不繼續下注，Player B 輸的話就只損失 60 元，但贏的話可以贏 150 元，這樣 Player B 的 EV 會變成正的。
+
+```{mermaid}
+%%| label: fig-decision-tree-2
+%%| fig-cap: "Player A checks on the River"
+graph TD
+    %% 定義節點樣式
+    R4((The Turn))
+    Node2((The River))
+    
+    %% 定義結構與連接線標籤
+    R4 -- "33/45" --> Node2
+    R4 -- "4/45" --> A1[A win: -60]
+    R4 -- "8/45" --> B1[B win: +150]
+
+    Node2 -- "36/44" --> A2["<b>A win: <span style='color:red'>-60</span></b>"]
+    Node2 -- "8/44" --> B2["<b>B win: <span style='color:green'>+150</span></b>"]
+    
+    %% 樣式調整
+    style Node2 fill:#f9fff0, stroke:#333,stroke-width:2px
+    style A1 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style A2 fill:#ffcccc, stroke:#cc0000,stroke-width:2px
+    style B1 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+    style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
+```
+
+$$
+EV = \frac{8}{45} \times 150 - \frac{4}{45} \times 60 + \frac{33}{45} \times \left( \frac{8}{44} \times 150 - \frac{36}{44} \times 60 \right) = 7.27
+$$
+
+
+### 小結
+回到最一開始，我們計算 Pot Odds 是 2.5:1，對應需要的勝率是 28.57%。
+Player B 實際上只有大約 17.78% 的機率在第四張牌就組成 flush，並不足夠跟注。
+
