@@ -1,1 +1,8 @@
 /* css styles */
+/* 讓獨立顯示的數學公式 (Display Math) 在溢出時出現捲軸 */
+mjx-container[display="true"], .MathJax_Display, .math.display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  display: block;
+}
