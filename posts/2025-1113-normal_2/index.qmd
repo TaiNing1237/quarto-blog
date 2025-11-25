@@ -157,8 +157,120 @@ $$
 > (ii) $\lim_{n \to \infty} \chi_n(t) = \chi(t)$ 對於所有 $t \in \mathbb{R}^d$ 成立。
 
 
+----
 
+### Interactive 常態分佈與其傅立葉變換
 
+這是一個互動式視覺化，展示 Normal Distribution $N(\mu, \sigma^2)$ 及其 Fourier Transform。
+特別注意 3D 圖中的**螺旋結構**：當 $\mu \neq 0$ 時，頻域會產生旋轉（Phase Shift）。
+
+```{=html}
+<div id="cf-controls" style="margin-bottom:12px; display:flex; gap:12px; align-items:center;">
+  <label>Mean (μ): <input id="mu" type="range" min="-3" max="3" step="0.1" value="0"></label>
+  <span id="mu-val">0.0</span>
+  <label>Variance (σ²): <input id="sigmaSq" type="range" min="0.1" max="10" step="0.1" value="1.0"></label>
+  <span id="sigma-val">1.0</span>
+</div>
+
+<div id="pdf-plot" style="width:48%; display:inline-block; vertical-align:top;"></div>
+<div id="ft-plot" style="width:50%; display:inline-block; vertical-align:top;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+(() => {
+  const n = 500;
+  const xMin = -10, xMax = 10;
+  const fMin = -3, fMax = 3;
+
+  const xArr = Array.from({length:n}, (_,i) => xMin + (i/(n-1))*(xMax-xMin));
+  const fArr = Array.from({length:n}, (_,i) => fMin + (i/(n-1))*(fMax-fMin));
+
+  const muEl = document.getElementById('mu');
+  const sigmaEl = document.getElementById('sigmaSq');
+  const muVal = document.getElementById('mu-val');
+  const sigmaVal = document.getElementById('sigma-val');
+
+  function compute(mu, sigmaSq) {
+    const sigma = Math.sqrt(sigmaSq);
+    const pdf = xArr.map(x => (1/(sigma*Math.sqrt(2*Math.PI))) * Math.exp(-0.5*Math.pow((x-mu)/sigma,2)));
+    const ft = fArr.map(xi => {
+      const magnitude = Math.exp(-2*Math.pow(Math.PI,2)*sigmaSq*xi*xi);
+      const phase = -2*Math.PI*mu*xi;
+      return { xi, real: magnitude*Math.cos(phase), imag: magnitude*Math.sin(phase) };
+    });
+    return { pdf, ft };
+  }
+
+  let mu = parseFloat(muEl.value);
+  let sigmaSq = parseFloat(sigmaEl.value);
+  muVal.textContent = mu.toFixed(1);
+  sigmaVal.textContent = sigmaSq.toFixed(1);
+
+  const init = compute(mu, sigmaSq);
+
+  const pdfTrace = { x: xArr, y: init.pdf, type: 'scatter', mode: 'lines', line: { color: 'steelblue' } };
+  Plotly.newPlot('pdf-plot', [pdfTrace], { title: 'Probability Density', xaxis: {range:[xMin,xMax]}, yaxis:{range:[0,1.5]} }, {responsive:true});
+
+  const ftTrace = { type:'scatter3d', mode:'lines', x: init.ft.map(d=>d.xi), y: init.ft.map(d=>d.real), z: init.ft.map(d=>d.imag), line:{width:4,color:init.ft.map(d=>d.xi),colorscale:'Viridis'} };
+  const ftLayout = {
+    margin:{l:0,r:0,b:0,t:30},
+    scene:{
+      aspectmode:'manual',
+      aspectratio:{x:2,y:1,z:1},
+      xaxis:{title:'Frequency (ξ)'},
+      yaxis:{title:'Real'},
+      zaxis:{title:'Imaginary'},
+      // Camera: look roughly along the z-axis so the imaginary axis is perpendicular to the screen
+      camera: {
+        eye: { x: 0.0, y: 0.0, z: 2.5 },
+        center: { x: 0.0, y: 0.0, z: 0.0 },
+        up: { x: 0.0, y: 1.0, z: 0.0 }
+      }
+    }
+  };
+  Plotly.newPlot('ft-plot', [ftTrace], ftLayout, {responsive:true});
+
+  let savedCamera = null;
+  const ftDiv = document.getElementById('ft-plot');
+  ftDiv.on('plotly_relayout', (d) => {
+    if (d['scene.camera']) { savedCamera = d['scene.camera']; }
+    else if (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) {
+      savedCamera = JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera));
+    }
+  });
+
+  let timer = null;
+  function scheduleUpdate() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      const mu = parseFloat(muEl.value);
+      const sigmaSq = parseFloat(sigmaEl.value);
+      muVal.textContent = mu.toFixed(1);
+      sigmaVal.textContent = sigmaSq.toFixed(1);
+      const { pdf, ft } = compute(mu, sigmaSq);
+
+      Plotly.restyle('pdf-plot', { y: [pdf] }, [0]);
+
+      const fallback = (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) ? JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera)) : null;
+      const keepCam = savedCamera || fallback;
+
+      Plotly.restyle('ft-plot', { x: [ft.map(d=>d.xi)], y: [ft.map(d=>d.real)], z: [ft.map(d=>d.imag)], 'line.color': [ft.map(d=>d.xi)] }, [0]).then(() => {
+        if (keepCam) setTimeout(() => Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{}), 10);
+      }).catch(() => {
+        Plotly.react('ft-plot', [{ type:'scatter3d', mode:'lines', x: ft.map(d=>d.xi), y: ft.map(d=>d.real), z: ft.map(d=>d.imag), line:{width:4,color:ft.map(d=>d.xi),colorscale:'Viridis'} }], ftLayout).then(() => {
+          if (keepCam) Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{});
+        });
+      });
+
+    }, 50);
+  }
+
+  muEl.addEventListener('input', scheduleUpdate);
+  sigmaEl.addEventListener('input', scheduleUpdate);
+
+})();
+</script>
+```
 
 
 

@@ -88,6 +88,10 @@ $$
 //| echo: false
 //| label: fig-poker-hand-counts
 //| fig-cap: "撲克手牌組合數量直方圖"
+
+// 引入 Plotly
+Plotly = require("https://cdn.plot.ly/plotly-2.27.0.min.js")
+
 // 定義手牌類型及其組合數量
 handTypes = [
   { type: "Full House", count: 3744 },
@@ -97,17 +101,35 @@ handTypes = [
   { type: "Two Pairs", count: 123552 },
   { type: "One Pair", count: 1098240 },
   { type: "High Card", count: 1302540 }
-];  
+];
+
 // 繪製直方圖
-Plot.plot({
-  // title: "Poker Hand Combination Counts",
-  y: { label: "Number of Combinations (log scale)", grid: true, type: "log" },
-  x: { label: "Hand Type", domain: handTypes.map(d => d.type) },
-  caption: null, // 移除 Observable Plot 的版權標記
-  marks: [
-    Plot.barY(handTypes, { x: "type", y: "count", fill: "#69b3a2", y1: 1000 })
-  ]
-});
+{
+  const div = DOM.element('div');
+  Plotly.newPlot(div, [{
+    type: 'bar',
+    x: handTypes.map(d => d.type),
+    y: handTypes.map(d => d.count),
+    marker: { color: '#69b3a2' },
+    text: handTypes.map(d => d.count.toLocaleString()),
+    textposition: 'auto'
+  }], {
+    yaxis: {
+      title: 'Number of Combinations (log scale)',
+      type: 'log',
+      gridcolor: '#e5e5e5'
+    },
+    xaxis: {
+      title: 'Hand Type'
+    },
+    margin: { t: 30, b: 80, l: 80, r: 30 },
+    plot_bgcolor: '#ffffff',
+    paper_bgcolor: '#ffffff'
+  }, {
+    responsive: true
+  });
+  return div;
+}
 ```
 
 ### Texas Hold'em
@@ -185,10 +207,13 @@ $$
 //| label: fig-texas-holdem-counts 
 //| fig-cap: "德州撲克 (7選5) 手牌組合數量直方圖" 
 
+// 引入 Plotly（每個 OJS 區塊需要獨立引入）
+Plotly = require("https://cdn.plot.ly/plotly-2.27.0.min.js")
+
 // 定義德州撲克手牌數據 (7選5)
 texasHandTypes = [
-  // { type: "Straight Flush",  count: 41_584 },
-  // { type: "Four of a Kind",  count: 224_848 },
+  { type: "Straight Flush",  count: 41_584 },
+  { type: "Four of a Kind",  count: 224_848 },
   { type: "Full House",      count: 3_473_184 },
   { type: "Flush",           count: 4_047_644 },
   { type: "Straight",        count: 6_180_020 },
@@ -198,21 +223,34 @@ texasHandTypes = [
   { type: "High Card",       count: 23_294_460 }
 ];
 
-// 繪製直方圖（在對數刻度下，柱子需自正數起點）
-Plot.plot({
-  y: { label: "Number of Combinations (log scale)", grid: true, type: "log" },
-  x: { label: "Hand Type", domain: texasHandTypes.map(d => d.type) },
-  caption: null,
-  marks: [
-    Plot.barY(texasHandTypes, {
-      x: "type",
-      y: "count",
-      y1: 1_000_000,              // 對數刻度下避免從 0 起，確保能繪出柱子
-      fill: "steelblue",
-      title: d => `${d.type}\nCount: ${d.count.toLocaleString()}\nFreq: ${(d.count / 133_784_560 * 100).toFixed(2)}%`
-    })
-  ]
-});
+// 繪製直方圖
+{
+  const div = DOM.element('div');
+  Plotly.newPlot(div, [{
+    type: 'bar',
+    x: texasHandTypes.map(d => d.type),
+    y: texasHandTypes.map(d => d.count),
+    marker: { color: 'steelblue' },
+    text: texasHandTypes.map(d => `${d.count.toLocaleString()}<br>${(d.count / 133_784_560 * 100).toFixed(2)}%`),
+    textposition: 'auto',
+    hovertemplate: '<b>%{x}</b><br>Count: %{y:,}<br>Freq: %{text}<extra></extra>'
+  }], {
+    yaxis: {
+      title: 'Number of Combinations (log scale)',
+      type: 'log',
+      gridcolor: '#e5e5e5'
+    },
+    xaxis: {
+      title: 'Hand Type'
+    },
+    margin: { t: 30, b: 80, l: 80, r: 30 },
+    plot_bgcolor: '#ffffff',
+    paper_bgcolor: '#ffffff'
+  }, {
+    responsive: true
+  });
+  return div;
+}
 ``` 
 
 ----
