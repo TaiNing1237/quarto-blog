@@ -1,8 +1,21 @@
 /* css styles */
-/* 讓獨立顯示的數學公式 (Display Math) 在溢出時出現捲軸 */
-mjx-container[display="true"], .MathJax_Display, .math.display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-  display: block;
+/* 針對所有可能的數學公式容器進行覆蓋 */
+.cell-output-display, 
+.quarto-figure-caption-container, 
+mjx-container[display="true"], 
+.math.display,
+div.math-display {
+  /* 加上 !important 強制讓此規則生效 */
+  overflow-x: auto !important; 
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+
+/* 如果是 KaTeX 引擎，再多針對 KaTeX 容器加一層保護 */
+.katex-display {
+  overflow-x: auto !important; 
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  display: block !important;
 }
