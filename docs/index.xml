@@ -10,7 +10,778 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Thu, 27 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 28 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Poker hands 組合數</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1128-poker_count/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/2025-1128-poker_count/poker_cardprob_57.png" class="img-fluid figure-img"></p>
+<figcaption>Poker Counts Takeaway</figcaption>
+</figure>
+</div>
+<p><strong>同花順 (straight flush) 的方法數:</strong> 在一副標準的 52 張撲克牌中，有 4 種花色，每種花色有 13 張牌。同花順是指五張連續數字且同花色的牌。首先，我們可以有 10 種不同的同花順組合（A-5, 2-6, …, 10-A）。 每種花色有 1 種組合，所以同花順的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A4%20%5Ctimes%2010%20=%2040%0A"></p>
+<p><strong>四條 (four of a kind) 的方法數:</strong> 要組成四條，我們需要從 13 個數字中選擇 1 個數字來組成四張牌，然後從剩下的 12 個數字中選擇 1 個數字來組成單張牌。每個數字的四張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B4%7D%20=%201"> 種組合，而單張牌有 4 種組合。所以四條的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A13%20%5Ctimes%201%20%5Ctimes%2012%20%5Ctimes%204%20=%20624%0A"></p>
+<p><strong>葫蘆 (full house) 的方法數:</strong> 葫蘆是指三張同數字的牌加上兩張同數字的牌。首先，我們從 13 個數字中選擇一個數字來組成三張牌，然後從剩下的 12 個數字中選擇一個數字來組成兩張牌。每個數字的三張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B3%7D%20=%204"> 種組合，而兩張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B2%7D%20=%206"> 種組合。所以葫蘆的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A13%20%5Ctimes%204%20%5Ctimes%2012%20%5Ctimes%206%20=%203744%0A"></p>
+<p><strong>同花 (flush) 的方法數:</strong> 要組成同花，我們需要從同一花色中選出 5 張牌。但要扣掉同花順。所以，同花的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A4%20%5Ctimes%20%5Cbinom%7B13%7D%7B5%7D%20-%2040%20=%204%20%5Ctimes%201287%20-%2040%20=%205108%0A"></p>
+<p><strong>順子 (straight) 的方法數:</strong> 順子是指五張連續數字的牌，不考慮花色。在 13 個數字中（A, 2, 3, …, 10, J, Q, K），我們可以有 10 種不同的順子組合（A-5, 2-6, …, 10-A）。每張牌可以有 4 種花色，一樣要扣掉同花順。所以順子的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A10%20%5Ctimes%204%5E5%20-%2040%20=%2010%20%5Ctimes%201024%20-%2040%20=%2010200%0A"></p>
+<p><strong>三條 (three of a kind) 的方法數:</strong> 要組成三條，我們需要從 13 個數字中選擇 1 個數字來組成三張牌，然後從剩下的 12 個數字中選擇 2 個數字來組成單張牌。每個數字的三張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B3%7D%20=%204"> 種組合，而單張牌有 4 種組合。所以三條的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A13%20%5Ctimes%204%20%5Ctimes%20%5Cbinom%7B12%7D%7B2%7D%20%5Ctimes%204%5E2%20=%2013%20%5Ctimes%204%20%5Ctimes%2066%20%5Ctimes%2016%20=%2054912%0A"></p>
+<p><strong>兩對 (two pairs) 的方法數:</strong> 要組成兩對，我們需要從 13 個數字中選擇 2 個數字來組成兩對，然後從剩下的 11 個數字中選擇 1 個數字來組成單張牌。每個數字的兩張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B2%7D%20=%206"> 種組合，而單張牌有 4 種組合。所以兩對的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B13%7D%7B2%7D%20%5Ctimes%206%5E2%20%5Ctimes%2011%20%5Ctimes%204%20=%2078%20%5Ctimes%2036%20%5Ctimes%2044%20=%20123552%0A"></p>
+<p><strong>一對 (one pair) 的方法數:</strong> 要組成一對，我們需要從 13 個數字中選擇 1 個數字來組成一對，然後從剩下的 12 個數字中選擇 3 個數字來組成單張牌。每個數字的兩張牌有 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B2%7D%20=%206"> 種組合，而單張牌有 4 種組合。所以一對的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A13%20%5Ctimes%206%20%5Ctimes%20%5Cbinom%7B12%7D%7B3%7D%20%5Ctimes%204%5E3%20=%2013%20%5Ctimes%206%20%5Ctimes%20220%20%5Ctimes%2064%20=%201098240%0A"></p>
+<p><strong>散牌 (high card) 的方法數:</strong> 散牌是指沒有任何組合的牌。我們需要從 13 個數字中選擇 5 個數字來組成散牌，然後從每個數字中選擇 1 張牌。每張牌有 4 種組合。但是要扣掉可能是順子和同花的組合數量。所以散牌的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B13%7D%7B5%7D%20%5Ctimes%204%5E5%20-%2010200%20-%205108%20-%2040%20=%201287%20%5Ctimes%201024%20-%2010200%20-%205108%20-%2040%20=%201302540%0A"></p>
+<p>檢查一下所有手牌組合數量的總和是否等於 52 張牌中選 5 張的總組合數： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B5%7D%20=%202598960%0A"></p>
+<p>而各手牌組合數量總和為： <img src="https://latex.codecogs.com/png.latex?%0A40%20+%20624%20+%203744%20+%205108%20+%2010200%20+%2054912%20+%20123552%20+%201098240%20+%201302540%20=%202598960%0A"> 符合預期!</p>
+<p><strong>直方圖:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="92" data-source-offset="-16" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb1-92">handTypes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb1-93">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Full House"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3744</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-94">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Flush"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5148</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-95">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Straight"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10240</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-96">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Three of a Kind"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">54912</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-97">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Two Pairs"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">123552</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-98">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"One Pair"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1098240</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-99">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"High Card"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1302540</span> }</span>
+<span id="cb1-100">]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span>  </span>
+<span id="cb1-101"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 繪製直方圖</span></span>
+<span id="cb1-102">Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>({</span>
+<span id="cb1-103">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// title: "Poker Hand Combination Counts",</span></span>
+<span id="cb1-104">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Number of Combinations (log scale)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"log"</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-105">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hand Type"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> handTypes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type</span>) }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb1-106">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 移除 Observable Plot 的版權標記</span></span>
+<span id="cb1-107">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb1-108">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">barY</span>(handTypes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"count"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">fill</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#69b3a2"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span> })</span>
+<span id="cb1-109">  ]</span>
+<span id="cb1-110">})<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<div id="fig-poker-hand-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-poker-hand-counts-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-poker-hand-counts-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 撲克手牌組合數量直方圖
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="texas-holdem" class="level3">
+<h3 class="anchored" data-anchor-id="texas-holdem">Texas Hold’em</h3>
+<p>但在德州撲克中，假設跟到第五張，我們是從七張牌中選五張來組成最好的手牌。所以我們可以計算從七張牌中組成各種手牌的組合數量。</p>
+<p>首先，我們必須確立樣本空間的總數。在德州撲克中，玩家最終會有 7 張牌（2 張手牌 + 5 張公牌），我們需要從這 52 張牌中選出 7 張，總組合數為：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B7%7D%20=%20133,784,560%0A"> 這個數字比 5 張牌的 260 萬大了約 50 倍，計算過程中會出現許多「重疊」的情況（例如手上有 6 張同花色的牌，或者同時擁有兩對和三條），我們必須確保只計算該手牌能組成的<strong>最佳</strong>牌型。</p>
+<p><strong>同花順 (Straight Flush) 的方法數:</strong> 這包含了皇家同花順。在 7 張牌中要湊出同花順，意味著這 7 張牌中至少包含了 5 張連續且同花色的牌。 這需要考慮 7 張牌剛好構成 5 張、6 張或 7 張連續同花的情況。經過排容原理計算後，共有： <img src="https://latex.codecogs.com/png.latex?41,584%20">機率約為 <img src="https://latex.codecogs.com/png.latex?0.03%5C%25">。</p>
+<p><strong>四條 (Four of a Kind) 的方法數:</strong> 這比較好算。我們需要從 13 個數字選 1 個做為四條（<img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B13%7D%7B1%7D">），這四張牌全拿（<img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B4%7D%7B4%7D">）。剩下的 3 張牌可以從剩餘的 48 張牌中任意選擇（<img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B48%7D%7B3%7D">）。 注意：即便剩下的 3 張牌湊成一對甚至三條，因為四條是大牌，最佳手牌依然是四條，所以不用扣除。 <img src="https://latex.codecogs.com/png.latex?%0A13%20%5Ctimes%201%20%5Ctimes%20%5Cbinom%7B48%7D%7B3%7D%20=%2013%20%5Ctimes%2017,296%20=%20224,848%0A"></p>
+<p><strong>葫蘆 (Full House) 的方法數:</strong> 這是 7 張牌中最容易算錯的部分。因為在 7 張牌中，你可能拿到「三條+三條」（取大的三條配小的一對算葫蘆）、「三條+兩對」、「三條+一對」。 經過詳細分類計算（此處省略繁瑣的排容過程），總共有： <img src="https://latex.codecogs.com/png.latex?%0A3,473,184%0A"></p>
+<p><strong>同花 (Flush) 的方法數:</strong> 我們需要 7 張牌中至少有 5 張同一花色，且不包含同花順。 算法是：選 1 種花色，然後從該花色 13 張選 7 張、選 6 張配 1 張雜牌、或選 5 張配 2 張雜牌。最後減去同花順的數量。 組合數為：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A4%20%5Ctimes%20%5B%5Cbinom%7B13%7D%7B7%7D%20+%20%5Cbinom%7B13%7D%7B6%7D%5Cbinom%7B39%7D%7B1%7D%20+%20%5Cbinom%7B13%7D%7B5%7D%5Cbinom%7B39%7D%7B2%7D%5D%20-%2041,584%20=%204,047,644%0A"></p>
+<p>在德州撲克中，葫蘆機率 <em>依然小於</em> 同花機率，並沒有反轉!</p>
+<p>P.S. 在短牌撲克（Short Deck Poker）中，由於去掉了 2-5，共 36 張牌，葫蘆反而變得比同花更容易出現(反轉!)，這是因為牌數減少後，同花的組合數下降幅度較大所致。所以在短牌規則中通常是「同花 &gt; 葫蘆」。</p>
+<p><strong>順子 (Straight) 的方法數:</strong> 類似同花，需找出 5、6 或 7 張連續數字，扣除同花順。 總數為： <img src="https://latex.codecogs.com/png.latex?6,180,020%20"></p>
+<p><strong>三條 (Three of a Kind) 的方法數:</strong> 指 7 張牌中包含三張同號，但剩下的 4 張牌不能形成另外的三條或一對（否則會變成葫蘆或四條），也不能形成順子或同花。 總數為： <img src="https://latex.codecogs.com/png.latex?%0A6,461,620%0A"></p>
+<p><strong>兩對 (Two Pairs) 的方法數:</strong></p>
+<p>這在德州撲克中非常常見。你可以拿到 3 對（取最大的兩對），或者 2 對配 3 張散牌。 總數為： <img src="https://latex.codecogs.com/png.latex?31,433,400%20"></p>
+<p><strong>一對 (One Pair) 的方法數:</strong> 總數為： <img src="https://latex.codecogs.com/png.latex?58,627,800%20"></p>
+<p>這意味著在 Showdown 階段，你有接近 44% 的機率至少持有一對。</p>
+<p><strong>散牌 (High Card) 的方法數:</strong> 什麼都沒湊成，連一對都沒有。 總數為： <img src="https://latex.codecogs.com/png.latex?%0A23,294,460%0A"></p>
+<p>有趣的是，在 7 張牌選 5 的規則下，<strong>拿散牌的機率比拿一對還要低</strong>（散牌約 17.4%，一對約 43.8%）。這解釋了為什麼在德州撲克中，光靠一張「A High」通常很難贏到底。</p>
+<hr>
+<p><strong>德州撲克手牌分佈直方圖:</strong></p>
+<p>我們將上述 7 選 5 的數據更新到圖表中，你會發現分佈趨勢與標準 5 張牌撲克有所不同，特別是葫蘆與同花的順序對調，以及散牌數量的驟降。</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="189" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 188;"><span id="cb2-189">texasHandTypes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb2-190">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// { type: "Straight Flush",  count: 41_584 },</span></span>
+<span id="cb2-191">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// { type: "Four of a Kind",  count: 224_848 },</span></span>
+<span id="cb2-192">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Full House"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3_473_184</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-193">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Flush"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>           <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4_047_644</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-194">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Straight"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6_180_020</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-195">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Three of a Kind"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6_461_620</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-196">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Two Pairs"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>       <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">31_433_400</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-197">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"One Pair"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">58_627_800</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-198">  { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"High Card"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>       <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23_294_460</span> }</span>
+<span id="cb2-199">]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-200"></span>
+<span id="cb2-201"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 繪製直方圖（在對數刻度下，柱子需自正數起點）</span></span>
+<span id="cb2-202">Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>({</span>
+<span id="cb2-203">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Number of Combinations (log scale)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"log"</span> }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-204">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> { <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hand Type"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> texasHandTypes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type</span>) }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-205">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-206">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb2-207">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">barY</span>(texasHandTypes<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {</span>
+<span id="cb2-208">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"type"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-209">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"count"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-210">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>              <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 對數刻度下避免從 0 起，確保能繪出柱子</span></span>
+<span id="cb2-211">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">fill</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"steelblue"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-212">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> d <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}\n</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Count: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">toLocaleString</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}\n</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Freq: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>(d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">count</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">133_784_560</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">toFixed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%`</span></span>
+<span id="cb2-213">    })</span>
+<span id="cb2-214">  ]</span>
+<span id="cb2-215">})<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<div id="fig-texas-holdem-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-texas-holdem-counts-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-texas-holdem-counts-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
+</figcaption>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+<section id="總結與洞察" class="level3">
+<h3 class="anchored" data-anchor-id="總結與洞察">總結與洞察</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Card Type</th>
+<th>5-Card Prob</th>
+<th>7-Card Prob</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Four of a Kind</td>
+<td>0.0240 %</td>
+<td>0.168 %</td>
+</tr>
+<tr class="even">
+<td>Full House</td>
+<td>0.1441 %</td>
+<td>2.60 %</td>
+</tr>
+<tr class="odd">
+<td>Flush</td>
+<td>0.1965 %</td>
+<td>3.03 %</td>
+</tr>
+<tr class="even">
+<td>Straight</td>
+<td>0.3925 %</td>
+<td>4.62 %</td>
+</tr>
+<tr class="odd">
+<td>Three of a Kind</td>
+<td>2.1128 %</td>
+<td>4.83 %</td>
+</tr>
+<tr class="even">
+<td>Two Pairs</td>
+<td>4.7539 %</td>
+<td>23.50 %</td>
+</tr>
+<tr class="odd">
+<td>One Pair</td>
+<td>42.2569 %</td>
+<td>43.82 %</td>
+</tr>
+<tr class="even">
+<td>High Card</td>
+<td>50.1177 %</td>
+<td>17.41 %</td>
+</tr>
+</tbody>
+</table>
+<p>對比 5 張牌與 7 張牌的機率，我們可以得到幾個對實戰有幫助的結論：</p>
+<ol type="1">
+<li><strong>散牌大幅減少</strong>：在 5 張牌中，散牌佔了 50%；但在 7 張牌中，散牌只佔 17%。這意味著在河牌圈（River），對手大概率是有牌的（至少有一對）。<br>
+</li>
+<li><strong>高頻手牌</strong>：一對和兩對在 7 張牌中非常常見，分別佔了約 44% 和 23.5%。這表示在實戰中，持有至少一對的機率非常高，這也影響了下注策略和讀牌判斷。</li>
+<li><strong>葫蘆與同花機率大幅上升</strong>：從傳統撲克轉到德州撲克，最大的直覺衝擊在於牌型差距的縮小。在傳統撲克中，拿三條比拿葫蘆容易 15 倍，但在德州撲克中，這個差距縮小到了不到 2 倍。這意味著：在德州撲克中，當你拿到三條或順子時，撞上對手拿到同花或葫蘆的機率，比你想像中高得多。我們可以把大牌分成兩組來記：
+<ol type="1">
+<li>常見強牌組 (約 5%)：三條 與 順子。這兩者出現頻率很高，是底池主要競爭者。</li>
+<li>稀有魔王組 (約 3%)：同花 與 葫蘆。雖然只比上面少一點，但在機率上這意味著它們通常能贏過上面的牌。</li>
+</ol></li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <category>Poker</category>
+  <guid>https://your-website-url.example.com/posts/2025-1128-poker_count/</guid>
+  <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Poker Lesson 2 - 一次只能買到一張牌</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
@@ -1912,7 +2683,7 @@ font-style: inherit;">"gray"</span>})</span>
   <pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>一天證明一個 Normal Distribution 的性質 Day5：獨立性的視角 Cumulant</title>
+  <title>一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1119-normal_5/</link>
   <description><![CDATA[ 
@@ -1921,7 +2692,7 @@ font-style: inherit;">"gray"</span>})</span>
 
 
 
-<p>今天來講個比較輕鬆的小主題：<strong>Cumulant 多項式</strong></p>
+<p>今天來講個輕鬆的小主題：<strong>Cumulant</strong>。</p>
 <p>對於一個隨機變數 <img src="https://latex.codecogs.com/png.latex?X">，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。</p>
 <section id="cumulant-generating-function" class="level3">
 <h3 class="anchored" data-anchor-id="cumulant-generating-function">Cumulant Generating Function</h3>

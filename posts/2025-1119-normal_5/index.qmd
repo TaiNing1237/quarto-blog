@@ -1,5 +1,5 @@
 ---
-title: "一天證明一個 Normal Distribution 的性質 Day5：獨立性的視角 Cumulant"
+title: "一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant"
 author: "Tai-Ning Liao"
 date: "2025-11-19"
 categories: [Normal Distribution]
@@ -10,7 +10,7 @@ format:
         fig-cap-align: center # 這是控制圖標置中的關鍵
 ---
 
-今天來講個比較輕鬆的小主題：**Cumulant 多項式** 
+今天來講個輕鬆的小主題：**Cumulant**。
 
 對於一個隨機變數 $X$，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。
 
