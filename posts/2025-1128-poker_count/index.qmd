@@ -207,9 +207,6 @@ $$
 //| label: fig-texas-holdem-counts 
 //| fig-cap: "德州撲克 (7選5) 手牌組合數量直方圖" 
 
-// 引入 Plotly（每個 OJS 區塊需要獨立引入）
-Plotly = require("https://cdn.plot.ly/plotly-2.27.0.min.js")
-
 // 定義德州撲克手牌數據 (7選5)
 texasHandTypes = [
   { type: "Straight Flush",  count: 41_584 },
