@@ -106,16 +106,17 @@ handTypes = [
 // 繪製直方圖
 {
   const div = DOM.element('div');
+  const totalCombos = 2598960;
   Plotly.newPlot(div, [{
     type: 'bar',
     x: handTypes.map(d => d.type),
-    y: handTypes.map(d => d.count),
+    y: handTypes.map(d => (d.count / totalCombos * 100)),
     marker: { color: '#69b3a2' },
-    text: handTypes.map(d => d.count.toLocaleString()),
+    text: handTypes.map(d => `${(d.count / totalCombos * 100).toFixed(3)}%`),
     textposition: 'auto'
   }], {
     yaxis: {
-      title: 'Number of Combinations (log scale)',
+      title: 'Probability (%)',
       type: 'log',
       gridcolor: '#e5e5e5'
     },
@@ -126,7 +127,7 @@ handTypes = [
     plot_bgcolor: '#ffffff',
     paper_bgcolor: '#ffffff'
   }, {
-    responsive: true
+    staticPlot: true
   });
   return div;
 }
@@ -209,8 +210,8 @@ $$
 
 // 定義德州撲克手牌數據 (7選5)
 texasHandTypes = [
-  { type: "Straight Flush",  count: 41_584 },
-  { type: "Four of a Kind",  count: 224_848 },
+  // { type: "Straight Flush",  count: 41_584 },
+  // { type: "Four of a Kind",  count: 224_848 },
   { type: "Full House",      count: 3_473_184 },
   { type: "Flush",           count: 4_047_644 },
   { type: "Straight",        count: 6_180_020 },
@@ -223,17 +224,17 @@ texasHandTypes = [
 // 繪製直方圖
 {
   const div = DOM.element('div');
+  const totalCombos = 133_784_560;
   Plotly.newPlot(div, [{
     type: 'bar',
     x: texasHandTypes.map(d => d.type),
-    y: texasHandTypes.map(d => d.count),
+    y: texasHandTypes.map(d => (d.count / totalCombos * 100)),
     marker: { color: 'steelblue' },
-    text: texasHandTypes.map(d => `${d.count.toLocaleString()}<br>${(d.count / 133_784_560 * 100).toFixed(2)}%`),
-    textposition: 'auto',
-    hovertemplate: '<b>%{x}</b><br>Count: %{y:,}<br>Freq: %{text}<extra></extra>'
+    text: texasHandTypes.map(d => `${(d.count / totalCombos * 100).toFixed(2)}%`),
+    textposition: 'auto'
   }], {
     yaxis: {
-      title: 'Number of Combinations (log scale)',
+      title: 'Probability (%)',
       type: 'log',
       gridcolor: '#e5e5e5'
     },
@@ -244,7 +245,7 @@ texasHandTypes = [
     plot_bgcolor: '#ffffff',
     paper_bgcolor: '#ffffff'
   }, {
-    responsive: true
+    staticPlot: true
   });
   return div;
 }

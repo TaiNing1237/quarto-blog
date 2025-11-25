@@ -31,4 +31,7 @@ mjx-container[display="true"],
   
   /* 選用：稍微縮小字體讓它比較容易塞進去 (可自行調整或刪除) */
   font-size: 90%; 
+
+  /* 選用：加個內陰影讓使用者知道這是可以橫向捲動的區塊 */
+  box-shadow: inset -5px 0 5px -5px rgba(0,0,0,0.3);
 }

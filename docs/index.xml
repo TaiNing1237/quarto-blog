@@ -193,14 +193,23 @@ background-color: null;
 font-style: inherit;">'div'</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-109">  Plotly<span class="op" style="color: #5E5E5E;
+<span id="cb1-109">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> totalCombos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2598960</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-110">  Plotly<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">newPlot</span>(div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> [{</span>
-<span id="cb1-110">    <span class="dt" style="color: #AD0000;
+<span id="cb1-111">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -209,7 +218,7 @@ background-color: null;
 font-style: inherit;">'bar'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-111">    <span class="dt" style="color: #AD0000;
+<span id="cb1-112">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -226,7 +235,7 @@ background-color: null;
 font-style: inherit;">type</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-112">    <span class="dt" style="color: #AD0000;
+<span id="cb1-113">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -236,14 +245,20 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=&gt;</span> (d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">count</span>)<span class="op" style="color: #5E5E5E;
+font-style: inherit;">count</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> totalCombos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-113">    <span class="dt" style="color: #AD0000;
+<span id="cb1-114">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">marker</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -256,7 +271,7 @@ background-color: null;
 font-style: inherit;">'#69b3a2'</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-114">    <span class="dt" style="color: #AD0000;
+<span id="cb1-115">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">text</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -266,42 +281,58 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>(d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">count</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> totalCombos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">toLocaleString</span>())<span class="op" style="color: #5E5E5E;
+font-style: inherit;">toFixed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%`</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-115">    <span class="dt" style="color: #AD0000;
+<span id="cb1-116">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">textposition</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'auto'</span></span>
-<span id="cb1-116">  }]<span class="op" style="color: #5E5E5E;
+<span id="cb1-117">  }]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> {</span>
-<span id="cb1-117">    <span class="dt" style="color: #AD0000;
+<span id="cb1-118">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">yaxis</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb1-118">      <span class="dt" style="color: #AD0000;
+<span id="cb1-119">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Number of Combinations (log scale)'</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">'Probability (%)'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-119">      <span class="dt" style="color: #AD0000;
+<span id="cb1-120">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -310,32 +341,32 @@ background-color: null;
 font-style: inherit;">'log'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-120">      <span class="dt" style="color: #AD0000;
+<span id="cb1-121">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">gridcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#e5e5e5'</span></span>
-<span id="cb1-121">    }<span class="op" style="color: #5E5E5E;
+<span id="cb1-122">    }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-122">    <span class="dt" style="color: #AD0000;
+<span id="cb1-123">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">xaxis</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb1-123">      <span class="dt" style="color: #AD0000;
+<span id="cb1-124">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Hand Type'</span></span>
-<span id="cb1-124">    }<span class="op" style="color: #5E5E5E;
+<span id="cb1-125">    }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-125">    <span class="dt" style="color: #AD0000;
+<span id="cb1-126">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">margin</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -372,7 +403,7 @@ background-color: null;
 font-style: inherit;">30</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-126">    <span class="dt" style="color: #AD0000;
+<span id="cb1-127">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">plot_bgcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -381,32 +412,32 @@ background-color: null;
 font-style: inherit;">'#ffffff'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb1-127">    <span class="dt" style="color: #AD0000;
+<span id="cb1-128">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">paper_bgcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#ffffff'</span></span>
-<span id="cb1-128">  }<span class="op" style="color: #5E5E5E;
+<span id="cb1-129">  }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> {</span>
-<span id="cb1-129">    <span class="dt" style="color: #AD0000;
+<span id="cb1-130">    <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">responsive</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">staticPlot</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">true</span></span>
-<span id="cb1-130">  })<span class="op" style="color: #5E5E5E;
+<span id="cb1-131">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-131">  <span class="cf" style="color: #003B4F;
+<span id="cb1-132">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-132">}</span></code></pre></div>
+<span id="cb1-133">}</span></code></pre></div>
 <div id="fig-poker-hand-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -483,44 +514,16 @@ Figure&nbsp;1: 撲克手牌組合數量直方圖
 <p><strong>德州撲克手牌分佈直方圖:</strong></p>
 <p>我們將上述 7 選 5 的數據更新到圖表中，你會發現分佈趨勢與標準 5 張牌撲克有所不同，特別是葫蘆與同花的順序對調，以及散牌數量的驟降。</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="211" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 210;"><span id="cb2-211">texasHandTypes <span class="op" style="color: #5E5E5E;
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212">texasHandTypes <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [</span>
-<span id="cb2-212">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-213">  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">// { type: "Straight Flush",  count: 41_584 },</span></span>
+<span id="cb2-214">  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Straight Flush"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>  <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">41_584</span> }<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-213">  { <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Four of a Kind"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span>  <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">224_848</span> }<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-214">  { <span class="dt" style="color: #AD0000;
+font-style: inherit;">// { type: "Four of a Kind",  count: 224_848 },</span></span>
+<span id="cb2-215">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -537,7 +540,7 @@ background-color: null;
 font-style: inherit;">3_473_184</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-215">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-216">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -554,7 +557,7 @@ background-color: null;
 font-style: inherit;">4_047_644</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-216">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-217">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -571,7 +574,7 @@ background-color: null;
 font-style: inherit;">6_180_020</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-217">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-218">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -588,7 +591,7 @@ background-color: null;
 font-style: inherit;">6_461_620</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-218">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-219">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -605,7 +608,7 @@ background-color: null;
 font-style: inherit;">31_433_400</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-219">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-220">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -622,7 +625,7 @@ background-color: null;
 font-style: inherit;">58_627_800</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-220">  { <span class="dt" style="color: #AD0000;
+<span id="cb2-221">  { <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -637,15 +640,15 @@ background-color: null;
 font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">23_294_460</span> }</span>
-<span id="cb2-221">]<span class="op" style="color: #5E5E5E;
+<span id="cb2-222">]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-222"></span>
-<span id="cb2-223"><span class="co" style="color: #5E5E5E;
+<span id="cb2-223"></span>
+<span id="cb2-224"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// 繪製直方圖</span></span>
-<span id="cb2-224">{</span>
-<span id="cb2-225">  <span class="kw" style="color: #003B4F;
+<span id="cb2-225">{</span>
+<span id="cb2-226">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> div <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -658,14 +661,23 @@ background-color: null;
 font-style: inherit;">'div'</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-226">  Plotly<span class="op" style="color: #5E5E5E;
+<span id="cb2-227">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> totalCombos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">133_784_560</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-228">  Plotly<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">newPlot</span>(div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> [{</span>
-<span id="cb2-227">    <span class="dt" style="color: #AD0000;
+<span id="cb2-229">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -674,7 +686,7 @@ background-color: null;
 font-style: inherit;">'bar'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-228">    <span class="dt" style="color: #AD0000;
+<span id="cb2-230">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -691,7 +703,7 @@ background-color: null;
 font-style: inherit;">type</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-229">    <span class="dt" style="color: #AD0000;
+<span id="cb2-231">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -701,14 +713,20 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=&gt;</span> (d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">count</span>)<span class="op" style="color: #5E5E5E;
+font-style: inherit;">count</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> totalCombos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>))<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-230">    <span class="dt" style="color: #AD0000;
+<span id="cb2-232">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">marker</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -721,7 +739,7 @@ background-color: null;
 font-style: inherit;">'steelblue'</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-231">    <span class="dt" style="color: #AD0000;
+<span id="cb2-233">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">text</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -735,29 +753,13 @@ font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">${</span>d<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">count</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">toLocaleString</span>()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">&lt;br&gt;</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
 font-style: inherit;">${</span>(d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">count</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">133_784_560</span> <span class="op" style="color: #5E5E5E;
+font-style: inherit;">/</span> totalCombos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -774,40 +776,31 @@ background-color: null;
 font-style: inherit;">%`</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-232">    <span class="dt" style="color: #AD0000;
+<span id="cb2-234">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">textposition</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'auto'</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb2-233">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">hovertemplate</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'&lt;b&gt;%{x}&lt;/b&gt;&lt;br&gt;Count: %{y:,}&lt;br&gt;Freq: %{text}&lt;extra&gt;&lt;/extra&gt;'</span></span>
-<span id="cb2-234">  }]<span class="op" style="color: #5E5E5E;
+font-style: inherit;">'auto'</span></span>
+<span id="cb2-235">  }]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> {</span>
-<span id="cb2-235">    <span class="dt" style="color: #AD0000;
+<span id="cb2-236">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">yaxis</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb2-236">      <span class="dt" style="color: #AD0000;
+<span id="cb2-237">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Number of Combinations (log scale)'</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">'Probability (%)'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-237">      <span class="dt" style="color: #AD0000;
+<span id="cb2-238">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">type</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -816,32 +809,32 @@ background-color: null;
 font-style: inherit;">'log'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-238">      <span class="dt" style="color: #AD0000;
+<span id="cb2-239">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">gridcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#e5e5e5'</span></span>
-<span id="cb2-239">    }<span class="op" style="color: #5E5E5E;
+<span id="cb2-240">    }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-240">    <span class="dt" style="color: #AD0000;
+<span id="cb2-241">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">xaxis</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> {</span>
-<span id="cb2-241">      <span class="dt" style="color: #AD0000;
+<span id="cb2-242">      <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Hand Type'</span></span>
-<span id="cb2-242">    }<span class="op" style="color: #5E5E5E;
+<span id="cb2-243">    }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-243">    <span class="dt" style="color: #AD0000;
+<span id="cb2-244">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">margin</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -878,7 +871,7 @@ background-color: null;
 font-style: inherit;">30</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-244">    <span class="dt" style="color: #AD0000;
+<span id="cb2-245">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">plot_bgcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -887,32 +880,32 @@ background-color: null;
 font-style: inherit;">'#ffffff'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
-<span id="cb2-245">    <span class="dt" style="color: #AD0000;
+<span id="cb2-246">    <span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">paper_bgcolor</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#ffffff'</span></span>
-<span id="cb2-246">  }<span class="op" style="color: #5E5E5E;
+<span id="cb2-247">  }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> {</span>
-<span id="cb2-247">    <span class="dt" style="color: #AD0000;
+<span id="cb2-248">    <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">responsive</span><span class="op" style="color: #5E5E5E;
+font-style: inherit;">staticPlot</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">true</span></span>
-<span id="cb2-248">  })<span class="op" style="color: #5E5E5E;
+<span id="cb2-249">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-249">  <span class="cf" style="color: #003B4F;
+<span id="cb2-250">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-250">}</span></code></pre></div>
+<span id="cb2-251">}</span></code></pre></div>
 <div id="fig-texas-holdem-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
