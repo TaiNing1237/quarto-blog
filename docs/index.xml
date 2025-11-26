@@ -10,7 +10,93 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Fri, 28 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 29 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>一天證明一個 Normal Distribution 的性質 Day8： C n 取 k</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1129-normal_8/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>「從 52 張撲克牌中，隨機抽 7 張牌，有多少種不同的組合方式？」</p>
+<p>「<img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbinom%7B52%7D%7B7%7D">，嗯… 可能要按一下計算機?」</p>
+<p>「不用，我們可以利用常態分佈的近似來心算看看！」</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B7%7D%20=%20%5Cfrac%7B52%5Ctimes%2051%20%5Ctimes%2050%20%5Ctimes%2049%20%5Ctimes%2048%20%5Ctimes%2047%20%5Ctimes%2046%7D%7B7%20%5Ctimes%206%20%5Ctimes%205%20%5Ctimes%204%20%5Ctimes%203%20%5Ctimes%202%20%5Ctimes%201%7D%0A"></p>
+<section id="常態分佈近似" class="level3">
+<h3 class="anchored" data-anchor-id="常態分佈近似">常態分佈近似?</h3>
+<p>我們要用機率的觀點，計算 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B2%5E%7B52%7D%7D%5Cbinom%7B52%7D%7B7%7D">。也就是擲 <img src="https://latex.codecogs.com/png.latex?52"> 枚公正的硬幣，有多少機率會出現 <img src="https://latex.codecogs.com/png.latex?7"> 個正面朝上？</p>
+<ul>
+<li>平均值: <img src="https://latex.codecogs.com/png.latex?Np%20=%2052%20%5Ctimes%20%5Cfrac%7B1%7D%7B2%7D%20=%2026"></li>
+<li>變異數: <img src="https://latex.codecogs.com/png.latex?Np(1-p)%20=%2052%20%5Ctimes%20%5Cfrac%7B1%7D%7B2%7D%20%5Ctimes%20%5Cfrac%7B1%7D%7B2%7D%20=%2013"></li>
+<li>標準差: <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7BNp(1-p)%7D%20=%20%5Csqrt%7B13%7D%20%5Capprox%203.6"></li>
+</ul>
+<p>所以有正面朝上的個數分布大約就是： <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(26,%203.6%5E2)">。</p>
+<p>但因為常態分佈是描述連續的機率密度，而我們擲硬幣是離散的。</p>
+<p>所以應該是要算：從 <img src="https://latex.codecogs.com/png.latex?6.5"> 到 <img src="https://latex.codecogs.com/png.latex?7.5"> 的區間下的常態分佈面積，但也可以用 <img src="https://latex.codecogs.com/png.latex?x=7"> 那個點的機率密度來近似(想成用寬度為1的長方形近似)。</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0Af(z)%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%5Csigma%5E2%7D%7D%20e%5E%7B-%5Cfrac%7B(z-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%0A=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%5Ctimes%2013%7D%7D%20e%5E%7B-%5Cfrac%7B(7-26)%5E2%7D%7B2%20%5Ctimes%2013%7D%7D%0A=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B26%5Cpi%7D%7D%20e%5E%7B-%5Cfrac%7B361%7D%7B26%7D%7D%20%20%5C%5C%0A&amp;%5Capprox%20%5Cfrac%7B1%7D%7B%5Csqrt%7B80%7D%7D%20%5Ctimes%20e%5E%7B-14%7D%0A%5Cend%7Baligned%7D%0A"> 記得還要乘上 <img src="https://latex.codecogs.com/png.latex?2%5E%7B52%7D"> 才是組合數。</p>
+<p>這邊需要一些常用的近似值：</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?2%5E%7B10%7D%20%5Capprox%2010%5E3"></li>
+<li><img src="https://latex.codecogs.com/png.latex?e%5E3%20%5Capprox%2020"></li>
+<li><img src="https://latex.codecogs.com/png.latex?e%5E7%20%5Capprox%201100"></li>
+</ul>
+<p>所以估計 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B7%7D%0A%5Capprox%202%5E%7B52%7D%20%5Ctimes%20%5Cfrac%7B1%7D%7B%5Csqrt%7B80%7D%7D%20%5Ctimes%20e%5E%7B-14%7D%0A%5Capprox%20%5Cfrac%7B4%20%5Ctimes%2010%5E%7B15%7D%7D%7B9%20%5Ctimes%2010%5E6%20%5Ctimes%201.1%5E2%7D%0A%5Capprox%204%20%5Ctimes%2010%5E8%0A"></p>
+<p>實際上 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B52%7D%7B7%7D%20=%20133784560">，我們的估計值大約是 <img src="https://latex.codecogs.com/png.latex?3"> 倍左右! <strong>意外地不準! 為什麼?</strong></p>
+</section>
+<section id="梯形近似" class="level3">
+<h3 class="anchored" data-anchor-id="梯形近似">梯形近似</h3>
+<p>其實以心算來說已經夠了，如果再算更複雜還不如用電腦算。 但我們實在很想知道，這個不準的來源，是來自於哪裡?</p>
+<ol type="1">
+<li>常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Capprox"> 二項分佈。</li>
+<li>用長方形(寬度 1) 近似曲線底下的面積。</li>
+</ol>
+<p>我們來算算看梯形面積會不會好一點? <em>(P.S 這裡已經失去了速算的意義，單純研究誤差來源)</em></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cfrac%7Bf(6.5)+f(7.5)%7D%7B2%7D%0A&amp;=%20%5Cfrac%7B1%7D%7B2%7D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%5Ctimes%2013%7D%7D%20%5Cleft(%20e%5E%7B-%5Cfrac%7B(6.5-26)%5E2%7D%7B2%20%5Ctimes%2013%7D%7D%20+%20e%5E%7B-%5Cfrac%7B(7.5-26)%5E2%7D%7B2%20%5Ctimes%2013%7D%7D%20%5Cright)%20%5C%5C%0A&amp;%5Capprox%20%5Cfrac%7B1%7D%7B2%5Ctimes%209%7D%20%5Cleft(%20e%5E%7B-14.625%7D%20+%20e%5E%7B-13.1%7D%20%5Cright)%20%5C%5C%0A&amp;%5Capprox%20%5Cfrac%7B1%7D%7B18%7D%20%5Cleft(%20%5Cfrac%7B1%7D%7B2.2%20%5Ctimes%2010%5E6%7D%20+%20%5Cfrac%7B1%7D%7B5%20%5Ctimes%2010%5E5%7D%20%5Cright)%0A%5Capprox%20%5Cfrac%7B1%7D%7B18%7D%20%5Ctimes%20%5Cfrac%7B1.22%7D%7B5%20%5Ctimes%2010%5E5%7D%0A%5Capprox%20%5Cfrac%7B1%7D%7B7.4%20%5Ctimes%2010%5E6%7D%0A%5Cend%7Baligned%7D%0A"> 剛才是約 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B9%20%5Ctimes%2010%5E6%7D">，已經是高估三倍了，這次是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B7.4%20%5Ctimes%2010%5E6%7D">，誤差又更大了!!</p>
+<p>因為 convexity 的關係，在超過 <img src="https://latex.codecogs.com/png.latex?%5Cmu%20%5Cpm%20%5Csigma">後，常態分佈曲線已經是『下凸』 (Convex / Concave Up，像碗一樣向上彎)，梯形面積反而比長方形面積誤差還更大，所以誤差更大了。當然可以用切線近似之類的，但本質上最大問題，在於常態分佈本身在離 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 很遠的地方，已經無法很好近似二項分佈了。</p>
+<p>(P.S. 雖然說常態分佈的尾巴比二項分布還要厚，但是已經比其他真實世界的分佈還薄很多，例如股市漲跌幅、或是Student-t分布。)</p>
+</section>
+<section id="大偏差理論-large-deviation-theory" class="level3">
+<h3 class="anchored" data-anchor-id="大偏差理論-large-deviation-theory">大偏差理論 Large Deviation Theory</h3>
+<p>我們花了一番力氣證明，無論是用長方形還是梯形去近似常態分佈下的面積，都無法修復 3 倍以上的誤差。這意味著：<strong>問題不在於積分技巧，而在於模型本身。</strong></p>
+<p>這個現象在機率論裡有一個專門的學科在研究，叫做 大偏差理論 (Large Deviation Theory, LDT)。</p>
+<p>我們擲 52 次硬幣，平均正面次數 <img src="https://latex.codecogs.com/png.latex?%5Cmu=26">。但我們卻想計算 <img src="https://latex.codecogs.com/png.latex?k=7"> 的機率。</p>
+<p><img src="https://latex.codecogs.com/png.latex?k=7"> 是一個<strong>極端事件 (Extreme Event)</strong>。雖然常態分佈是根據中央極限定理（Central Limit Theorem, CLT）得出的，它保證了當 <img src="https://latex.codecogs.com/png.latex?n"> 夠大時，中央區域的表現很像常態分佈。但是，CLT 並不保證尾部的行為。</p>
+<p>LDT 研究的正是這些極端事件發生的機率是如何指數級地衰減。它告訴我們，當事件離平均值越遠，常態分佈的近似（它假設了 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-x%5E2%7D"> 的衰減）就會嚴重失真。對於 <img src="https://latex.codecogs.com/png.latex?z%20%5Capprox%20-5.3"> 這種極端偏差，我們必須使用更精確的工具。</p>
+<blockquote class="blockquote">
+<p>根據 大偏差理論 (Large Deviation Theory) 中的 Cramér’s Theorem，對於樣本平均數 <img src="https://latex.codecogs.com/png.latex?%5Cbar%7BX%7D_n"> 偏離期望值 <img src="https://latex.codecogs.com/png.latex?p"> 的機率，其衰減速度並不是常態分佈描述的 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-x%5E2%7D">，而是由 速率函數 (Rate Function) <img src="https://latex.codecogs.com/png.latex?I(x)"> 決定的： <img src="https://latex.codecogs.com/png.latex?%0AP(%5Cbar%7BX%7D_n%20%5Capprox%20x)%20%5Capprox%20e%5E%7B-n%20I(x)%7D%0A"> 對於伯努利分佈（投硬幣），這個速率函數 <img src="https://latex.codecogs.com/png.latex?I(x)"> 其實就是 相對熵 (KL Divergence)： <img src="https://latex.codecogs.com/png.latex?%0AI(x)%20=%20x%20%5Cln%20%5Cfrac%7Bx%7D%7Bp%7D%20+%20(1-x)%20%5Cln%20%5Cfrac%7B1-x%7D%7B1-p%7D%0A"> 在我們的例子中，<img src="https://latex.codecogs.com/png.latex?n=52,%20p=0.5,%20x=7/52">。如果我們計算 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-n%20I(x)%7D">，你會發現它剛好等於我們後面要用的那個「神奇修正項」： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7B-52%20%5Ccdot%20I(7/52)%7D%20=%20%5Cleft(%5Cfrac%7B7/52%7D%7B1/2%7D%5Cright)%5E%7B-7%7D%20%5Cleft(%5Cfrac%7B45/52%7D%7B1/2%7D%5Cright)%5E%7B-45%7D%20%5Ctimes%20(%5Ctext%7B%E5%B8%B8%E6%95%B8%7D)%0A"> 也就是說，LDT 準確預測了常態分佈在尾部會失效，並且告訴我們失效的幅度（修正項）剛好就是相對熵的指數！為了具體計算這個值，我們可以使用 LDT 常用的技巧：<strong>指數傾斜 (Exponential Tilting)</strong>，也就是把機率測度變換到讓事件變成「中心」的地方!</p>
+</blockquote>
+<p>既然在原本的機率分佈 (<img src="https://latex.codecogs.com/png.latex?p=0.5">) 下， <img src="https://latex.codecogs.com/png.latex?k=7"> 是個看不清楚的邊緣地帶，那我們不如創造一個新的平行宇宙，在這個宇宙裡，<img src="https://latex.codecogs.com/png.latex?k=7"> 才是最正常的事件。</p>
+<p>我們可以定義一個新的二項分佈，讓它的參數變成 <img src="https://latex.codecogs.com/png.latex?p'=%5Cfrac%7B7%7D%7B52%7D">，這樣我們就可以把 <img src="https://latex.codecogs.com/png.latex?k=7"> 這個事件，轉換成在新分佈下的「平均事件」。</p>
+<p>在新的分布下，</p>
+<ul>
+<li>平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu'%20=%20Np%20=%2052%20%5Ctimes%20%5Cfrac%7B7%7D%7B52%7D%20=%207">，</li>
+<li>變異數 <img src="https://latex.codecogs.com/png.latex?%5Csigma'%5E2%20=%20Np(1-p)%20=%2052%20%5Ctimes%20%5Cfrac%7B7%7D%7B52%7D%20%5Ctimes%20%5Cleft(1%20-%20%5Cfrac%7B7%7D%7B52%7D%5Cright)%20=%207%20%5Ctimes%20%5Cfrac%7B45%7D%7B52%7D%20%5Capprox%206.06">，</li>
+</ul>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP'(X=7)%20=%20%5Cbinom%7B52%7D%7B7%7D%20(p')%5E7%20(1-p')%5E%7B45%7D%0A"></p>
+<p>根據我們的常態分佈近似（因為現在 7 是平均值，也就是峰值，近似會非常準確）： <img src="https://latex.codecogs.com/png.latex?%0AP'(X=7)%20%5Capprox%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%20%5Csigma'%5E2%7D%7D%0A"></p>
+<p>將兩式合併，我們就可以反推組合數 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B52%7D%7B7%7D">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cbinom%7B52%7D%7B7%7D%0A&amp;%5Capprox%20%5Cfrac%7B1%7D%7B%5Cleft(%5Cfrac%7B7%7D%7B52%7D%5Cright)%5E7%20%5Cleft(%5Cfrac%7B45%7D%7B52%7D%5Cright)%5E%7B45%7D%7D%20%5Ctimes%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%20%5Ctimes%2052%20%5Cfrac%7B7%7D%7B52%7D%20%5Cfrac%7B45%7D%7B52%7D%20%7D%7D%20%5C%5C%0A&amp;%5Capprox%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%7D%20%5Cfrac%7B52%5E%7B52%7D%7D%7B7%5E7%20%5Ctimes%2045%5E%7B45%7D%7D%20%5Ctimes%20%5Cfrac%7B%5Csqrt%7B52%7D%7D%7B%5Csqrt%7B7%5Ctimes%2045%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%7D%20%5Cfrac%7B%5Csqrt%7B52%7D%7D%7B%5Csqrt%7B7%5Ctimes%2045%7D%7D%20e%5E%7B52%20H(%5Cfrac%7B7%7D%7B52%7D)%7D%0A%5Cend%7Baligned%7D%0A"></p>
+<p>這正是 Stirling Formula 的形式！ 我們繞了一大圈，利用機率觀點的「換底操作」，重新發現了階乘近似公式。雖然這完全失去了心算的意義，但這揭示了常態分佈、大偏差理論與組合數學之間深刻的連結。</p>
+<p>作為收尾，我們比較一下這跟剛才 <img src="https://latex.codecogs.com/png.latex?p=1/2"> 時的近似值： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cbinom%7B52%7D%7B7%7D%0A&amp;%5Capprox%202%5EN%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%5Csigma%5E2%7D%7D%20e%5E%7B-%5Cfrac%7B(k-%5Cfrac%7BN%7D%7B2%7D)%5E2%7D%7B2%20%5Csigma%5E2%7D%7D%20%5Cqquad%5Ctext%7B%20,%20where%20%7D%20%5Csigma%5E2=%5Cfrac%7BN%7D%7B4%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%7D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B%5Cfrac%7BN%7D%7B4%7D%7D%7D%20e%5E%7BN%5Cln(2)%20-%20%5Cfrac%7B(k-%5Cfrac%7BN%7D%7B2%7D)%5E2%7D%7B%5Cfrac%7BN%7D%7B2%7D%7D%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%7D%20%5Cfrac%7B2%7D%7B%5Csqrt%7BN%7D%7D%20e%5E%7BN%20%5Cleft%5B%20%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20%5Cfrac%7Bk%7D%7BN%7D%5Cright)%5E2%20%5Cright%5D%20%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
+<p>假設我們不看係數的誤差，令 <img src="https://latex.codecogs.com/png.latex?x=%5Cfrac%7Bk%7D%7BN%7D">，比較兩個指數部分的差異，正確的是用 <img src="https://latex.codecogs.com/png.latex?H(x)">，而錯誤近似的是用 <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2">，是一個二次函數的近似。</p>
+<p>這樣就看得很清楚了，當 <img src="https://latex.codecogs.com/png.latex?x=1/2"> 兩者相等，但當 <img src="https://latex.codecogs.com/png.latex?x"> 遠離 <img src="https://latex.codecogs.com/png.latex?1/2"> 時，二次函數的近似會越來越高估 <img src="https://latex.codecogs.com/png.latex?H(x)"> 的值，導致組合數被高估。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/2025-1129-normal_8/image.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Normal Distribution</category>
+  <guid>https://your-website-url.example.com/posts/2025-1129-normal_8/</guid>
+  <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Poker hands 組合數</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
@@ -3182,25 +3268,6 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
   <category>Linear Algebra</category>
   <guid>https://your-website-url.example.com/posts/2025-1116-shortest_vector/</guid>
   <pubDate>Sun, 16 Nov 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>QR Code Mechanism</title>
-  <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1115-QRCode/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-
-
- ]]></description>
-  <category>Cryptography</category>
-  <category>Linear Algebra</category>
-  <guid>https://your-website-url.example.com/posts/2025-1115-QRCode/</guid>
-  <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>10 Types of Common Distributions</title>
