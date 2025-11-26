@@ -192,113 +192,113 @@ Table&nbsp;1: My Distribution Table
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
+<col style="width: 13%">
 <col style="width: 15%">
 <col style="width: 15%">
 <col style="width: 13%">
 <col style="width: 15%">
-<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: left;">CF</th>
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PDF</th>
 <th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
-<th style="text-align: right;">CF</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(e^{i\mu t - \frac{1}{2}\sigma^2 t^2}\)</span></td>
 <td style="text-align: left;"><strong>Normal</strong> <br> <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span></td>
 <td style="text-align: center;">mean: <span class="math inline">\(\mu\)</span> <br> variance: <span class="math inline">\(\sigma^2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle e^{-\frac{1}{2\sigma^2}x^2+\frac{\mu}{\sigma^2}x}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x \in (-\infty, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(e^{i\mu t - \frac{1}{2}\sigma^2 t^2}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1 - 2it)^{-\frac{k}{2}}\)</span></td>
 <td style="text-align: left;"><strong>Chi-Squared</strong> <br> <span class="math inline">\(\chi^2(k)\)</span></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\frac{k}{2}-1}e^{-\frac{x}{2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(2k\)</span></td>
-<td style="text-align: right;"><span class="math inline">\((1 - 2it)^{-\frac{k}{2}}\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">ugly</td>
 <td style="text-align: left;"><strong>Chi [Optional]</strong> <br> <span class="math inline">\(\chi(k)\)</span></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <span class="math inline">\(k\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{k-1}e^{-\frac{x^2}{2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(k - \left(\sqrt{2} \frac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})}\right)^2\)</span></td>
-<td style="text-align: right;">ugly</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{\lambda}{\lambda - it}\)</span></td>
 <td style="text-align: left;"><strong>Exponential</strong> <br> <span class="math inline">\(\mathrm{Exp}(\lambda)\)</span></td>
 <td style="text-align: center;">rate: <span class="math inline">\(\lambda\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle e^{-\lambda x}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\frac{\lambda}{\lambda - it}\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left(1 - i\theta t\right)^{-\alpha}\)</span></td>
 <td style="text-align: left;"><strong>Gamma</strong> <br> <span class="math inline">\(\mathrm{Gamma}(\alpha, \theta)\)</span></td>
 <td style="text-align: center;">shape: <span class="math inline">\(\alpha\)</span> <br> scale: <span class="math inline">\(\theta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\alpha-1} e^{-\frac{x}{\theta}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\alpha\theta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\alpha\theta^2\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\left(1 - i\theta t\right)^{-\alpha}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\({}_1F_1(\alpha; \alpha+\beta; it)\)</span></td>
 <td style="text-align: left;"><strong>Beta</strong> <br> <span class="math inline">\(\mathrm{Beta}(\alpha, \beta)\)</span></td>
 <td style="text-align: center;">shape1: <span class="math inline">\(\alpha\)</span> <br> shape2: <span class="math inline">\(\beta\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle x^{\alpha-1}(1-x)^{\beta-1}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, 1)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{\alpha}{\alpha+\beta}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\({}_1F_1(\alpha; \alpha+\beta; it)\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{\sin(t)}{t}\)</span></td>
 <td style="text-align: left;"><strong>Uniform</strong> <br> <span class="math inline">\(\mathrm{Uniform}(-1, 1)\)</span></td>
 <td style="text-align: center;">NA</td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \text{constant}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(-1, 1)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1}{3}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\frac{\sin(t)}{t}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\(e^{-|t|}\)</span></td>
 <td style="text-align: left;"><strong>Cauchy</strong> <br> <span class="math inline">\(\mathrm{Cauchy}\)</span></td>
 <td style="text-align: center;">NA</td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \frac{1}{1+x^2}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(-\infty, \infty)\)</span></td>
 <td style="text-align: center;">undefined</td>
 <td style="text-align: center;">undefined</td>
-<td style="text-align: right;"><span class="math inline">\(e^{-|t|}\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\frac{K_{\frac{\nu}{2}}(\sqrt{\nu}|t|) (\sqrt{\nu}|t|)^{\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) 2^{\frac{\nu}{2}-1}}\)</span></td>
 <td style="text-align: left;"><strong>Student’s t</strong> <br> <span class="math inline">\(t(\nu)\)</span></td>
 <td style="text-align: center;">dof: <span class="math inline">\(\nu\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \left(1+\frac{x^2}{\nu}\right)^{-\frac{\nu+1}{2}}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(-\infty, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(0\)</span> for <span class="math inline">\(\nu&gt;1\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{\nu}{\nu-2}\)</span>, for <span class="math inline">\(\nu&gt;2\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\frac{K_{\frac{\nu}{2}}(\sqrt{\nu}|t|) (\sqrt{\nu}|t|)^{\frac{\nu}{2}}}{\Gamma(\frac{\nu}{2}) 2^{\frac{\nu}{2}-1}}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">ugly</td>
 <td style="text-align: left;"><strong>F-distribution</strong> <br> <span class="math inline">\(F(d_1, d_2)\)</span></td>
 <td style="text-align: center;">dof 1: <span class="math inline">\(d_1\)</span> <br> dof 2: <span class="math inline">\(d_2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\left(\frac{d_1 x}{d_1 x + d_2}\right)^{\frac{d_1}{2}} \left(\frac{d_2}{d_1 x + d_2}\right)^{\frac{d_2}{2}} x^{-1}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in(0, \infty)\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{d_2}{d_2 - 2}\)</span>, for <span class="math inline">\(d_2\)</span> &gt;2</td>
 <td style="text-align: center;"><span class="math inline">\(\frac{2 d_2^2 (d_1 + d_2 - 2)}{d_1 (d_2 - 2)^2 (d_2 - 4)}\)</span>, for <span class="math inline">\(d_2\)</span> &gt;4</td>
-<td style="text-align: right;">ugly</td>
 </tr>
 </tbody>
 </table>
@@ -323,68 +323,68 @@ Table&nbsp;2: My Discrete Distribution Table
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
-<col style="width: 15%">
-<col style="width: 13%">
 <col style="width: 13%">
 <col style="width: 15%">
 <col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: left;">CF</th>
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PMF</th>
 <th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
-<th style="text-align: right;">CF</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(1 - p + p e^{it}\)</span></td>
 <td style="text-align: left;"><strong>Bernoulli</strong> <br> <span class="math inline">\(\mathrm{Bernoulli}(p)\)</span></td>
 <td style="text-align: center;">success prob.: <span class="math inline">\(p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle p^x (1-p)^{1-x}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in\{0,1\}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(p(1-p)\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(1 - p + p e^{it}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\((1 - p + p e^{it})^n\)</span></td>
 <td style="text-align: left;"><strong>Binomial</strong> <br> <span class="math inline">\(\mathrm{Binomial}(n, p)\)</span></td>
 <td style="text-align: center;">trials: <span class="math inline">\(n\)</span> <br> success prob.: <span class="math inline">\(p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \binom{n}{x} p^x (1-p)^{n-x}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in\{0,1,\ldots,n\}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(np\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(np(1-p)\)</span></td>
-<td style="text-align: right;"><span class="math inline">\((1 - p + p e^{it})^n\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(e^{\lambda(e^{it}-1)}\)</span></td>
 <td style="text-align: left;"><strong>Poisson</strong> <br> <span class="math inline">\(\mathrm{Poisson}(\lambda)\)</span></td>
 <td style="text-align: center;">rate: <span class="math inline">\(\lambda\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \frac{\lambda^x e^{-\lambda}}{x!}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(e^{\lambda(e^{it}-1)}\)</span></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\frac{p e^{it}}{1 - (1-p)e^{it}}\)</span></td>
 <td style="text-align: left;"><strong>Geometric</strong> <br> <span class="math inline">\(\mathrm{Geometric}(p)\)</span></td>
 <td style="text-align: center;">success prob.: <span class="math inline">\(p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle (1-p)^{x} p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1-p}{p}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{1-p}{p^2}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\frac{p e^{it}}{1 - (1-p)e^{it}}\)</span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left(\frac{p e^{it}}{1 - (1-p)e^{it}}\right)^r\)</span></td>
 <td style="text-align: left;"><strong>Negative Binomial</strong> <br> <span class="math inline">\(\mathrm{NegBin}(r, p)\)</span></td>
 <td style="text-align: center;">successes: <span class="math inline">\(r\)</span> <br> success prob.: <span class="math inline">\(p\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\displaystyle \binom{x+r-1}{r-1} p^r (1-p)^x\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(x\in\{0,1,2,\ldots\}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\left(\frac{p e^{it}}{1 - (1-p)e^{it}}\right)^r\)</span></td>
 </tr>
 </tbody>
 </table>

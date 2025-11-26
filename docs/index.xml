@@ -3292,113 +3292,113 @@ Table&nbsp;1: My Distribution Table
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
+<col style="width: 13%">
 <col style="width: 15%">
 <col style="width: 15%">
 <col style="width: 13%">
 <col style="width: 15%">
-<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: left;">CF</th>
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PDF</th>
 <th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
-<th style="text-align: right;">CF</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
 <td style="text-align: left;"><strong>Normal</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)"></td>
 <td style="text-align: center;">mean: <img src="https://latex.codecogs.com/png.latex?%5Cmu"> <br> variance: <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20e%5E%7B-%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7Dx%5E2+%5Cfrac%7B%5Cmu%7D%7B%5Csigma%5E2%7Dx%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%20%5Cin%20(-%5Cinfty,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cmu"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7Bi%5Cmu%20t%20-%20%5Cfrac%7B1%7D%7B2%7D%5Csigma%5E2%20t%5E2%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?(1%20-%202it)%5E%7B-%5Cfrac%7Bk%7D%7B2%7D%7D"></td>
 <td style="text-align: left;"><strong>Chi-Squared</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cchi%5E2(k)"></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Cfrac%7Bk%7D%7B2%7D-1%7De%5E%7B-%5Cfrac%7Bx%7D%7B2%7D%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?2k"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?(1%20-%202it)%5E%7B-%5Cfrac%7Bk%7D%7B2%7D%7D"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">ugly</td>
 <td style="text-align: left;"><strong>Chi [Optional]</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cchi(k)"></td>
 <td style="text-align: center;">degree of freedom (d.o.f): <img src="https://latex.codecogs.com/png.latex?k"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7Bk-1%7De%5E%7B-%5Cfrac%7Bx%5E2%7D%7B2%7D%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B2%7D%20%5Cfrac%7B%5CGamma(%5Cfrac%7Bk+1%7D%7B2%7D)%7D%7B%5CGamma(%5Cfrac%7Bk%7D%7B2%7D)%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?k%20-%20%5Cleft(%5Csqrt%7B2%7D%20%5Cfrac%7B%5CGamma(%5Cfrac%7Bk+1%7D%7B2%7D)%7D%7B%5CGamma(%5Cfrac%7Bk%7D%7B2%7D)%7D%5Cright)%5E2"></td>
-<td style="text-align: right;">ugly</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Clambda%7D%7B%5Clambda%20-%20it%7D"></td>
 <td style="text-align: left;"><strong>Exponential</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BExp%7D(%5Clambda)"></td>
 <td style="text-align: center;">rate: <img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20e%5E%7B-%5Clambda%20x%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Clambda%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Clambda%5E2%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Clambda%7D%7B%5Clambda%20-%20it%7D"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(1%20-%20i%5Ctheta%20t%5Cright)%5E%7B-%5Calpha%7D"></td>
 <td style="text-align: left;"><strong>Gamma</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BGamma%7D(%5Calpha,%20%5Ctheta)"></td>
 <td style="text-align: center;">shape: <img src="https://latex.codecogs.com/png.latex?%5Calpha"> <br> scale: <img src="https://latex.codecogs.com/png.latex?%5Ctheta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cfrac%7Bx%7D%7B%5Ctheta%7D%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Calpha%5Ctheta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Calpha%5Ctheta%5E2"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(1%20-%20i%5Ctheta%20t%5Cright)%5E%7B-%5Calpha%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(%5Calpha;%20%5Calpha+%5Cbeta;%20it)"></td>
 <td style="text-align: left;"><strong>Beta</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBeta%7D(%5Calpha,%20%5Cbeta)"></td>
 <td style="text-align: center;">shape1: <img src="https://latex.codecogs.com/png.latex?%5Calpha"> <br> shape2: <img src="https://latex.codecogs.com/png.latex?%5Cbeta"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20x%5E%7B%5Calpha-1%7D(1-x)%5E%7B%5Cbeta-1%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%201)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Calpha%7D%7B%5Calpha+%5Cbeta%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Calpha%5Cbeta%7D%7B(%5Calpha+%5Cbeta)%5E2(%5Calpha+%5Cbeta+1)%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(%5Calpha;%20%5Calpha+%5Cbeta;%20it)"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Csin(t)%7D%7Bt%7D"></td>
 <td style="text-align: left;"><strong>Uniform</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BUniform%7D(-1,%201)"></td>
 <td style="text-align: center;">NA</td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Ctext%7Bconstant%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-1,%201)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?0"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B3%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Csin(t)%7D%7Bt%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B-%7Ct%7C%7D"></td>
 <td style="text-align: left;"><strong>Cauchy</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BCauchy%7D"></td>
 <td style="text-align: center;">NA</td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B1%7D%7B1+x%5E2%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-%5Cinfty,%20%5Cinfty)"></td>
 <td style="text-align: center;">undefined</td>
 <td style="text-align: center;">undefined</td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B-%7Ct%7C%7D"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BK_%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%20(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D%7D%7B%5CGamma(%5Cfrac%7B%5Cnu%7D%7B2%7D)%202%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D-1%7D%7D"></td>
 <td style="text-align: left;"><strong>Student’s t</strong> <br> <img src="https://latex.codecogs.com/png.latex?t(%5Cnu)"></td>
 <td style="text-align: center;">dof: <img src="https://latex.codecogs.com/png.latex?%5Cnu"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cleft(1+%5Cfrac%7Bx%5E2%7D%7B%5Cnu%7D%5Cright)%5E%7B-%5Cfrac%7B%5Cnu+1%7D%7B2%7D%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(-%5Cinfty,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?0"> for <img src="https://latex.codecogs.com/png.latex?%5Cnu%3E1"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cnu%7D%7B%5Cnu-2%7D">, for <img src="https://latex.codecogs.com/png.latex?%5Cnu%3E2"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BK_%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%20(%5Csqrt%7B%5Cnu%7D%7Ct%7C)%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D%7D%7D%7B%5CGamma(%5Cfrac%7B%5Cnu%7D%7B2%7D)%202%5E%7B%5Cfrac%7B%5Cnu%7D%7B2%7D-1%7D%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">ugly</td>
 <td style="text-align: left;"><strong>F-distribution</strong> <br> <img src="https://latex.codecogs.com/png.latex?F(d_1,%20d_2)"></td>
 <td style="text-align: center;">dof 1: <img src="https://latex.codecogs.com/png.latex?d_1"> <br> dof 2: <img src="https://latex.codecogs.com/png.latex?d_2"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(%5Cfrac%7Bd_1%20x%7D%7Bd_1%20x%20+%20d_2%7D%5Cright)%5E%7B%5Cfrac%7Bd_1%7D%7B2%7D%7D%20%5Cleft(%5Cfrac%7Bd_2%7D%7Bd_1%20x%20+%20d_2%7D%5Cright)%5E%7B%5Cfrac%7Bd_2%7D%7B2%7D%7D%20x%5E%7B-1%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin(0,%20%5Cinfty)"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd_2%7D%7Bd_2%20-%202%7D">, for <img src="https://latex.codecogs.com/png.latex?d_2"> &gt;2</td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B2%20d_2%5E2%20(d_1%20+%20d_2%20-%202)%7D%7Bd_1%20(d_2%20-%202)%5E2%20(d_2%20-%204)%7D">, for <img src="https://latex.codecogs.com/png.latex?d_2"> &gt;4</td>
-<td style="text-align: right;">ugly</td>
 </tr>
 </tbody>
 </table>
@@ -3423,68 +3423,68 @@ Table&nbsp;2: My Discrete Distribution Table
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
-<col style="width: 15%">
-<col style="width: 13%">
 <col style="width: 13%">
 <col style="width: 15%">
 <col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: left;">CF</th>
 <th style="text-align: left;">Name, Notation</th>
 <th style="text-align: center;">Parameters</th>
 <th style="text-align: center;">PMF</th>
 <th style="text-align: center;">Range</th>
 <th style="text-align: center;">Mean</th>
 <th style="text-align: center;">Variance</th>
-<th style="text-align: right;">CF</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?1%20-%20p%20+%20p%20e%5E%7Bit%7D"></td>
 <td style="text-align: left;"><strong>Bernoulli</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBernoulli%7D(p)"></td>
 <td style="text-align: center;">success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20p%5Ex%20(1-p)%5E%7B1-x%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1%5C%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?p(1-p)"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?1%20-%20p%20+%20p%20e%5E%7Bit%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?(1%20-%20p%20+%20p%20e%5E%7Bit%7D)%5En"></td>
 <td style="text-align: left;"><strong>Binomial</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BBinomial%7D(n,%20p)"></td>
 <td style="text-align: center;">trials: <img src="https://latex.codecogs.com/png.latex?n"> <br> success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbinom%7Bn%7D%7Bx%7D%20p%5Ex%20(1-p)%5E%7Bn-x%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,%5Cldots,n%5C%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?np"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?np(1-p)"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?(1%20-%20p%20+%20p%20e%5E%7Bit%7D)%5En"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
 <td style="text-align: left;"><strong>Poisson</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BPoisson%7D(%5Clambda)"></td>
 <td style="text-align: center;">rate: <img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cfrac%7B%5Clambda%5Ex%20e%5E%7B-%5Clambda%7D%7D%7Bx!%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Clambda"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Clambda(e%5E%7Bit%7D-1)%7D"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D"></td>
 <td style="text-align: left;"><strong>Geometric</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BGeometric%7D(p)"></td>
 <td style="text-align: center;">success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20(1-p)%5E%7Bx%7D%20p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1-p%7D%7Bp%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1-p%7D%7Bp%5E2%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D%5Cright)%5Er"></td>
 <td style="text-align: left;"><strong>Negative Binomial</strong> <br> <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BNegBin%7D(r,%20p)"></td>
 <td style="text-align: center;">successes: <img src="https://latex.codecogs.com/png.latex?r"> <br> success prob.: <img src="https://latex.codecogs.com/png.latex?p"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbinom%7Bx+r-1%7D%7Br-1%7D%20p%5Er%20(1-p)%5Ex"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?x%5Cin%5C%7B0,1,2,%5Cldots%5C%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Br(1-p)%7D%7Bp%7D"></td>
 <td style="text-align: center;"><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Br(1-p)%7D%7Bp%5E2%7D"></td>
-<td style="text-align: right;"><img src="https://latex.codecogs.com/png.latex?%5Cleft(%5Cfrac%7Bp%20e%5E%7Bit%7D%7D%7B1%20-%20(1-p)e%5E%7Bit%7D%7D%5Cright)%5Er"></td>
 </tr>
 </tbody>
 </table>

@@ -35,3 +35,23 @@ mjx-container[display="true"],
   /* 選用：加個內陰影讓使用者知道這是可以橫向捲動的區塊 */
   box-shadow: inset -5px 0 5px -5px rgba(0,0,0,0.3);
 }
+
+/* 3. 針對表格的特化設定 */
+/* 表格容器允許滾動，覆蓋全域的 overflow-x: hidden */
+.quarto-float-tbl,
+figure.quarto-float-tbl,
+div[id*="tbl-"] {
+  overflow-x: auto !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  /* 防止表格被壓縮 */
+  white-space: nowrap;
+  /* 確保表格內容不會被截斷 */
+  width: auto !important;
+  min-width: max-content;
+}
