@@ -10,7 +10,89 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Sat, 29 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 30 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1130-normal_9/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>小時候就學過無窮等比級數:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20r%5En%20=%20%5Cfrac%7B1%7D%7B1-r%7D,%20%5Cquad%20%7Cr%7C%3C1%0A"> 當時候胡思亂想，想說指數部分如果改成平方怎麼算? <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20r%5E%7Bn%5E2%7D%20=%20?%0A"> 嗯… 當然是完全不會算，沒想到在大學的殿堂裡還會再次遇見他… <strong>Poisson Summation Formula (PSF)</strong>。</p>
+<p>這真的是數學中最奇怪又深奧的恆等式。</p>
+<section id="柏松求和公式---高斯函數" class="level3">
+<h3 class="anchored" data-anchor-id="柏松求和公式---高斯函數">柏松求和公式 - 高斯函數</h3>
+<p>柏松求和公式 (Poisson Summation Formula) 告訴我們，如果上面那個函數叫做 <img src="https://latex.codecogs.com/png.latex?S(t)">: <img src="https://latex.codecogs.com/png.latex?%0AS(t)%20:=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B-%5Cpi%20t%20n%5E2%7D%20%20%5Cqquad%20%5Cforall%20t%20%3E%200%0A"> 對於所有 <img src="https://latex.codecogs.com/png.latex?t%3E0"> 都有定義，這裡我們稍微未卜先知，做了一個變數變換 <img src="https://latex.codecogs.com/png.latex?r=e%5E%7B-%5Cpi%20t%7D">，不過這是等價的。</p>
+<p>那麼我們可以把它寫成另一個無窮級數: <img src="https://latex.codecogs.com/png.latex?%0AS(t)%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7Bt%7D%7D%20%5Csum_%7Bk=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B-%5Cfrac%7B%5Cpi%20k%5E2%7D%7Bt%7D%7D%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7Bt%7D%7D%20S%5Cleft(%5Cfrac%7B1%7D%7Bt%7D%5Cright)%0A%5Ctag%7B1%7D%5Clabel%7Beq:psf_s%7D%0A"> 疑，形式還是 <img src="https://latex.codecogs.com/png.latex?S"> 但是 input <img src="https://latex.codecogs.com/png.latex?t"> 變成了倒數 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7Bt%7D">。前面還乘以 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Csqrt%7Bt%7D%7D">。</p>
+<p>你說，這樣有了 <img src="https://latex.codecogs.com/png.latex?S(t)"> 跟 <img src="https://latex.codecogs.com/png.latex?S(%5Cfrac%7B1%7D%7Bt%7D)"> 的關係，我們還是沒辦法算出來啊？對！但這個對稱性本身，暗示了一個更宏大的幾何結構。</p>
+</section>
+<section id="jacobi-theta-function-與神秘的空間-m-optional" class="level3">
+<h3 class="anchored" data-anchor-id="jacobi-theta-function-與神秘的空間-m-optional">Jacobi Theta Function 與神秘的空間 M [Optional]</h3>
+<p>當一個函數滿足一個 functional equation (函數方程式) 的時候，這時候我們就要來研究是否有唯一解? 若不唯一，那解有哪些?</p>
+<p>我們很自然地可以將 <img src="https://latex.codecogs.com/png.latex?S(t)"> 定義到複數平面 (只要實部大於 0)。 這樣我們就可以把 <img src="https://latex.codecogs.com/png.latex?S(t)"> 視為一個所謂的 <strong>Jacobi Theta Function</strong>: <img src="https://latex.codecogs.com/png.latex?%0A%5Ctheta(z;%20%5Ctau)%20:=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B%5Cpi%20i%20%5Ctau%20n%5E2%7D%20e%5E%7B2%20%5Cpi%20i%20n%20z%7D%0A"> 這邊 <img src="https://latex.codecogs.com/png.latex?z%20%5Cin%20%5Cmathbb%7BC%7D">，<img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cin%20%5Cmathbb%7BH%7D"> (上半平面，對應原本的 <img src="https://latex.codecogs.com/png.latex?it">)。因為 <img src="https://latex.codecogs.com/png.latex?n%5E2"> 跑得比 <img src="https://latex.codecogs.com/png.latex?n"> 快，所以我們只需要 <img src="https://latex.codecogs.com/png.latex?%5Ctau"> 的虛部大於 0 就可以保證收斂性。</p>
+<p>常見的 theta function 總共有四種，我們這邊用到的是 <img src="https://latex.codecogs.com/png.latex?%5Ctheta_3">（當 <img src="https://latex.codecogs.com/png.latex?z=0"> 時就是我們原本的級數）。</p>
+<p>這時候，讓我們退一步看。剛剛那個 <img src="https://latex.codecogs.com/png.latex?S(t)%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7Bt%7D%7DS(1/t)"> 的性質，用複數語言寫出來，其實是在說這個函數在經過特定的「變換」（比如 <img src="https://latex.codecogs.com/png.latex?%5Ctau%20%5Cto%20-1/%5Ctau">）後，會變回自己乘以一個因子。</p>
+<p>那我們能不能用將這個等式推廣到複數函數 <img src="https://latex.codecogs.com/png.latex?%5Ctheta(0;%20%5Ctau)"> 上呢？ 可以的! 經過一些複雜的分析技巧，我們可以得到: <img src="https://latex.codecogs.com/png.latex?%0A%5Ctheta(0;%20%5Cfrac%7B-1%7D%7B%5Ctau%7D)%20=%20%5Csqrt%7B%5Cfrac%7B%5Ctau%7D%7Bi%7D%7D%20%5C,%20%5Ctheta(0;%20%5Ctau)%0A"></p>
+<p>這類具有高度對稱性的函數，居住在一個叫做 <strong>模形式 (Modular Forms)</strong> 的向量空間 <img src="https://latex.codecogs.com/png.latex?M"> 裡。</p>
+<p>簡單來說，如果一個函數 <img src="https://latex.codecogs.com/png.latex?f"> 滿足： <img src="https://latex.codecogs.com/png.latex?%0Af%5Cleft(%5Cfrac%7Ba%5Ctau+b%7D%7Bc%5Ctau+d%7D%5Cright)%20=%20(c%5Ctau+d)%5Ek%20f(%5Ctau)%20%20%20%0A%5Cqquad%20,%20%5Cforall%20%5Cbegin%7Bpmatrix%7D%20a%20&amp;%20b%20%5C%5C%20c%20&amp;%20d%20%5Cend%7Bpmatrix%7D%20%5Cin%20SL(2,%20%5Cmathbb%7BZ%7D),%20%5Cforall%20%5Ctau%20%5Cin%20%5Cmathbb%7BH%7D%0A"> 我們就說它是權重為 <img src="https://latex.codecogs.com/png.latex?k"> 的模形式。我們的 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 函數大致上就是這樣的一個東西（權重 <img src="https://latex.codecogs.com/png.latex?k=1/2">）。</p>
+<blockquote class="blockquote">
+<p><strong>這個空間 <img src="https://latex.codecogs.com/png.latex?M"> 是有限維的！</strong></p>
+<p>在某些特定的限制條件下(例如 <img src="https://latex.codecogs.com/png.latex?k=12">)，這個空間的維度甚至只有 <strong>1</strong>。這意味著什麼？這意味著如果我們在這個空間裡找到了兩個函數，它們極有可能是同一個東西（或是只差一個常數倍）。這也就是為什麼數論學家能用 Theta Function 解決很多整數拆分問題的原因——因為路只有一條。</p>
+</blockquote>
+<p>這邊有點含糊了，因為當 <img src="https://latex.codecogs.com/png.latex?k=1/2"> 根號複數 <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7Bc%5Ctau+d%7D"> 會有選分支的問題。所以其實權重 <img src="https://latex.codecogs.com/png.latex?k=1/2"> 的模形式要退縮到一個較小的子群，通常是 Level 4 的同餘子群 <img src="https://latex.codecogs.com/png.latex?%5CGamma_0(4)">。而在空間 <img src="https://latex.codecogs.com/png.latex?M_%7B1/2%7D(%5CGamma_0(4))"> 中，其維度為 1。</p>
+<p>這以後有機會再深入講解。</p>
+</section>
+<section id="離散高斯" class="level3">
+<h3 class="anchored" data-anchor-id="離散高斯">離散高斯</h3>
+<p>且讓我們看著 <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> 的定義式，是不是長得有點像特徵函數 (Characteristic Function) 呢？</p>
+<p>讓我們回憶一下機率論。對於一個連續的高斯分佈 (Normal Distribution)，其機率密度函數 (PDF) 是 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-x%5E2%7D"> 的形式，而它的特徵函數 (Characteristic Function, Fourier Transform of PDF) 算出來依然是 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-%5Cxi%5E2%7D"> 的形式。</p>
+<p>那如果是<strong>離散</strong>的呢？</p>
+<p>假設我們有一個隨機變數 <img src="https://latex.codecogs.com/png.latex?X">，它只能取整數值 <img src="https://latex.codecogs.com/png.latex?n%20%5Cin%20%5Cmathbb%7BZ%7D">，而且取 <img src="https://latex.codecogs.com/png.latex?n"> 的機率正比於高斯分佈: <img src="https://latex.codecogs.com/png.latex?%0AP(X=n)%20%5Cpropto%20e%5E%7B-%5Cpi%20t%20n%5E2%7D%0A"> 這就是一個 <strong>Discrete Gaussian</strong>。</p>
+<p>那麼這個離散變數的特徵函數 (Characteristic Function) 是什麼？定義是 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5Be%5E%7Bi%20%5Comega%20X%7D%5D">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cphi_X(%5Comega)%20=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20P(X=n)%20e%5E%7Bi%20n%20%5Comega%7D%20%5Cpropto%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20e%5E%7B-%5Cpi%20t%20n%5E2%7D%20e%5E%7Bi%20n%20%5Comega%7D%0A"> <strong>確實就是 <img src="https://latex.codecogs.com/png.latex?%5Ctheta_3(z;%20%5Ctau)"> 阿!</strong> (只要令 <img src="https://latex.codecogs.com/png.latex?%5Comega%20=%202%5Cpi%20z">, <img src="https://latex.codecogs.com/png.latex?%5Ctau%20=%20-i%20t">)</p>
+<p>所以，我們可以這樣理解：</p>
+<ol type="1">
+<li><strong>連續世界</strong>：高斯函數的傅立葉變換是高斯函數。</li>
+<li><strong>離散世界</strong>：Theta Function 其實就是「離散高斯分佈」的特徵函數。</li>
+</ol>
+<p>不過這邊是成正比，分母還差了一個 <img src="https://latex.codecogs.com/png.latex?%5Ctheta_3(0;%20it)">，這是為了讓機率加總為 1。</p>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/2025-1130-normal_9/psf.png" class="img-fluid figure-img"></p>
+<figcaption>Poisson Summation Formula</figcaption>
+</figure>
+</div>
+</section>
+<section id="附錄poisson-summation-formula-psf-的證明" class="level3">
+<h3 class="anchored" data-anchor-id="附錄poisson-summation-formula-psf-的證明">附錄：Poisson Summation Formula (PSF) 的證明</h3>
+<p>雖然前面講得很玄，但數學還是要回歸嚴謹。為什麼 <img src="https://latex.codecogs.com/png.latex?%5Csum%20f(n)"> 會等於 <img src="https://latex.codecogs.com/png.latex?%5Csum%20%5Chat%7Bf%7D(k)">？這裡給出一個完整的證明。</p>
+<p><strong>定理敘述:</strong> 假設 <img src="https://latex.codecogs.com/png.latex?f(x)%20%5Cin%20L%5E1(%5Cmathbb%7BR%7D)"> 是一個連續函數，且滿足足夠的衰減條件（見證明）。定義其傅立葉變換為 <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bf%7D(%5Cxi)%20=%20%5Cint_%7B-%5Cinfty%7D%5E%5Cinfty%20f(x)e%5E%7B-2%5Cpi%20i%5Cxi%20x%7Ddx">。則： <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(n)%20=%20%5Csum_%7Bk=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Chat%7Bf%7D(k)%0A"></p>
+<p><strong>證明：</strong></p>
+<p>我們引入一個輔助函數，將 <img src="https://latex.codecogs.com/png.latex?f(x)"> 進行「週期化 (Periodization)」，假設級數收斂： <img src="https://latex.codecogs.com/png.latex?%0AF(x)%20:=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(x+n)%0A"></p>
+<p><strong>第一步：確認 <img src="https://latex.codecogs.com/png.latex?F(x)"> 的性質</strong></p>
+<p>顯然 <img src="https://latex.codecogs.com/png.latex?F(x)"> 是一個週期為 1 的函數。</p>
+<p>既然是週期函數，我們就可以將其展開為 <strong>傅立葉級數 (Fourier Series)</strong>： <img src="https://latex.codecogs.com/png.latex?%0AF(x)%20=%20%5Csum_%7Bk=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20c_k%20e%5E%7B2%5Cpi%20i%20k%20x%7D%0A"> 其中係數 <img src="https://latex.codecogs.com/png.latex?c_k"> 的計算公式為： <img src="https://latex.codecogs.com/png.latex?%0Ac_k%20=%20%5Cint_%7B0%7D%5E%7B1%7D%20F(x)%20e%5E%7B-2%5Cpi%20i%20k%20x%7D%20dx%0A"></p>
+<p><strong>第二步：連結 <img src="https://latex.codecogs.com/png.latex?c_k"> 與 <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bf%7D"> (關鍵步驟)</strong></p>
+<p>將 <img src="https://latex.codecogs.com/png.latex?F(x)"> 的定義代入 <img src="https://latex.codecogs.com/png.latex?c_k">： <img src="https://latex.codecogs.com/png.latex?%0Ac_k%20=%20%5Cint_%7B0%7D%5E%7B1%7D%20%5Cleft(%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(x+n)%20%5Cright)%20e%5E%7B-2%5Cpi%20i%20k%20x%7D%20dx%0A"></p>
+<p>這裡我們遇到了一個數學上的危險操作：<strong>積分與求和交換 (Interchange of Summation and Integration)</strong>。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cint_%7B0%7D%5E%7B1%7D%20%5Csum_%7Bn%7D%20(...)%20%5Cstackrel%7B?%7D%7B=%7D%20%5Csum_%7Bn%7D%20%5Cint_%7B0%7D%5E%7B1%7D%20(...)%0A"> <strong>交換的條件：</strong> 根據 Fubini 定理或控制收斂定理 (Dominated Convergence Theorem)，我們需要 <img src="https://latex.codecogs.com/png.latex?f(x)"> 衰減得夠快。一個充分條件是存在常數 <img src="https://latex.codecogs.com/png.latex?C%3E0"> 與 <img src="https://latex.codecogs.com/png.latex?%5Cdelta%20%3E%200">，使得： <img src="https://latex.codecogs.com/png.latex?%0A%7Cf(x)%7C%20%5Cle%20%5Cfrac%7BC%7D%7B(1+%7Cx%7C)%5E%7B1+%5Cdelta%7D%7D%0A"> 這保證了 <img src="https://latex.codecogs.com/png.latex?%5Csum%20%7Cf(x+n)%7C"> 是一致收斂的，積分與求和便可交換。</p>
+<p>交換後： <img src="https://latex.codecogs.com/png.latex?%0Ac_k%20=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Cint_%7B0%7D%5E%7B1%7D%20f(x+n)%20e%5E%7B-2%5Cpi%20i%20k%20x%7D%20dx%0A"> 利用 <img src="https://latex.codecogs.com/png.latex?e%5E%7B-2%5Cpi%20i%20k%20x%7D"> 的週期性， <img src="https://latex.codecogs.com/png.latex?e%5E%7B-2%5Cpi%20i%20k%20x%7D%20=%20e%5E%7B-2%5Cpi%20i%20k%20(x+n)%7D">，我們可以把積分變數變換 <img src="https://latex.codecogs.com/png.latex?y%20=%20x+n">： <img src="https://latex.codecogs.com/png.latex?%0Ac_k%20=%20%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Cint_%7Bn%7D%5E%7Bn+1%7D%20f(y)%20e%5E%7B-2%5Cpi%20i%20k%20y%7D%20dy%0A"> 觀察這個式子，這是把實數軸切成一段一段長度為 1 的區間，然後全部加起來。根據積分的可加性，這等於從 <img src="https://latex.codecogs.com/png.latex?-%5Cinfty"> 積到 <img src="https://latex.codecogs.com/png.latex?%5Cinfty">： <img src="https://latex.codecogs.com/png.latex?%0Ac_k%20=%20%5Cint_%7B-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(y)%20e%5E%7B-2%5Cpi%20i%20k%20y%7D%20dy%20=%20%5Chat%7Bf%7D(k)%0A"></p>
+<p><strong>第三步：代回並取值</strong></p>
+<p>現在我們知道 <img src="https://latex.codecogs.com/png.latex?F(x)%20=%20%5Csum_%7Bk%7D%20%5Chat%7Bf%7D(k)%20e%5E%7B2%5Cpi%20i%20k%20x%7D">。</p>
+<p>令 <img src="https://latex.codecogs.com/png.latex?x=0">，我們得到： <img src="https://latex.codecogs.com/png.latex?%0AF(0)%20=%20%5Csum_%7Bk=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Chat%7Bf%7D(k)%0A"> 回顧 <img src="https://latex.codecogs.com/png.latex?F(x)"> 的原始定義 <img src="https://latex.codecogs.com/png.latex?F(0)%20=%20%5Csum_%7Bn%7D%20f(n)">，兩式合併即得證： <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20f(n)%20=%20%5Csum_%7Bk=-%5Cinfty%7D%5E%7B%5Cinfty%7D%20%5Chat%7Bf%7D(k)%0A"></p>
+<p>Q.E.D.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Normal Distribution</category>
+  <guid>https://your-website-url.example.com/posts/2025-1130-normal_9/</guid>
+  <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day8： C n 取 k</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
