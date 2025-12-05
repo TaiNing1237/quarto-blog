@@ -5,16 +5,183 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>LTN&#39;s Blog</title>
+<title>0^0</title>
 <link>https://your-website-url.example.com/</link>
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Sun, 30 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 01 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Poker Lesson 4 - 如何詐唬</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>在德州撲克中，有三種不確定性來源:</p>
+<ul>
+<li>你不知道對手的底牌是什麼</li>
+<li>你不知道接下來會發什麼公共牌</li>
+<li>你不知道對手會怎麼玩 (是否在詐唬)</li>
+</ul>
+<p>由於不確定性太多，甚至可能有多名玩家，狀況難以分析。</p>
+<p>讓我們來考慮最簡單的版本之一: 只有兩名玩家 A 跟 B，而且 B 有完全的資訊(B知道自己輸還贏)，但 A 沒有任何資訊。</p>
+<section id="seven-card-stud" class="level2">
+<h2 class="anchored" data-anchor-id="seven-card-stud">Seven-card stud</h2>
+<p>假設 A 跟 B 玩 Seven-card stud， <img src="https://latex.codecogs.com/png.latex?40-80"> 元盲注，池底有 <img src="https://latex.codecogs.com/png.latex?P%20=%20655"> 元。</p>
+<p>現在來到最後一輪下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。</p>
+<ul>
+<li>A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]</li>
+<li>B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]</li>
+</ul>
+<p>目前 A 有一對 A，B 有高牌 K。若 B 的最後一張牌沒能組成同花 (flush)，那麼 A 就會贏。若 B 可以組成同花，那麼 A 也不可以組出更強的牌，所以 B 會贏。</p>
+<p>也就是說，B 知道自己有沒有贏，但是 A 完全不知道。</p>
+<p>現在這輪下注由 A 先行，他可以選擇下注 <img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元 (Bet size) 或是蓋牌 (fold)。</p>
+<p>從旁觀者的角度: B 拿到同花的機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B8%7D%7B40%7D%20=%20%5Cfrac%7B1%7D%7B5%7D">，因為剩下的 40 張牌中，有 8 張黑桃可以讓 B 組成同花。</p>
+<p><strong>A 的策略:</strong></p>
+<p>A 應該先過 (check)。因為 A 沒有任何 B 不知道的資訊。</p>
+<p>這無關 A 的勝率 (B拿到同花的機率)，因為只要 B 用誠實的策略 (若贏就下注，若輸就蓋牌)，A 最多只贏 <img src="https://latex.codecogs.com/png.latex?655"> 元，但下注的話多了輸 <img src="https://latex.codecogs.com/png.latex?80"> 元的風險。</p>
+<p><strong>B 的策略:</strong></p>
+<p>現在輪到 B。 B 已經知道自己是否會贏。</p>
+<ul>
+<li>如果 B 有同花(必贏)，那麼 B 當然要下注 <img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元。</li>
+<li>如果 B 沒有同花(必輸)，B 應該下注嗎? 有那麼一點可能是下注可以騙到 A 蓋牌(fold)，那麼 B 就成功騙贏 <img src="https://latex.codecogs.com/png.latex?655"> 元。若欺騙失敗的話則多花 <img src="https://latex.codecogs.com/png.latex?80"> 元。</li>
+</ul>
+<p>B 的最佳策略是什麼呢?</p>
+<section id="引入機率模型" class="level3">
+<h3 class="anchored" data-anchor-id="引入機率模型">引入機率模型</h3>
+<p>在真實世界中，我們當然都是進行有限次的比賽，這一輪的決定很可能跟前幾輪有關，也就是心理戰。但我們先不談有限次比賽，我們使用比較好分析的 無限次比賽 (infinite repeated game) 模型，也就是機率模型。根據中央極限定理，獨立地在一樣情況下進行無限次的抽樣，樣本平均值會趨近於期望值 (expected value)。所以我們只要最大化期望值就可以了。</p>
+<p>所以假設有個機率 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">，代表 B 在沒有同花的情況下，會以機率 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 詐唬 (下注 <img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元)。</p>
+<p>我們就變成問，<img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 要取多少，才可以使得 B 的期望值最大化?</p>
+<p>怎麼算期望值呢?</p>
+<p>B bet 之後不知道 A 會 fold 還是 call，所以我們也要把 A 也拉入我們的機率模型，假設 A 會以 機率 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 跟注 (call)。</p>
+<p><strong>B 的期望值計算:</strong></p>
+<p>假設 Bet size &nbsp;<img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元，池底大小 <img src="https://latex.codecogs.com/png.latex?P%20=%20655"> 元。</p>
+<p>使用全概率公式 (law of total expectation)，我們可以把 B 的期望值拆成以下幾項:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%0A&amp;=%20%5Cmathbb%7BP%7D%5B%5Ctext%7BB%20%E6%9C%89%E5%90%8C%E8%8A%B1,%20A%20call%7D%5D%20%5Ccdot%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Ctext%7BB%20%E6%9C%89%E5%90%8C%E8%8A%B1,%20A%20call%7D)%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cmathbb%7BP%7D%5B%5Ctext%7BB%20%E6%9C%89%E5%90%8C%E8%8A%B1,%20A%20fold%7D%5D%20%5Ccdot%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Ctext%7BB%20%E6%9C%89%E5%90%8C%E8%8A%B1,%20A%20fold%7D)%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cmathbb%7BP%7D%5B%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20bet,%20A%20call%7D%5D%20%5Ccdot%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20bet,%20A%20call%7D)%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cmathbb%7BP%7D%5B%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20bet,%20A%20fold%7D%5D%20%5Ccdot%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20bet,%20A%20fold%7D)%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cmathbb%7BP%7D%5B%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20check%7D%5D%20%5Ccdot%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Ctext%7BB%20%E7%84%A1%E5%90%8C%E8%8A%B1,%20B%20check%7D)%20%5C%5C%0A&amp;=%20%C2%A0%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft%5B%20%5Calpha%20%5Ccdot%20(P+B)%20+%20(1-%5Calpha)%20%5Ccdot%20P%20%5Cright%20%5D%0A%C2%A0%20+%20%5Cfrac%7B4%7D%7B5%7D%20%5Ccdot%20%5Cleft%5B%20%5Cbeta%20%5Ccdot%20%5Cleft(%20%5Calpha%20%5Ccdot%20(-B)%20+%20(1-%5Calpha)%20%5Ccdot%20P%20%5Cright)%20+%20(1-%5Cbeta)%20%5Ccdot%200%20%5Cright%5D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft%5B%20%5Calpha%20B%20+%20P%20%5Cright%20%5D%20+%20%5Cfrac%7B4%7D%7B5%7D%20%5Ccdot%20%5Cbeta%20%5Ccdot%20%5Cleft(%20-%5Calpha%20B%20+%20P%20-%20%5Calpha%20P%20%5Cright)%20%C2%A0%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Calpha%20B%20+%20P%20%5Cright)%20+%20%5Cbeta%20%5Cleft(%20%5Cfrac%7B4%7D%7B5%7D%20%5Cleft(%20-%5Calpha%20(B+P)%20+%20P%20%5Cright)%20%5Cright)%20%C2%A0%5Ctag%7B1%7D%5Clabel%7Beq:E_for_beta%7D%20%5C%5C%0A&amp;=%20%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%5Cbeta%20%5Cright)%20+%20%5Calpha%20%5Cleft(%20%5Cfrac%7BB%7D%7B5%7D%20-%20%5Cfrac%7B4%7D%7B5%7D%20%5Cbeta%20(B%20+%20P)%20%5Cright)%20%C2%A0%5Ctag%7B2%7D%5Clabel%7Beq:E_for_alpha%7D%20%C2%A0%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>上面的推導中用到了 A 選擇 call 或 fold 的機率，跟 B 的狀態是獨立的，機率是相乘，因為 A 沒有任何資訊。</p>
+<p>在真實世界中，雙方是不會知道對方的策略的。所以 A 不知道 B 的 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">，B 也不知道 A 的 <img src="https://latex.codecogs.com/png.latex?%5Calpha">。</p>
+<p>在這樣的情況下，A 要選一個 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 來最小化 B 的期望值，B 也要選一個 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 來最大化自己的期望值。</p>
+<p>也就是說 B 的最佳 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 是多少，跟 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 有關；A 的最佳 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 也跟 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 有關。</p>
+<p><strong>剪刀石頭布</strong></p>
+<p>回想一下，這感覺跟在玩剪刀石頭布很像。我要出甚麼 (使用甚麼策略)，非常依賴於對方會出甚麼 (使用甚麼策略)。</p>
+<p>假設我發現對方很常出 布，那我多出一些 剪刀 就可以贏更多。</p>
+<p>但是對方發現我很常出 剪刀，那他多出一些 石頭 就可以贏我更多。</p>
+<p>如果用各 1/3 的機率玩，那是最安全的，但是也完全佔不到便宜。(比方說對方就算永遠出布，長期而言期望值還是0)。</p>
+<p>而當我發現對方的弱點，想要調整策略去佔便宜時，同時也會暴露出弱點。</p>
+<p>這邊隱隱約約感覺到有兩種「最好 (optimal)」 的概念:</p>
+<ol type="1">
+<li>第一種是最好的<strong>防守</strong>策略，對方就算知道我的策略，也無法剝削我。</li>
+<li>第二種是最好的<strong>進攻</strong>策略，假設我已知對方策略時，可以最大化剝削對方。</li>
+</ol>
+<p>由以上討論，我們發現當剪刀石頭布對手不是出均勻分布時，我們可以進攻，但是無法防守；若要繼續維持最佳防守，我們就無法進攻。</p>
+</section>
+<section id="納許均衡-nash-equilibrium" class="level3">
+<h3 class="anchored" data-anchor-id="納許均衡-nash-equilibrium">納許均衡 (Nash Equilibrium)</h3>
+<p>我們一般來說的「最佳策略 (optimal strategy)」是指 <strong>最佳防守策略</strong>，也就是無法被對方剝削的策略。</p>
+<p>假設用 <img src="https://latex.codecogs.com/png.latex?%5Csigma_A"> 跟 <img src="https://latex.codecogs.com/png.latex?%5Csigma_B"> 分別代表 A 跟 B 的策略 (strategy)，可以用以下 Min-Max 定義出來: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Csigma_A%5E*%20:=%20%5Carg%20%5Cmax_%7B%5Csigma_A%7D%20%5Cmin_%7B%5Csigma_B%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BA's%20payoff%7D%20%5Cmid%20%5Csigma_A,%20%5Csigma_B)%20%20%5Ctag%7BMin-Max%20Optimal%7D%5Clabel%7Beq:define_optimal%7D%20%5C%5C%0A%5Csigma_B%5E*%20:=%20%5Carg%20%5Cmax_%7B%5Csigma_B%7D%20%5Cmin_%7B%5Csigma_A%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BB's%20payoff%7D%20%5Cmid%20%5Csigma_A,%20%5Csigma_B)%20%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 值得留意的是，這邊的期望值是跑遍所有可能的隨機性 (包含自己和對方的策略隨機性、以及遊戲本身的隨機性)。我們可以決定我們遇到某種狀況時要以怎樣的<strong>機率分布</strong>採取某種行動 (action)，但無法決定我們會遇到什麼狀況 (situation)。</p>
+<p>而納許均衡的定義，是使用<strong>最佳進攻</strong>的概念：</p>
+<p>對於 A 的納許均衡策略 <img src="https://latex.codecogs.com/png.latex?%5Csigma_A%5E*">，以及 B 的納許均衡策略 <img src="https://latex.codecogs.com/png.latex?%5Csigma_B%5E*">，有： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_A%20%7C%20%5Csigma_A%5E*,%20%5Csigma_B%5E*)%20&amp;%5Cge%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_A%20%7C%20%5Csigma_A,%20%5Csigma_B%5E*)%20%5Cquad%20%5Cforall%20%5Csigma_A%20%20%5Ctag%7BNash%20Equilibrium%7D%5Clabel%7Beq:nash_equilibrium%7D%20%5C%5C%20%20%0A%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Csigma_A%5E*,%20%5Csigma_B%5E*)%20&amp;%5Cge%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B%20%7C%20%5Csigma_A%5E*,%20%5Csigma_B)%20%5Cquad%20%5Cforall%20%5Csigma_B%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>首先先說明幾個重點:</p>
+<ol type="1">
+<li>納許均衡是描述一個 strategy pair <img src="https://latex.codecogs.com/png.latex?(%5Csigma_A%5E*,%20%5Csigma_B%5E*)">，而不是單一策略。</li>
+<li>納許均衡可能不只有一組，但在有限賽局中引入混合策略 (mixed strategies) 後，一定存在。</li>
+<li><strong>純策略與混合策略</strong>：若說 Pure Nash Equilibrium，代表策略是確定性的 (deterministic)；若說 Mixed Nash Equilibrium，代表策略是隨機性的 (stochastic)。</li>
+</ol>
+<p><strong>零和賽局 (Zero-Sum Game) 的美好性質</strong>:</p>
+<blockquote class="blockquote">
+<p>在零和賽局中，Min-Max 定理 (Minimax Theorem) 告訴我們 納許均衡策略 <img src="https://latex.codecogs.com/png.latex?%5Ciff"> 最佳防守策略 (Min-Max Optimal)</p>
+</blockquote>
+<p>這意味著在撲克這種零和遊戲裡，只要我們找到了讓對手「無利可圖」的防守策略，該策略同時也會是對抗高手的最佳策略。且無論這場賽局有多少個均衡點，雙方的期望收益 (Game Value) 都是唯一的。</p>
+<p>雖然我們的賽局不是嚴格的零和賽局，但總和 <img src="https://latex.codecogs.com/png.latex?P"> 是固定的，所以兩個人都扣掉 <img src="https://latex.codecogs.com/png.latex?P/2"> 後，即為零和賽局。</p>
+</section>
+<section id="求詐唬頻率" class="level3">
+<h3 class="anchored" data-anchor-id="求詐唬頻率">求詐唬頻率</h3>
+<p>理解了賽局的框架，現在我們回到剛剛的例子，來求解 B 的最佳詐唬頻率 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">，和 A 的最佳跟注頻率 <img src="https://latex.codecogs.com/png.latex?%5Calpha">。</p>
+<p><strong>B 的最佳進攻策略:</strong></p>
+<p>假設 A 選擇了一個 <img src="https://latex.codecogs.com/png.latex?%5Calpha">，輪到 B，這時 B 要選擇一個 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 來最大化自己的期望值。我們使用 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:E_for_beta%7D">，這是一個關於 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 的線性函數: <img src="https://latex.codecogs.com/png.latex?%0Ag(%5Cbeta)%20=%20C%20+%20%5Cbeta%20%5Ccdot%20M%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?M%20=%20%5Cfrac%7B4%7D%7B5%7D%20%5Cleft(%20-%5Calpha%20(B+P)%20+%20P%20%5Cright)">。</p>
+<ul>
+<li>如果 <img src="https://latex.codecogs.com/png.latex?M%20%3E%200">，B (想要最大化自己的收益) 就會選擇 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%201"> (Always Bluff)。</li>
+<li>如果 <img src="https://latex.codecogs.com/png.latex?M%20%3C%200">，B 就會選擇 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%200"> (Never Bluff)。</li>
+<li>如果 <img src="https://latex.codecogs.com/png.latex?M%20=%200">，B 對於 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 的選擇是無所謂的。</li>
+</ul>
+<p>把 <img src="https://latex.codecogs.com/png.latex?M"> 再換回 <img src="https://latex.codecogs.com/png.latex?%5Calpha">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbeta%20=%20%5Cbeta(%5Calpha)%20=%0A%5Cbegin%7Bcases%7D%0A1,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%3C%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A0,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%3E%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Ctext%7Bany%20value%20in%20%7D%20%5B0,1%5D,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Cend%7Bcases%7D%0A"></p>
+<p>回想剪刀石頭布的例子，也就是 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 太小時，B 可以一律詐唬來剝削 A；<img src="https://latex.codecogs.com/png.latex?%5Calpha"> 太大時，B 就永遠不詐唬來避免被剝削。但在 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D"> 時。</p>
+<p>直覺上這個「讓 B 怎麼選都無所謂」的點，就是 A 的最佳防守。但我們還是先代回去 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:E_for_beta%7D"> 看看 <img src="https://latex.codecogs.com/png.latex?%0A%5Cmax_%7B%5Cbeta%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%20=%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Calpha%20B%20+%20P%20%5Cright)%20+%20%5Cmax%20%5Cleft(0,%20%5Cfrac%7B4%7D%7B5%7D%20%5Cleft(%20-%5Calpha%20(B+P)%20+%20P%20%5Cright)%20%20%5Cright)%0A"> 這是兩段折線組成的函數，轉折點在 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D">。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmax_%7B%5Cbeta%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%0A&amp;=%0A%5Cbegin%7Bcases%7D%0A%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Calpha%20B%20+%20P%20%5Cright)%20+%20%5Cfrac%7B4%7D%7B5%7D%20%5Cleft(%20-%5Calpha%20(B+P)%20+%20P%20%5Cright),%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%3C%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Calpha%20B%20+%20P%20%5Cright),%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%5Cge%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Cend%7Bcases%7D%20%5C%5C%0A&amp;=%20%5Cbegin%7Bcases%7D%0AP%20-%20%5Calpha%20%5Cfrac%7B3B+4P%7D%7B5%7D,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%3C%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Calpha%20B%20+%20P%20%5Cright),%20%20&amp;%20%5Ctext%7Bif%20%7D%20%5Calpha%20%5Cge%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%20%20%0A%5Cend%7Bcases%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>這個公式的意思是，若 B 針對 A 的策略 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 做出最佳回應 (也就是 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%5Cbeta(%5Calpha)"> 會隨著 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 而改變)，將 B 的 Payoff 期望值看成是 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 的函數。</p>
+<p>這下輪到 A 選擇。 A 要選一個 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 來最小化 B 的期望值。</p>
+<p>可以看出，折線的前半段是遞減的，後半段是遞增的，所以最小值會出現在轉折點 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D">。</p>
+<p>而最小值為： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmin_%7B%5Calpha%7D%20%5Cmax_%7B%5Cbeta%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%20=%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20B%20+%20P%20%5Cright)%0A"> 這是這個遊戲的 Value。對 B 而言是正的，代表 B 有利可圖。</p>
+<p><strong>A 的最佳進攻策略:</strong></p>
+<p>完全同樣的論述，可以解出 A 的最佳進攻策略。</p>
+<p>來快速看一下，這時就用到 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:E_for_alpha%7D">，這是一個關於 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 的線性函數。</p>
+<p>如果 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 太小，A 就會選擇 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%201"> (Always Call)；如果 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 太大，A 就會選擇 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200"> (Always Fold)。 <img src="https://latex.codecogs.com/png.latex?%0A%5Calpha%20=%20%5Calpha(%5Cbeta)%20=%0A%5Cbegin%7Bcases%7D%0A1,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%3C%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A0,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%3E%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A%5Ctext%7Bany%20value%20in%20%7D%20%5B0,1%5D,%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20=%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%20%20%0A%5Cend%7Bcases%7D%0A"> 代回去看看: <img src="https://latex.codecogs.com/png.latex?%0A%5Cmin_%7B%5Calpha%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%20=%20%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%5Cbeta%20%5Cright)%20+%20%5Cmin%20%5Cleft(0,%20%5Cfrac%7BB%7D%7B5%7D%20-%20%5Cfrac%7B4%7D%7B5%7D%20%5Cbeta%20(B%20+%20P)%20%5Cright)%0A"> 這也是兩段折線組成的函數，轉折點在 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D">。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmin_%7B%5Calpha%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%0A&amp;=%0A%5Cbegin%7Bcases%7D%0A%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%5Cbeta%20%5Cright),%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%3C%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%5Cbeta%20%5Cright)%20+%20%5Cleft(%20%5Cfrac%7BB%7D%7B5%7D%20-%20%5Cfrac%7B4%7D%7B5%7D%20%5Cbeta%20(B%20+%20P)%20%5Cright),%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%5Cge%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A%5Cend%7Bcases%7D%20%5C%5C%0A&amp;=%20%5Cbegin%7Bcases%7D%0A%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%5Cbeta%20%5Cright),%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%3C%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A%5Cfrac%7B1%7D%7B5%7D%20(P%20+%20B)%20-%20%5Cfrac%7B4P%7D%7B5%7D%20%5Cbeta,%20%20&amp;%20%5Ctext%7Bif%20%7D%20%5Cbeta%20%5Cge%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%20%20%0A%5Cend%7Bcases%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 現在要找 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 來最大化這個函數。因為前半段是遞增的，後半段是遞減的，所以最大值會出現在轉折點 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D">。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cmax_%7B%5Cbeta%7D%20%5Cmin_%7B%5Calpha%7D%20%5Cmathbb%7BE%7D(%5Ctext%7BPayoff%7D_B)%20=%20%5Cfrac%7B1%7D%7B5%7D%20P%20%5Cleft(%201%20+%204%20%5Ccdot%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5Cright)%20=%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cleft(%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20B%20+%20P%20%5Cright)%0A"> 這結果跟剛剛一樣，代表我們找到了納許均衡點。同時，我們也手動驗證了 Min-Max 定理在這個賽局中成立。</p>
+<p><strong>結論</strong></p>
+<p>由此得出，納許均衡點為: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Calpha%5E*%20&amp;=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D%20%5C%5C%0A%5Cbeta%5E*%20&amp;=%20%5Cfrac%7BB%7D%7B4(P%20+%20B)%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>這個結論可以細品一下: 如果 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 固定選在 <img src="https://latex.codecogs.com/png.latex?%5Calpha%5E*"> 上，B 怎麼選 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 都無所謂；如果 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 固定選在 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%5E*"> 上，A 怎麼選 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 都無所謂。</p>
+<p>但是若有一方偏離這個點，則另一方就可以透過極端策略來進行剝削。但同時也暴露出自己的弱點。</p>
+<p>這個架構跟剪刀石頭布是幾乎一樣的。</p>
+</section>
+<section id="速算法-無異原理-indifference-principle" class="level3">
+<h3 class="anchored" data-anchor-id="速算法-無異原理-indifference-principle">速算法: 無異原理 (Indifference Principle)</h3>
+<p>費了很大一番功夫，我們終於確認納許均衡點。但每次都要列出落落長的全機率公式再微分實在太慢了。</p>
+<p>我們剛才發現一個關鍵性質：「若 A 取 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7BP%7D%7BP%20+%20B%7D"> 時，則 B 對於 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 的選擇是無所謂的（期望值相同）。」</p>
+<p>這其實就是微積分中「極值點斜率為零」的賽局版本。既然 B 在均衡點時，對於「詐唬」或「不詐唬」的期望值應該一樣（否則他就會全部倒向其中一邊），我們可以直接針對 <strong>B 的決策節點 (Decision Node)</strong> 列式。</p>
+<p><strong>怎麼心算 A 的最佳跟注率 (<img src="https://latex.codecogs.com/png.latex?%5Calpha">)?</strong></p>
+<p>我們要讓 B 在「拿到爛牌」時，對於 <strong>Check</strong> 和 <strong>Bluff</strong> 感到無差別。 (注意：我們不需要考慮 B 拿到好牌的情況，因為那裡他一定會下注，沒有決策難題)。</p>
+<ol type="1">
+<li><strong>若 B 選擇 Check (放棄):</strong> 他直接輸掉，收益為 <img src="https://latex.codecogs.com/png.latex?0">。</li>
+<li><strong>若 B 選擇 Bluff (下注 <img src="https://latex.codecogs.com/png.latex?B">):</strong>
+<ul>
+<li>有 <img src="https://latex.codecogs.com/png.latex?(1-%5Calpha)"> 的機率 A 蓋牌，B 贏得底池 <img src="https://latex.codecogs.com/png.latex?P">。</li>
+<li>有 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 的機率 A 跟注，B 被抓包，輸掉賭注 <img src="https://latex.codecogs.com/png.latex?B">。</li>
+</ul></li>
+</ol>
+<p>令兩者期望值相等： <img src="https://latex.codecogs.com/png.latex?0%20=%20(1-%5Calpha)%20%5Ccdot%20P%20+%20%5Calpha%20%5Ccdot%20(-B)"></p>
+<p>一眼就能看出這就是著名的 <strong>Pot Odds</strong> 公式變體： <img src="https://latex.codecogs.com/png.latex?%5Calpha%20%5Ccdot%20B%20=%20(1-%5Calpha)%20%5Ccdot%20P%20%5Cimplies%20%5Calpha%20=%20%5Cfrac%7BP%7D%7BP+B%7D"></p>
+<p>這告訴我們一個很反直覺的真理： <strong>A 的最佳防守頻率 (<img src="https://latex.codecogs.com/png.latex?%5Calpha">)，完全取決於底池賠率，跟 B 到底有多少機率拿到同花毫無關係！</strong></p>
+<hr>
+<p><strong>怎麼心算 B 的最佳詐唬率 (<img src="https://latex.codecogs.com/png.latex?%5Cbeta">)?</strong></p>
+<p>我們要讓 A 在面對下注時，對於 <strong>Call (跟注)</strong> 和 <strong>Fold (蓋牌)</strong> 感到無差別。</p>
+<ol type="1">
+<li><p><strong>若 A 選擇 Fold:</strong> 收益為 <img src="https://latex.codecogs.com/png.latex?0"> (不賠不賺，底池送給 B)。</p></li>
+<li><p><strong>若 A 選擇 Call:</strong> 這時候 A 贏或輸，取決於 B 到底是真的有牌 (Value Bet) 還是偷雞 (Bluff)。</p>
+<ul>
+<li><strong>A 贏 (B 詐唬):</strong> 贏得底池 <img src="https://latex.codecogs.com/png.latex?P"> 加上 B 的下注 <img src="https://latex.codecogs.com/png.latex?B">。</li>
+<li><strong>A 輸 (B 有同花):</strong> 輸掉跟注金額 <img src="https://latex.codecogs.com/png.latex?B">。</li>
+</ul></li>
+</ol>
+<p>為了讓 A 無差別 (EV of Call = 0)，<strong>A 贏的獲利期望值</strong> 必須等於 <strong>A 輸的風險期望值</strong>。</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BProb(Bluff)%7D%20%5Ctimes%20(P%20+%20B)%20=%20%5Ctext%7BProb(Value)%7D%20%5Ctimes%20B%0A"></p>
+<p>移項整理一下，這就是著名的 <strong>賠率平衡公式 (bluff-to-value ratio)</strong>：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Ctext%7BProb(Bluff)%7D%7D%7B%5Ctext%7BProb(Value)%7D%7D%20=%20%5Cfrac%7BB%7D%7BP%20+%20B%7D%0A"></p>
+<p>這告訴我們：B 的 <strong>詐唬頻率</strong> 對比 <strong>價值注頻率</strong>，必須剛好等於 <strong>A 的跟注賠率 (Pot Odds)</strong>。</p>
+<p>現在把題目中的機率帶進去： * <strong>Prob(Value):</strong> B 拿到同花且下注。機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B5%7D%20%5Ctimes%201"> (有牌必打)。 * <strong>Prob(Bluff):</strong> B 沒拿到同花且下注。機率是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B4%7D%7B5%7D%20%5Ctimes%20%5Cbeta"> (沒牌詐唬)。</p>
+<p>代回公式： <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cfrac%7B4%7D%7B5%7D%5Cbeta%7D%7B%5Cfrac%7B1%7D%7B5%7D%7D%20=%20%5Cfrac%7BB%7D%7BP+B%7D%0A"></p>
+<p>左邊消掉 5： <img src="https://latex.codecogs.com/png.latex?%0A4%5Cbeta%20=%20%5Cfrac%7BB%7D%7BP+B%7D%0A"></p>
+<p>解得： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbeta%20=%20%5Cfrac%7B1%7D%7B4%7D%20%5Ccdot%20%5Cfrac%7BB%7D%7BP+B%7D%0A"></p>
+<p>這結果跟我們之前用微積分算出來的一模一樣！</p>
+<p><strong>[Optional] 註記:</strong></p>
+<p>這裡看上去好像真的只要解平衡點就好了，而且 A 的 抓詐唬頻率真的真 B 的反敗為勝機率毫無關係 (在公式上)。</p>
+<p>但我們想像一種情況，假設 B 反敗為勝的機率變得超高 (比方說 4/5)，而且池底相對小，比方說 <img src="https://latex.codecogs.com/png.latex?P%20=%2080"> 元，<img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元。那其實 A 的最佳跟注率並非 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Cfrac%7B80%7D%7B80+80%7D%20=%200.5">，而是 0 。這也很符合直覺，因為高機率會輸。這可以用上面代回去論證的方法看出來: 原本是 前半段函數斜率是負的，後半段是正的，但現在兩段都是正的，所以 A 的最佳策略是 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200">。</p>
+<p>不過這種情況在實際的撲克中很少見，因為在這種設定下(只有B知道自己是否獲勝)，反敗為勝的機率通常不會太高，也就是池底大部分的牌都可以讓 B 組出好牌。這違反了撲克的常識。</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Poker</category>
+  <guid>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</guid>
+  <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1130-normal_9/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_9.html</link>
   <description><![CDATA[ 
 
 
@@ -62,7 +229,7 @@
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/2025-1130-normal_9/psf.png" class="img-fluid figure-img"></p>
+<p><img src="https://your-website-url.example.com/posts/normal-distribution/images/psf.png" class="img-fluid figure-img"></p>
 <figcaption>Poisson Summation Formula</figcaption>
 </figure>
 </div>
@@ -90,13 +257,13 @@
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1130-normal_9/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_9.html</guid>
   <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day8： C n 取 k</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1129-normal_8/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_8.html</link>
   <description><![CDATA[ 
 
 
@@ -166,7 +333,7 @@
 <p>這樣就看得很清楚了，當 <img src="https://latex.codecogs.com/png.latex?x=1/2"> 兩者相等，但當 <img src="https://latex.codecogs.com/png.latex?x"> 遠離 <img src="https://latex.codecogs.com/png.latex?1/2"> 時，二次函數的近似會越來越高估 <img src="https://latex.codecogs.com/png.latex?H(x)"> 的值，導致組合數被高估。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/2025-1129-normal_8/image.png" class="img-fluid figure-img"></p>
+<p><img src="https://your-website-url.example.com/posts/normal-distribution/images/image.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
 </figure>
 </div>
@@ -176,13 +343,13 @@
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1129-normal_8/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_8.html</guid>
   <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Poker hands 組合數</title>
+  <title>Poker Lesson 3 - hands 組合數</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1128-poker_count/</link>
+  <link>https://your-website-url.example.com/posts/poker/lesson_3_count.html</link>
   <description><![CDATA[ 
 
 
@@ -192,7 +359,7 @@
 <p>今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/2025-1128-poker_count/poker_cardprob_57.png" class="img-fluid figure-img"></p>
+<p><img src="https://your-website-url.example.com/posts/poker/images/poker_cardprob_57.png" class="img-fluid figure-img"></p>
 <figcaption>Poker Counts Takeaway</figcaption>
 </figure>
 </div>
@@ -1184,13 +1351,13 @@ Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
 
  ]]></description>
   <category>Poker</category>
-  <guid>https://your-website-url.example.com/posts/2025-1128-poker_count/</guid>
+  <guid>https://your-website-url.example.com/posts/poker/lesson_3_count.html</guid>
   <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 2 - 一次只能買到一張牌</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/</link>
+  <link>https://your-website-url.example.com/posts/poker/lesson_2.html</link>
   <description><![CDATA[ 
 
 
@@ -1206,7 +1373,7 @@ Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
 <div id="fig-poker-game-status" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/poker_buyonecard-processed.jpg" class="img-fluid figure-img">
+<img src="https://your-website-url.example.com/posts/poker/images/poker_buyonecard-processed.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Poker Game
@@ -1323,13 +1490,13 @@ Figure&nbsp;3: Player A checks on the River
 
  ]]></description>
   <category>Poker</category>
-  <guid>https://your-website-url.example.com/posts/2025-1127-poker_buyonecard/</guid>
+  <guid>https://your-website-url.example.com/posts/poker/lesson_2.html</guid>
   <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 1 - 池底賠率 (Pot Odds)</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1126-poker_potodds/</link>
+  <link>https://your-website-url.example.com/posts/poker/lesson_1_pot_odds.html</link>
   <description><![CDATA[ 
 
 
@@ -1344,7 +1511,7 @@ Figure&nbsp;3: Player A checks on the River
 <div id="fig-poker-pot-odds" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://your-website-url.example.com/posts/2025-1126-poker_potodds/poker_potodds_20-processed.png" class="img-fluid figure-img">
+<img src="https://your-website-url.example.com/posts/poker/images/poker_potodds_20-processed.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Poker Pot Odds
@@ -1365,13 +1532,13 @@ Figure&nbsp;1: Poker Pot Odds
 
  ]]></description>
   <category>Poker</category>
-  <guid>https://your-website-url.example.com/posts/2025-1126-poker_potodds/</guid>
+  <guid>https://your-website-url.example.com/posts/poker/lesson_1_pot_odds.html</guid>
   <pubDate>Wed, 26 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1125-normal_7/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_7.html</link>
   <description><![CDATA[ 
 
 
@@ -1869,13 +2036,13 @@ Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1125-normal_7/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_7.html</guid>
   <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1121-normal_6/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_6.html</link>
   <description><![CDATA[ 
 
 
@@ -3084,13 +3251,13 @@ font-style: inherit;">"gray"</span>})</span>
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1121-normal_6/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_6.html</guid>
   <pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1119-normal_5/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_5.html</link>
   <description><![CDATA[ 
 
 
@@ -3241,13 +3408,13 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 </div>
 </div></section></div> ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1119-normal_5/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_5.html</guid>
   <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1117-normal_4/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_4.html</link>
   <description><![CDATA[ 
 
 
@@ -3269,7 +3436,7 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 <section id="引進-information-theory-的語言" class="level3">
 <h3 class="anchored" data-anchor-id="引進-information-theory-的語言">引進 Information Theory 的語言</h3>
 <p>消息理論完全是基於機率論的東西，但他所定義的各種概念，似乎捕捉到了甚麼「資訊」的本質。可以從今天這個角度來欣賞一下。</p>
-<p>先定義一個隨機變數的資訊熵(Shannon Entropy)，若是離散: <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Csum_%7Bx%7D%20P(X=x)%20%5Clog%20P(X=x)%0A"> 若是連續函數，則改成積分(稱之為 differential entropy，可能取值為負): <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Cint%20f_X(x)%20%5Clog%20f_X(x)%20dx%0A"> 還記得在 <a href="../../posts/2025-1111-normal_1/index.html#sec-max_entropy">前面文章</a>，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。</p>
+<p>先定義一個隨機變數的資訊熵(Shannon Entropy)，若是離散: <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Csum_%7Bx%7D%20P(X=x)%20%5Clog%20P(X=x)%0A"> 若是連續函數，則改成積分(稱之為 differential entropy，可能取值為負): <img src="https://latex.codecogs.com/png.latex?%0AH(X)%20=%20-%20%5Cint%20f_X(x)%20%5Clog%20f_X(x)%20dx%0A"> 還記得在 <a href="../../posts/2025-1111-normal_1/index.qmd#sec-max_entropy">前面文章</a>，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。</p>
 <p>接著，mutual information 定義為: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AI(X;%20Y)%0A&amp;=%20H(X)%20-%20H(X%7CY)%20%20%20%5C%5C%0A&amp;=%20H(Y)%20-%20H(Y%7CX)%20%20%20%5C%5C%0A&amp;=%20H(X)%20+%20H(Y)%20-%20H(X,%20Y)%20%20%20%5C%5C%0A%5Cend%7Baligned%7D%0A"> 以上這些定義都是等價的。</p>
 <p>如果 <img src="https://latex.codecogs.com/png.latex?X"> 和 <img src="https://latex.codecogs.com/png.latex?Y"> 是獨立的，那麼 <img src="https://latex.codecogs.com/png.latex?H(X%7CY)%20=%20H(X)">，所以 <img src="https://latex.codecogs.com/png.latex?I(X;%20Y)%20=%200">。反過來說，如果 <img src="https://latex.codecogs.com/png.latex?I(X;%20Y)%20=%200">，那麼 <img src="https://latex.codecogs.com/png.latex?X"> 和 <img src="https://latex.codecogs.com/png.latex?Y"> 必須是獨立的。所以 mutual information 衡量了兩個隨機變數與獨立性的差距。</p>
 </section>
@@ -3321,7 +3488,7 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1117-normal_4/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_4.html</guid>
   <pubDate>Mon, 17 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
@@ -3632,7 +3799,7 @@ Table&nbsp;2: My Discrete Distribution Table
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1114-normal_3/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_3.html</link>
   <description><![CDATA[ 
 
 
@@ -3680,13 +3847,13 @@ Table&nbsp;2: My Discrete Distribution Table
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1114-normal_3/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_3.html</guid>
   <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1113-normal_2/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_2.html</link>
   <description><![CDATA[ 
 
 
@@ -3845,7 +4012,7 @@ Table&nbsp;2: My Discrete Distribution Table
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1113-normal_2/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_2.html</guid>
   <pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
@@ -4412,7 +4579,7 @@ Table&nbsp;2: My Discrete Distribution Table
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1111-normal_1/</link>
+  <link>https://your-website-url.example.com/posts/normal-distribution/day_1.html</link>
   <description><![CDATA[ 
 
 
@@ -4451,7 +4618,7 @@ Table&nbsp;2: My Discrete Distribution Table
 
  ]]></description>
   <category>Normal Distribution</category>
-  <guid>https://your-website-url.example.com/posts/2025-1111-normal_1/</guid>
+  <guid>https://your-website-url.example.com/posts/normal-distribution/day_1.html</guid>
   <pubDate>Tue, 11 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>

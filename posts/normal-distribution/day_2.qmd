@@ -1,0 +1,282 @@
+---
+title: "一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換"
+author: "Tai-Ning Liao"
+date: "2025-11-13"
+categories: [Normal Distribution]
+---
+
+今天來講一下 moment generation function 跟 characteristic function。
+
+對一個隨機變數 $X$，我們可以定義動差生成函數(Moment Generating Function, MGF):
+$$
+M_X(t) = E[e^{tX}]
+$$
+對於 $X \sim N(\mu, \sigma^2)$，它的 MGF 為：
+$$
+M_X(t) = e^{\mu t + \frac{1}{2}\sigma^2 t^2}
+$$
+
+讓我們假設隨機變數 $X$ 服從常態分佈，即 $X \sim N(\mu, \sigma^2)$，其機率密度函數 (PDF) 為：
+$$f(x; \mu, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \quad x \in \mathbb{R}
+$$
+
+其中 $\mu$ 是平均數（mean），$\sigma^2$ 是變異數（variance）。
+
+帶入定義
+$$
+\begin{aligned}
+M_X(t) 
+&= \int_{-\infty}^{\infty} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} e^{tx}  dx  \\
+&= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}u^2 + t(\sigma u+\mu) }dx 
+\qquad(\text{replace:}\quad x=\sigma u + \mu) \\
+&= \frac{1}{\sqrt{2\pi}} e^{\mu t + \frac{1}{2}\sigma^2 t^2} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(u - t\sigma )^2} du \\
+&= e^{\mu t + \frac{1}{2}\sigma^2 t^2} \quad(\text{因為高斯積分的結果為 } \sqrt{2\pi}) \\
+\end{aligned}
+$$
+
+Characteristic function (CF) 定義為：
+$$  
+\phi_X(t) = E[e^{itX}]
+$$
+對於 $X \sim N(\mu, \sigma^2)$，它的 CF 為：
+$$
+\phi_X(t) = e^{i\mu t - \frac{1}{2}\sigma^2 t^2} \tag{Gauss-CF}\label{eq:gauss}
+$$   
+計算跟上面 MGF 類似，只是將 $t$ 換成 $it$。
+
+### Characteristic 的唯一性
+
+CF 有一個重要的性質：它總是存在，因為 $|e^{itX}| = 1$。
+此外，CF 可以用來證明隨機變數的分佈唯一性：如果兩個隨機變數的 CF 相同，則它們的分佈也相同。這也將是我們今天的重點。讓我們來細細品味這個結果背後的意義與應用。
+
+我們來看一個隨機變數 $X$ 的 CF：
+$$
+\phi_X(t) = E[e^{itX}] = \int_{-\infty}^{\infty} e^{itx} f_X(x) dx  \tag{1}\label{eq:fourier}
+$$
+其中 $f_X(x)$ 是 $X$ 的機率密度函數 (PDF)。
+
+我們來看看能不能從 CF 回推 PDF。我們可以把上式\eqref{eq:fourier}看成是一個傅立葉變換 (Fourier Transform)。
+$$
+\mathcal{F}[f_X](t) \coloneqq \int_{-\infty}^{\infty} e^{itx} f_X(x) dx = \phi_X(t)
+$$
+這邊的正負號和係數跟一般傅立葉變換的定義可能不太一樣，但本質上是一樣的。
+
+我們想做個傅立葉「反」變換，大致上是：
+
+$$
+\begin{align}
+\mathcal{F}^{-1}[\phi_X](x) 
+&\coloneqq \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \phi_X(t) dt   \tag{2}\label{eq:fourier_inv} \\
+&= \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \left( \int_{-\infty}^{\infty} e^{it y} f_X(y) dy \right) dt    \\
+&= \frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) dy dt    \\
+&= \int_{-\infty}^{\infty} f_X(y) \left( \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{it(y - x)} dt \right) dy  \tag{3}\label{eq:swap} \\
+&= \int_{-\infty}^{\infty} f_X(y) \delta(y - x) dy \qquad\text{(Why?)} \tag{4}\label{eq:delta}  \\
+&= f_X(x)  \\
+\end{align}
+$$
+
+大致上的感覺是這樣，但中間的步驟有些含糊，特別是涉及到狄拉克 delta 函數的部分。我們需要一些條件來保證這些積分的交換是合法的。確切來說\eqref{eq:swap} 使用的積分順序的調換，是Fubini 定理的應用，而\eqref{eq:delta} 則是利用了狄拉克 delta 函數的定義。
+
+而Fubini定理要求的條件是被積分函數必須是絕對可積的 (absolutely integrable)，來檢查一下 $|e^{-itx}e^{ity}| = 1$，所以
+$$
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |e^{-itx} e^{ity} f_X(y)| dy dt
+= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |f_X(y)| dy dt
+= \int_{-\infty}^{\infty} dt = \infty
+$$
+
+Boom! 這個條件不成立。
+
+但這不代表結論是錯的，只是這個證明是錯的!直接調換順序是行不通的。
+
+我們來欣賞一下大數學家是怎麼解決這個問題的。如果在積分內有個函數 $g(t)$，使得 $g(t)$ 是絕對可積的 (absolutely integrable)，那麼我們就可以使用Fubini定理來調換積分順序。
+
+讓我們退回到第一條式子，假設有某個 $g(t)\in L^1$，也就是說 $\int_{-\infty}^{\infty} |g(t)| dt < \infty$，那麼我們有：
+
+$$
+\begin{align}
+&\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g(t)} \mathcal{F}[f_X](t) dt \tag{5}\label{eq:ee1}  \\
+= &\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g(t)} \left( \int_{-\infty}^{\infty} e^{it y} f_X(y) dy \right) dt   \\
+= &\frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) \textcolor{red}{g(t)} dy dt  \\
+= &\frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) \textcolor{red}{g(t)} dt dy  \qquad\text{(可以交換了!)} \\
+= & \int_{-\infty}^{\infty} f_X(y) \left( \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-it(x - y)} \textcolor{red}{g(t)} dt \right) dy  \\
+= & \int_{-\infty}^{\infty} f_X(y) \cdot \textcolor{red}{\mathcal{F}^{-1}[g]}(x - y) dy  \qquad\text{(剛好是}g\text{的傅立葉反轉換)} \tag{6}\label{eq:ee2}  \\
+\end{align}
+$$
+積分順序可以交換是因為 $g(t)\in L^1$。這時候分析的大絕招來了，取極限!我們讓 $g(t)$ 慢慢逼近常數函數 $1$，然後看看右邊會變成什麼。
+
+但我們要取個已知傅立葉反變換的 $g(t)$，例如我們剛剛算的高斯分布PDF: $g(t) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-t^2/2\sigma^2}$，其傅立葉反變換也是高斯函數：
+$$
+\begin{align}
+&\mathcal{F}^{-1}[g](x)  \\
+&= \frac{1}{2\pi} \mathcal{F}[g](-x)  \qquad\text{(這是根據定義)} \\
+&= \frac{1}{2\pi} e^{-\frac{1}{2}\sigma^2 (-x)^2}  \qquad\text{(根據\eqref{eq:gauss})} \\
+&= \frac{1}{2\pi} e^{-\frac{1}{2}\sigma^2 x^2}  \tag{7}\label{eq:gauss_inv} \\
+\end{align}
+$$  
+但這個 $g$ 隨著 $\sigma \to \infty$，會趨近於常數函數 $0$。我們要把常數乘回去(傅立葉變換是線性的)，所以我們其實是要定義
+$$
+g_{\sigma}(t) \coloneqq e^{-t^2/2\sigma^2}
+$$
+根據\eqref{eq:gauss_inv}，其傅立葉反變換為
+$$
+\mathcal{F}^{-1}[g_{\sigma}](x) = \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 x^2}
+$$
+我們代回\eqref{eq:ee1}和\eqref{eq:ee2}，得到
+$$
+\begin{align}
+\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g_{\sigma}(t)} \mathcal{F}[f_X](t) dt 
+= & \int_{-\infty}^{\infty} f_X(y) \cdot \textcolor{red}{\mathcal{F}^{-1}[g_{\sigma}]}(x - y) dy  \\
+= & \int_{-\infty}^{\infty} f_X(y) \cdot \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 (x - y)^2} dy  \\
+\end{align} 
+$$
+我們 $\sigma$ 趨近於無窮大後等式就成立了，這需要兩個極限的等式：
+$$
+\begin{align}
+\mathcal{F}^{-1}[\mathcal{F}[f_X]](x) 
+&= \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \mathcal{F}[f_X](t) dt  \qquad\text{(這是用傅立葉反變換的定義)}  \\
+&= \lim_{\sigma \to \infty} \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} g_{\sigma}(t) \mathcal{F}[f_X](t) dt  \tag{8}\label{eq:lim1}  \\
+&= \lim_{\sigma \to \infty} \int_{-\infty}^{\infty} f_X(y) \cdot \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 (x - y)^2} dy  = f_X(x)  \qquad\text{(根據上面的推導)} \\
+&= \lim_{\epsilon \to 0^{+}} \int_{-\infty}^{\infty} f_X(y) \cdot \frac{1}{\sqrt{2\pi \epsilon^2}} e^{-\frac{(x - y)^2}{2\epsilon^2}} dy  = f_X(x)  \tag{9}\label{eq:lim2} \\
+\end{align}
+$$
+而\eqref{eq:lim1}是對的因為可以用 dominated convergence theorem。
+
+而\eqref{eq:lim2}仔細一看，他就是 $f_X$ 跟一個高斯核函數 (Gaussian Kernel) 的捲積 (convolution)。而這個高斯核函數的變異數趨近於 $0$。
+
+這可以用非常基礎的古典論證，我就簡單寫寫: 我們將這個積分切分成兩個區間，一個是 $|x - y| < \delta$，另一個是 $|x - y| \ge \delta$。那個 $|x - y| < \delta$ 的部分核函數總面積會趨近於1，而另一個部分因為核函數在 $|x - y| \ge \delta$ 的地方會趨近於0，所以整個積分就會趨近於 $f_X(x)$ 在 $y=x$ 附近的平均值。若 $f_X$ 在 $x$ 點連續，那麼這個平均值就會趨近於 $f_X(x)$。若 $f_X$ 在 $x$ 點不連續，那麼這個極限會趨近於 $f_X$ 在 $x$ 點的連續化 (continuous version)。
+
+
+### 至於 Levy's Continuity Theorem
+
+上面的證明解釋了一個分布的 characteristic function 唯一決定了該分布的概率密度函數 (PDF)，這是Levy's Continuity Theorem 的一個重要部分。更完整的Levy's Continuity Theorem 除了說明 CF 唯一決定分布外，還說明了如果一列隨機變數的 CF 收斂到某個函數，且該函數是某個分布的 CF，那麼這列隨機變數的分布也會收斂到該分布。
+
+> **定理 1.1 (Lévy 連續性定理)**
+> 設 $\mu, \mu_n, n \in \mathbb{N},$ 是定義在 $(\mathbb{R}^d, \mathcal{B}(\mathbb{R}^d))$ 上的概率測度，其對應的特徵函數分別為 $\chi$ 和 $\chi_n, n \in \mathbb{N}$。則以下條件是等價的：
+> 
+> (i) 序列 $(\mu_n)_{n \in \mathbb{N}}$ 弱收斂於 $\mu$。
+> (ii) $\lim_{n \to \infty} \chi_n(t) = \chi(t)$ 對於所有 $t \in \mathbb{R}^d$ 成立。
+
+
+----
+
+### Interactive 常態分佈與其傅立葉變換
+
+這是一個互動式視覺化，展示 Normal Distribution $N(\mu, \sigma^2)$ 及其 Fourier Transform。
+特別注意 3D 圖中的**螺旋結構**：當 $\mu \neq 0$ 時，頻域會產生旋轉（Phase Shift）。
+
+```{=html}
+<div id="cf-controls" style="margin-bottom:12px; display:flex; gap:12px; align-items:center;">
+  <label>Mean (μ): <input id="mu" type="range" min="-3" max="3" step="0.1" value="0"></label>
+  <span id="mu-val">0.0</span>
+  <label>Variance (σ²): <input id="sigmaSq" type="range" min="0.1" max="10" step="0.1" value="1.0"></label>
+  <span id="sigma-val">1.0</span>
+</div>
+
+<div id="pdf-plot" style="width:48%; display:inline-block; vertical-align:top;"></div>
+<div id="ft-plot" style="width:50%; display:inline-block; vertical-align:top;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+(() => {
+  const n = 500;
+  const xMin = -10, xMax = 10;
+  const fMin = -3, fMax = 3;
+
+  const xArr = Array.from({length:n}, (_,i) => xMin + (i/(n-1))*(xMax-xMin));
+  const fArr = Array.from({length:n}, (_,i) => fMin + (i/(n-1))*(fMax-fMin));
+
+  const muEl = document.getElementById('mu');
+  const sigmaEl = document.getElementById('sigmaSq');
+  const muVal = document.getElementById('mu-val');
+  const sigmaVal = document.getElementById('sigma-val');
+
+  function compute(mu, sigmaSq) {
+    const sigma = Math.sqrt(sigmaSq);
+    const pdf = xArr.map(x => (1/(sigma*Math.sqrt(2*Math.PI))) * Math.exp(-0.5*Math.pow((x-mu)/sigma,2)));
+    const ft = fArr.map(xi => {
+      const magnitude = Math.exp(-2*Math.pow(Math.PI,2)*sigmaSq*xi*xi);
+      const phase = -2*Math.PI*mu*xi;
+      return { xi, real: magnitude*Math.cos(phase), imag: magnitude*Math.sin(phase) };
+    });
+    return { pdf, ft };
+  }
+
+  let mu = parseFloat(muEl.value);
+  let sigmaSq = parseFloat(sigmaEl.value);
+  muVal.textContent = mu.toFixed(1);
+  sigmaVal.textContent = sigmaSq.toFixed(1);
+
+  const init = compute(mu, sigmaSq);
+
+  const pdfTrace = { x: xArr, y: init.pdf, type: 'scatter', mode: 'lines', line: { color: 'steelblue' } };
+  Plotly.newPlot('pdf-plot', [pdfTrace], { title: 'Probability Density', xaxis: {range:[xMin,xMax]}, yaxis:{range:[0,1.5]} }, {responsive:true});
+
+  const ftTrace = { type:'scatter3d', mode:'lines', x: init.ft.map(d=>d.xi), y: init.ft.map(d=>d.real), z: init.ft.map(d=>d.imag), line:{width:4,color:init.ft.map(d=>d.xi),colorscale:'Viridis'} };
+  const ftLayout = {
+    margin:{l:0,r:0,b:0,t:30},
+    scene:{
+      aspectmode:'manual',
+      aspectratio:{x:2,y:1,z:1},
+      xaxis:{title:'Frequency (ξ)'},
+      yaxis:{title:'Real'},
+      zaxis:{title:'Imaginary'},
+      // Camera: look roughly along the z-axis so the imaginary axis is perpendicular to the screen
+      camera: {
+        eye: { x: 0.0, y: 0.0, z: 2.5 },
+        center: { x: 0.0, y: 0.0, z: 0.0 },
+        up: { x: 0.0, y: 1.0, z: 0.0 }
+      }
+    }
+  };
+  Plotly.newPlot('ft-plot', [ftTrace], ftLayout, {responsive:true});
+
+  let savedCamera = null;
+  const ftDiv = document.getElementById('ft-plot');
+  ftDiv.on('plotly_relayout', (d) => {
+    if (d['scene.camera']) { savedCamera = d['scene.camera']; }
+    else if (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) {
+      savedCamera = JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera));
+    }
+  });
+
+  let timer = null;
+  function scheduleUpdate() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      const mu = parseFloat(muEl.value);
+      const sigmaSq = parseFloat(sigmaEl.value);
+      muVal.textContent = mu.toFixed(1);
+      sigmaVal.textContent = sigmaSq.toFixed(1);
+      const { pdf, ft } = compute(mu, sigmaSq);
+
+      Plotly.restyle('pdf-plot', { y: [pdf] }, [0]);
+
+      const fallback = (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) ? JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera)) : null;
+      const keepCam = savedCamera || fallback;
+
+      Plotly.restyle('ft-plot', { x: [ft.map(d=>d.xi)], y: [ft.map(d=>d.real)], z: [ft.map(d=>d.imag)], 'line.color': [ft.map(d=>d.xi)] }, [0]).then(() => {
+        if (keepCam) setTimeout(() => Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{}), 10);
+      }).catch(() => {
+        Plotly.react('ft-plot', [{ type:'scatter3d', mode:'lines', x: ft.map(d=>d.xi), y: ft.map(d=>d.real), z: ft.map(d=>d.imag), line:{width:4,color:ft.map(d=>d.xi),colorscale:'Viridis'} }], ftLayout).then(() => {
+          if (keepCam) Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{});
+        });
+      });
+
+    }, 50);
+  }
+
+  muEl.addEventListener('input', scheduleUpdate);
+  sigmaEl.addEventListener('input', scheduleUpdate);
+
+})();
+</script>
+```
+
+
+
+
+
+
+
+
+
