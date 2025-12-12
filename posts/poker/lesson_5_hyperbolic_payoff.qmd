@@ -1,0 +1,59 @@
+---
+title: "Poker Lesson 5 - 雙曲面 Payoff"
+author: "Tai-Ning Liao"
+date: "2025-12-06"
+categories: [Poker]
+format:
+    html:
+        fig-align: center # 這會讓所有圖片都置中
+        fig-cap-location: bottom # 確保圖標在圖片下方
+        fig-cap-align: center # 這是控制圖標置中的關鍵
+---
+
+來延續上一篇的設定，假設 A 跟 B 玩 Seven-card stud， $40-80$ 元有限注，池底有 $P = 655$ 元。
+
+現在來到最後一輪 River 下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。
+
+* A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]
+* B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]
+
+Player A 先手 pass。
+
+Player B 若有 Nuts (湊成黑桃同花) 就一下會下注；若是 Air 則要用 $\beta$ 的機率決定是否詐唬 (下注 $B = 80$ 元)。
+
+
+上一篇用了完整的機率算法，解出 $\displaystyle \beta = \frac{rB}{(1-r)(B+P)}$ 是 Player B 的最佳防禦策略，其中 $r=1/5$ 是 Player B 拿到 Nuts 的機率 (從 Player A 的視角來看)。
+
+今天來用另一種方式，本質上是一樣，但是可能省去了複雜的期望值計算，並且提供了更直觀的心智模型。
+
+我們說要考慮 Player A 對於 Player B 的下注時的回應，要以 $\alpha$ 的機率來決定是否跟注 (call $C = 80$ 元)。
+
+這邊兩個機率 $\alpha$ 跟 $\beta$，若直接硬算，那就會是跟上一篇一樣。但是其實只要算 $\alpha = {0, 1}$, $beta = {0, 1}$ 四種極端情況即可，因為剩下的情況會是這兩種的 **mixed strategy**。
+
+
+* 若 Player B 拿到 Nuts，則 B 一定會 bet。在兩種極端狀況下，Player A 的期望值 payoff：
+  
+    |                                             | Player B: Always Bet  | 
+    |---------------------------------------------|-----------------------|
+    | **Player A: Always Call ($\alpha = 1$)**    | $-B$                 | 
+    | **Player A: Always Fold ($\alpha = 0$)**    | $0$                 |
+
+* 若 Player B 拿到 Air。在四種極端狀況下，Player A 的期望值 payoff：
+
+    |                                             | Player B: Always Bet <br> ($\beta = 1$) | Player B: Always Check <br> ($\beta = 0$)|
+    |---------------------------------------------|------------------------------------|-------------------------------------|
+    | **Player A: Always Call ($\alpha = 1$)**    | $B + P$                            | $P$                                 |
+    | **Player A: Always Fold ($\alpha = 0$)**    | $0$                                | $P$                                 |
+
+
+將以上兩個表，根據是 Player B 拿到 Nuts 的機率 (假設是 $r$) 做加權平均，得到 Player A 的總體 payoff 表格：
+
+|                                             | Player B: Always Bet <br> ($\beta = 1$)  | Player B: Always Check <br> ($\beta = 0$) |
+|---------------------------------------------|-----------------------|------------------------|
+| **Player A: Always Call ($\alpha = 1$)**    | $-rB + (1-r)(B+P)$    | $-rB + (1-r)P$         |
+| **Player A: Always Fold ($\alpha = 0$)**    | $0$                   | $(1-r)P$               |
+
+
+
+
+

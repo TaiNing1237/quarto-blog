@@ -1,7 +1,7 @@
 ---
 title: "Poker Lesson 4 - 如何詐唬"
 author: "Tai-Ning Liao"
-date: "2025-12-01"
+date: "2025-12-05"
 categories: [Poker]
 format:
     html:
@@ -23,7 +23,7 @@ format:
 
 ## Seven-card stud
 
-假設 A 跟 B 玩 Seven-card stud， $40-80$ 元盲注，池底有 $P = 655$ 元。
+假設 A 跟 B 玩 Seven-card stud， $40-80$ 元有限注，池底有 $P = 655$ 元。
 
 現在來到最後一輪下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。
 
