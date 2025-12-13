@@ -413,7 +413,6 @@
 
 
 
-
 <p>小時候就學過無窮等比級數:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20r%5En%20=%20%5Cfrac%7B1%7D%7B1-r%7D,%20%5Cquad%20%7Cr%7C%3C1%0A"> 當時候胡思亂想，想說指數部分如果改成平方怎麼算? <img src="https://latex.codecogs.com/png.latex?%0A%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20r%5E%7Bn%5E2%7D%20=%20?%0A"> 嗯… 當然是完全不會算，沒想到在大學的殿堂裡還會再次遇見他… <strong>Poisson Summation Formula (PSF)</strong>。</p>
 <p>這真的是數學中最奇怪又深奧的恆等式。</p>
@@ -456,7 +455,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/normal-distribution/images/psf.png" class="img-fluid figure-img"></p>
-<figcaption>Poisson Summation Formula</figcaption>
+<figcaption class="figure-caption">Poisson Summation Formula</figcaption>
 </figure>
 </div>
 </section>
@@ -491,7 +490,6 @@
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_8.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -560,7 +558,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/normal-distribution/images/image.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
+<figcaption class="figure-caption">Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
 </figure>
 </div>
 
@@ -581,12 +579,11 @@
 
 
 
-
 <p>今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/poker/images/poker_cardprob_57.png" class="img-fluid figure-img"></p>
-<figcaption>Poker Counts Takeaway</figcaption>
+<figcaption class="figure-caption">Poker Counts Takeaway</figcaption>
 </figure>
 </div>
 <p><strong>同花順 (straight flush) 的方法數:</strong> 在一副標準的 52 張撲克牌中，有 4 種花色，每種花色有 13 張牌。同花順是指五張連續數字且同花色的牌。首先，我們可以有 10 種不同的同花順組合（A-5, 2-6, …, 10-A）。 每種花色有 1 種組合，所以同花順的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A4%20%5Ctimes%2010%20=%2040%0A"></p>
@@ -601,7 +598,8 @@
 <p>檢查一下所有手牌組合數量的總和是否等於 52 張牌中選 5 張的總組合數： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B5%7D%20=%202598960%0A"></p>
 <p>而各手牌組合數量總和為： <img src="https://latex.codecogs.com/png.latex?%0A40%20+%20624%20+%203744%20+%205108%20+%2010200%20+%2054912%20+%20123552%20+%201098240%20+%201302540%20=%202598960%0A"> 符合預期!</p>
 <p><strong>直方圖:</strong></p>
-<div class="cell">
+<div id="fig-poker-hand-counts" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="93" data-source-offset="-14" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb1-93">Plotly <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="pp" style="color: #AD0000;
@@ -999,57 +997,38 @@ font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-133">}</span></code></pre></div>
-<div id="fig-poker-hand-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-poker-hand-counts-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
+<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-poker-hand-counts-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
+<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-3" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-poker-hand-counts-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-poker-hand-counts-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-3" data-nodetype="expression">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c)
-</figcaption>
+<figcaption class="figure-caption">(c) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: 撲克手牌組合數量直方圖
-</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: 撲克手牌組合數量直方圖</figcaption>
 </figure>
-</div>
 </div>
 <section id="texas-holdem" class="level3">
 <h3 class="anchored" data-anchor-id="texas-holdem">Texas Hold’em</h3>
@@ -1074,7 +1053,8 @@ Figure&nbsp;1: 撲克手牌組合數量直方圖
 <hr>
 <p><strong>德州撲克手牌分佈直方圖:</strong></p>
 <p>我們將上述 7 選 5 的數據更新到圖表中，你會發現分佈趨勢與標準 5 張牌撲克有所不同，特別是葫蘆與同花的順序對調，以及散牌數量的驟降。</p>
-<div class="cell">
+<div id="fig-texas-holdem-counts" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212">texasHandTypes <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [</span>
@@ -1467,43 +1447,28 @@ font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-251">}</span></code></pre></div>
-<div id="fig-texas-holdem-counts" class="cell quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-texas-holdem-counts-1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-texas-holdem-counts-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-2-1" data-nodetype="declaration">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
+<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-texas-holdem-counts-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-texas-holdem-counts-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-2-2" data-nodetype="expression">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
+<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
-</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖</figcaption>
 </figure>
-</div>
 </div>
 <hr>
 </section>
@@ -1589,21 +1554,16 @@ Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
 
 
 
-
 <p>假設 limit Texas Hold’em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。</p>
 <ul>
 <li>Player A 手上有 A♠ K♠。</li>
 <li>Player B 手上有 J♥ 3♥。</li>
 </ul>
 <p>現在 Player A bet 60 元，Player B 該如何決定要不要跟注 (call) 呢?</p>
-<div id="fig-poker-game-status" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://your-website-url.example.com/posts/poker/images/poker_buyonecard-processed.jpg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Poker Game
-</figcaption>
+<div id="fig-poker-game-status" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/poker/images/poker_buyonecard-processed.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Poker Game</figcaption>
 </figure>
 </div>
 <hr>
@@ -1630,11 +1590,10 @@ Figure&nbsp;1: Poker Game
 <li>如果第五張牌沒讓 Player B 組成 flush (機率 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B36%7D%7B44%7D">)，Player B 就輸掉這手牌。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B33%7D%7B45%7D%20%5Ctimes%20%5Cfrac%7B36%7D%7B44%7D%20%5Ctimes%20(-120)%20=%20-72"> 元。</li>
 </ul></li>
 </ol>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-decision-tree" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-decision-tree" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-decision-tree">graph TD
     %% 定義節點樣式
@@ -1657,10 +1616,7 @@ Figure&nbsp;1: Poker Game
     style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
 </pre>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River
-</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River</figcaption>
 </figure>
 </div>
 </div>
@@ -1670,11 +1626,10 @@ Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River
 <section id="if-player-a-checks-on-the-river" class="level3">
 <h3 class="anchored" data-anchor-id="if-player-a-checks-on-the-river">If Player A checks on the River:</h3>
 <p>我們可以看一下如果 Player A 在第四張牌後不繼續下注，Player B 輸的話就只損失 60 元，但贏的話可以贏 150 元，這樣 Player B 的 EV 會變成正的。</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-decision-tree-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-decision-tree-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-decision-tree-2">graph TD
     %% 定義節點樣式
@@ -1697,10 +1652,7 @@ Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River
     style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
 </pre>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Player A checks on the River
-</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3: Player A checks on the River</figcaption>
 </figure>
 </div>
 </div>
@@ -1728,20 +1680,15 @@ Figure&nbsp;3: Player A checks on the River
 
 
 
-
 <p>先來談談賭博中最小的一步，要 <strong>繼續遊戲 (call)</strong> 還是 <strong>忍痛放棄 (fold)</strong>。</p>
 <p>所謂的 Pot Odds，指的是你為了繼續參與遊戲 (call 或 raise) 所需要投入的金額，和你可能贏得的彩池 (pot) 之間的比例。</p>
 <p>舉例來說，假設彩池中有 100 美元，而你需要投入 20 美元來繼續參與遊戲，那麼你的 Pot Odds 就是 20:100，或者簡化為 1:5。</p>
 <p>那我們該如何判斷是否該繼續參與呢? 假設我們目前評估勝率為 <img src="https://latex.codecogs.com/png.latex?p">，那麼我們可以計算出期望值 (Expected Value, EV)： <img src="https://latex.codecogs.com/png.latex?%0AEV%20=%20p%20%5Ctimes%20%5Ctext%7BPot%20Size%7D%20-%20(1%20-%20p)%20%5Ctimes%20%5Ctext%7BCost%20to%20Call%7D%20%5Ctag%7B1%7D%5Clabel%7Beq:ev-pot-odds%7D%0A"> 若 <img src="https://latex.codecogs.com/png.latex?EV%20%3E%200">，表示長期下來這是一個有利可圖的決策，反之則不然。也就是我們希望 <img src="https://latex.codecogs.com/png.latex?%0Ap%20%3E%20%5Cfrac%7B%5Ctext%7BCost%20to%20Call%7D%7D%7B%5Ctext%7BPot%20Size%7D%20+%20%5Ctext%7BCost%20to%20Call%7D%7D%20%5Ctag%7B2%7D%5Clabel%7Beq:pot-odds-threshold%7D%0A"></p>
 <p>在上面例子中，就是 <img src="https://latex.codecogs.com/png.latex?20%20/%20(100%20+%2020)%20=%201/6%20%5Capprox%2016.67%5C%25">。也就是說，如果我們認為自己的勝率超過 16.67%，那麼繼續參與遊戲是有利可圖的。</p>
-<div id="fig-poker-pot-odds" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://your-website-url.example.com/posts/poker/images/poker_potodds_20-processed.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Poker Pot Odds
-</figcaption>
+<div id="fig-poker-pot-odds" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/poker/images/poker_potodds_20-processed.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Poker Pot Odds</figcaption>
 </figure>
 </div>
 <section id="odds-vs-probability" class="level3">
@@ -1766,7 +1713,6 @@ Figure&nbsp;1: Poker Pot Odds
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_7.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -1812,7 +1758,8 @@ Figure&nbsp;1: Poker Pot Odds
 </tr>
 </tbody>
 </table>
-<div class="cell">
+<div id="fig-hermite-polynomials" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="43" data-source-offset="-45" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb1-43"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
@@ -2168,57 +2115,38 @@ font-style: inherit;">2</span> </span>
 <span id="cb1-81">    })</span>
 <span id="cb1-82">  ]</span>
 <span id="cb1-83">})</span></code></pre></div>
-<div id="fig-hermite-polynomials" class="cell quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-hermite-polynomials-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a)
-</figcaption>
+<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-hermite-polynomials-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
+<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-3" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-hermite-polynomials-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <div id="ojs-cell-1-3" data-nodetype="expression">
 
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c)
-</figcaption>
+<figcaption class="figure-caption">(c) <strong>?(caption)</strong></figcaption>
 </figure>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)
-</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)</figcaption>
 </figure>
-</div>
 </div>
 <section id="計算-hermite-多項式" class="level3">
 <h3 class="anchored" data-anchor-id="計算-hermite-多項式">計算 Hermite 多項式</h3>
@@ -2270,7 +2198,6 @@ Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_6.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -3489,7 +3416,6 @@ font-style: inherit;">"gray"</span>})</span>
 
 
 
-
 <p>今天來講個輕鬆的小主題：<strong>Cumulant</strong>。</p>
 <p>對於一個隨機變數 <img src="https://latex.codecogs.com/png.latex?X">，我們通常想知道平均跟標準差。有時候我們甚至會想知道更高階的資訊，例如偏度 (skewness) 跟峰度 (kurtosis)，這些都可以透過動差 (moment) 來描述。</p>
 <section id="cumulant-generating-function" class="level3">
@@ -3628,7 +3554,7 @@ font-style: inherit;">"gray"</span>})</span>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-lukacs1970" class="csl-entry">
 Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 </div>
@@ -3642,7 +3568,6 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_4.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -3726,7 +3651,6 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 
 
 
-
 <section id="從無窮多組解中找一組最小的" class="level1">
 <h1>從無窮多組解中，找一組最小的</h1>
 <p>假設在 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BR%7D%5En"> 空間中有 <img src="https://latex.codecogs.com/png.latex?n"> 個向量 <img src="https://latex.codecogs.com/png.latex?v_1,%20...,%20v_n">，要找他們的整係數線性組合，使得其長度最小(但非零)。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Barray%7D%7Bcl%7D%0A%5Cmin%20&amp;%20%5CBig%5C%7C%20v%20%5CBig%5C%7C_2%20%5C%5C%0A%5Ctext%7Bs.t.%7D%20&amp;%20v%20=%20%5Csum_%7Bi=1%7D%5En%20a_i%20v_i,%20%5Cquad%20a_i%20%5Cin%20%5Cmathbb%7BZ%7D,%20%5Cquad%20v%20%5Cneq%200%0A%5Cend%7Barray%7D%0A"></p>
@@ -3753,17 +3677,12 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 
 
 
-
 <p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs), I’ve ignored the constant normalization factors for simplicity. Here’s a summary table:</p>
 <section id="continuous-probability-distributions-table" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-probability-distributions-table">Continuous Probability Distributions Table</h3>
-<div id="tbl-simple" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: My Distribution Table
-</figcaption>
-<div aria-describedby="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-simple" class="anchored">
 <table class="table">
+<caption>Table&nbsp;1: My Distribution Table</caption>
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -3878,8 +3797,6 @@ Table&nbsp;1: My Distribution Table
 </tbody>
 </table>
 </div>
-</figure>
-</div>
 <ul>
 <li><img src="https://latex.codecogs.com/png.latex?%7B%5Cdisplaystyle%20K_%7B%5Cnu%20%7D%7D"> is the <a href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1">modified Bessel function of the second kind</a>.</li>
 <li><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(a;%20b;%20z)"> is the <a href="https://en.wikipedia.org/wiki/Confluent_hypergeometric_function">confluent hypergeometric function</a>.</li>
@@ -3888,13 +3805,9 @@ Table&nbsp;1: My Distribution Table
 <section id="discrete-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="discrete-distributions">Discrete Distributions</h3>
 <p>Here are lists for common discrete probability distributions:</p>
-<div id="tbl-discrete" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: My Discrete Distribution Table
-</figcaption>
-<div aria-describedby="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-discrete" class="anchored">
 <table class="table">
+<caption>Table&nbsp;2: My Discrete Distribution Table</caption>
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -3964,8 +3877,6 @@ Table&nbsp;2: My Discrete Distribution Table
 </tbody>
 </table>
 </div>
-</figure>
-</div>
 <hr>
 </section>
 <section id="relationships" class="level3">
@@ -4031,7 +3942,6 @@ Table&nbsp;2: My Discrete Distribution Table
 
 
 
-
 <p>今天來講 <img src="https://latex.codecogs.com/png.latex?n"> 維空間的多變量常態分佈 (Multivariate Normal Distribution)。高維空間的常態分佈雖然在形式上只是把一維的做 <img src="https://latex.codecogs.com/png.latex?n"> 次方，但他豐富的特性，卻讓它在統計學、機器學習，甚至於密碼學、純數學理論中都有非常重要的應用。</p>
 <p>對一個 <img src="https://latex.codecogs.com/png.latex?n"> 維隨機向量 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D%20=%20(X_1,%20X_2,%20%5Cldots,%20X_n)%5ET">，我們說它服從多變量常態分佈，記作 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D%20%5Csim%20%5Cmathcal%7BN%7D_n(%5Cboldsymbol%7B%5Cmu%7D,%20%5CSigma)">，如果它的機率密度函數 (PDF) 為： <img src="https://latex.codecogs.com/png.latex?%0Af_%7B%5Cmathbf%7BX%7D%7D(%5Cmathbf%7Bx%7D)%20=%20%5Cfrac%7B1%7D%7B(2%5Cpi)%5E%7Bn/2%7D%20%7C%5CSigma%7C%5E%7B1/2%7D%7D%20%5Cexp%5Cleft(%20-%5Cfrac%7B1%7D%7B2%7D%20(%5Cmathbf%7Bx%7D%20-%20%5Cboldsymbol%7B%5Cmu%7D)%5ET%20%5CSigma%5E%7B-1%7D%20(%5Cmathbf%7Bx%7D%20-%20%5Cboldsymbol%7B%5Cmu%7D)%20%5Cright)%0A"> 其中 <img src="https://latex.codecogs.com/png.latex?%5Cboldsymbol%7B%5Cmu%7D%20%5Cin%20%5Cmathbb%7BR%7D%5En"> 是均值向量 (mean vector)，<img src="https://latex.codecogs.com/png.latex?%5CSigma%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20n%7D"> 是協方差矩陣 (covariance matrix)，且必須是正定矩陣 (positive definite matrix)。</p>
 <p>OK，老實說這個公式看起來有點嚇人，但其實我們知道所有對稱的實數正定矩陣都可以被對角化 (diagonalized)，寫成 <img src="https://latex.codecogs.com/png.latex?%5CSigma%20=%20P%20D%20P%5E%7B-1%7D">，所以經過一個 orthogonal 轉換 <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D=P%5Cmathbf%7BY%7D">，<img src="https://latex.codecogs.com/png.latex?f_%5Cmathbf%7BX%7D(x)"> 可以寫成 <img src="https://latex.codecogs.com/png.latex?%0Af_%7B%5Cmathbf%7BX%7D%7D(%5Cmathbf%7Bx%7D)%20=%20f_%7B%5Cmathbf%7BY%7D%7D(%5Cmathbf%7By%7D)%20=%20%5Cprod_%7Bi=1%7D%5E%7Bn%7D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%20%5Csigma_i%5E2%7D%7D%20%5Cexp%5Cleft(%20-%5Cfrac%7B(y_i%20-%20%5Cmu_i)%5E2%7D%7B2%5Csigma_i%5E2%7D%20%5Cright)%0A"> 噹噹! 其實就是 <img src="https://latex.codecogs.com/png.latex?n"> 個獨立的一維常態分佈的乘積啦！</p>
@@ -4081,7 +3991,6 @@ Table&nbsp;2: My Discrete Distribution Table
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_2.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -4246,7 +4155,6 @@ Table&nbsp;2: My Discrete Distribution Table
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1112-linear_code/index.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -4499,7 +4407,6 @@ Table&nbsp;2: My Discrete Distribution Table
 
 
 
-
 <section id="什麼是共軛分佈從丟硬幣開始說起" class="level3">
 <h3 class="anchored" data-anchor-id="什麼是共軛分佈從丟硬幣開始說起">什麼是共軛分佈？從丟硬幣開始說起</h3>
 <p>在貝氏統計 (Bayesian statistics) 中，我們經常需要估計一個未知參數的機率分佈。</p>
@@ -4698,7 +4605,7 @@ Table&nbsp;2: My Discrete Distribution Table
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/Gamma_60_6.png" class="img-fluid figure-img" width="400"></p>
-<figcaption>圖一： Gamma(10,1) 與 Gamma(60,6) 的比較</figcaption>
+<figcaption class="figure-caption">圖一： Gamma(10,1) 與 Gamma(60,6) 的比較</figcaption>
 </figure>
 </div>
 </div>
@@ -4811,7 +4718,6 @@ Table&nbsp;2: My Discrete Distribution Table
 
 
 
-
 <p>我們將介紹的第一個分佈，是統計學中最著名的——常態分佈（Normal Distribution）。它通常被稱為高斯分佈 (Gaussian distribution)，以紀念偉大的數學家卡爾·弗里德里希·高斯 (Carl Friedrich Gauss)。</p>
 <p>儘管高斯在 19 世紀初將其發揚光大（用於分析天文觀測的誤差），但這個鐘形曲線的數學形式最早是由亞伯拉罕·德莫佛 (Abraham de Moivre) 在 1733 年發現的，作為二項分佈的近似。</p>
 <p>我們通常看到的常態分佈公式是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Csigma%5Csqrt%7B2%5Cpi%7D%7D%20e%5E%7B-(x-%5Cmu)%5E2%20/%20(2%5Csigma%5E2)%7D">，看起來有點嚇人。但今天，讓我們從一個更簡潔、更優美的形式開始 <img src="https://latex.codecogs.com/png.latex?%0Af(x)%20=%20e%5E%7B-%5Cpi%20x%5E2%7D%0A"> 在此參數下，平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu=0">，變異數 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2=%5Cfrac%7B1%7D%7B2%5Cpi%7D">。</p>
@@ -4852,7 +4758,6 @@ Table&nbsp;2: My Discrete Distribution Table
   <dc:creator>LTN </dc:creator>
   <link>https://your-website-url.example.com/posts/2025-1031-helloween/index.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -4898,7 +4803,6 @@ Table&nbsp;2: My Discrete Distribution Table
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/welcome/index.html</link>
   <description><![CDATA[ 
-
 
 
 
