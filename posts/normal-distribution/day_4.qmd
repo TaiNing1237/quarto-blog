@@ -63,7 +63,7 @@ $$
 $$
 H(X) = - \int f_X(x) \log f_X(x) dx
 $$
-還記得在 [前面文章](/posts/2025-1111-normal_1/index.qmd#sec-max_entropy)，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。
+還記得在 [前面文章](/posts/normal-distribution/day_1.qmd#sec-max_entropy)，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。
 
 接著，mutual information 定義為:
 $$
