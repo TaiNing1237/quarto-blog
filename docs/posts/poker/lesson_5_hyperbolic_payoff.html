@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-12-06">
+
+<title>0^0 - Poker Lesson 5 - 雙曲面 Payoff</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">0^0</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Poker Lesson 5 - 雙曲面 Payoff</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Poker</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 6, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>來延續上一篇的設定，假設 A 跟 B 玩 Seven-card stud， <span class="math inline">\(40-80\)</span> 元有限注，池底有 <span class="math inline">\(P = 100\)</span> 元。</p>
+<p>現在來到最後一輪 River 下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。</p>
+<ul>
+<li>A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]</li>
+<li>B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]</li>
+</ul>
+<p>Player A 先手應該要 pass。</p>
+<p>輪到 Player B:</p>
+<ul>
+<li>若有 Nuts (湊成黑桃同花) 就一下會下注；</li>
+<li>若是 Air 則要用 <span class="math inline">\(\beta\)</span> 的機率決定是否詐唬 (下注 <span class="math inline">\(B = 80\)</span> 元)。</li>
+</ul>
+<p>上一篇用了完整的機率算法，解出 <span class="math inline">\(\displaystyle \beta = \frac{rB}{(1-r)(B+P)}\)</span> 是 Player B 的最佳防禦策略，其中 <span class="math inline">\(r=1/5\)</span> 是 Player B 拿到 Nuts 的機率 (從 Player A 的視角來看)。</p>
+<p>而當 Player B bet時，Player A 的最佳回應策略是以 <span class="math inline">\(\displaystyle \alpha = \frac{P}{B+P}\)</span> 的機率去跟注。</p>
+<p>今天來用另一種方式，本質上是一樣，但是可能省去了複雜的期望值計算，並且提供了更直觀的心智模型。</p>
+<section id="翹翹板-payoff" class="level3">
+<h3 class="anchored" data-anchor-id="翹翹板-payoff">翹翹板 Payoff</h3>
+<p>我們說要考慮 Player A 對於 Player B 的下注時的回應，要以 <span class="math inline">\(\alpha\)</span> 的機率來決定是否跟注 (call <span class="math inline">\(C = 80\)</span> 元)。</p>
+<p>這邊兩個機率 <span class="math inline">\(\alpha\)</span> 跟 <span class="math inline">\(\beta\)</span>，若直接硬算，那就會是跟上一篇一樣。但是其實只要算 <span class="math inline">\(\alpha = {0, 1}\)</span>, <span class="math inline">\(\beta = {0, 1}\)</span> 四種極端情況即可，因為剩下的情況會是這兩種的 <strong>mixed strategy</strong>。</p>
+<ul>
+<li><p>若 Player B 拿到 Nuts，則 B 一定會 bet。在兩種極端狀況下，Player A 的期望值 payoff：</p>
+<table class="table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 29%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<span class="math inline">\(\alpha = 0\)</span>)</th>
+<th>Player A: Always Call <br> (<span class="math inline">\(\alpha = 1\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet</strong></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(-B\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>若 Player B 拿到 Air。在四種極端狀況下，Player A 的期望值 payoff：</p>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 25%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<span class="math inline">\(\alpha = 0\)</span>)</th>
+<th>Player A: Always Call <br> (<span class="math inline">\(\alpha = 1\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet (<span class="math inline">\(\beta = 1\)</span>)</strong></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(B + P\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Player B: Always Check (<span class="math inline">\(\beta = 0\)</span>)</strong></td>
+<td><span class="math inline">\(P\)</span></td>
+<td><span class="math inline">\(P\)</span></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p>我們將以上三種情況，分別畫下來：</p>
+<ul>
+<li>Senario 1: Player B 拿到 Nuts，則 Player B 一定下注 (value bet)</li>
+<li>Senario 2: Player B 拿到 Air，假設 Player B 總是下注 (bluff bet)</li>
+<li>Senario 3: Player B 拿到 Air，假設 Player B 總是過牌 (honest check)</li>
+</ul>
+<p>那麼對 Player A 來說，這三種情況的 payoff 分別是：</p>
+<div id="fig-lesson5-seesaw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/visualize_seesaw.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Seesaw Payoff</figcaption>
+</figure>
+</div>
+<p>因為 Player A 要最大化 payoff，所以會選數值大的 (翹翹板高處)。</p>
+<p>先讓我們暫時把這三個翹翹板記在心中，待會再回來看。</p>
+</section>
+<section id="雙曲面" class="level3">
+<h3 class="anchored" data-anchor-id="雙曲面">雙曲面</h3>
+<p>假設 Player B 拿到 Nuts 的機率是 <span class="math inline">\(r\)</span> (此處 <span class="math inline">\(r=1/5\)</span>)，那麼一個 average over Player B 手牌的 Player A payoff 表格，即是兩個表的加權平均：</p>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 25%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<span class="math inline">\(\alpha = 0\)</span>)</th>
+<th>Player A: Always Call <br> (<span class="math inline">\(\alpha = 1\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet (<span class="math inline">\(\beta = 1\)</span>)</strong></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(-rB + (1-r)(B+P)\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Player B: Always Check (<span class="math inline">\(\beta = 0\)</span>)</strong></td>
+<td><span class="math inline">\((1-r)P\)</span></td>
+<td><span class="math inline">\(-rB + (1-r)P\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>先來簡化一下符號，將上面的 payoff 寫成矩陣 <span class="math inline">\(X = [X_{\beta \alpha}]\)</span>：</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(\alpha = 0\)</span></th>
+<th><span class="math inline">\(\alpha = 1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><span class="math inline">\(\beta = 1\)</span></strong></td>
+<td><span class="math inline">\(X_{10}\)</span></td>
+<td><span class="math inline">\(X_{11}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(\beta = 0\)</span></strong></td>
+<td><span class="math inline">\(X_{00}\)</span></td>
+<td><span class="math inline">\(X_{01}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>在這個例子中是 <span class="math display">\[
+\begin{align}
+X_{10} &amp; = 0 \\
+X_{11} &amp; = -rB + (1-r)(B+P) \\
+X_{00} &amp; = (1-r)P \\
+X_{01} &amp; = -rB + (1-r)P
+\end{align}
+\]</span></p>
+<p>既然已經知道 Pure Strategy 的 <strong>所有可能</strong> 情況，那麼 mix strategy 就是這些情況的 convex linear combination，而 <span class="math inline">\(\alpha, \beta \in [0, 1]\)</span> 就是權重。</p>
+<p>所以在 mix strategy 時， Player A 的 payoff 期望值就是： <span class="math display">\[
+\begin{align}
+\mathbb{E}[\text{Payoff}_A] &amp; = \alpha \beta X_{11} + \alpha (1-\beta) X_{01} + (1-\alpha) \beta X_{10} + (1-\alpha)(1-\beta) X_{00}  \tag{1}\label{eq:hyperbolic_payoff} \\
+\end{align}
+\]</span></p>
+<p>將 <span class="math inline">\(\mathbb{E}[\text{Payoff}_A]\)</span> 視為一個 <span class="math inline">\(\alpha, \beta\)</span> 的函數，畫在三維空間中的話，就是一個雙曲面 (hyperbolic surface)：</p>
+<div id="fig-lesson5-hyperbolic_heatmap" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/hyperbolic_heatmap.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Hyperbolic Payoff Surface</figcaption>
+</figure>
+</div>
+<p>這是一個標準的雙曲面 (hyperbolic paraboloid)，中間有個鞍點 (saddle point)。</p>
+<p>雖然是個二次函數，但當固定其中一個變數 (例如 <span class="math inline">\(\beta\)</span>)，截面其實是一條直線。可以將雙曲面想成是一條直線一邊旋轉一邊平移所掃出來的曲面。</p>
+<p>當我們看 Side View 時 (相 <span class="math inline">\(\beta\)</span> 這個維度投影掉)，可以明顯看出這個直線掃出的感覺，這不就是剛剛的翹翹板? 沒錯，這個雙曲面其實就是把三個翹翹板「合體」起來的結果。</p>
+<p>讓我們 zoom in 看一下這個投影在 <span class="math inline">\(\alpha\)</span>-<span class="math inline">\(\beta\)</span> 平面圖，其實也就是把 payoff 畫成 heatmap：</p>
+<div id="fig-lesson5-payoff_landscape" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/payoff_landscape.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: 2D Payoff Surface - Heatmap</figcaption>
+</figure>
+</div>
+<p>這張圖 <a href="#fig-lesson5-payoff_landscape">Figure&nbsp;3</a> 很視覺化了驗證了之前推導的結果:</p>
+<ul>
+<li>當 <span class="math inline">\(\alpha = \alpha^* = \frac{P}{B+P}\)</span> 時， 不管 Player B 選擇哪個，期望值都是一樣的 (白色區域)。</li>
+<li>而當 <span class="math inline">\(\beta = \beta^* = \frac{rB}{(1-r)(B+P)}\)</span> 時， 不管 Player A 選擇哪個，期望值也是一樣的 (白色區域)。</li>
+<li>而當其中有人偏離平衡點時，另一人可以取 0 或 1 的極端策略來懲罰對方 (payoff 變成紅色或藍色)。</li>
+</ul>
+</section>
+<section id="一般式" class="level3">
+<h3 class="anchored" data-anchor-id="一般式">一般式</h3>
+<p>現在幾何直覺已經很清楚了，讓我們回到一般式 <span class="math inline">\(\eqref{eq:hyperbolic_payoff}\)</span>，來算一下公式解。</p>
+<p>首先，這個鞍點會在 <span class="math inline">\(\alpha, \beta \in (0, 1)\)</span> 內部出現的充要條件是： <span class="math display">\[
+\begin{align}
+(X_{00} - X_{01})(X_{10} - X_{11}) &amp; &lt; 0  \\
+(X_{00} - X_{10})(X_{01} - X_{11}) &amp; &lt; 0
+\end{align}
+\]</span> 也就是在端點時，兩條斜率相乘是負的。</p>
+<p>而在此時，鞍點的位置 <span class="math inline">\((\alpha^*, \beta^*)\)</span> 是： <span class="math display">\[
+\begin{align}
+\alpha^* &amp; = \frac{X_{00} - X_{10}}{X_{00} - X_{01} - X_{10} + X_{11}} \\
+\beta^* &amp; = \frac{X_{00} - X_{01}}{X_{00} - X_{10} - X_{01} + X_{11}}
+\end{align}
+\]</span> 這可以有很多種解法，其中一種直覺 (圖解法) 是讓 <span class="math display">\[
+\alpha : (1 - \alpha) = X_{00} - X_{10} : X_{11} - X_{01}
+\]</span></p>
+<p>而這個鞍點的 payoff ，也就是這個 game 的 value 是： <span class="math display">\[
+\mathbb{E}[\text{Payoff}_A]^* = \frac{X_{00} X_{11} - X_{01} X_{10}}{X_{00} - X_{01} - X_{10} + X_{11}}
+\]</span></p>
+<p>這當然也有很多種解法，例如直接把 <span class="math inline">\(\alpha^*, \beta^*\)</span> 帶回去。但另外一個有趣的算法是，若同時扣掉 <span class="math inline">\(h\)</span> 將這個鞍點的高度(垂直平移到0)的話，那雙曲面函數 兩組對角線項 相乘會相等: <span class="math display">\[
+(X_{00} - h)(X_{11} - h) = (X_{01} - h)(X_{10} - h)
+\]</span><br>
+這樣自動就解出鞍點的高度 <span class="math inline">\(h\)</span> 了。</p>
+</section>
+<section id="講回翹翹板" class="level3">
+<h3 class="anchored" data-anchor-id="講回翹翹板">講回翹翹板</h3>
+<p>我們再次回到翹翹板的圖像，原本翹翹板中間的桿子是沒有實質意義的，但現在剛好可以想成是線性的插值。</p>
+<p><img src="images/visualize_seesaw.png" class="img-fluid"></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Senario 1</th>
+<th>Senario 2</th>
+<th>Senario 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>直觀解釋</td>
+<td>Value Bet</td>
+<td>Bluff Bet</td>
+<td>Honest Check</td>
+</tr>
+<tr class="even">
+<td><strong>發生的機率</strong></td>
+<td><span class="math inline">\(r\)</span></td>
+<td><span class="math inline">\((1-r)\beta\)</span></td>
+<td><span class="math inline">\((1-r)(1-\beta)\)</span></td>
+</tr>
+<tr class="odd">
+<td>翹翹板</td>
+<td><span class="math inline">\(0:-B\)</span></td>
+<td><span class="math inline">\(0:(B+P)\)</span></td>
+<td><span class="math inline">\(P:P\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>而 Player B 的最佳策略，就是使得 Player A 感受到翹翹板是平衡的 (這就是無差異原則!)，也就是用機率加權後是平衡的。</p>
+<p>於是我們再次推導出 bluff-to-value ratio: <span class="math display">\[
+\frac{\mathbb{P}[\text{bluff}]}{\mathbb{P}[\text{value}]} = \frac{(1-r)\beta}{r} = \frac{B}{B+P}
+\]</span> 因為第三種狀況是 balanced，所以不用考慮。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-11-13">
+
+<title>0^0 - 一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">0^0</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Normal Distribution</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 13, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>今天來講一下 moment generation function 跟 characteristic function。</p>
+<p>對一個隨機變數 <span class="math inline">\(X\)</span>，我們可以定義動差生成函數(Moment Generating Function, MGF): <span class="math display">\[
+M_X(t) = E[e^{tX}]
+\]</span> 對於 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>，它的 MGF 為： <span class="math display">\[
+M_X(t) = e^{\mu t + \frac{1}{2}\sigma^2 t^2}
+\]</span></p>
+<p>讓我們假設隨機變數 <span class="math inline">\(X\)</span> 服從常態分佈，即 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>，其機率密度函數 (PDF) 為： <span class="math display">\[f(x; \mu, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \quad x \in \mathbb{R}
+\]</span></p>
+<p>其中 <span class="math inline">\(\mu\)</span> 是平均數（mean），<span class="math inline">\(\sigma^2\)</span> 是變異數（variance）。</p>
+<p>帶入定義 <span class="math display">\[
+\begin{aligned}
+M_X(t)
+&amp;= \int_{-\infty}^{\infty} \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} e^{tx}  dx  \\
+&amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}u^2 + t(\sigma u+\mu) }dx
+\qquad(\text{replace:}\quad x=\sigma u + \mu) \\
+&amp;= \frac{1}{\sqrt{2\pi}} e^{\mu t + \frac{1}{2}\sigma^2 t^2} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(u - t\sigma )^2} du \\
+&amp;= e^{\mu t + \frac{1}{2}\sigma^2 t^2} \quad(\text{因為高斯積分的結果為 } \sqrt{2\pi}) \\
+\end{aligned}
+\]</span></p>
+<p>Characteristic function (CF) 定義為： <span class="math display">\[  
+\phi_X(t) = E[e^{itX}]
+\]</span> 對於 <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>，它的 CF 為： <span class="math display">\[
+\phi_X(t) = e^{i\mu t - \frac{1}{2}\sigma^2 t^2} \tag{Gauss-CF}\label{eq:gauss}
+\]</span><br>
+計算跟上面 MGF 類似，只是將 <span class="math inline">\(t\)</span> 換成 <span class="math inline">\(it\)</span>。</p>
+<section id="characteristic-的唯一性" class="level3">
+<h3 class="anchored" data-anchor-id="characteristic-的唯一性">Characteristic 的唯一性</h3>
+<p>CF 有一個重要的性質：它總是存在，因為 <span class="math inline">\(|e^{itX}| = 1\)</span>。 此外，CF 可以用來證明隨機變數的分佈唯一性：如果兩個隨機變數的 CF 相同，則它們的分佈也相同。這也將是我們今天的重點。讓我們來細細品味這個結果背後的意義與應用。</p>
+<p>我們來看一個隨機變數 <span class="math inline">\(X\)</span> 的 CF： <span class="math display">\[
+\phi_X(t) = E[e^{itX}] = \int_{-\infty}^{\infty} e^{itx} f_X(x) dx  \tag{1}\label{eq:fourier}
+\]</span> 其中 <span class="math inline">\(f_X(x)\)</span> 是 <span class="math inline">\(X\)</span> 的機率密度函數 (PDF)。</p>
+<p>我們來看看能不能從 CF 回推 PDF。我們可以把上式<span class="math inline">\(\eqref{eq:fourier}\)</span>看成是一個傅立葉變換 (Fourier Transform)。 <span class="math display">\[
+\mathcal{F}[f_X](t) \coloneqq \int_{-\infty}^{\infty} e^{itx} f_X(x) dx = \phi_X(t)
+\]</span> 這邊的正負號和係數跟一般傅立葉變換的定義可能不太一樣，但本質上是一樣的。</p>
+<p>我們想做個傅立葉「反」變換，大致上是：</p>
+<p><span class="math display">\[
+\begin{align}
+\mathcal{F}^{-1}[\phi_X](x)
+&amp;\coloneqq \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \phi_X(t) dt   \tag{2}\label{eq:fourier_inv} \\
+&amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \left( \int_{-\infty}^{\infty} e^{it y} f_X(y) dy \right) dt    \\
+&amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) dy dt    \\
+&amp;= \int_{-\infty}^{\infty} f_X(y) \left( \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{it(y - x)} dt \right) dy  \tag{3}\label{eq:swap} \\
+&amp;= \int_{-\infty}^{\infty} f_X(y) \delta(y - x) dy \qquad\text{(Why?)} \tag{4}\label{eq:delta}  \\
+&amp;= f_X(x)  \\
+\end{align}
+\]</span></p>
+<p>大致上的感覺是這樣，但中間的步驟有些含糊，特別是涉及到狄拉克 delta 函數的部分。我們需要一些條件來保證這些積分的交換是合法的。確切來說<span class="math inline">\(\eqref{eq:swap}\)</span> 使用的積分順序的調換，是Fubini 定理的應用，而<span class="math inline">\(\eqref{eq:delta}\)</span> 則是利用了狄拉克 delta 函數的定義。</p>
+<p>而Fubini定理要求的條件是被積分函數必須是絕對可積的 (absolutely integrable)，來檢查一下 <span class="math inline">\(|e^{-itx}e^{ity}| = 1\)</span>，所以 <span class="math display">\[
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |e^{-itx} e^{ity} f_X(y)| dy dt
+= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} |f_X(y)| dy dt
+= \int_{-\infty}^{\infty} dt = \infty
+\]</span></p>
+<p>Boom! 這個條件不成立。</p>
+<p>但這不代表結論是錯的，只是這個證明是錯的!直接調換順序是行不通的。</p>
+<p>我們來欣賞一下大數學家是怎麼解決這個問題的。如果在積分內有個函數 <span class="math inline">\(g(t)\)</span>，使得 <span class="math inline">\(g(t)\)</span> 是絕對可積的 (absolutely integrable)，那麼我們就可以使用Fubini定理來調換積分順序。</p>
+<p>讓我們退回到第一條式子，假設有某個 <span class="math inline">\(g(t)\in L^1\)</span>，也就是說 <span class="math inline">\(\int_{-\infty}^{\infty} |g(t)| dt &lt; \infty\)</span>，那麼我們有：</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g(t)} \mathcal{F}[f_X](t) dt \tag{5}\label{eq:ee1}  \\
+= &amp;\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g(t)} \left( \int_{-\infty}^{\infty} e^{it y} f_X(y) dy \right) dt   \\
+= &amp;\frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) \textcolor{red}{g(t)} dy dt  \\
+= &amp;\frac{1}{2\pi} \int_{-\infty}^{\infty}   \int_{-\infty}^{\infty} e^{-itx} e^{it y} f_X(y) \textcolor{red}{g(t)} dt dy  \qquad\text{(可以交換了!)} \\
+= &amp; \int_{-\infty}^{\infty} f_X(y) \left( \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-it(x - y)} \textcolor{red}{g(t)} dt \right) dy  \\
+= &amp; \int_{-\infty}^{\infty} f_X(y) \cdot \textcolor{red}{\mathcal{F}^{-1}[g]}(x - y) dy  \qquad\text{(剛好是}g\text{的傅立葉反轉換)} \tag{6}\label{eq:ee2}  \\
+\end{align}
+\]</span> 積分順序可以交換是因為 <span class="math inline">\(g(t)\in L^1\)</span>。這時候分析的大絕招來了，取極限!我們讓 <span class="math inline">\(g(t)\)</span> 慢慢逼近常數函數 <span class="math inline">\(1\)</span>，然後看看右邊會變成什麼。</p>
+<p>但我們要取個已知傅立葉反變換的 <span class="math inline">\(g(t)\)</span>，例如我們剛剛算的高斯分布PDF: <span class="math inline">\(g(t) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-t^2/2\sigma^2}\)</span>，其傅立葉反變換也是高斯函數： <span class="math display">\[
+\begin{align}
+&amp;\mathcal{F}^{-1}[g](x)  \\
+&amp;= \frac{1}{2\pi} \mathcal{F}[g](-x)  \qquad\text{(這是根據定義)} \\
+&amp;= \frac{1}{2\pi} e^{-\frac{1}{2}\sigma^2 (-x)^2}  \qquad\text{(根據\eqref{eq:gauss})} \\
+&amp;= \frac{1}{2\pi} e^{-\frac{1}{2}\sigma^2 x^2}  \tag{7}\label{eq:gauss_inv} \\
+\end{align}
+\]</span><br>
+但這個 <span class="math inline">\(g\)</span> 隨著 <span class="math inline">\(\sigma \to \infty\)</span>，會趨近於常數函數 <span class="math inline">\(0\)</span>。我們要把常數乘回去(傅立葉變換是線性的)，所以我們其實是要定義 <span class="math display">\[
+g_{\sigma}(t) \coloneqq e^{-t^2/2\sigma^2}
+\]</span> 根據<span class="math inline">\(\eqref{eq:gauss_inv}\)</span>，其傅立葉反變換為 <span class="math display">\[
+\mathcal{F}^{-1}[g_{\sigma}](x) = \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 x^2}
+\]</span> 我們代回<span class="math inline">\(\eqref{eq:ee1}\)</span>和<span class="math inline">\(\eqref{eq:ee2}\)</span>，得到 <span class="math display">\[
+\begin{align}
+\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \textcolor{red}{g_{\sigma}(t)} \mathcal{F}[f_X](t) dt
+= &amp; \int_{-\infty}^{\infty} f_X(y) \cdot \textcolor{red}{\mathcal{F}^{-1}[g_{\sigma}]}(x - y) dy  \\
+= &amp; \int_{-\infty}^{\infty} f_X(y) \cdot \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 (x - y)^2} dy  \\
+\end{align}
+\]</span> 我們 <span class="math inline">\(\sigma\)</span> 趨近於無窮大後等式就成立了，這需要兩個極限的等式： <span class="math display">\[
+\begin{align}
+\mathcal{F}^{-1}[\mathcal{F}[f_X]](x)
+&amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} \mathcal{F}[f_X](t) dt  \qquad\text{(這是用傅立葉反變換的定義)}  \\
+&amp;= \lim_{\sigma \to \infty} \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx} g_{\sigma}(t) \mathcal{F}[f_X](t) dt  \tag{8}\label{eq:lim1}  \\
+&amp;= \lim_{\sigma \to \infty} \int_{-\infty}^{\infty} f_X(y) \cdot \frac{\sigma}{\sqrt{2\pi}} e^{-\frac{1}{2}\sigma^2 (x - y)^2} dy  = f_X(x)  \qquad\text{(根據上面的推導)} \\
+&amp;= \lim_{\epsilon \to 0^{+}} \int_{-\infty}^{\infty} f_X(y) \cdot \frac{1}{\sqrt{2\pi \epsilon^2}} e^{-\frac{(x - y)^2}{2\epsilon^2}} dy  = f_X(x)  \tag{9}\label{eq:lim2} \\
+\end{align}
+\]</span> 而<span class="math inline">\(\eqref{eq:lim1}\)</span>是對的因為可以用 dominated convergence theorem。</p>
+<p>而<span class="math inline">\(\eqref{eq:lim2}\)</span>仔細一看，他就是 <span class="math inline">\(f_X\)</span> 跟一個高斯核函數 (Gaussian Kernel) 的捲積 (convolution)。而這個高斯核函數的變異數趨近於 <span class="math inline">\(0\)</span>。</p>
+<p>這可以用非常基礎的古典論證，我就簡單寫寫: 我們將這個積分切分成兩個區間，一個是 <span class="math inline">\(|x - y| &lt; \delta\)</span>，另一個是 <span class="math inline">\(|x - y| \ge \delta\)</span>。那個 <span class="math inline">\(|x - y| &lt; \delta\)</span> 的部分核函數總面積會趨近於1，而另一個部分因為核函數在 <span class="math inline">\(|x - y| \ge \delta\)</span> 的地方會趨近於0，所以整個積分就會趨近於 <span class="math inline">\(f_X(x)\)</span> 在 <span class="math inline">\(y=x\)</span> 附近的平均值。若 <span class="math inline">\(f_X\)</span> 在 <span class="math inline">\(x\)</span> 點連續，那麼這個平均值就會趨近於 <span class="math inline">\(f_X(x)\)</span>。若 <span class="math inline">\(f_X\)</span> 在 <span class="math inline">\(x\)</span> 點不連續，那麼這個極限會趨近於 <span class="math inline">\(f_X\)</span> 在 <span class="math inline">\(x\)</span> 點的連續化 (continuous version)。</p>
+</section>
+<section id="至於-levys-continuity-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="至於-levys-continuity-theorem">至於 Levy’s Continuity Theorem</h3>
+<p>上面的證明解釋了一個分布的 characteristic function 唯一決定了該分布的概率密度函數 (PDF)，這是Levy’s Continuity Theorem 的一個重要部分。更完整的Levy’s Continuity Theorem 除了說明 CF 唯一決定分布外，還說明了如果一列隨機變數的 CF 收斂到某個函數，且該函數是某個分布的 CF，那麼這列隨機變數的分布也會收斂到該分布。</p>
+<blockquote class="blockquote">
+<p><strong>定理 1.1 (Lévy 連續性定理)</strong> 設 <span class="math inline">\(\mu, \mu_n, n \in \mathbb{N},\)</span> 是定義在 <span class="math inline">\((\mathbb{R}^d, \mathcal{B}(\mathbb{R}^d))\)</span> 上的概率測度，其對應的特徵函數分別為 <span class="math inline">\(\chi\)</span> 和 <span class="math inline">\(\chi_n, n \in \mathbb{N}\)</span>。則以下條件是等價的：</p>
+<ol type="i">
+<li>序列 <span class="math inline">\((\mu_n)_{n \in \mathbb{N}}\)</span> 弱收斂於 <span class="math inline">\(\mu\)</span>。</li>
+<li><span class="math inline">\(\lim_{n \to \infty} \chi_n(t) = \chi(t)\)</span> 對於所有 <span class="math inline">\(t \in \mathbb{R}^d\)</span> 成立。</li>
+</ol>
+</blockquote>
+<hr>
+</section>
+<section id="interactive-常態分佈與其傅立葉變換" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-常態分佈與其傅立葉變換">Interactive 常態分佈與其傅立葉變換</h3>
+<p>這是一個互動式視覺化，展示 Normal Distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span> 及其 Fourier Transform。 特別注意 3D 圖中的<strong>螺旋結構</strong>：當 <span class="math inline">\(\mu \neq 0\)</span> 時，頻域會產生旋轉（Phase Shift）。</p>
+<div id="cf-controls" style="margin-bottom:12px; display:flex; gap:12px; align-items:center;">
+  <label>Mean (μ): <input id="mu" type="range" min="-3" max="3" step="0.1" value="0"></label>
+  <span id="mu-val">0.0</span>
+  <label>Variance (σ²): <input id="sigmaSq" type="range" min="0.1" max="10" step="0.1" value="1.0"></label>
+  <span id="sigma-val">1.0</span>
+</div>
+
+<div id="pdf-plot" style="width:48%; display:inline-block; vertical-align:top;"></div>
+<div id="ft-plot" style="width:50%; display:inline-block; vertical-align:top;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+(() => {
+  const n = 500;
+  const xMin = -10, xMax = 10;
+  const fMin = -3, fMax = 3;
+
+  const xArr = Array.from({length:n}, (_,i) => xMin + (i/(n-1))*(xMax-xMin));
+  const fArr = Array.from({length:n}, (_,i) => fMin + (i/(n-1))*(fMax-fMin));
+
+  const muEl = document.getElementById('mu');
+  const sigmaEl = document.getElementById('sigmaSq');
+  const muVal = document.getElementById('mu-val');
+  const sigmaVal = document.getElementById('sigma-val');
+
+  function compute(mu, sigmaSq) {
+    const sigma = Math.sqrt(sigmaSq);
+    const pdf = xArr.map(x => (1/(sigma*Math.sqrt(2*Math.PI))) * Math.exp(-0.5*Math.pow((x-mu)/sigma,2)));
+    const ft = fArr.map(xi => {
+      const magnitude = Math.exp(-2*Math.pow(Math.PI,2)*sigmaSq*xi*xi);
+      const phase = -2*Math.PI*mu*xi;
+      return { xi, real: magnitude*Math.cos(phase), imag: magnitude*Math.sin(phase) };
+    });
+    return { pdf, ft };
+  }
+
+  let mu = parseFloat(muEl.value);
+  let sigmaSq = parseFloat(sigmaEl.value);
+  muVal.textContent = mu.toFixed(1);
+  sigmaVal.textContent = sigmaSq.toFixed(1);
+
+  const init = compute(mu, sigmaSq);
+
+  const pdfTrace = { x: xArr, y: init.pdf, type: 'scatter', mode: 'lines', line: { color: 'steelblue' } };
+  Plotly.newPlot('pdf-plot', [pdfTrace], { title: 'Probability Density', xaxis: {range:[xMin,xMax]}, yaxis:{range:[0,1.5]} }, {responsive:true});
+
+  const ftTrace = { type:'scatter3d', mode:'lines', x: init.ft.map(d=>d.xi), y: init.ft.map(d=>d.real), z: init.ft.map(d=>d.imag), line:{width:4,color:init.ft.map(d=>d.xi),colorscale:'Viridis'} };
+  const ftLayout = {
+    margin:{l:0,r:0,b:0,t:30},
+    scene:{
+      aspectmode:'manual',
+      aspectratio:{x:2,y:1,z:1},
+      xaxis:{title:'Frequency (ξ)'},
+      yaxis:{title:'Real'},
+      zaxis:{title:'Imaginary'},
+      // Camera: look roughly along the z-axis so the imaginary axis is perpendicular to the screen
+      camera: {
+        eye: { x: 0.0, y: 0.0, z: 2.5 },
+        center: { x: 0.0, y: 0.0, z: 0.0 },
+        up: { x: 0.0, y: 1.0, z: 0.0 }
+      }
+    }
+  };
+  Plotly.newPlot('ft-plot', [ftTrace], ftLayout, {responsive:true});
+
+  let savedCamera = null;
+  const ftDiv = document.getElementById('ft-plot');
+  ftDiv.on('plotly_relayout', (d) => {
+    if (d['scene.camera']) { savedCamera = d['scene.camera']; }
+    else if (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) {
+      savedCamera = JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera));
+    }
+  });
+
+  let timer = null;
+  function scheduleUpdate() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      const mu = parseFloat(muEl.value);
+      const sigmaSq = parseFloat(sigmaEl.value);
+      muVal.textContent = mu.toFixed(1);
+      sigmaVal.textContent = sigmaSq.toFixed(1);
+      const { pdf, ft } = compute(mu, sigmaSq);
+
+      Plotly.restyle('pdf-plot', { y: [pdf] }, [0]);
+
+      const fallback = (ftDiv._fullLayout && ftDiv._fullLayout.scene && ftDiv._fullLayout.scene.camera) ? JSON.parse(JSON.stringify(ftDiv._fullLayout.scene.camera)) : null;
+      const keepCam = savedCamera || fallback;
+
+      Plotly.restyle('ft-plot', { x: [ft.map(d=>d.xi)], y: [ft.map(d=>d.real)], z: [ft.map(d=>d.imag)], 'line.color': [ft.map(d=>d.xi)] }, [0]).then(() => {
+        if (keepCam) setTimeout(() => Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{}), 10);
+      }).catch(() => {
+        Plotly.react('ft-plot', [{ type:'scatter3d', mode:'lines', x: ft.map(d=>d.xi), y: ft.map(d=>d.real), z: ft.map(d=>d.imag), line:{width:4,color:ft.map(d=>d.xi),colorscale:'Viridis'} }], ftLayout).then(() => {
+          if (keepCam) Plotly.relayout('ft-plot', {'scene.camera': keepCam}).catch(()=>{});
+        });
+      });
+
+    }, 50);
+  }
+
+  muEl.addEventListener('input', scheduleUpdate);
+  sigmaEl.addEventListener('input', scheduleUpdate);
+
+})();
+</script>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-11-17">
+
+<title>0^0 - 一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">0^0</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Normal Distribution</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 17, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>今天來講統計學中「參數估計」(Parameter Estimation) 一個非常優雅的概念：<strong>充分統計量 (Sufficient Statistic)</strong>。</p>
+<p>假設我們從一個分佈 i.i.d. 取樣了 <span class="math inline">\(n\)</span> 個數據點： <span class="math display">\[
+X_1, \ldots, X_n \sim P_\theta
+\]</span> 這個分佈包含一個未知的參數 <span class="math inline">\(\theta\)</span>。原則上我們想估計這個 <span class="math inline">\(\theta\)</span>（例如使用 Maximum Likelihood Estimation）。但在進行複雜估計之前，我們先思考一個問題：<strong>有沒有辦法把這 <span class="math inline">\(n\)</span> 個數據點「壓縮」成一個更小的統計量 (statistic)，同時完全不損失任何關於 <span class="math inline">\(\theta\)</span> 的資訊？</strong> 這就是 Sufficient Statistic 的核心精神。</p>
+<section id="從丟硬幣開始直觀的推導" class="level3">
+<h3 class="anchored" data-anchor-id="從丟硬幣開始直觀的推導">從丟硬幣開始：直觀的推導</h3>
+<p>以最簡單的丟硬幣為例。假設硬幣正面朝上的機率是未知的 <span class="math inline">\(\theta\)</span>，<span class="math inline">\((0 &lt; \theta &lt; 1)\)</span>。我們丟了 <span class="math inline">\(n\)</span> 次，得到結果 <span class="math inline">\(X_1, \ldots, X_n\)</span>，其中 <span class="math inline">\(X_i \in \{0, 1\}\)</span>。</p>
+<p>這 <span class="math inline">\(n\)</span> 個數據點的聯合機率分佈 (Joint Distribution) 為： <span class="math display">\[
+P(\mathbf{X} = \mathbf{x} \mid \theta)
+:= P(X_1=x_1, X_2=x_2, \ldots, X_n=x_n \mid \theta)
+= \theta^{\sum x_i} (1-\theta)^{n - \sum x_i}
+\]</span> 觀察這個式子，你會發現它只依賴於 <span class="math inline">\(\sum x_i\)</span>（也就是正面朝上的總次數），而不在乎 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> 出現的具體順序。</p>
+<p>令 <span class="math inline">\(T(\mathbf{x}) = \sum_{i=1}^n x_i\)</span> 為統計量。若我們固定 <span class="math inline">\(T(\mathbf{x}) = \mu\)</span>，也就是已知正面出現了 <span class="math inline">\(\mu\)</span> 次，那麼原本實驗結果 <span class="math inline">\(\mathbf{x}\)</span> 的條件機率分佈為何？</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\mathbf{X} = \mathbf{x} \mid \theta, T(\mathbf{X}) = \mu)
+&amp;= \frac{P(\mathbf{X} = \mathbf{x} \mid \theta)}{P(T(\mathbf{X}) = \mu \mid \theta)} \\
+&amp;= \frac{\theta^{\mu} (1-\theta)^{n - \mu}}{\binom{n}{\mu} \theta^{\mu} (1-\theta)^{n - \mu}} \\
+&amp;= \frac{1}{\binom{n}{\mu}} \qquad \textbf{(跟 $\theta$ 無關！)} \\
+\end{aligned}
+\]</span></p>
+<p><strong>注意到最後的結果完全不包含 <span class="math inline">\(\theta\)</span>！</strong></p>
+<p>這意味著：一旦我們知道正面出現了幾次（<span class="math inline">\(T(\mathbf{X})\)</span>），具體是「正反正」還是「反正正」出現的機率都是 <span class="math inline">\(1/\binom{n}{\mu}\)</span>，這純粹是排列組合問題，與硬幣本身的性質 <span class="math inline">\(\theta\)</span> 無關。</p>
+<p>因此，我們定義：如果滿足下式，則 <span class="math inline">\(T(\mathbf{X})\)</span> 是 <span class="math inline">\(\theta\)</span> 的 <strong>Sufficient Statistic</strong>： <span class="math display">\[
+P(\mathbf{X} \mid \theta, T(\mathbf{X})) = P(\mathbf{X} \mid T(\mathbf{X})) \tag{1}\label{eq:suff_stat_def}
+\]</span> 換句話說，給定 <span class="math inline">\(T(\mathbf{X})\)</span> 後，原始數據 <span class="math inline">\(\mathbf{X}\)</span> 分佈不再依賴於參數 <span class="math inline">\(\theta\)</span>。</p>
+</section>
+<section id="引進-information-theory-的語言" class="level3">
+<h3 class="anchored" data-anchor-id="引進-information-theory-的語言">引進 Information Theory 的語言</h3>
+<p>消息理論完全是基於機率論的東西，但他所定義的各種概念，似乎捕捉到了甚麼「資訊」的本質。可以從今天這個角度來欣賞一下。</p>
+<p>先定義一個隨機變數的資訊熵(Shannon Entropy)，若是離散: <span class="math display">\[
+H(X) = - \sum_{x} P(X=x) \log P(X=x)
+\]</span> 若是連續函數，則改成積分(稱之為 differential entropy，可能取值為負): <span class="math display">\[
+H(X) = - \int f_X(x) \log f_X(x) dx
+\]</span> 還記得在 <a href="../../posts/2025-1111-normal_1/index.qmd#sec-max_entropy">前面文章</a>，已經證明過常態分佈會最大化熵(給定平均值和變異數的限制下)。</p>
+<p>接著，mutual information 定義為: <span class="math display">\[
+\begin{aligned}
+I(X; Y)
+&amp;= H(X) - H(X|Y)   \\
+&amp;= H(Y) - H(Y|X)   \\
+&amp;= H(X) + H(Y) - H(X, Y)   \\
+\end{aligned}
+\]</span> 以上這些定義都是等價的。</p>
+<p>如果 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 是獨立的，那麼 <span class="math inline">\(H(X|Y) = H(X)\)</span>，所以 <span class="math inline">\(I(X; Y) = 0\)</span>。反過來說，如果 <span class="math inline">\(I(X; Y) = 0\)</span>，那麼 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 必須是獨立的。所以 mutual information 衡量了兩個隨機變數與獨立性的差距。</p>
+</section>
+<section id="sufficient-statistic-的各種等價定義" class="level3">
+<h3 class="anchored" data-anchor-id="sufficient-statistic-的各種等價定義">Sufficient Statistic 的各種等價定義</h3>
+<p>還記得我們只關心 likelihood function，就是 <span class="math inline">\(P(\mathbf{X} \mid \theta)\)</span>。</p>
+<p>如果說 <span class="math inline">\(\theta\)</span> 也是隨機變數，那我們就可以開始討論 <span class="math inline">\(\theta\)</span> 的分布、資訊熵、mutual information 之類的。但這邊的設定 <span class="math inline">\(\theta\)</span> 只是一個待定的參數，若要討論 <span class="math inline">\(\theta\)</span> 的分布，那就是開始對 prior distribution 做假設了。而這邊很巧妙的是，我們可以推導出一些性質，是不論 <span class="math inline">\(\theta\)</span> 的prior是怎樣，都會成立的性質! 所以說</p>
+<blockquote class="blockquote">
+<p>消息理論假設「有prior」，但不在乎prior是什麼。</p>
+</blockquote>
+<p>以下假設 <span class="math inline">\(\theta\)</span> 有個 prior 分布，並假設 <span class="math inline">\(T\)</span> 是個 Sufficient Statistic 滿足 <span class="math inline">\(\eqref{eq:suff_stat_def}\)</span>，那麼我們有: <span class="math display">\[
+\begin{aligned}
+P(\mathbf{X} \mid \theta, T(\mathbf{X}))
+&amp;= P(\mathbf{X} \mid T(\mathbf{X}))  \qquad \text{(Sufficient Statistic 定義)} \\
+\end{aligned}
+\]</span> 同乘以 <span class="math inline">\(P(\theta \mid T(\mathbf{X}))\)</span>， <span class="math display">\[
+P(\mathbf{X}, \theta \mid T(\mathbf{X}))
+= P(\mathbf{X} \mid T(\mathbf{X})) P(\theta \mid T(\mathbf{X}))  \tag{2}\label{eq:suff_stat_indep}   
+\]</span></p>
+<p>這個式子的解讀就是: 給定 <span class="math inline">\(T(\mathbf{X})\)</span> 後，<span class="math inline">\(\mathbf{X}\)</span> 和 <span class="math inline">\(\theta\)</span> 是條件獨立的 (conditionally independent)。 一般的推導很可能會直接跳結論:</p>
+<blockquote class="blockquote">
+<p>Conditioning on <span class="math inline">\(T(X)\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(\theta\)</span> have mutual information equals <span class="math inline">\(0\)</span>。</p>
+</blockquote>
+<p>但我想帶大家走一下這段推導。</p>
+<p>同時取 <span class="math inline">\(\log\)</span>: <span class="math display">\[
+\log P(\mathbf{X}, \theta \mid T(\mathbf{X}))
+= \log P(\mathbf{X} \mid T(\mathbf{X})) + \log P(\theta \mid T(\mathbf{X}))
+\]</span> 將上式對 <span class="math inline">\(\mathbf{X}, \theta\)</span> 取條件期望值(限制在 <span class="math inline">\(T(\mathbf{X})\)</span>): <span class="math display">\[
+\begin{aligned}
+\int P(\mathbf{X}, \theta \mid T(\mathbf{X})) \log P(\mathbf{X}, \theta \mid T(\mathbf{X})) d\mathbf{X} d\theta
+&amp;= \int P(\mathbf{X}, \theta \mid T(\mathbf{X})) \log P(\mathbf{X} \mid T(\mathbf{X})) d\mathbf{X} d\theta \\
+&amp;\quad + \int P(\mathbf{X}, \theta \mid T(\mathbf{X})) \log P(\theta \mid T(\mathbf{X})) d\mathbf{X} d\theta \\
+&amp;= \int P(\mathbf{X} \mid T(\mathbf{X})) \log P(\mathbf{X} \mid T(\mathbf{X})) d\mathbf{X} \\
+&amp;\quad + \int P(\theta \mid T(\mathbf{X})) \log P(\theta \mid T(\mathbf{X})) d\theta \\
+\end{aligned}
+\]</span> 所以同乘以 <span class="math inline">\(-1\)</span>，我們有: <span class="math display">\[
+H(\mathbf{X}, \theta \mid T(\mathbf{X}))
+= H(\mathbf{X} \mid T(\mathbf{X})) + H(\theta \mid T(\mathbf{X}))  \tag{3}\label{eq:suff_stat_entropy}
+\]</span></p>
+<p>這個式子的解讀就是: 給定 <span class="math inline">\(T(\mathbf{X})\)</span> 後，<span class="math inline">\(\mathbf{X}\)</span> 和 <span class="math inline">\(\theta\)</span> 的條件熵是可加的 (additive)。</p>
+<p>再進一步，這也是 conditional mutual information 的定義: <span class="math display">\[
+\begin{align}
+I(\mathbf{X}; \theta \mid T(\mathbf{X}))
+&amp;\coloneqq H(\mathbf{X} \mid T(\mathbf{X})) + H(\theta \mid T(\mathbf{X})) - H(\mathbf{X}, \theta \mid T(\mathbf{X}))   \\
+&amp;= 0  \tag{4}\label{eq:suff_stat_mutual_info}
+\end{align}
+\]</span></p>
+<p>因為這個結構的特殊性 ( <span class="math inline">\(\theta \rightarrow \mathbf{X} \rightarrow T(\mathbf{X})\)</span> 是個馬可夫鏈)，我們本來就會有: <span class="math display">\[
+I(\theta; T(\mathbf{X}) \mid \mathbf{X}) = 0  \tag{Markov-chain}\label{eq:markov_chain}
+\]</span> 根據</p>
+<blockquote class="blockquote">
+<p>Mutual information 的 chain rule: <span class="math display">\[
+I(X; Y, Z) = I(X; Z) + I(X; Y \mid Z)
+\]</span></p>
+</blockquote>
+<p><span class="math display">\[
+I(\theta; T(\mathbf{X}) \mid \mathbf{X}) + I(\theta; \mathbf{X})
+= I(\theta; \mathbf{X} \mid T(\mathbf{X})) + I(\theta; T(\mathbf{X}))
+\]</span> 因為是 <span class="math inline">\(\eqref{eq:markov_chain}\)</span>，所以左邊第一項是 <span class="math inline">\(0\)</span>，因此我們有: <span class="math display">\[
+I(\theta; \mathbf{X}) - I(\theta; T(\mathbf{X}))
+= I(\theta; \mathbf{X} \mid T(\mathbf{X})) \ge 0 \tag{Data-Processing Inequality}\label{eq:data_processing_ineq}
+\]</span> 而等號成立當且僅當 <span class="math inline">\(\mathbf{X}\)</span> 和 <span class="math inline">\(\theta\)</span> 在給定 <span class="math inline">\(T(\mathbf{X})\)</span> 後是條件獨立的，也就是說 <span class="math inline">\(T(\mathbf{X})\)</span> 是個 Sufficient Statistic。</p>
+<p>所以如果 <span class="math inline">\(T(\mathbf{X})\)</span> 是個 Sufficient Statistic，那麼 <span class="math display">\[
+I(\theta; \mathbf{X}) = I(\theta; T(\mathbf{X}))  \tag{5}\label{eq:suff_stat_info_eq}
+\]</span></p>
+<p><strong>綜合以上</strong>: <span class="math inline">\(\eqref{eq:suff_stat_def}\)</span>、<span class="math inline">\(\eqref{eq:suff_stat_indep}\)</span>、<span class="math inline">\(\eqref{eq:suff_stat_entropy}\)</span>、<span class="math inline">\(\eqref{eq:suff_stat_mutual_info}\)</span>、<span class="math inline">\(\eqref{eq:suff_stat_info_eq}\)</span>，都是等價的定義。</p>
+</section>
+<section id="normal-distribution-的-sufficient-statistic-很簡單就是樣本均值和樣本變異數" class="level3">
+<h3 class="anchored" data-anchor-id="normal-distribution-的-sufficient-statistic-很簡單就是樣本均值和樣本變異數">Normal Distribution 的 Sufficient Statistic 很簡單，就是樣本均值和樣本變異數:</h3>
+<p>假設我們有 <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> 是來自常態分佈 <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span> 的 i.i.d. 樣本，則 <span class="math inline">\(\theta = (\mu, \sigma^2)\)</span> 的 Sufficient Statistic 就是樣本均值和樣本變異數: <span class="math display">\[
+T(\mathbf{X}) = \left( \bar{X}, S^2 \right) = \left( \frac{1}{n} \sum_{i=1}^{n} X_i, \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 \right)
+\]</span> 也就是說，給定樣本均值和樣本變異數後，原本的樣本數據對於 <span class="math inline">\(\mu, \sigma^2\)</span> 不再提供任何額外資訊。</p>
+<p>為什麼哩? 因為常態分佈的 likelihood function 只依賴於樣本均值和樣本變異數: <span class="math display">\[
+\begin{align}
+P(\mathbf{X} \mid \mu, \sigma^2)
+&amp;= \prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left( -\frac{(X_i - \mu)^2}{2 \sigma^2} \right)  \\
+&amp;= \left( \frac{1}{\sqrt{2 \pi \sigma^2}} \right)^n \exp\left( -\frac{1}{2 \sigma^2} \sum_{i=1}^{n} (X_i - \mu)^2 \right) \\
+&amp;= \left( \frac{1}{\sqrt{2 \pi \sigma^2}} \right)^n \exp\left( -\frac{1}{2 \sigma^2} \left[ (n-1) S^2 + n (\bar{X} - \mu)^2 \right] \right) \\
+\end{align}
+\]</span></p>
+<p>直觀上來說，這個 likelihood function 跟 <span class="math inline">\(X\)</span> 有關的部分只剩下 <span class="math inline">\(\bar{X}\)</span> 和 <span class="math inline">\(S^2\)</span>，所以這兩個統計量已經「充分」地捕捉了關於 <span class="math inline">\(\mu\)</span> 和 <span class="math inline">\(\sigma^2\)</span> 的所有資訊。</p>
+<p>但根據定義 <span class="math inline">\(\eqref{eq:suff_stat_def}\)</span>，我們需要計算 <span class="math inline">\(P(\mathbf{X} \mid \mu, \sigma^2, T(\mathbf{X}))\)</span>，並驗證它不依賴於 <span class="math inline">\(\mu\)</span> 和 <span class="math inline">\(\sigma^2\)</span>。</p>
+<p>嘿! 但這裡出現了小麻煩，因為是連續的機率密函數，所以不知道怎麼處理 OAO (請參見: 硬核系列-測度論)。</p>
+</section>
+<section id="直覺是對的-fisher-neyman-factorization-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="直覺是對的-fisher-neyman-factorization-theorem">直覺是對的: Fisher-Neyman Factorization Theorem</h3>
+<p>我們直觀上覺得應該可以從 likelihood function 看出來 <span class="math inline">\(T(\mathbf{X})\)</span> 是 Sufficient Statistic。這也就是以下定理:</p>
+<blockquote class="blockquote">
+<p><strong>(Fisher-Neyman Factorization Theorem)</strong> 若 <span class="math inline">\(X_1, \ldots, X_n\)</span> 的聯合機率密度函數 (joint pdf/pmf) 為 <span class="math inline">\(f(\mathbf{x} \mid \theta)\)</span>。則 <span class="math inline">\(T(\mathbf{X})\)</span> 是 <span class="math inline">\(\theta\)</span> 的 Sufficient Statistic 若且唯若 存在兩個非負函數 <span class="math inline">\(g\)</span> 和 <span class="math inline">\(h\)</span>，使得： <span class="math display">\[
+f(\mathbf{x} \mid \theta) = g(T(\mathbf{x}), \theta) \cdot h(\mathbf{x})
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(g(T(\mathbf{x}), \theta)\)</span>：這部分包含了 <span class="math inline">\(\theta\)</span>，但它只透過 <span class="math inline">\(T(\mathbf{x})\)</span> 來依賴數據 <span class="math inline">\(\mathbf{x}\)</span>。</p></li>
+<li><p><span class="math inline">\(h(\mathbf{x})\)</span>：這部分可以依賴所有的數據 <span class="math inline">\(\mathbf{x}\)</span>，但絕對不能包含 <span class="math inline">\(\theta\)</span>。</p></li>
+</ul>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

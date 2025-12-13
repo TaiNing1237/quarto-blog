@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-11-28">
+
+<title>0^0 - Poker Lesson 3 - hands 組合數</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">0^0</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Poker Lesson 3 - hands 組合數</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Poker</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 28, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/poker_cardprob_57.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Poker Counts Takeaway</figcaption>
+</figure>
+</div>
+<p><strong>同花順 (straight flush) 的方法數:</strong> 在一副標準的 52 張撲克牌中，有 4 種花色，每種花色有 13 張牌。同花順是指五張連續數字且同花色的牌。首先，我們可以有 10 種不同的同花順組合（A-5, 2-6, …, 10-A）。 每種花色有 1 種組合，所以同花順的組合數量為： <span class="math display">\[
+4 \times 10 = 40
+\]</span></p>
+<p><strong>四條 (four of a kind) 的方法數:</strong> 要組成四條，我們需要從 13 個數字中選擇 1 個數字來組成四張牌，然後從剩下的 12 個數字中選擇 1 個數字來組成單張牌。每個數字的四張牌有 <span class="math inline">\(\binom{4}{4} = 1\)</span> 種組合，而單張牌有 4 種組合。所以四條的組合數量為： <span class="math display">\[
+13 \times 1 \times 12 \times 4 = 624
+\]</span></p>
+<p><strong>葫蘆 (full house) 的方法數:</strong> 葫蘆是指三張同數字的牌加上兩張同數字的牌。首先，我們從 13 個數字中選擇一個數字來組成三張牌，然後從剩下的 12 個數字中選擇一個數字來組成兩張牌。每個數字的三張牌有 <span class="math inline">\(\binom{4}{3} = 4\)</span> 種組合，而兩張牌有 <span class="math inline">\(\binom{4}{2} = 6\)</span> 種組合。所以葫蘆的組合數量為： <span class="math display">\[
+13 \times 4 \times 12 \times 6 = 3744
+\]</span></p>
+<p><strong>同花 (flush) 的方法數:</strong> 要組成同花，我們需要從同一花色中選出 5 張牌。但要扣掉同花順。所以，同花的組合數量為： <span class="math display">\[
+4 \times \binom{13}{5} - 40 = 4 \times 1287 - 40 = 5108
+\]</span></p>
+<p><strong>順子 (straight) 的方法數:</strong> 順子是指五張連續數字的牌，不考慮花色。在 13 個數字中（A, 2, 3, …, 10, J, Q, K），我們可以有 10 種不同的順子組合（A-5, 2-6, …, 10-A）。每張牌可以有 4 種花色，一樣要扣掉同花順。所以順子的組合數量為： <span class="math display">\[
+10 \times 4^5 - 40 = 10 \times 1024 - 40 = 10200
+\]</span></p>
+<p><strong>三條 (three of a kind) 的方法數:</strong> 要組成三條，我們需要從 13 個數字中選擇 1 個數字來組成三張牌，然後從剩下的 12 個數字中選擇 2 個數字來組成單張牌。每個數字的三張牌有 <span class="math inline">\(\binom{4}{3} = 4\)</span> 種組合，而單張牌有 4 種組合。所以三條的組合數量為： <span class="math display">\[
+13 \times 4 \times \binom{12}{2} \times 4^2 = 13 \times 4 \times 66 \times 16 = 54912
+\]</span></p>
+<p><strong>兩對 (two pairs) 的方法數:</strong> 要組成兩對，我們需要從 13 個數字中選擇 2 個數字來組成兩對，然後從剩下的 11 個數字中選擇 1 個數字來組成單張牌。每個數字的兩張牌有 <span class="math inline">\(\binom{4}{2} = 6\)</span> 種組合，而單張牌有 4 種組合。所以兩對的組合數量為： <span class="math display">\[
+\binom{13}{2} \times 6^2 \times 11 \times 4 = 78 \times 36 \times 44 = 123552
+\]</span></p>
+<p><strong>一對 (one pair) 的方法數:</strong> 要組成一對，我們需要從 13 個數字中選擇 1 個數字來組成一對，然後從剩下的 12 個數字中選擇 3 個數字來組成單張牌。每個數字的兩張牌有 <span class="math inline">\(\binom{4}{2} = 6\)</span> 種組合，而單張牌有 4 種組合。所以一對的組合數量為： <span class="math display">\[
+13 \times 6 \times \binom{12}{3} \times 4^3 = 13 \times 6 \times 220 \times 64 = 1098240
+\]</span></p>
+<p><strong>散牌 (high card) 的方法數:</strong> 散牌是指沒有任何組合的牌。我們需要從 13 個數字中選擇 5 個數字來組成散牌，然後從每個數字中選擇 1 張牌。每張牌有 4 種組合。但是要扣掉可能是順子和同花的組合數量。所以散牌的組合數量為： <span class="math display">\[
+\binom{13}{5} \times 4^5 - 10200 - 5108 - 40 = 1287 \times 1024 - 10200 - 5108 - 40 = 1302540
+\]</span></p>
+<p>檢查一下所有手牌組合數量的總和是否等於 52 張牌中選 5 張的總組合數： <span class="math display">\[
+\binom{52}{5} = 2598960
+\]</span></p>
+<p>而各手牌組合數量總和為： <span class="math display">\[
+40 + 624 + 3744 + 5108 + 10200 + 54912 + 123552 + 1098240 + 1302540 = 2598960
+\]</span> 符合預期!</p>
+<p><strong>直方圖:</strong></p>
+<div id="fig-poker-hand-counts" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="93" data-source-offset="-14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">"https://cdn.plot.ly/plotly-2.27.0.min.js"</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co">// 定義手牌類型及其組合數量</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>handTypes <span class="op">=</span> [</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Full House"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">3744</span> }<span class="op">,</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Flush"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">5148</span> }<span class="op">,</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Straight"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">10240</span> }<span class="op">,</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Three of a Kind"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">54912</span> }<span class="op">,</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Two Pairs"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">123552</span> }<span class="op">,</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"One Pair"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">1098240</span> }<span class="op">,</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"High Card"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">1302540</span> }</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">// 繪製直方圖</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalCombos <span class="op">=</span> <span class="dv">2598960</span><span class="op">;</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> [{</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">'bar'</span><span class="op">,</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> handTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">type</span>)<span class="op">,</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> handTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">count</span> <span class="op">/</span> totalCombos <span class="op">*</span> <span class="dv">100</span>))<span class="op">,</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marker</span><span class="op">:</span> { <span class="dt">color</span><span class="op">:</span> <span class="st">'#69b3a2'</span> }<span class="op">,</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    <span class="dt">text</span><span class="op">:</span> handTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d<span class="op">.</span><span class="at">count</span> <span class="op">/</span> totalCombos <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">%`</span>)<span class="op">,</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">textposition</span><span class="op">:</span> <span class="st">'auto'</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>  }]<span class="op">,</span> {</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="st">'Probability (%)'</span><span class="op">,</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">'log'</span><span class="op">,</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>      <span class="dt">gridcolor</span><span class="op">:</span> <span class="st">'#e5e5e5'</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis</span><span class="op">:</span> {</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="st">'Hand Type'</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    <span class="dt">margin</span><span class="op">:</span> { <span class="dt">t</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">b</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span> <span class="dt">l</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">30</span> }<span class="op">,</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>    <span class="dt">plot_bgcolor</span><span class="op">:</span> <span class="st">'#ffffff'</span><span class="op">,</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    <span class="dt">paper_bgcolor</span><span class="op">:</span> <span class="st">'#ffffff'</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> {</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>    <span class="dt">staticPlot</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-poker-hand-counts-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-poker-hand-counts-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-poker-hand-counts-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-1-3" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">(c) <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;1: 撲克手牌組合數量直方圖</figcaption>
+</figure>
+</div>
+<section id="texas-holdem" class="level3">
+<h3 class="anchored" data-anchor-id="texas-holdem">Texas Hold’em</h3>
+<p>但在德州撲克中，假設跟到第五張，我們是從七張牌中選五張來組成最好的手牌。所以我們可以計算從七張牌中組成各種手牌的組合數量。</p>
+<p>首先，我們必須確立樣本空間的總數。在德州撲克中，玩家最終會有 7 張牌（2 張手牌 + 5 張公牌），我們需要從這 52 張牌中選出 7 張，總組合數為：</p>
+<p><span class="math display">\[
+\binom{52}{7} = 133,784,560
+\]</span> 這個數字比 5 張牌的 260 萬大了約 50 倍，計算過程中會出現許多「重疊」的情況（例如手上有 6 張同花色的牌，或者同時擁有兩對和三條），我們必須確保只計算該手牌能組成的<strong>最佳</strong>牌型。</p>
+<p><strong>同花順 (Straight Flush) 的方法數:</strong> 這包含了皇家同花順。在 7 張牌中要湊出同花順，意味著這 7 張牌中至少包含了 5 張連續且同花色的牌。 這需要考慮 7 張牌剛好構成 5 張、6 張或 7 張連續同花的情況。經過排容原理計算後，共有： <span class="math display">\[41,584 \]</span>機率約為 <span class="math inline">\(0.03\%\)</span>。</p>
+<p><strong>四條 (Four of a Kind) 的方法數:</strong> 這比較好算。我們需要從 13 個數字選 1 個做為四條（<span class="math inline">\(\binom{13}{1}\)</span>），這四張牌全拿（<span class="math inline">\(\binom{4}{4}\)</span>）。剩下的 3 張牌可以從剩餘的 48 張牌中任意選擇（<span class="math inline">\(\binom{48}{3}\)</span>）。 注意：即便剩下的 3 張牌湊成一對甚至三條，因為四條是大牌，最佳手牌依然是四條，所以不用扣除。 <span class="math display">\[
+13 \times 1 \times \binom{48}{3} = 13 \times 17,296 = 224,848
+\]</span></p>
+<p><strong>葫蘆 (Full House) 的方法數:</strong> 這是 7 張牌中最容易算錯的部分。因為在 7 張牌中，你可能拿到「三條+三條」（取大的三條配小的一對算葫蘆）、「三條+兩對」、「三條+一對」。 經過詳細分類計算（此處省略繁瑣的排容過程），總共有： <span class="math display">\[
+3,473,184
+\]</span></p>
+<p><strong>同花 (Flush) 的方法數:</strong> 我們需要 7 張牌中至少有 5 張同一花色，且不包含同花順。 算法是：選 1 種花色，然後從該花色 13 張選 7 張、選 6 張配 1 張雜牌、或選 5 張配 2 張雜牌。最後減去同花順的數量。 組合數為：</p>
+<p><span class="math display">\[
+4 \times [\binom{13}{7} + \binom{13}{6}\binom{39}{1} + \binom{13}{5}\binom{39}{2}] - 41,584 = 4,047,644
+\]</span></p>
+<p>在德州撲克中，葫蘆機率 <em>依然小於</em> 同花機率，並沒有反轉!</p>
+<p>P.S. 在短牌撲克（Short Deck Poker）中，由於去掉了 2-5，共 36 張牌，葫蘆反而變得比同花更容易出現(反轉!)，這是因為牌數減少後，同花的組合數下降幅度較大所致。所以在短牌規則中通常是「同花 &gt; 葫蘆」。</p>
+<p><strong>順子 (Straight) 的方法數:</strong> 類似同花，需找出 5、6 或 7 張連續數字，扣除同花順。 總數為： <span class="math display">\[6,180,020 \]</span></p>
+<p><strong>三條 (Three of a Kind) 的方法數:</strong> 指 7 張牌中包含三張同號，但剩下的 4 張牌不能形成另外的三條或一對（否則會變成葫蘆或四條），也不能形成順子或同花。 總數為： <span class="math display">\[
+6,461,620
+\]</span></p>
+<p><strong>兩對 (Two Pairs) 的方法數:</strong></p>
+<p>這在德州撲克中非常常見。你可以拿到 3 對（取最大的兩對），或者 2 對配 3 張散牌。 總數為： <span class="math display">\[31,433,400 \]</span></p>
+<p><strong>一對 (One Pair) 的方法數:</strong> 總數為： <span class="math display">\[58,627,800 \]</span></p>
+<p>這意味著在 Showdown 階段，你有接近 44% 的機率至少持有一對。</p>
+<p><strong>散牌 (High Card) 的方法數:</strong> 什麼都沒湊成，連一對都沒有。 總數為： <span class="math display">\[
+23,294,460
+\]</span></p>
+<p>有趣的是，在 7 張牌選 5 的規則下，<strong>拿散牌的機率比拿一對還要低</strong>（散牌約 17.4%，一對約 43.8%）。這解釋了為什麼在德州撲克中，光靠一張「A High」通常很難贏到底。</p>
+<hr>
+<p><strong>德州撲克手牌分佈直方圖:</strong></p>
+<p>我們將上述 7 選 5 的數據更新到圖表中，你會發現分佈趨勢與標準 5 張牌撲克有所不同，特別是葫蘆與同花的順序對調，以及散牌數量的驟降。</p>
+<div id="fig-texas-holdem-counts" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-21"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>texasHandTypes <span class="op">=</span> [</span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="co">// { type: "Straight Flush",  count: 41_584 },</span></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>  <span class="co">// { type: "Four of a Kind",  count: 224_848 },</span></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Full House"</span><span class="op">,</span>      <span class="dt">count</span><span class="op">:</span> <span class="dv">3_473_184</span> }<span class="op">,</span></span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Flush"</span><span class="op">,</span>           <span class="dt">count</span><span class="op">:</span> <span class="dv">4_047_644</span> }<span class="op">,</span></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Straight"</span><span class="op">,</span>        <span class="dt">count</span><span class="op">:</span> <span class="dv">6_180_020</span> }<span class="op">,</span></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Three of a Kind"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">6_461_620</span> }<span class="op">,</span></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"Two Pairs"</span><span class="op">,</span>       <span class="dt">count</span><span class="op">:</span> <span class="dv">31_433_400</span> }<span class="op">,</span></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"One Pair"</span><span class="op">,</span>        <span class="dt">count</span><span class="op">:</span> <span class="dv">58_627_800</span> }<span class="op">,</span></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"High Card"</span><span class="op">,</span>       <span class="dt">count</span><span class="op">:</span> <span class="dv">23_294_460</span> }</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a><span class="co">// 繪製直方圖</span></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalCombos <span class="op">=</span> <span class="dv">133_784_560</span><span class="op">;</span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>  Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> [{</span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">'bar'</span><span class="op">,</span></span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> texasHandTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">type</span>)<span class="op">,</span></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> texasHandTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">count</span> <span class="op">/</span> totalCombos <span class="op">*</span> <span class="dv">100</span>))<span class="op">,</span></span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marker</span><span class="op">:</span> { <span class="dt">color</span><span class="op">:</span> <span class="st">'steelblue'</span> }<span class="op">,</span></span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>    <span class="dt">text</span><span class="op">:</span> texasHandTypes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d<span class="op">.</span><span class="at">count</span> <span class="op">/</span> totalCombos <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%`</span>)<span class="op">,</span></span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>    <span class="dt">textposition</span><span class="op">:</span> <span class="st">'auto'</span></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>  }]<span class="op">,</span> {</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {</span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="st">'Probability (%)'</span><span class="op">,</span></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">'log'</span><span class="op">,</span></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>      <span class="dt">gridcolor</span><span class="op">:</span> <span class="st">'#e5e5e5'</span></span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis</span><span class="op">:</span> {</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="st">'Hand Type'</span></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>    <span class="dt">margin</span><span class="op">:</span> { <span class="dt">t</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">b</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span> <span class="dt">l</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">30</span> }<span class="op">,</span></span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a>    <span class="dt">plot_bgcolor</span><span class="op">:</span> <span class="st">'#ffffff'</span><span class="op">,</span></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>    <span class="dt">paper_bgcolor</span><span class="op">:</span> <span class="st">'#ffffff'</span></span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> {</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>    <span class="dt">staticPlot</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-texas-holdem-counts-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-texas-holdem-counts-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="總結與洞察" class="level3">
+<h3 class="anchored" data-anchor-id="總結與洞察">總結與洞察</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Card Type</th>
+<th>5-Card Prob</th>
+<th>7-Card Prob</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Four of a Kind</td>
+<td>0.0240 %</td>
+<td>0.168 %</td>
+</tr>
+<tr class="even">
+<td>Full House</td>
+<td>0.1441 %</td>
+<td>2.60 %</td>
+</tr>
+<tr class="odd">
+<td>Flush</td>
+<td>0.1965 %</td>
+<td>3.03 %</td>
+</tr>
+<tr class="even">
+<td>Straight</td>
+<td>0.3925 %</td>
+<td>4.62 %</td>
+</tr>
+<tr class="odd">
+<td>Three of a Kind</td>
+<td>2.1128 %</td>
+<td>4.83 %</td>
+</tr>
+<tr class="even">
+<td>Two Pairs</td>
+<td>4.7539 %</td>
+<td>23.50 %</td>
+</tr>
+<tr class="odd">
+<td>One Pair</td>
+<td>42.2569 %</td>
+<td>43.82 %</td>
+</tr>
+<tr class="even">
+<td>High Card</td>
+<td>50.1177 %</td>
+<td>17.41 %</td>
+</tr>
+</tbody>
+</table>
+<p>對比 5 張牌與 7 張牌的機率，我們可以得到幾個對實戰有幫助的結論：</p>
+<ol type="1">
+<li><strong>散牌大幅減少</strong>：在 5 張牌中，散牌佔了 50%；但在 7 張牌中，散牌只佔 17%。這意味著在河牌圈（River），對手大概率是有牌的（至少有一對）。<br>
+</li>
+<li><strong>高頻手牌</strong>：一對和兩對在 7 張牌中非常常見，分別佔了約 44% 和 23.5%。這表示在實戰中，持有至少一對的機率非常高，這也影響了下注策略和讀牌判斷。</li>
+<li><strong>葫蘆與同花機率大幅上升</strong>：從傳統撲克轉到德州撲克，最大的直覺衝擊在於牌型差距的縮小。在傳統撲克中，拿三條比拿葫蘆容易 15 倍，但在德州撲克中，這個差距縮小到了不到 2 倍。這意味著：在德州撲克中，當你拿到三條或順子時，撞上對手拿到同花或葫蘆的機率，比你想像中高得多。我們可以把大牌分成兩組來記：
+<ol type="1">
+<li>常見強牌組 (約 5%)：三條 與 順子。這兩者出現頻率很高，是底池主要競爭者。</li>
+<li>稀有魔王組 (約 3%)：同花 與 葫蘆。雖然只比上面少一點，但在機率上這意味著它們通常能贏過上面的牌。</li>
+</ol></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// 引入 Plotly\nPlotly = require(\"https://cdn.plot.ly/plotly-2.27.0.min.js\")\n\n// 定義手牌類型及其組合數量\nhandTypes = [\n  { type: \"Full House\", count: 3744 },\n  { type: \"Flush\", count: 5148 },\n  { type: \"Straight\", count: 10240 },\n  { type: \"Three of a Kind\", count: 54912 },\n  { type: \"Two Pairs\", count: 123552 },\n  { type: \"One Pair\", count: 1098240 },\n  { type: \"High Card\", count: 1302540 }\n];\n\n// 繪製直方圖\n{\n  const div = DOM.element('div');\n  const totalCombos = 2598960;\n  Plotly.newPlot(div, [{\n    type: 'bar',\n    x: handTypes.map(d => d.type),\n    y: handTypes.map(d => (d.count / totalCombos * 100)),\n    marker: { color: '#69b3a2' },\n    text: handTypes.map(d => `${(d.count / totalCombos * 100).toFixed(3)}%`),\n    textposition: 'auto'\n  }], {\n    yaxis: {\n      title: 'Probability (%)',\n      type: 'log',\n      gridcolor: '#e5e5e5'\n    },\n    xaxis: {\n      title: 'Hand Type'\n    },\n    margin: { t: 30, b: 80, l: 80, r: 30 },\n    plot_bgcolor: '#ffffff',\n    paper_bgcolor: '#ffffff'\n  }, {\n    staticPlot: true\n  });\n  return div;\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n// 定義德州撲克手牌數據 (7選5)\ntexasHandTypes = [\n  // { type: \"Straight Flush\",  count: 41_584 },\n  // { type: \"Four of a Kind\",  count: 224_848 },\n  { type: \"Full House\",      count: 3_473_184 },\n  { type: \"Flush\",           count: 4_047_644 },\n  { type: \"Straight\",        count: 6_180_020 },\n  { type: \"Three of a Kind\", count: 6_461_620 },\n  { type: \"Two Pairs\",       count: 31_433_400 },\n  { type: \"One Pair\",        count: 58_627_800 },\n  { type: \"High Card\",       count: 23_294_460 }\n];\n\n// 繪製直方圖\n{\n  const div = DOM.element('div');\n  const totalCombos = 133_784_560;\n  Plotly.newPlot(div, [{\n    type: 'bar',\n    x: texasHandTypes.map(d => d.type),\n    y: texasHandTypes.map(d => (d.count / totalCombos * 100)),\n    marker: { color: 'steelblue' },\n    text: texasHandTypes.map(d => `${(d.count / totalCombos * 100).toFixed(2)}%`),\n    textposition: 'auto'\n  }], {\n    yaxis: {\n      title: 'Probability (%)',\n      type: 'log',\n      gridcolor: '#e5e5e5'\n    },\n    xaxis: {\n      title: 'Hand Type'\n    },\n    margin: { t: 30, b: 80, l: 80, r: 30 },\n    plot_bgcolor: '#ffffff',\n    paper_bgcolor: '#ffffff'\n  }, {\n    staticPlot: true\n  });\n  return div;\n}\n"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/poker";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
