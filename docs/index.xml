@@ -6,17 +6,243 @@
       version="2.0">
 <channel>
 <title>0^0</title>
-<link>https://your-website-url.example.com/</link>
+<link>https://your-website-url.example.com/index.html</link>
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
-<generator>quarto-1.4.550</generator>
-<lastBuildDate>Mon, 01 Dec 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.3.450</generator>
+<lastBuildDate>Sat, 06 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Poker Lesson 5 - 雙曲面 Payoff</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/poker/lesson_5_hyperbolic_payoff.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>來延續上一篇的設定，假設 A 跟 B 玩 Seven-card stud， <img src="https://latex.codecogs.com/png.latex?40-80"> 元有限注，池底有 <img src="https://latex.codecogs.com/png.latex?P%20=%20100"> 元。</p>
+<p>現在來到最後一輪 River 下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。</p>
+<ul>
+<li>A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]</li>
+<li>B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]</li>
+</ul>
+<p>Player A 先手應該要 pass。</p>
+<p>輪到 Player B:</p>
+<ul>
+<li>若有 Nuts (湊成黑桃同花) 就一下會下注；</li>
+<li>若是 Air 則要用 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 的機率決定是否詐唬 (下注 <img src="https://latex.codecogs.com/png.latex?B%20=%2080"> 元)。</li>
+</ul>
+<p>上一篇用了完整的機率算法，解出 <img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbeta%20=%20%5Cfrac%7BrB%7D%7B(1-r)(B+P)%7D"> 是 Player B 的最佳防禦策略，其中 <img src="https://latex.codecogs.com/png.latex?r=1/5"> 是 Player B 拿到 Nuts 的機率 (從 Player A 的視角來看)。</p>
+<p>而當 Player B bet時，Player A 的最佳回應策略是以 <img src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Calpha%20=%20%5Cfrac%7BP%7D%7BB+P%7D"> 的機率去跟注。</p>
+<p>今天來用另一種方式，本質上是一樣，但是可能省去了複雜的期望值計算，並且提供了更直觀的心智模型。</p>
+<section id="翹翹板-payoff" class="level3">
+<h3 class="anchored" data-anchor-id="翹翹板-payoff">翹翹板 Payoff</h3>
+<p>我們說要考慮 Player A 對於 Player B 的下注時的回應，要以 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 的機率來決定是否跟注 (call <img src="https://latex.codecogs.com/png.latex?C%20=%2080"> 元)。</p>
+<p>這邊兩個機率 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 跟 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">，若直接硬算，那就會是跟上一篇一樣。但是其實只要算 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%7B0,%201%7D">, <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%7B0,%201%7D"> 四種極端情況即可，因為剩下的情況會是這兩種的 <strong>mixed strategy</strong>。</p>
+<ul>
+<li><p>若 Player B 拿到 Nuts，則 B 一定會 bet。在兩種極端狀況下，Player A 的期望值 payoff：</p>
+<table class="table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 29%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200">)</th>
+<th>Player A: Always Call <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%201">)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?0"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-B"></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>若 Player B 拿到 Air。在四種極端狀況下，Player A 的期望值 payoff：</p>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 25%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200">)</th>
+<th>Player A: Always Call <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%201">)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet (<img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%201">)</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?0"></td>
+<td><img src="https://latex.codecogs.com/png.latex?B%20+%20P"></td>
+</tr>
+<tr class="even">
+<td><strong>Player B: Always Check (<img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%200">)</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?P"></td>
+<td><img src="https://latex.codecogs.com/png.latex?P"></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p>我們將以上三種情況，分別畫下來：</p>
+<ul>
+<li>Senario 1: Player B 拿到 Nuts，則 Player B 一定下注 (value bet)</li>
+<li>Senario 2: Player B 拿到 Air，假設 Player B 總是下注 (bluff bet)</li>
+<li>Senario 3: Player B 拿到 Air，假設 Player B 總是過牌 (honest check)</li>
+</ul>
+<p>那麼對 Player A 來說，這三種情況的 payoff 分別是：</p>
+<div id="fig-lesson5-seesaw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/poker/images/visualize_seesaw.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Seesaw Payoff</figcaption>
+</figure>
+</div>
+<p>因為 Player A 要最大化 payoff，所以會選數值大的 (翹翹板高處)。</p>
+<p>先讓我們暫時把這三個翹翹板記在心中，待會再回來看。</p>
+</section>
+<section id="雙曲面" class="level3">
+<h3 class="anchored" data-anchor-id="雙曲面">雙曲面</h3>
+<p>假設 Player B 拿到 Nuts 的機率是 <img src="https://latex.codecogs.com/png.latex?r"> (此處 <img src="https://latex.codecogs.com/png.latex?r=1/5">)，那麼一個 average over Player B 手牌的 Player A payoff 表格，即是兩個表的加權平均：</p>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 25%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Player A: Always Fold <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200">)</th>
+<th>Player A: Always Call <br> (<img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%201">)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Player B: Always Bet (<img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%201">)</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?0"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-rB%20+%20(1-r)(B+P)"></td>
+</tr>
+<tr class="even">
+<td><strong>Player B: Always Check (<img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%200">)</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?(1-r)P"></td>
+<td><img src="https://latex.codecogs.com/png.latex?-rB%20+%20(1-r)P"></td>
+</tr>
+</tbody>
+</table>
+<p>先來簡化一下符號，將上面的 payoff 寫成矩陣 <img src="https://latex.codecogs.com/png.latex?X%20=%20%5BX_%7B%5Cbeta%20%5Calpha%7D%5D">：</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%200"></th>
+<th><img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%201"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%201"></strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?X_%7B10%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?X_%7B11%7D"></td>
+</tr>
+<tr class="even">
+<td><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%200"></strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?X_%7B00%7D"></td>
+<td><img src="https://latex.codecogs.com/png.latex?X_%7B01%7D"></td>
+</tr>
+</tbody>
+</table>
+<p>在這個例子中是 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0AX_%7B10%7D%20&amp;%20=%200%20%5C%5C%0AX_%7B11%7D%20&amp;%20=%20-rB%20+%20(1-r)(B+P)%20%5C%5C%0AX_%7B00%7D%20&amp;%20=%20(1-r)P%20%5C%5C%0AX_%7B01%7D%20&amp;%20=%20-rB%20+%20(1-r)P%0A%5Cend%7Balign%7D%0A"></p>
+<p>既然已經知道 Pure Strategy 的 <strong>所有可能</strong> 情況，那麼 mix strategy 就是這些情況的 convex linear combination，而 <img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Cbeta%20%5Cin%20%5B0,%201%5D"> 就是權重。</p>
+<p>所以在 mix strategy 時， Player A 的 payoff 期望值就是： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D%20&amp;%20=%20%5Calpha%20%5Cbeta%20X_%7B11%7D%20+%20%5Calpha%20(1-%5Cbeta)%20X_%7B01%7D%20+%20(1-%5Calpha)%20%5Cbeta%20X_%7B10%7D%20+%20(1-%5Calpha)(1-%5Cbeta)%20X_%7B00%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:hyperbolic_payoff%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>將 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D"> 視為一個 <img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Cbeta"> 的函數，畫在三維空間中的話，就是一個雙曲面 (hyperbolic surface)：</p>
+<div id="fig-lesson5-hyperbolic_heatmap" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/poker/images/hyperbolic_heatmap.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Hyperbolic Payoff Surface</figcaption>
+</figure>
+</div>
+<p>這是一個標準的雙曲面 (hyperbolic paraboloid)，中間有個鞍點 (saddle point)。</p>
+<p>雖然是個二次函數，但當固定其中一個變數 (例如 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">)，截面其實是一條直線。可以將雙曲面想成是一條直線一邊旋轉一邊平移所掃出來的曲面。</p>
+<p>當我們看 Side View 時 (相 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 這個維度投影掉)，可以明顯看出這個直線掃出的感覺，這不就是剛剛的翹翹板? 沒錯，這個雙曲面其實就是把三個翹翹板「合體」起來的結果。</p>
+<p>讓我們 zoom in 看一下這個投影在 <img src="https://latex.codecogs.com/png.latex?%5Calpha">-<img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 平面圖，其實也就是把 payoff 畫成 heatmap：</p>
+<div id="fig-lesson5-payoff_landscape" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/poker/images/payoff_landscape.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: 2D Payoff Surface - Heatmap</figcaption>
+</figure>
+</div>
+<p>這張圖 Figure&nbsp;3 很視覺化了驗證了之前推導的結果:</p>
+<ul>
+<li>當 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%5Calpha%5E*%20=%20%5Cfrac%7BP%7D%7BB+P%7D"> 時， 不管 Player B 選擇哪個，期望值都是一樣的 (白色區域)。</li>
+<li>而當 <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%5Cbeta%5E*%20=%20%5Cfrac%7BrB%7D%7B(1-r)(B+P)%7D"> 時， 不管 Player A 選擇哪個，期望值也是一樣的 (白色區域)。</li>
+<li>而當其中有人偏離平衡點時，另一人可以取 0 或 1 的極端策略來懲罰對方 (payoff 變成紅色或藍色)。</li>
+</ul>
+</section>
+<section id="一般式" class="level3">
+<h3 class="anchored" data-anchor-id="一般式">一般式</h3>
+<p>現在幾何直覺已經很清楚了，讓我們回到一般式 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hyperbolic_payoff%7D">，來算一下公式解。</p>
+<p>首先，這個鞍點會在 <img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Cbeta%20%5Cin%20(0,%201)"> 內部出現的充要條件是： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A(X_%7B00%7D%20-%20X_%7B01%7D)(X_%7B10%7D%20-%20X_%7B11%7D)%20&amp;%20%3C%200%20%20%5C%5C%0A(X_%7B00%7D%20-%20X_%7B10%7D)(X_%7B01%7D%20-%20X_%7B11%7D)%20&amp;%20%3C%200%0A%5Cend%7Balign%7D%0A"> 也就是在端點時，兩條斜率相乘是負的。</p>
+<p>而在此時，鞍點的位置 <img src="https://latex.codecogs.com/png.latex?(%5Calpha%5E*,%20%5Cbeta%5E*)"> 是： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Calpha%5E*%20&amp;%20=%20%5Cfrac%7BX_%7B00%7D%20-%20X_%7B10%7D%7D%7BX_%7B00%7D%20-%20X_%7B01%7D%20-%20X_%7B10%7D%20+%20X_%7B11%7D%7D%20%5C%5C%0A%5Cbeta%5E*%20&amp;%20=%20%5Cfrac%7BX_%7B00%7D%20-%20X_%7B01%7D%7D%7BX_%7B00%7D%20-%20X_%7B10%7D%20-%20X_%7B01%7D%20+%20X_%7B11%7D%7D%0A%5Cend%7Balign%7D%0A"> 這可以有很多種解法，其中一種直覺 (圖解法) 是讓 <img src="https://latex.codecogs.com/png.latex?%0A%5Calpha%20:%20(1%20-%20%5Calpha)%20=%20X_%7B00%7D%20-%20X_%7B10%7D%20:%20X_%7B11%7D%20-%20X_%7B01%7D%0A"></p>
+<p>而這個鞍點的 payoff ，也就是這個 game 的 value 是： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D%5E*%20=%20%5Cfrac%7BX_%7B00%7D%20X_%7B11%7D%20-%20X_%7B01%7D%20X_%7B10%7D%7D%7BX_%7B00%7D%20-%20X_%7B01%7D%20-%20X_%7B10%7D%20+%20X_%7B11%7D%7D%0A"></p>
+<p>這當然也有很多種解法，例如直接把 <img src="https://latex.codecogs.com/png.latex?%5Calpha%5E*,%20%5Cbeta%5E*"> 帶回去。但另外一個有趣的算法是，若同時扣掉 <img src="https://latex.codecogs.com/png.latex?h"> 將這個鞍點的高度(垂直平移到0)的話，那雙曲面函數 兩組對角線項 相乘會相等: <img src="https://latex.codecogs.com/png.latex?%0A(X_%7B00%7D%20-%20h)(X_%7B11%7D%20-%20h)%20=%20(X_%7B01%7D%20-%20h)(X_%7B10%7D%20-%20h)%0A"><br>
+這樣自動就解出鞍點的高度 <img src="https://latex.codecogs.com/png.latex?h"> 了。</p>
+</section>
+<section id="講回翹翹板" class="level3">
+<h3 class="anchored" data-anchor-id="講回翹翹板">講回翹翹板</h3>
+<p>我們再次回到翹翹板的圖像，原本翹翹板中間的桿子是沒有實質意義的，但現在剛好可以想成是線性的插值。</p>
+<p><img src="https://your-website-url.example.com/posts/poker/images/visualize_seesaw.png" class="img-fluid"></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Senario 1</th>
+<th>Senario 2</th>
+<th>Senario 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>直觀解釋</td>
+<td>Value Bet</td>
+<td>Bluff Bet</td>
+<td>Honest Check</td>
+</tr>
+<tr class="even">
+<td><strong>發生的機率</strong></td>
+<td><img src="https://latex.codecogs.com/png.latex?r"></td>
+<td><img src="https://latex.codecogs.com/png.latex?(1-r)%5Cbeta"></td>
+<td><img src="https://latex.codecogs.com/png.latex?(1-r)(1-%5Cbeta)"></td>
+</tr>
+<tr class="odd">
+<td>翹翹板</td>
+<td><img src="https://latex.codecogs.com/png.latex?0:-B"></td>
+<td><img src="https://latex.codecogs.com/png.latex?0:(B+P)"></td>
+<td><img src="https://latex.codecogs.com/png.latex?P:P"></td>
+</tr>
+</tbody>
+</table>
+<p>而 Player B 的最佳策略，就是使得 Player A 感受到翹翹板是平衡的 (這就是無差異原則!)，也就是用機率加權後是平衡的。</p>
+<p>於是我們再次推導出 bluff-to-value ratio: <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cmathbb%7BP%7D%5B%5Ctext%7Bbluff%7D%5D%7D%7B%5Cmathbb%7BP%7D%5B%5Ctext%7Bvalue%7D%5D%7D%20=%20%5Cfrac%7B(1-r)%5Cbeta%7D%7Br%7D%20=%20%5Cfrac%7BB%7D%7BB+P%7D%0A"> 因為第三種狀況是 balanced，所以不用考慮。</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Poker</category>
+  <guid>https://your-website-url.example.com/posts/poker/lesson_5_hyperbolic_payoff.html</guid>
+  <pubDate>Sat, 06 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Poker Lesson 4 - 如何詐唬</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -31,7 +257,7 @@
 <p>讓我們來考慮最簡單的版本之一: 只有兩名玩家 A 跟 B，而且 B 有完全的資訊(B知道自己輸還贏)，但 A 沒有任何資訊。</p>
 <section id="seven-card-stud" class="level2">
 <h2 class="anchored" data-anchor-id="seven-card-stud">Seven-card stud</h2>
-<p>假設 A 跟 B 玩 Seven-card stud， <img src="https://latex.codecogs.com/png.latex?40-80"> 元盲注，池底有 <img src="https://latex.codecogs.com/png.latex?P%20=%20655"> 元。</p>
+<p>假設 A 跟 B 玩 Seven-card stud， <img src="https://latex.codecogs.com/png.latex?40-80"> 元有限注，池底有 <img src="https://latex.codecogs.com/png.latex?P%20=%20655"> 元。</p>
 <p>現在來到最後一輪下注(已經發了最後一張牌)，前六張都是開的，最後一張只有自己知道。</p>
 <ul>
 <li>A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]</li>
@@ -176,7 +402,7 @@
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</guid>
-  <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula</title>
@@ -3494,7 +3720,7 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 <item>
   <title>最短的向量</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1116-shortest_vector/</link>
+  <link>https://your-website-url.example.com/posts/2025-1116-shortest_vector/index.html</link>
   <description><![CDATA[ 
 
 
@@ -3515,13 +3741,13 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
   <category>Cryptography</category>
   <category>NP-Reduction</category>
   <category>Linear Algebra</category>
-  <guid>https://your-website-url.example.com/posts/2025-1116-shortest_vector/</guid>
+  <guid>https://your-website-url.example.com/posts/2025-1116-shortest_vector/index.html</guid>
   <pubDate>Sun, 16 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>10 Types of Common Distributions</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1114-distribution_10/</link>
+  <link>https://your-website-url.example.com/posts/2025-1114-distribution_10/index.html</link>
   <description><![CDATA[ 
 
 
@@ -3793,7 +4019,7 @@ Table&nbsp;2: My Discrete Distribution Table
  ]]></description>
   <category>statistic</category>
   <category>Cheat Sheet</category>
-  <guid>https://your-website-url.example.com/posts/2025-1114-distribution_10/</guid>
+  <guid>https://your-website-url.example.com/posts/2025-1114-distribution_10/index.html</guid>
   <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
@@ -4018,7 +4244,7 @@ Table&nbsp;2: My Discrete Distribution Table
 <item>
   <title>聊聊 Error Correcting Code (ECC) 的基石：Linear Code</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1112-linear_code/</link>
+  <link>https://your-website-url.example.com/posts/2025-1112-linear_code/index.html</link>
   <description><![CDATA[ 
 
 
@@ -4261,13 +4487,13 @@ Table&nbsp;2: My Discrete Distribution Table
  ]]></description>
   <category>Cryptography</category>
   <category>Linear Algebra</category>
-  <guid>https://your-website-url.example.com/posts/2025-1112-linear_code/</guid>
+  <guid>https://your-website-url.example.com/posts/2025-1112-linear_code/index.html</guid>
   <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Conjugate Prior</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/</link>
+  <link>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/index.html</link>
   <description><![CDATA[ 
 
 
@@ -4573,7 +4799,7 @@ Table&nbsp;2: My Discrete Distribution Table
 
  ]]></description>
   <category>statistic</category>
-  <guid>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/</guid>
+  <guid>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/index.html</guid>
   <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
@@ -4624,7 +4850,7 @@ Table&nbsp;2: My Discrete Distribution Table
 <item>
   <title>萬聖節快樂</title>
   <dc:creator>LTN </dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1031-helloween/</link>
+  <link>https://your-website-url.example.com/posts/2025-1031-helloween/index.html</link>
   <description><![CDATA[ 
 
 
@@ -4664,13 +4890,13 @@ Table&nbsp;2: My Discrete Distribution Table
  ]]></description>
   <category>Linear Algebra</category>
   <category>Cryptography</category>
-  <guid>https://your-website-url.example.com/posts/2025-1031-helloween/</guid>
+  <guid>https://your-website-url.example.com/posts/2025-1031-helloween/index.html</guid>
   <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Welcome To My Blog</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <link>https://your-website-url.example.com/posts/welcome/index.html</link>
   <description><![CDATA[ 
 
 
@@ -4685,7 +4911,7 @@ Table&nbsp;2: My Discrete Distribution Table
 
  ]]></description>
   <category>news</category>
-  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <guid>https://your-website-url.example.com/posts/welcome/index.html</guid>
   <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,13 +47,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -62,7 +56,6 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -101,43 +94,16 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="0^0" href="index.xml" data-external="1"></head>
+<link rel="alternate" type="application/rss+xml" title="0^0" href="index.xml"></head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">0^0</span>
     </a>
@@ -149,18 +115,18 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/TaiNing1237/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -173,7 +139,7 @@ window.Quarto = {
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -186,7 +152,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="Cheat Sheet">Cheat Sheet <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Cryptography">Cryptography <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Linear Algebra">Linear Algebra <span class="quarto-category-count">(3)</span></div><div class="category" data-category="NP-Reduction">NP-Reduction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Normal Distribution">Normal Distribution <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Poker">Poker <span class="quarto-category-count">(4)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="statistic">statistic <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(20)</span></div><div class="category" data-category="Cheat Sheet">Cheat Sheet <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Cryptography">Cryptography <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Linear Algebra">Linear Algebra <span class="quarto-category-count">(3)</span></div><div class="category" data-category="NP-Reduction">NP-Reduction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Normal Distribution">Normal Distribution <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Poker">Poker <span class="quarto-category-count">(5)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="statistic">statistic <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -197,35 +163,36 @@ window.Quarto = {
 
 
 
-
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Poker" data-listing-date-sort="1764547200000" data-listing-file-modified-sort="1764926358918" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1279">
+<div class="quarto-post image-right" data-index="0" data-categories="Poker" data-listing-date-sort="1764979200000" data-listing-file-modified-sort="1765614296133" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
 <div class="thumbnail">
-<p><a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external"></a></p><a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external"></a></p>
+<p><a href="./posts/poker/lesson_5_hyperbolic_payoff.html"> <p class="card-img-top"><img src="posts/poker/images/visualize_seesaw.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/poker/lesson_5_hyperbolic_payoff.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external">Poker Lesson 4 - 如何詐唬</a>
+Poker Lesson 5 - 雙曲面 Payoff
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Poker'); return false;">
 Poker
 </div>
 </div>
+<a href="./posts/poker/lesson_5_hyperbolic_payoff.html">
 <div class="listing-description">
-<a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external">在德州撲克中，有三種不確定性來源:</a>
+來延續上一篇的設定，假設 A 跟 B 玩 Seven-card stud， <span class="math inline">\(40-80\)</span> 元有限注，池底有 <span class="math inline">\(P = 100\)</span> 元。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/poker/lesson_4_bluff_value_ratio.html" class="no-external">
+<a href="./posts/poker/lesson_5_hyperbolic_payoff.html">
 <div class="listing-date">
-Dec 1, 2025
+Dec 6, 2025
 </div>
 <div class="listing-author">
 Tai-Ning Liao
@@ -233,30 +200,67 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Normal Distribution" data-listing-date-sort="1764460800000" data-listing-file-modified-sort="1764891920073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="441">
+<div class="quarto-post image-right" data-index="1" data-categories="Poker" data-listing-date-sort="1764892800000" data-listing-file-modified-sort="1764982732785" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_9.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_9.html" class="no-external">
-<p class="card-img-top"><img src="posts/normal-distribution/images/psf.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/normal-distribution/day_9.html" class="no-external"></a></p>
+<p><a href="./posts/poker/lesson_4_bluff_value_ratio.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/poker/lesson_4_bluff_value_ratio.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_9.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula</a>
+Poker Lesson 4 - 如何詐唬
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_9.html" class="no-external"></a>
+
 </div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Poker'); return false;">
+Poker
+</div>
+</div>
+<a href="./posts/poker/lesson_4_bluff_value_ratio.html">
+<div class="listing-description">
+在德州撲克中，有三種不確定性來源:
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/poker/lesson_4_bluff_value_ratio.html">
+<div class="listing-date">
+Dec 5, 2025
+</div>
+<div class="listing-author">
+Tai-Ning Liao
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="Normal Distribution" data-listing-date-sort="1764460800000" data-listing-file-modified-sort="1764891920073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
+<div class="thumbnail">
+<p><a href="./posts/normal-distribution/day_9.html"> <p class="card-img-top"><img src="posts/normal-distribution/images/psf.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="./posts/normal-distribution/day_9.html">
+<h3 class="no-anchor listing-title">
+一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_9.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_9.html" class="no-external">小時候就學過無窮等比級數:</a>
+小時候就學過無窮等比級數:
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_9.html" class="no-external">
+<a href="./posts/normal-distribution/day_9.html">
 <div class="listing-date">
 Nov 30, 2025
 </div>
@@ -266,30 +270,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Normal Distribution" data-listing-date-sort="1764374400000" data-listing-file-modified-sort="1764891920051" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="405">
+<div class="quarto-post image-right" data-index="3" data-categories="Normal Distribution" data-listing-date-sort="1764374400000" data-listing-file-modified-sort="1764891920051" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_8.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_8.html" class="no-external">
-<p class="card-img-top"><img src="posts/normal-distribution/images/image.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/normal-distribution/day_8.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_8.html"> <p class="card-img-top"><img src="posts/normal-distribution/images/image.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_8.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_8.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day8： C n 取 k</a>
+一天證明一個 Normal Distribution 的性質 Day8： C n 取 k
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_8.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_8.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_8.html" class="no-external">「從 52 張撲克牌中，隨機抽 7 張牌，有多少種不同的組合方式？」</a>
+「從 52 張撲克牌中，隨機抽 7 張牌，有多少種不同的組合方式？」
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_8.html" class="no-external">
+<a href="./posts/normal-distribution/day_8.html">
 <div class="listing-date">
 Nov 29, 2025
 </div>
@@ -299,30 +305,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Poker" data-listing-date-sort="1764288000000" data-listing-file-modified-sort="1764897129185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1211">
+<div class="quarto-post image-right" data-index="4" data-categories="Poker" data-listing-date-sort="1764288000000" data-listing-file-modified-sort="1764897129185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/poker/lesson_3_count.html" class="no-external"></a></p><a href="./posts/poker/lesson_3_count.html" class="no-external">
-<p class="card-img-top"><img src="posts/poker/images/poker_cardprob_57.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/poker/lesson_3_count.html" class="no-external"></a></p>
+<p><a href="./posts/poker/lesson_3_count.html"> <p class="card-img-top"><img src="posts/poker/images/poker_cardprob_57.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/poker/lesson_3_count.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/poker/lesson_3_count.html" class="no-external">Poker Lesson 3 - hands 組合數</a>
+Poker Lesson 3 - hands 組合數
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/poker/lesson_3_count.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Poker'); return false;">
 Poker
 </div>
 </div>
+<a href="./posts/poker/lesson_3_count.html">
 <div class="listing-description">
-<a href="./posts/poker/lesson_3_count.html" class="no-external">今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</a>
+今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/poker/lesson_3_count.html" class="no-external">
+<a href="./posts/poker/lesson_3_count.html">
 <div class="listing-date">
 Nov 28, 2025
 </div>
@@ -332,30 +340,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Poker" data-listing-date-sort="1764201600000" data-listing-file-modified-sort="1764892262953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="607">
+<div class="quarto-post image-right" data-index="5" data-categories="Poker" data-listing-date-sort="1764201600000" data-listing-file-modified-sort="1764892262953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
 <div class="thumbnail">
-<p><a href="./posts/poker/lesson_2.html" class="no-external"></a></p><a href="./posts/poker/lesson_2.html" class="no-external">
-<p class="card-img-top"><img src="posts/poker/images/poker_buyonecard-processed.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/poker/lesson_2.html" class="no-external"></a></p>
+<p><a href="./posts/poker/lesson_2.html"> <p class="card-img-top"><img src="posts/poker/images/poker_buyonecard-processed.jpg"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/poker/lesson_2.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/poker/lesson_2.html" class="no-external">Poker Lesson 2 - 一次只能買到一張牌</a>
+Poker Lesson 2 - 一次只能買到一張牌
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/poker/lesson_2.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Poker'); return false;">
 Poker
 </div>
 </div>
+<a href="./posts/poker/lesson_2.html">
 <div class="listing-description">
-<a href="./posts/poker/lesson_2.html" class="no-external">假設 limit Texas Hold’em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。</a>
+假設 limit Texas Hold’em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/poker/lesson_2.html" class="no-external">
+<a href="./posts/poker/lesson_2.html">
 <div class="listing-date">
 Nov 27, 2025
 </div>
@@ -365,30 +375,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Poker" data-listing-date-sort="1764115200000" data-listing-file-modified-sort="1764892262336" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="101">
+<div class="quarto-post image-right" data-index="6" data-categories="Poker" data-listing-date-sort="1764115200000" data-listing-file-modified-sort="1764892262336" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
-<p><a href="./posts/poker/lesson_1_pot_odds.html" class="no-external"></a></p><a href="./posts/poker/lesson_1_pot_odds.html" class="no-external">
-<p class="card-img-top"><img src="posts/poker/images/poker_potodds_20-processed.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/poker/lesson_1_pot_odds.html" class="no-external"></a></p>
+<p><a href="./posts/poker/lesson_1_pot_odds.html"> <p class="card-img-top"><img src="posts/poker/images/poker_potodds_20-processed.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/poker/lesson_1_pot_odds.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/poker/lesson_1_pot_odds.html" class="no-external">Poker Lesson 1 - 池底賠率 (Pot Odds)</a>
+Poker Lesson 1 - 池底賠率 (Pot Odds)
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/poker/lesson_1_pot_odds.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Poker'); return false;">
 Poker
 </div>
 </div>
+<a href="./posts/poker/lesson_1_pot_odds.html">
 <div class="listing-description">
-<a href="./posts/poker/lesson_1_pot_odds.html" class="no-external">先來談談賭博中最小的一步，要 <strong>繼續遊戲 (call)</strong> 還是 <strong>忍痛放棄 (fold)</strong>。</a>
+先來談談賭博中最小的一步，要 <strong>繼續遊戲 (call)</strong> 還是 <strong>忍痛放棄 (fold)</strong>。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/poker/lesson_1_pot_odds.html" class="no-external">
+<a href="./posts/poker/lesson_1_pot_odds.html">
 <div class="listing-date">
 Nov 26, 2025
 </div>
@@ -398,30 +410,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Normal Distribution" data-listing-date-sort="1764028800000" data-listing-file-modified-sort="1764891920051" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="854">
+<div class="quarto-post image-right" data-index="7" data-categories="Normal Distribution" data-listing-date-sort="1764028800000" data-listing-file-modified-sort="1764891920051" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_7.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_7.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_7.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_7.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_7.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_7.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials</a>
+一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_7.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_7.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_7.html" class="no-external">今天回到我們的小數學風格，談點輕鬆的 Hermite Polynomials。</a>
+今天回到我們的小數學風格，談點輕鬆的 Hermite Polynomials。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_7.html" class="no-external">
+<a href="./posts/normal-distribution/day_7.html">
 <div class="listing-date">
 Nov 25, 2025
 </div>
@@ -431,30 +445,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Normal Distribution" data-listing-date-sort="1763683200000" data-listing-file-modified-sort="1764891920050" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1355">
+<div class="quarto-post image-right" data-index="8" data-categories="Normal Distribution" data-listing-date-sort="1763683200000" data-listing-file-modified-sort="1764891920050" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_6.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_6.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_6.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_6.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_6.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_6.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test</a>
+一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_6.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_6.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_6.html" class="no-external">假設我們有個 contingency table (列聯表) 如下：</a>
+假設我們有個 contingency table (列聯表) 如下：
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_6.html" class="no-external">
+<a href="./posts/normal-distribution/day_6.html">
 <div class="listing-date">
 Nov 21, 2025
 </div>
@@ -464,30 +480,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Normal Distribution" data-listing-date-sort="1763510400000" data-listing-file-modified-sort="1764891920049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="969">
+<div class="quarto-post image-right" data-index="9" data-categories="Normal Distribution" data-listing-date-sort="1763510400000" data-listing-file-modified-sort="1764891920049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_5.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_5.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_5.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_5.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_5.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_5.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant</a>
+一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_5.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_5.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_5.html" class="no-external">今天來講個輕鬆的小主題：<strong>Cumulant</strong>。</a>
+今天來講個輕鬆的小主題：<strong>Cumulant</strong>。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_5.html" class="no-external">
+<a href="./posts/normal-distribution/day_5.html">
 <div class="listing-date">
 Nov 19, 2025
 </div>
@@ -497,30 +515,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Normal Distribution" data-listing-date-sort="1763337600000" data-listing-file-modified-sort="1764891920019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="676">
+<div class="quarto-post image-right" data-index="10" data-categories="Normal Distribution" data-listing-date-sort="1763337600000" data-listing-file-modified-sort="1764891920019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_4.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_4.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_4.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_4.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_4.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_4.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</a>
+一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_4.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_4.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_4.html" class="no-external">今天來講統計學中「參數估計」(Parameter Estimation) 一個非常優雅的概念：<strong>充分統計量 (Sufficient Statistic)</strong>。</a>
+今天來講統計學中「參數估計」(Parameter Estimation) 一個非常優雅的概念：<strong>充分統計量 (Sufficient Statistic)</strong>。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_4.html" class="no-external">
+<a href="./posts/normal-distribution/day_4.html">
 <div class="listing-date">
 Nov 17, 2025
 </div>
@@ -530,19 +550,19 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Cryptography,NP-Reduction,Linear Algebra" data-listing-date-sort="1763251200000" data-listing-file-modified-sort="1763685247905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
+<div class="quarto-post image-right" data-index="11" data-categories="Cryptography,NP-Reduction,Linear Algebra" data-listing-date-sort="1763251200000" data-listing-file-modified-sort="1763685247905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
-<p><a href="./posts/2025-1116-shortest_vector/index.html" class="no-external"></a></p><a href="./posts/2025-1116-shortest_vector/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-1116-shortest_vector/index.html" class="no-external"></a></p>
+<p><a href="./posts/2025-1116-shortest_vector/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2025-1116-shortest_vector/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-1116-shortest_vector/index.html" class="no-external">最短的向量</a>
+最短的向量
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2025-1116-shortest_vector/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Cryptography'); return false;">
 Cryptography
@@ -554,15 +574,16 @@ NP-Reduction
 Linear Algebra
 </div>
 </div>
+<a href="./posts/2025-1116-shortest_vector/index.html">
 <div class="listing-description">
-<a href="./posts/2025-1116-shortest_vector/index.html" class="no-external">假設在 <span class="math inline">\(\mathbb{R}^n\)</span> 空間中有 <span class="math inline">\(n\)</span> 個向量 <span class="math inline">\(v_1, ..., v_n\)</span>，要找他們的整係數線性組合，使得其長度最小(但非零)。 <span class="math display">\[
+假設在 <span class="math inline">\(\mathbb{R}^n\)</span> 空間中有 <span class="math inline">\(n\)</span> 個向量 <span class="math inline">\(v_1, ..., v_n\)</span>，要找他們的整係數線性組合，使得其長度最小(但非零)。 <span class="math display">\[
 \begin{array}{cl}
-\min &amp; \Big\| v \Big\|_2 \\
-\text{s.t.} &amp; v = \sum_{i=1}^n a_i v_i…</span></a>
+\min &amp; \Big\| v \Big\|_2…</span>
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2025-1116-shortest_vector/index.html" class="no-external">
+<a href="./posts/2025-1116-shortest_vector/index.html">
 <div class="listing-date">
 Nov 16, 2025
 </div>
@@ -572,19 +593,19 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="statistic,Cheat Sheet" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1764160233068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="889">
+<div class="quarto-post image-right" data-index="12" data-categories="statistic,Cheat Sheet" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1764160233068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
 <div class="thumbnail">
-<p><a href="./posts/2025-1114-distribution_10/index.html" class="no-external"></a></p><a href="./posts/2025-1114-distribution_10/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-1114-distribution_10/index.html" class="no-external"></a></p>
+<p><a href="./posts/2025-1114-distribution_10/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2025-1114-distribution_10/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-1114-distribution_10/index.html" class="no-external">10 Types of Common Distributions</a>
+10 Types of Common Distributions
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2025-1114-distribution_10/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('statistic'); return false;">
 statistic
@@ -593,12 +614,14 @@ statistic
 Cheat Sheet
 </div>
 </div>
+<a href="./posts/2025-1114-distribution_10/index.html">
 <div class="listing-description">
-<a href="./posts/2025-1114-distribution_10/index.html" class="no-external">Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs), I’ve ignored the constant normalization factors for…</a>
+Let’s list 10 common…
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2025-1114-distribution_10/index.html" class="no-external">
+<a href="./posts/2025-1114-distribution_10/index.html">
 <div class="listing-date">
 Nov 14, 2025
 </div>
@@ -608,30 +631,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Normal Distribution" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1764891920018" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="481">
+<div class="quarto-post image-right" data-index="13" data-categories="Normal Distribution" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1764891920018" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_3.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_3.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_3.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_3.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_3.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_3.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈</a>
+一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_3.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_3.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_3.html" class="no-external">今天來講 <span class="math inline">\(n\)</span> 維空間的多變量常態分佈 (Multivariate Normal Distribution)。高維空間的常態分佈雖然在形式上只是把一維的做 <span class="math inline">\(n\)</span> 次方，但他豐富的特性，卻讓它在統計學、機器學習，甚至於密碼學、純數學理論中都有非常重要的應用。</a>
+今天來講 <span class="math inline">\(n\)</span> 維空間的多變量常態分佈 (Multivariate Normal Distribution)。高維空間的常態分佈雖然在形式上只是把一維的做 <span class="math inline">\(n\)</span> 次方，但他豐富的特性，卻讓它在統計學、機器學習，甚至於密碼學、純數學理論中都有非常重要的應用。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_3.html" class="no-external">
+<a href="./posts/normal-distribution/day_3.html">
 <div class="listing-date">
 Nov 14, 2025
 </div>
@@ -641,30 +666,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="Normal Distribution" data-listing-date-sort="1762992000000" data-listing-file-modified-sort="1764891920017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1251">
+<div class="quarto-post image-right" data-index="14" data-categories="Normal Distribution" data-listing-date-sort="1762992000000" data-listing-file-modified-sort="1764891920017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_2.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_2.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_2.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_2.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_2.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_2.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</a>
+一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_2.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_2.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_2.html" class="no-external">今天來講一下 moment generation function 跟 characteristic function。</a>
+今天來講一下 moment generation function 跟 characteristic function。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_2.html" class="no-external">
+<a href="./posts/normal-distribution/day_2.html">
 <div class="listing-date">
 Nov 13, 2025
 </div>
@@ -674,19 +701,19 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="Cryptography,Linear Algebra" data-listing-date-sort="1762905600000" data-listing-file-modified-sort="1763685247904" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1831">
+<div class="quarto-post image-right" data-index="15" data-categories="Cryptography,Linear Algebra" data-listing-date-sort="1762905600000" data-listing-file-modified-sort="1763685247904" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
 <div class="thumbnail">
-<p><a href="./posts/2025-1112-linear_code/index.html" class="no-external"></a></p><a href="./posts/2025-1112-linear_code/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-1112-linear_code/index.html" class="no-external"></a></p>
+<p><a href="./posts/2025-1112-linear_code/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2025-1112-linear_code/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-1112-linear_code/index.html" class="no-external">聊聊 Error Correcting Code (ECC) 的基石：Linear Code</a>
+聊聊 Error Correcting Code (ECC) 的基石：Linear Code
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2025-1112-linear_code/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Cryptography'); return false;">
 Cryptography
@@ -695,12 +722,14 @@ Cryptography
 Linear Algebra
 </div>
 </div>
+<a href="./posts/2025-1112-linear_code/index.html">
 <div class="listing-description">
-<a href="./posts/2025-1112-linear_code/index.html" class="no-external">今天我們來聊聊一個在資訊傳輸中超級重要，但也最基礎的概念：Error Correcting Code (ECC)，特別是其中的「<strong>Linear Code</strong>」（線性碼）。</a>
+今天我們來聊聊一個在資訊傳輸中超級重要，但也最基礎的概念：Error Correcting Code (ECC)，特別是其中的「<strong>Linear Code</strong>」（線性碼）。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2025-1112-linear_code/index.html" class="no-external">
+<a href="./posts/2025-1112-linear_code/index.html">
 <div class="listing-date">
 Nov 12, 2025
 </div>
@@ -710,30 +739,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="statistic" data-listing-date-sort="1762905600000" data-listing-file-modified-sort="1763723181623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1300">
+<div class="quarto-post image-right" data-index="16" data-categories="statistic" data-listing-date-sort="1762905600000" data-listing-file-modified-sort="1763723181623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external"></a></p><a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/2025-1112-conjugacy_prior/Gamma_60_6.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external"></a></p>
+<p><a href="./posts/2025-1112-conjugacy_prior/index.html"> <p class="card-img-top"><img src="posts/2025-1112-conjugacy_prior/Gamma_60_6.png"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2025-1112-conjugacy_prior/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external">Conjugate Prior</a>
+Conjugate Prior
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('statistic'); return false;">
 statistic
 </div>
 </div>
+<a href="./posts/2025-1112-conjugacy_prior/index.html">
 <div class="listing-description">
-<a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external">在貝氏統計 (Bayesian statistics) 中，我們經常需要估計一個未知參數的機率分佈。</a>
+在貝氏統計 (Bayesian statistics) 中，我們經常需要估計一個未知參數的機率分佈。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2025-1112-conjugacy_prior/index.html" class="no-external">
+<a href="./posts/2025-1112-conjugacy_prior/index.html">
 <div class="listing-date">
 Nov 12, 2025
 </div>
@@ -743,30 +774,32 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="Normal Distribution" data-listing-date-sort="1762819200000" data-listing-file-modified-sort="1764891920016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="446">
+<div class="quarto-post image-right" data-index="17" data-categories="Normal Distribution" data-listing-date-sort="1762819200000" data-listing-file-modified-sort="1764891920016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/normal-distribution/day_1.html" class="no-external"></a></p><a href="./posts/normal-distribution/day_1.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/normal-distribution/day_1.html" class="no-external"></a></p>
+<p><a href="./posts/normal-distribution/day_1.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/normal-distribution/day_1.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/normal-distribution/day_1.html" class="no-external">一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)</a>
+一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/normal-distribution/day_1.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Normal Distribution'); return false;">
 Normal Distribution
 </div>
 </div>
+<a href="./posts/normal-distribution/day_1.html">
 <div class="listing-description">
-<a href="./posts/normal-distribution/day_1.html" class="no-external">我們將介紹的第一個分佈，是統計學中最著名的——常態分佈（Normal Distribution）。它通常被稱為高斯分佈 (Gaussian distribution)，以紀念偉大的數學家卡爾·弗里德里希·高斯 (Carl Friedrich Gauss)。</a>
+我們將介紹的第一個分佈，是統計學中最著名的——常態分佈（Normal Distribution）。它通常被稱為高斯分佈 (Gaussian distribution)，以紀念偉大的數學家卡爾·弗里德里希·高斯 (Carl Friedrich Gauss)。
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/normal-distribution/day_1.html" class="no-external">
+<a href="./posts/normal-distribution/day_1.html">
 <div class="listing-date">
 Nov 11, 2025
 </div>
@@ -776,19 +809,19 @@ Tai-Ning Liao
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="Linear Algebra,Cryptography" data-listing-date-sort="1761868800000" data-listing-file-modified-sort="1763685247903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="542">
+<div class="quarto-post image-right" data-index="18" data-categories="Linear Algebra,Cryptography" data-listing-date-sort="1761868800000" data-listing-file-modified-sort="1763685247903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2025-1031-helloween/index.html" class="no-external"></a></p><a href="./posts/2025-1031-helloween/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-1031-helloween/index.html" class="no-external"></a></p>
+<p><a href="./posts/2025-1031-helloween/index.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
 <div class="body">
+<a href="./posts/2025-1031-helloween/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/2025-1031-helloween/index.html" class="no-external">萬聖節快樂</a>
+萬聖節快樂
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/2025-1031-helloween/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Linear Algebra'); return false;">
 Linear Algebra
@@ -797,12 +830,14 @@ Linear Algebra
 Cryptography
 </div>
 </div>
+<a href="./posts/2025-1031-helloween/index.html">
 <div class="listing-description">
-<a href="./posts/2025-1031-helloween/index.html" class="no-external">萬聖節就是要講鬼故事!</a>
+萬聖節就是要講鬼故事!
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/2025-1031-helloween/index.html" class="no-external">
+<a href="./posts/2025-1031-helloween/index.html">
 <div class="listing-date">
 Oct 31, 2025
 </div>
@@ -812,30 +847,32 @@ LTN
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="news" data-listing-date-sort="1761177600000" data-listing-file-modified-sort="1763685247906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
+<div class="quarto-post image-right" data-index="19" data-categories="news" data-listing-date-sort="1761177600000" data-listing-file-modified-sort="1763685247906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/welcome/thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
+<p><a href="./posts/welcome/index.html"> <p class="card-img-top"><img src="posts/welcome/thumbnail.jpg"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
+<a href="./posts/welcome/index.html">
 <h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
+Welcome To My Blog
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
+
 </div>
+</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
 news
 </div>
 </div>
+<a href="./posts/welcome/index.html">
 <div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
+This is the first post in a Quarto blog. Welcome!
 </div>
+</a>
 </div>
 <div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
+<a href="./posts/welcome/index.html">
 <div class="listing-date">
 Oct 23, 2025
 </div>
@@ -929,9 +966,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -941,17 +979,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -964,125 +993,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1126,7 +1036,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1152,32 +1061,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1239,10 +1122,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="light">
 </div> <!-- /content -->
-
 
 
 
