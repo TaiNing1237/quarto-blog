@@ -5,6 +5,7 @@
 /_freeze/
 *.html
 !index.html
+!docs/**/*.html  # 驚嘆號代表「除了這些之外」，強制追蹤 docs 裡面的 html
 
 # R / RStudio (if applicable)
 .Rproj.user
