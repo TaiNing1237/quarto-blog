@@ -10,132 +10,7 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Tue, 23 Dec 2025 00:00:00 GMT</lastBuildDate>
-<item>
-  <title>Poker Lesson 7 - 比大小遊戲 (完整版)</title>
-  <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/poker/lesson_7_comparison_full.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>今天我們繼續比大小遊戲，但是上次假設，若先手 Player A check，則強制攤牌。這次我們來討論更一般的情況: Player B 可以選擇主動下注。</p>
-<p>不過我們還是先忽略可以加注 (raise) 的情況。</p>
-<section id="遊戲規則" class="level3">
-<h3 class="anchored" data-anchor-id="遊戲規則">遊戲規則</h3>
-<ul>
-<li><strong>玩家</strong>：Player A 與 Player B。</li>
-<li><strong>底池 (Pot)</strong>：<img src="https://latex.codecogs.com/png.latex?P"> 元（可視為雙方起始強迫下注 <img src="https://latex.codecogs.com/png.latex?P/2">）。</li>
-<li><strong>發牌</strong>：從一副撲克牌中，雙方各發一張牌，彼此皆看不到對方的牌（資訊對稱且隱蔽）。</li>
-<li><strong>攤牌時勝負判定</strong>：
-<ul>
-<li>數字較大者獲勝，贏走底池。</li>
-<li>若數字相同則平手，雙方拿回各自的下注。</li>
-</ul></li>
-<li><strong>下注流程</strong>：
-<ul>
-<li>設定每次下注金額為 <img src="https://latex.codecogs.com/png.latex?B"> 元。</li>
-<li>Player A（先手）：可以選擇 <strong>下注 (Bet)</strong> 或 <strong>過牌 (Check)</strong>。</li>
-<li>若 Player A 選擇 <strong>過牌 (Check)</strong>，則輪到 Player B 行動，B 同樣可以選擇 <strong>下注</strong> 或 <strong>過牌</strong>。</li>
-<li>若 Player A 選擇 <strong>下注 (Bet)</strong>，則輪到 Player B 行動，B 可以選擇 <strong>跟注 (Call)</strong> 或 <strong>棄牌 (Fold)</strong>。</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-full-game-tree" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 720.50 327.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 323.8)">
-<title>
-GT_Advanced
-</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-323.8 716.5,-323.8 716.5,4 -4,4"></polygon> <!-- A1 --> <g id="node1" class="node">
-<title>
-A1
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="44.81" cy="-168" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="44.81" y="-163.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B1 --> <g id="node2" class="node">
-<title>
-B1
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-222" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-217.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B1 --> <g id="edge1" class="edge">
-<title>
-A1-&gt;B1
-</title>
-<path fill="none" stroke="black" d="M88.32,-180.52C114.99,-188.38 149.55,-198.57 177.75,-206.88"></path> <polygon fill="black" stroke="black" points="176.85,-210.26 187.43,-209.73 178.83,-203.55 176.85,-210.26"></polygon> <text text-anchor="middle" x="137.72" y="-205.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- B2 --> <g id="node3" class="node">
-<title>
-B2
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-115" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-110.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B2 --> <g id="edge4" class="edge">
-<title>
-A1-&gt;B2
-</title>
-<path fill="none" stroke="black" d="M88.32,-155.71C114.99,-147.99 149.55,-138 177.75,-129.84"></path> <polygon fill="black" stroke="black" points="178.8,-133.18 187.43,-127.04 176.85,-126.46 178.8,-133.18"></polygon> <text text-anchor="middle" x="137.72" y="-152.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_A_Bet_B_Call --> <g id="node5" class="node">
-<title>
-Outcome_A_Bet_B_Call
-</title>
-<path fill="#f5f5f5" stroke="black" d="M485.25,-319.6C485.25,-319.6 417.78,-319.6 417.78,-319.6 411.78,-319.6 405.78,-313.6 405.78,-307.6 405.78,-307.6 405.78,-276.4 405.78,-276.4 405.78,-270.4 411.78,-264.4 417.78,-264.4 417.78,-264.4 485.25,-264.4 485.25,-264.4 491.25,-264.4 497.25,-270.4 497.25,-276.4 497.25,-276.4 497.25,-307.6 497.25,-307.6 497.25,-313.6 491.25,-319.6 485.25,-319.6"></path> <text text-anchor="middle" x="451.52" y="-296.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局: 攤牌</text> <text text-anchor="middle" x="451.52" y="-279.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Call --> <g id="edge2" class="edge">
-<title>
-B1-&gt;Outcome_A_Bet_B_Call
-</title>
-<path fill="none" stroke="black" d="M272.35,-235.17C307.22,-246.29 357.46,-262.32 395.7,-274.52"></path> <polygon fill="black" stroke="black" points="395.06,-277.98 405.65,-277.69 397.19,-271.31 395.06,-277.98"></polygon> <text text-anchor="middle" x="322.43" y="-262.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_A_Bet_B_Fold --> <g id="node6" class="node">
-<title>
-Outcome_A_Bet_B_Fold
-</title>
-<path fill="#f5f5f5" stroke="black" d="M482.02,-245.6C482.02,-245.6 421.02,-245.6 421.02,-245.6 415.02,-245.6 409.02,-239.6 409.02,-233.6 409.02,-233.6 409.02,-202.4 409.02,-202.4 409.02,-196.4 415.02,-190.4 421.02,-190.4 421.02,-190.4 482.02,-190.4 482.02,-190.4 488.02,-190.4 494.02,-196.4 494.02,-202.4 494.02,-202.4 494.02,-233.6 494.02,-233.6 494.02,-239.6 488.02,-245.6 482.02,-245.6"></path> <text text-anchor="middle" x="451.52" y="-222.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局: A 獲勝</text> <text text-anchor="middle" x="451.52" y="-205.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(B 棄牌)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Fold --> <g id="edge3" class="edge">
-<title>
-B1-&gt;Outcome_A_Bet_B_Fold
-</title>
-<path fill="none" stroke="black" d="M274.43,-221.21C310.05,-220.56 360.62,-219.64 398.44,-218.95"></path> <polygon fill="black" stroke="black" points="398.81,-222.44 408.74,-218.76 398.68,-215.44 398.81,-222.44"></polygon> <text text-anchor="middle" x="322.43" y="-223.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> <!-- A2 --> <g id="node4" class="node">
-<title>
-A2
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="451.52" cy="-125" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="451.52" y="-120.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B2&#45;&gt;A2 --> <g id="edge6" class="edge">
-<title>
-B2-&gt;A2
-</title>
-<path fill="none" stroke="black" d="M274.43,-116.98C309.36,-118.57 358.68,-120.82 396.24,-122.53"></path> <polygon fill="black" stroke="black" points="396.35,-126.04 406.5,-122.99 396.67,-119.04 396.35,-126.04"></polygon> <text text-anchor="middle" x="322.43" y="-123.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- Outcome_Check_Check --> <g id="node7" class="node">
-<title>
-Outcome_Check_Check
-</title>
-<path fill="#f5f5f5" stroke="black" d="M520.52,-62C520.52,-62 382.52,-62 382.52,-62 376.52,-62 370.52,-56 370.52,-50 370.52,-50 370.52,-12 370.52,-12 370.52,-6 376.52,0 382.52,0 382.52,0 520.52,0 520.52,0 526.52,0 532.52,-6 532.52,-12 532.52,-12 532.52,-50 532.52,-50 532.52,-56 526.52,-62 520.52,-62"></path> <text text-anchor="start" x="383.47" y="-37.4" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="14.00">結局: 攤牌 (Check-Back)</text> <text text-anchor="start" x="433.43" y="-16.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">池底: P</text> </g> <!-- B2&#45;&gt;Outcome_Check_Check --> <g id="edge5" class="edge">
-<title>
-B2-&gt;Outcome_Check_Check
-</title>
-<path fill="none" stroke="black" d="M271.58,-99.5C296.61,-89.91 329.75,-77.23 360.71,-65.38"></path> <polygon fill="black" stroke="black" points="362.15,-68.57 370.24,-61.73 359.65,-62.03 362.15,-68.57"></polygon> <text text-anchor="middle" x="322.43" y="-93.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_Check_Bet_Call --> <g id="node8" class="node">
-<title>
-Outcome_Check_Bet_Call
-</title>
-<path fill="#f5f5f5" stroke="black" d="M700.37,-189.6C700.37,-189.6 632.9,-189.6 632.9,-189.6 626.9,-189.6 620.9,-183.6 620.9,-177.6 620.9,-177.6 620.9,-146.4 620.9,-146.4 620.9,-140.4 626.9,-134.4 632.9,-134.4 632.9,-134.4 700.37,-134.4 700.37,-134.4 706.37,-134.4 712.37,-140.4 712.37,-146.4 712.37,-146.4 712.37,-177.6 712.37,-177.6 712.37,-183.6 706.37,-189.6 700.37,-189.6"></path> <text text-anchor="middle" x="666.63" y="-166.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局: 攤牌</text> <text text-anchor="middle" x="666.63" y="-149.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Call --> <g id="edge7" class="edge">
-<title>
-A2-&gt;Outcome_Check_Bet_Call
-</title>
-<path fill="none" stroke="black" d="M495.9,-132.53C529.02,-138.28 574.89,-146.24 610.59,-152.44"></path> <polygon fill="black" stroke="black" points="610.39,-155.96 620.84,-154.22 611.59,-149.06 610.39,-155.96"></polygon> <text text-anchor="middle" x="576.64" y="-154.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_Check_Bet_Fold --> <g id="node9" class="node">
-<title>
-Outcome_Check_Bet_Fold
-</title>
-<path fill="#f5f5f5" stroke="black" d="M696.86,-115.6C696.86,-115.6 636.41,-115.6 636.41,-115.6 630.41,-115.6 624.41,-109.6 624.41,-103.6 624.41,-103.6 624.41,-72.4 624.41,-72.4 624.41,-66.4 630.41,-60.4 636.41,-60.4 636.41,-60.4 696.86,-60.4 696.86,-60.4 702.86,-60.4 708.86,-66.4 708.86,-72.4 708.86,-72.4 708.86,-103.6 708.86,-103.6 708.86,-109.6 702.86,-115.6 696.86,-115.6"></path> <text text-anchor="middle" x="666.63" y="-92.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局: B 獲勝</text> <text text-anchor="middle" x="666.63" y="-75.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(A 棄牌)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Fold --> <g id="edge8" class="edge">
-<title>
-A2-&gt;Outcome_Check_Bet_Fold
-</title>
-<path fill="none" stroke="black" d="M495.9,-117.47C530.28,-111.5 578.38,-103.15 614.6,-96.86"></path> <polygon fill="black" stroke="black" points="615.23,-100.3 624.48,-95.14 614.03,-93.41 615.23,-100.3"></polygon> <text text-anchor="middle" x="576.64" y="-110.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> </g>
-</svg>
-</div>
-<figcaption class="figure-caption">Figure&nbsp;1: Full Game Tree: Player B can Bet after A Checks</figcaption>
-</figure>
-</div>
-</div>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>Poker</category>
-  <guid>https://your-website-url.example.com/posts/poker/lesson_7_comparison_full.html</guid>
-  <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
-</item>
+<lastBuildDate>Sun, 14 Dec 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Poker Lesson 6 - 極化的範圍 (Polarized Range) - 比大小遊戲</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
@@ -424,11 +299,13 @@ B-&gt;Outcome_Fold
 <p><strong>小總結:</strong></p>
 <p>這是 Player A 的最佳防守策略。若 Player A 固定這個策略，那根據 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:b_from_h%7D">，Player B 的策略在 <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7BBP%7D%7B(2P+B)(P+2B)%7D%20%3C%20y%20%3C%20%5Cfrac%7BP%5E2+4BP+2B%5E2%7D%7B(2P+B)(P+2B)%7D%0A"> 是如何都無所謂! 因為此時的 <img src="https://latex.codecogs.com/png.latex?h(y)%20=%200">。</p>
 <p>回想一下剪刀石頭布，當對手強力防守時，我們有較大的容錯空間，不一定要準準的玩在 GTO 上，最終期望值也一樣。但其實 Player B 若要強力防守，那麼只有剛好一個 <img src="https://latex.codecogs.com/png.latex?y%5E*">，否則其他的 <img src="https://latex.codecogs.com/png.latex?y"> 都會露出破綻，讓 Player A 有剝削的空間。</p>
-</section>
-<section id="變分法-part-2" class="level3">
-<h3 class="anchored" data-anchor-id="變分法-part-2">變分法 Part 2</h3>
-<p>前面是固定 Player A 的策略 <img src="https://latex.codecogs.com/png.latex?a(x)">，來求 Player B 的最佳策略 <img src="https://latex.codecogs.com/png.latex?b(y)">。然後再求 <img src="https://latex.codecogs.com/png.latex?a(x)">，這樣可以得到 Player A 的最佳防守策略 (GTO)，和 Player B 的最佳進攻策略。</p>
-<p>現在反過來，固定 Player B 的策略 <img src="https://latex.codecogs.com/png.latex?b(y)">，來求 Player A 的最佳策略 <img src="https://latex.codecogs.com/png.latex?a(x)">。我們可以算 Player B 的最佳防守策略 (GTO)，和 Player A 的最佳進攻策略。</p>
+<!-- 
+### 變分法 Part 2
+
+前面是固定 Player A 的策略 $a(x)$，來求 Player B 的最佳策略 $b(y)$。然後再求 $a(x)$，這樣可以得到 Player A 的最佳防守策略 (GTO)，和 Player B 的最佳進攻策略。
+
+現在反過來，固定 Player B 的策略 $b(y)$，來求 Player A 的最佳策略 $a(x)$。我們可以算 Player B 的最佳防守策略 (GTO)，和 Player A 的最佳進攻策略。
+ -->
 
 
 </section>
@@ -5185,6 +5062,51 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_1.html</guid>
   <pubDate>Tue, 11 Nov 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>萬聖節快樂</title>
+  <dc:creator>LTN </dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1031-helloween/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>萬聖節就是要講鬼故事!</p>
+<p>由於看了計算 <img src="https://latex.codecogs.com/png.latex?%5Cpi"> 的 BBP formula。</p>
+<p>我試著體驗重新發現這個公式的過程，覺得非常奇怪。</p>
+<p>讓我們從 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cpi%7D%7B4%7D"> 的萊布尼茲級數開始回顧。</p>
+<section id="萊布尼茲級數" class="level3">
+<h3 class="anchored" data-anchor-id="萊布尼茲級數">萊布尼茲級數</h3>
+<p>由 <img src="https://latex.codecogs.com/png.latex?%5Carctan"> 函數的微分是的rational function: <img src="https://latex.codecogs.com/png.latex?%0A%5Cint_0%5Et%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20dx%20=%20%5Carctan(t)%0A"> 我們可以將 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B1+x%5E2%7D"> 展開成無窮級數： <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B1%7D%7B1+x%5E2%7D%20=%201%20-%20x%5E2%20+%20x%5E4%20-%20x%5E6%20+%20x%5E8%20-%20x%5E%7B10%7D%20+%20%5Ccdots%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20x%5E%7B2n%7D%0A"><br>
+假設 <img src="https://latex.codecogs.com/png.latex?t%3C1">，此級數在 <img src="https://latex.codecogs.com/png.latex?x%5Cin%20%5B0,t%5D"> 上是絕對收斂的，所以我們可以將積分和無窮級數交換順序： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Carctan(t)%0A&amp;=%20%5Cint_0%5Et%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Cint_0%5Et%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20x%5E%7B2n%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cint_0%5Et%20(-1)%5En%20x%5E%7B2n%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20%5Cfrac%7Bt%5E%7B2n+1%7D%7D%7B2n+1%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:arctan_taylor%7D%20%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 想像中，讓 <img src="https://latex.codecogs.com/png.latex?t"> 由小於 <img src="https://latex.codecogs.com/png.latex?1"> 漸漸趨近於 <img src="https://latex.codecogs.com/png.latex?1">，我們就得到萊布尼茲級數： <img src="https://latex.codecogs.com/png.latex?%0A%5Carctan(1)%20=%20%5Cfrac%7B%5Cpi%7D%7B4%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B(-1)%5En%7D%7B2n+1%7D%20=%201%20-%20%5Cfrac%7B1%7D%7B3%7D%20+%20%5Cfrac%7B1%7D%7B5%7D%20-%20%5Cfrac%7B1%7D%7B7%7D%20+%20%5Ccdots%20%20%5Cquad%5Ctag%7B2%7D%5Clabel%7Beq:leibniz%7D%0A"> 但由於右邊這個級數不是絕對收斂，所以我們要特別小心處理。 我們可以使用「<strong>Abel和式</strong>」(Abel summation) 來嚴格證明這個極限過程是合法的。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20%5Cfrac%7Bt%5E%7B2n+1%7D%7D%7B2n+1%7D%20%20%5C%5C%0A=%20&amp;%5Clim_%7BN%5Cto%5Cinfty%7D%20%5Csum_%7Bn=0%7D%5E%7BN%7D%20(-1)%5En%20%5Cfrac%7Bt%5E%7B2n+1%7D%7D%7B2n+1%7D%20%20%5C%5C%0A%5Ccoloneqq%20&amp;%5Clim_%7BN%5Cto%5Cinfty%7D%20S_N(t)%20%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 若此時直接對兩邊取極限 <img src="https://latex.codecogs.com/png.latex?t%5Cto%201%5E-">，然後交換極限順序，結果會是對的，但我們需要 uniform convergence 來保證這個交換是合法的。</p>
+<blockquote class="blockquote">
+<p>極限之交換定理: 若 <img src="https://latex.codecogs.com/png.latex?S_N(t)"> 在 <img src="https://latex.codecogs.com/png.latex?t%5Cin%20%5B0,1%5D"> 上對 <img src="https://latex.codecogs.com/png.latex?N"> 一致收斂 (uniform convergence) 到 <img src="https://latex.codecogs.com/png.latex?S_%5Cinfty(t)">，且每個 <img src="https://latex.codecogs.com/png.latex?S_N(t)"> 在 <img src="https://latex.codecogs.com/png.latex?t=1"> 處連續，則 <img src="https://latex.codecogs.com/png.latex?%0A%5Clim_%7Bt%5Cto%201%5E-%7D%20%5Clim_%7BN%5Cto%5Cinfty%7D%20S_N(t)%20=%20%5Clim_%7BN%5Cto%5Cinfty%7D%20%5Clim_%7Bt%5Cto%201%5E-%7D%20S_N(t)%0A"></p>
+</blockquote>
+<p>想像一個反例就是 <img src="https://latex.codecogs.com/png.latex?t%5EN">，所有小於 <img src="https://latex.codecogs.com/png.latex?1"> 的 <img src="https://latex.codecogs.com/png.latex?t">，當 <img src="https://latex.codecogs.com/png.latex?N%5Cto%5Cinfty"> 時都會趨近於 <img src="https://latex.codecogs.com/png.latex?0">，但在 <img src="https://latex.codecogs.com/png.latex?t=1"> 處卻永遠是 <img src="https://latex.codecogs.com/png.latex?1">。</p>
+<p>也就是說 <img src="https://latex.codecogs.com/png.latex?%5Cforall%20%5Cepsilon%3E0">， 使 <img src="https://latex.codecogs.com/png.latex?%7CS_n(t)%20-%20S_%5Cinfty(t)%7C%20%3C%20%5Cepsilon,%20%5Cforall%20n%20%3E%20N_%7B%5Cepsilon,%20t%7D"> 的那個 <img src="https://latex.codecogs.com/png.latex?N_%7B%5Cepsilon,%20t%7D">，是否可以和 <img src="https://latex.codecogs.com/png.latex?t"> 無關。 <img src="https://latex.codecogs.com/png.latex?%0A%7CS_n(t)%20-%20S_%5Cinfty(t)%7C%0A%5Cle%20%5Cleft%7C%20%5Csum_%7Bk=n+1%7D%5E%7B%5Cinfty%7D%20(-1)%5E%7Bk%7D%5Cfrac%7Bt%5E%7B2k+1%7D%7D%7B2k+1%7D%20%5Cright%7C%0A%5Cle%20%5Cfrac%7Bt%5E%7B2n+3%7D%7D%7B2n+3%7D%20%5Cle%20%5Cfrac%7B1%7D%7Bn%7D%0A"><br>
+所以我們取 <img src="https://latex.codecogs.com/png.latex?N_%7B%5Cepsilon%7D%20=%20%5Clceil%20%5Cfrac%7B1%7D%7B%5Cepsilon%7D%20%5Crceil"> 即可，這個 <img src="https://latex.codecogs.com/png.latex?N_%7B%5Cepsilon%7D"> 和 <img src="https://latex.codecogs.com/png.latex?t"> 無關。故極限可以交換。</p>
+<p>是不是有點繞?</p>
+</section>
+<section id="更快的收斂" class="level3">
+<h3 class="anchored" data-anchor-id="更快的收斂">更快的收斂</h3>
+<p>我們回到<img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:leibniz%7D">，他收斂很慢的原因我們也感受到了，就是因為級數展開的誤差項在 <img src="https://latex.codecogs.com/png.latex?x=1"> 大約是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7BN%7D"> 的量級。如果我們可以避開 <img src="https://latex.codecogs.com/png.latex?x=1">，例如利用 <img src="https://latex.codecogs.com/png.latex?%5Carctan(%5Cpi/6)=1/%5Csqrt%7B3%7D">，帶入 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:arctan_taylor%7D">，可以得到 <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cpi%7D%7B6%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20%5Cfrac%7B(%5Cfrac%7B1%7D%7B%5Csqrt%7B3%7D%7D)%5E%7B2n+1%7D%7D%7B2n+1%7D%0A"> 所以 <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Csqrt%7B3%7D%5Cpi%7D%7B6%7D%20=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20(-1)%5En%20%5Cfrac%7B(%5Cfrac%7B1%7D%7B3%7D)%5E%7Bn%7D%7D%7B2n+1%7D%20=%20%5Cfrac%7B1%7D%7B1%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B1%7D%20-%20%5Cfrac%7B1%7D%7B3%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B3%7D%20+%20%5Cfrac%7B1%7D%7B5%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B3%5E2%7D%20-%20%5Cfrac%7B1%7D%7B7%7D%20%5Ccdot%20%5Cfrac%7B1%7D%7B3%5E3%7D%20+%20%5Ccdots%0A"> 這個級數的誤差項大約是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7BN%203%5EN%7D"> 的量級，收斂速度快多了!</p>
+<p>讓我們來看看 BBP 公式，從 <img src="https://latex.codecogs.com/png.latex?%5Cpi/4"> 出發，但是用了變數變換 <img src="https://latex.codecogs.com/png.latex?u%20=%201-x">: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpi%7D%7B4%7D%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1%7D%7B2%20-%202u%20+%20u%5E2%7D%20du%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B2%20+%202u%20+%20u%5E2%7D%7B4%20+%20u%5E4%7D%20du%20%20%20%5Cqquad%5Ctext%7B(%E5%9C%8B%E4%B8%AD%E5%AD%B8%E9%81%8E%E7%9A%84%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3)%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 兩邊同乘以 <img src="https://latex.codecogs.com/png.latex?4">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cpi%20=%20%5Cint_0%5E1%20%5Cfrac%7B2%20+%202u%20+%20u%5E2%7D%7B1%20+%20%5Cfrac%7Bu%5E4%7D%7B4%7D%7D%20du%20%5C%5C%0A%5Cend%7Balign%7D%0A"> 我們發現分母 <img src="https://latex.codecogs.com/png.latex?u%5E4"> 神奇地被除以 <img src="https://latex.codecogs.com/png.latex?4">，這樣把分母用無窮級數展開，會以 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B4%5En%7D"> 的速度收斂(也是正負交替)。這條路可以走，也可以算出一種級數(可以自己動筆算算)。</p>
+<p>但 BBP 走的是另外一條路。讓我們回到最一開始: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpi%7D%7B4%7D%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1+x%7D%7B1+x%5E2%7D%20dx%20-%20%5Cint_0%5E1%20%5Cfrac%7Bx%7D%7B1+x%5E2%7D%20dx%20%5Cqquad%5Ctext%7B(%E8%8E%AB%E6%98%8E%E5%9C%B0%E6%8B%86%E9%96%8B)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B2%20-%20u%7D%7B2%20-%202u%20+%20u%5E2%7D%20du%20-%20%5Cint_0%5E1%20%5Cfrac%7Bu%7D%7B2%20-%20u%5E2%7D%20du%20%20%5Cqquad%5Ctext%7B(%E7%AC%AC%E4%BA%8C%E9%A0%85%E6%98%AF%E7%94%A8%7D%20u%5E2=1-x%5E2%20%5Ctext%7B%E5%81%9A%E7%9A%84%E4%BB%A3%E6%8F%9B)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B%20(2%20-%20u)(2%20-%20u%5E2)%20-%20u(2%20-%202u%20+%20u%5E2)%20%7D%7B(2%20-%202u%20+%20u%5E2)(2%20-%20u%5E2)%7D%20du%20%20%5Cqquad%5Ctext%7B(%E8%83%A1%E4%BA%82%E9%80%9A%E5%88%86)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B%204-4u%20%7D%7B(2%20-%202u%20+%20u%5E2)(2%20-%20u%5E2)%7D%20du%20%20%5Cqquad%5Ctext%7B(%E7%A5%9E%E5%A5%87%E5%9C%B0%E6%B6%88%E9%99%A4??)%7D%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B4(1-u)(2+2u+u%5E2)(2+u%5E2)%7D%7B(4+u%5E4)(4-u%5E2)%7D%20du%20%20%5Cqquad%5Ctext%7B(%E5%8F%8D%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B4(4-2u%5E3-u%5E4-u%5E5)%7D%7B16-u%5E8%7D%20du%20%20%5Ctag%7B3%7D%5Clabel%7Beq:correct_path%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>調整一下，我們得到 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cpi%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B4-2u%5E3-u%5E4-u%5E5%7D%7B1%20-%20%5Cfrac%7Bu%5E8%7D%7B16%7D%7D%20du%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20(4-2u%5E3-u%5E4-u%5E5)%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cleft(%5Cfrac%7Bu%5E8%7D%7B16%7D%5Cright)%5En%20du%20%20%5Cqquad%5Ctext%7B(%E7%94%A8%E5%B9%BE%E4%BD%95%E7%B4%9A%E6%95%B8%E5%B1%95%E9%96%8B%E5%88%86%E6%AF%8D)%7D%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cint_0%5E1%20(4-2u%5E3-u%5E4-u%5E5)%20%5Cleft(%5Cfrac%7Bu%5E8%7D%7B16%7D%5Cright)%5En%20du%20%20%5Cqquad%5Ctext%7B(%E7%A9%8D%E5%88%86%E5%92%8C%E7%84%A1%E7%AA%AE%E7%B4%9A%E6%95%B8%E4%BA%A4%E6%8F%9B%E9%A0%86%E5%BA%8F)%7D%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B1%7D%7B16%5En%7D%20%5Cint_0%5E1%20(4u%5E%7B8n%7D%20-%202u%5E%7B8n+3%7D%20-%20u%5E%7B8n+4%7D%20-%20u%5E%7B8n+5%7D)%20du%20%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B1%7D%7B16%5En%7D%20%5Cleft(%20%5Cfrac%7B4%7D%7B8n+1%7D%20-%20%5Cfrac%7B2%7D%7B8n+4%7D%20-%20%5Cfrac%7B1%7D%7B8n+5%7D%20-%20%5Cfrac%7B1%7D%7B8n+6%7D%20%5Cright)%20%20%5Ctag%7BBBP%7D%5Clabel%7Beq:BBP%7D%20%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>這就是 BBP 公式! 我只能說我也不理解是怎麼發現的，因為中間步驟如果稍微改一下，就會得到另外的公式。雖然也是對的，收斂也很快。</p>
+<p>這邊示範另一條路， <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpi%7D%7B4%7D%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1%7D%7B1+x%5E2%7D%20dx%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B1-x%7D%7B1+x%5E2%7D%20dx%20+%20%5Cint_0%5E1%20%5Cfrac%7Bx%7D%7B1+x%5E2%7D%20dx%20%5Cqquad%5Ctext%7B(%E8%8E%AB%E6%98%8E%E5%9C%B0%E6%8B%86%E9%96%8B)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7Bu%7D%7B2%20-%202u%20+%20u%5E2%7D%20du%20+%20%5Cint_0%5E1%20%5Cfrac%7Bu%7D%7B2%20-%20u%5E2%7D%20du%20%20%5Cqquad%5Ctext%7B(%E7%AC%AC%E4%BA%8C%E9%A0%85%E6%98%AF%E7%94%A8%7D%20u%5E2=1-x%5E2%20%5Ctext%7B%E5%81%9A%E7%9A%84%E4%BB%A3%E6%8F%9B)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7Bu(2%20+%202u%20+%20u%5E2)%7D%7B4%20+%20u%5E4%7D%20du%20%20+%20%5Cint_0%5E1%20%5Cfrac%7Bu(2+u%5E2)%7D%7B4%20-%20u%5E4%7D%20du%20%20%5Cqquad%5Ctext%7B(%E5%8F%8D%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3)%7D%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cfrac%7B2u%5E2%7D%7B4%20+%20u%5E4%7D%20+%20u(2+u%5E2)%20%5Cleft(%5Cfrac%7B1%7D%7B4+u%5E4%7D+%5Cfrac%7B1%7D%7B4-u%5E4%7D%20%5Cright)%20du%20%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B2u%5E2(4-u%5E4)%20+%20u(2+u%5E2)%5Ccdot%208%7D%7B(4%20+%20u%5E4)(4%20-%20u%5E4)%7D%20du%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B16u%20+%208u%5E2%20+%208u%5E3%20-%202u%5E6%7D%7B16%20-%20u%5E8%7D%20du%20%20%5Cqquad%5Ctext%7B(%E4%B9%9F%E6%98%AF%E5%B0%8D%E7%9A%84!?)%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
+<p>這樣推出來的公式是</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cpi%0A&amp;=%20%5Cint_0%5E1%20%20%5Cfrac%7B4u%20+%202u%5E2%20+%202u%5E3%20-%201/2u%5E6%7D%7B1%20-%20%5Cfrac%7Bu%5E8%7D%7B16%7D%7D%20du%20%5C%5C%0A&amp;=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Cfrac%7B1%7D%7B16%5En%7D%20%5Cleft(%20%5Cfrac%7B4%7D%7B8n+2%7D%20+%20%5Cfrac%7B2%7D%7B8n+3%7D%20+%20%5Cfrac%7B2%7D%7B8n+4%7D%20-%20%5Cfrac%7B1%7D%7B2(8n+7)%7D%20%5Cright)%20%20%0A%5Cend%7Balign%7D%0A"></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Linear Algebra</category>
+  <category>Cryptography</category>
+  <guid>https://your-website-url.example.com/posts/2025-1031-helloween/index.html</guid>
+  <pubDate>Fri, 31 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
