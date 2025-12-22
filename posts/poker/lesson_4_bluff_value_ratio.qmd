@@ -20,7 +20,6 @@ format:
 
 讓我們來考慮最簡單的版本之一: 只有兩名玩家 A 跟 B，而且 B 有完全的資訊(B知道自己輸還贏)，但 A 沒有任何資訊。
 
-
 ## Seven-card stud
 
 假設 A 跟 B 玩 Seven-card stud， $40-80$ 元有限注，池底有 $P = 655$ 元。
@@ -29,6 +28,9 @@ format:
 
 * A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]
 * B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]
+
+![Seven-card stud](images/poker_L4_page.png){#fig-seven-card-stud}
+
 
 目前 A 有一對 A，B 有高牌 K。若 B 的最後一張牌沒能組成同花 (flush)，那麼 A 就會贏。若 B 可以組成同花，那麼 A 也不可以組出更強的牌，所以 B 會贏。
 

@@ -55,3 +55,9 @@ table {
   width: auto !important;
   min-width: max-content;
 }
+
+/* 強制讓所有圖片說明文字 (Caption) 置中 */
+figcaption, .figure-caption {
+    text-align: center !important;
+    width: 100%; /* 確保容器寬度填滿，才能置中 */
+}
