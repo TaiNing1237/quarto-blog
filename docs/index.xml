@@ -6,16 +6,17 @@
       version="2.0">
 <channel>
 <title>0^0</title>
-<link>https://your-website-url.example.com/index.html</link>
+<link>https://your-website-url.example.com/</link>
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
-<generator>quarto-1.3.450</generator>
-<lastBuildDate>Tue, 23 Dec 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 22 Dec 2025 16:00:00 GMT</lastBuildDate>
 <item>
   <title>Poker Lesson 7 - 比大小遊戲 (完整版)</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/poker/lesson_7_comparison_full.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -41,88 +42,138 @@
 <li>若 Player A 選擇 <strong>下注 (Bet)</strong>，則輪到 Player B 行動，B 可以選擇 <strong>跟注 (Call)</strong> 或 <strong>棄牌 (Fold)</strong>。</li>
 </ul></li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-full-game-tree" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-full-game-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-full-game-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <svg width="672" height="480" viewbox="0.00 0.00 733.49 327.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 323.8)">
-<title>
-GT_Advanced
-</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-323.8 729.49,-323.8 729.49,4 -4,4"></polygon> <!-- A1 --> <g id="node1" class="node">
-<title>
-A1
-</title>
-<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="44.81" cy="-168" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="44.81" y="-163.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B1 --> <g id="node2" class="node">
-<title>
-B1
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-222" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-217.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B1 --> <g id="edge1" class="edge">
-<title>
-A1-&gt;B1
-</title>
-<path fill="none" stroke="black" d="M88.32,-180.52C114.99,-188.38 149.55,-198.57 177.75,-206.88"></path> <polygon fill="black" stroke="black" points="176.85,-210.26 187.43,-209.73 178.83,-203.55 176.85,-210.26"></polygon> <text text-anchor="middle" x="137.72" y="-205.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- B2 --> <g id="node3" class="node">
-<title>
-B2
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-115" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-110.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B2 --> <g id="edge4" class="edge">
-<title>
-A1-&gt;B2
-</title>
-<path fill="none" stroke="black" d="M88.32,-155.71C114.99,-147.99 149.55,-138 177.75,-129.84"></path> <polygon fill="black" stroke="black" points="178.8,-133.18 187.43,-127.04 176.85,-126.46 178.8,-133.18"></polygon> <text text-anchor="middle" x="137.72" y="-152.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_A_Bet_B_Call --> <g id="node5" class="node">
-<title>
-Outcome_A_Bet_B_Call
-</title>
-<path fill="#f5f5f5" stroke="black" d="M490.25,-319.6C490.25,-319.6 422.78,-319.6 422.78,-319.6 416.78,-319.6 410.78,-313.6 410.78,-307.6 410.78,-307.6 410.78,-276.4 410.78,-276.4 410.78,-270.4 416.78,-264.4 422.78,-264.4 422.78,-264.4 490.25,-264.4 490.25,-264.4 496.25,-264.4 502.25,-270.4 502.25,-276.4 502.25,-276.4 502.25,-307.6 502.25,-307.6 502.25,-313.6 496.25,-319.6 490.25,-319.6"></path> <text text-anchor="middle" x="456.52" y="-296.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 1: 攤牌</text> <text text-anchor="middle" x="456.52" y="-279.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Call --> <g id="edge2" class="edge">
-<title>
-B1-&gt;Outcome_A_Bet_B_Call
-</title>
-<path fill="none" stroke="black" d="M272.5,-234.92C308.58,-246.17 361.17,-262.57 400.72,-274.91"></path> <polygon fill="black" stroke="black" points="399.89,-278.32 410.48,-277.95 401.97,-271.63 399.89,-278.32"></polygon> <text text-anchor="middle" x="322.43" y="-262.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_A_Bet_B_Fold --> <g id="node6" class="node">
-<title>
-Outcome_A_Bet_B_Fold
-</title>
-<path fill="#f5f5f5" stroke="black" d="M492.02,-245.6C492.02,-245.6 421.02,-245.6 421.02,-245.6 415.02,-245.6 409.02,-239.6 409.02,-233.6 409.02,-233.6 409.02,-202.4 409.02,-202.4 409.02,-196.4 415.02,-190.4 421.02,-190.4 421.02,-190.4 492.02,-190.4 492.02,-190.4 498.02,-190.4 504.02,-196.4 504.02,-202.4 504.02,-202.4 504.02,-233.6 504.02,-233.6 504.02,-239.6 498.02,-245.6 492.02,-245.6"></path> <text text-anchor="middle" x="456.52" y="-222.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 2: A 獲勝</text> <text text-anchor="middle" x="456.52" y="-205.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(B 棄牌)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Fold --> <g id="edge3" class="edge">
-<title>
-B1-&gt;Outcome_A_Bet_B_Fold
-</title>
-<path fill="none" stroke="black" d="M274.35,-221.23C309.78,-220.6 360.18,-219.7 398.83,-219.01"></path> <polygon fill="black" stroke="black" points="398.96,-222.51 408.89,-218.83 398.83,-215.51 398.96,-222.51"></polygon> <text text-anchor="middle" x="322.43" y="-223.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> <!-- A2 --> <g id="node4" class="node">
-<title>
-A2
-</title>
-<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="456.52" cy="-125" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="456.52" y="-120.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B2&#45;&gt;A2 --> <g id="edge6" class="edge">
-<title>
-B2-&gt;A2
-</title>
-<path fill="none" stroke="black" d="M274.35,-116.93C310.6,-118.54 362.52,-120.86 401.49,-122.59"></path> <polygon fill="black" stroke="black" points="401.46,-126.1 411.61,-123.04 401.77,-119.1 401.46,-126.1"></polygon> <text text-anchor="middle" x="322.43" y="-123.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- Outcome_Check_Check --> <g id="node7" class="node">
-<title>
-Outcome_Check_Check
-</title>
-<path fill="#f5f5f5" stroke="black" d="M530.52,-62C530.52,-62 382.52,-62 382.52,-62 376.52,-62 370.52,-56 370.52,-50 370.52,-50 370.52,-12 370.52,-12 370.52,-6 376.52,0 382.52,0 382.52,0 530.52,0 530.52,0 536.52,0 542.52,-6 542.52,-12 542.52,-12 542.52,-50 542.52,-50 542.52,-56 536.52,-62 530.52,-62"></path> <text text-anchor="start" x="383.22" y="-37.4" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="14.00">結局 5: 攤牌 (Check-Back)</text> <text text-anchor="start" x="438.43" y="-16.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">池底: P</text> </g> <!-- B2&#45;&gt;Outcome_Check_Check --> <g id="edge5" class="edge">
-<title>
-B2-&gt;Outcome_Check_Check
-</title>
-<path fill="none" stroke="black" d="M271.72,-99.79C297.13,-90.28 330.95,-77.62 362.65,-65.76"></path> <polygon fill="black" stroke="black" points="364.27,-68.89 372.41,-62.1 361.82,-62.33 364.27,-68.89"></polygon> <text text-anchor="middle" x="322.43" y="-93.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_Check_Bet_Call --> <g id="node8" class="node">
-<title>
-Outcome_Check_Bet_Call
-</title>
-<path fill="#f5f5f5" stroke="black" d="M711.86,-189.6C711.86,-189.6 644.4,-189.6 644.4,-189.6 638.4,-189.6 632.4,-183.6 632.4,-177.6 632.4,-177.6 632.4,-146.4 632.4,-146.4 632.4,-140.4 638.4,-134.4 644.4,-134.4 644.4,-134.4 711.86,-134.4 711.86,-134.4 717.86,-134.4 723.86,-140.4 723.86,-146.4 723.86,-146.4 723.86,-177.6 723.86,-177.6 723.86,-183.6 717.86,-189.6 711.86,-189.6"></path> <text text-anchor="middle" x="678.13" y="-166.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 3: 攤牌</text> <text text-anchor="middle" x="678.13" y="-149.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Call --> <g id="edge7" class="edge">
-<title>
-A2-&gt;Outcome_Check_Bet_Call
-</title>
-<path fill="none" stroke="black" d="M500.91,-132.31C535.64,-138.16 584.58,-146.41 622.07,-152.72"></path> <polygon fill="black" stroke="black" points="621.88,-156.24 632.32,-154.45 623.05,-149.34 621.88,-156.24"></polygon> <text text-anchor="middle" x="586.64" y="-154.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_Check_Bet_Fold --> <g id="node9" class="node">
-<title>
-Outcome_Check_Bet_Fold
-</title>
-<path fill="#f5f5f5" stroke="black" d="M713.36,-115.6C713.36,-115.6 642.9,-115.6 642.9,-115.6 636.9,-115.6 630.9,-109.6 630.9,-103.6 630.9,-103.6 630.9,-72.4 630.9,-72.4 630.9,-66.4 636.9,-60.4 642.9,-60.4 642.9,-60.4 713.36,-60.4 713.36,-60.4 719.36,-60.4 725.36,-66.4 725.36,-72.4 725.36,-72.4 725.36,-103.6 725.36,-103.6 725.36,-109.6 719.36,-115.6 713.36,-115.6"></path> <text text-anchor="middle" x="678.13" y="-92.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 4: B 獲勝</text> <text text-anchor="middle" x="678.13" y="-75.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(A 棄牌)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Fold --> <g id="edge8" class="edge">
-<title>
-A2-&gt;Outcome_Check_Bet_Fold
-</title>
-<path fill="none" stroke="black" d="M500.91,-117.69C535.18,-111.91 583.3,-103.81 620.59,-97.53"></path> <polygon fill="black" stroke="black" points="621.52,-100.92 630.8,-95.81 620.36,-94.02 621.52,-100.92"></polygon> <text text-anchor="middle" x="586.64" y="-110.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> </g>
+<title>GT_Advanced</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-323.8 729.49,-323.8 729.49,4 -4,4"></polygon>
+<!-- A1 -->
+<g id="node1" class="node">
+<title>A1</title>
+<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="44.81" cy="-168" rx="44.63" ry="44.63"></ellipse>
+<text text-anchor="middle" x="44.81" y="-163.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text>
+</g>
+<!-- B1 -->
+<g id="node2" class="node">
+<title>B1</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-222" rx="44.04" ry="44.04"></ellipse>
+<text text-anchor="middle" x="230.07" y="-217.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text>
+</g>
+<!-- A1&#45;&gt;B1 -->
+<g id="edge1" class="edge">
+<title>A1-&gt;B1</title>
+<path fill="none" stroke="black" d="M88.32,-180.52C114.99,-188.38 149.55,-198.57 177.75,-206.88"></path>
+<polygon fill="black" stroke="black" points="176.85,-210.26 187.43,-209.73 178.83,-203.55 176.85,-210.26"></polygon>
+<text text-anchor="middle" x="137.72" y="-205.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text>
+</g>
+<!-- B2 -->
+<g id="node3" class="node">
+<title>B2</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-115" rx="44.04" ry="44.04"></ellipse>
+<text text-anchor="middle" x="230.07" y="-110.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text>
+</g>
+<!-- A1&#45;&gt;B2 -->
+<g id="edge4" class="edge">
+<title>A1-&gt;B2</title>
+<path fill="none" stroke="black" d="M88.32,-155.71C114.99,-147.99 149.55,-138 177.75,-129.84"></path>
+<polygon fill="black" stroke="black" points="178.8,-133.18 187.43,-127.04 176.85,-126.46 178.8,-133.18"></polygon>
+<text text-anchor="middle" x="137.72" y="-152.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text>
+</g>
+<!-- Outcome_A_Bet_B_Call -->
+<g id="node5" class="node">
+<title>Outcome_A_Bet_B_Call</title>
+<path fill="#f5f5f5" stroke="black" d="M490.25,-319.6C490.25,-319.6 422.78,-319.6 422.78,-319.6 416.78,-319.6 410.78,-313.6 410.78,-307.6 410.78,-307.6 410.78,-276.4 410.78,-276.4 410.78,-270.4 416.78,-264.4 422.78,-264.4 422.78,-264.4 490.25,-264.4 490.25,-264.4 496.25,-264.4 502.25,-270.4 502.25,-276.4 502.25,-276.4 502.25,-307.6 502.25,-307.6 502.25,-313.6 496.25,-319.6 490.25,-319.6"></path>
+<text text-anchor="middle" x="456.52" y="-296.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 1: 攤牌</text>
+<text text-anchor="middle" x="456.52" y="-279.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text>
+</g>
+<!-- B1&#45;&gt;Outcome_A_Bet_B_Call -->
+<g id="edge2" class="edge">
+<title>B1-&gt;Outcome_A_Bet_B_Call</title>
+<path fill="none" stroke="black" d="M272.5,-234.92C308.58,-246.17 361.17,-262.57 400.72,-274.91"></path>
+<polygon fill="black" stroke="black" points="399.89,-278.32 410.48,-277.95 401.97,-271.63 399.89,-278.32"></polygon>
+<text text-anchor="middle" x="322.43" y="-262.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text>
+</g>
+<!-- Outcome_A_Bet_B_Fold -->
+<g id="node6" class="node">
+<title>Outcome_A_Bet_B_Fold</title>
+<path fill="#f5f5f5" stroke="black" d="M492.02,-245.6C492.02,-245.6 421.02,-245.6 421.02,-245.6 415.02,-245.6 409.02,-239.6 409.02,-233.6 409.02,-233.6 409.02,-202.4 409.02,-202.4 409.02,-196.4 415.02,-190.4 421.02,-190.4 421.02,-190.4 492.02,-190.4 492.02,-190.4 498.02,-190.4 504.02,-196.4 504.02,-202.4 504.02,-202.4 504.02,-233.6 504.02,-233.6 504.02,-239.6 498.02,-245.6 492.02,-245.6"></path>
+<text text-anchor="middle" x="456.52" y="-222.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 2: A 獲勝</text>
+<text text-anchor="middle" x="456.52" y="-205.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(B 棄牌)</text>
+</g>
+<!-- B1&#45;&gt;Outcome_A_Bet_B_Fold -->
+<g id="edge3" class="edge">
+<title>B1-&gt;Outcome_A_Bet_B_Fold</title>
+<path fill="none" stroke="black" d="M274.35,-221.23C309.78,-220.6 360.18,-219.7 398.83,-219.01"></path>
+<polygon fill="black" stroke="black" points="398.96,-222.51 408.89,-218.83 398.83,-215.51 398.96,-222.51"></polygon>
+<text text-anchor="middle" x="322.43" y="-223.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text>
+</g>
+<!-- A2 -->
+<g id="node4" class="node">
+<title>A2</title>
+<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="456.52" cy="-125" rx="44.63" ry="44.63"></ellipse>
+<text text-anchor="middle" x="456.52" y="-120.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text>
+</g>
+<!-- B2&#45;&gt;A2 -->
+<g id="edge6" class="edge">
+<title>B2-&gt;A2</title>
+<path fill="none" stroke="black" d="M274.35,-116.93C310.6,-118.54 362.52,-120.86 401.49,-122.59"></path>
+<polygon fill="black" stroke="black" points="401.46,-126.1 411.61,-123.04 401.77,-119.1 401.46,-126.1"></polygon>
+<text text-anchor="middle" x="322.43" y="-123.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text>
+</g>
+<!-- Outcome_Check_Check -->
+<g id="node7" class="node">
+<title>Outcome_Check_Check</title>
+<path fill="#f5f5f5" stroke="black" d="M530.52,-62C530.52,-62 382.52,-62 382.52,-62 376.52,-62 370.52,-56 370.52,-50 370.52,-50 370.52,-12 370.52,-12 370.52,-6 376.52,0 382.52,0 382.52,0 530.52,0 530.52,0 536.52,0 542.52,-6 542.52,-12 542.52,-12 542.52,-50 542.52,-50 542.52,-56 536.52,-62 530.52,-62"></path>
+<text text-anchor="start" x="383.22" y="-37.4" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="14.00">結局 5: 攤牌 (Check-Back)</text>
+<text text-anchor="start" x="438.43" y="-16.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">池底: P</text>
+</g>
+<!-- B2&#45;&gt;Outcome_Check_Check -->
+<g id="edge5" class="edge">
+<title>B2-&gt;Outcome_Check_Check</title>
+<path fill="none" stroke="black" d="M271.72,-99.79C297.13,-90.28 330.95,-77.62 362.65,-65.76"></path>
+<polygon fill="black" stroke="black" points="364.27,-68.89 372.41,-62.1 361.82,-62.33 364.27,-68.89"></polygon>
+<text text-anchor="middle" x="322.43" y="-93.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text>
+</g>
+<!-- Outcome_Check_Bet_Call -->
+<g id="node8" class="node">
+<title>Outcome_Check_Bet_Call</title>
+<path fill="#f5f5f5" stroke="black" d="M711.86,-189.6C711.86,-189.6 644.4,-189.6 644.4,-189.6 638.4,-189.6 632.4,-183.6 632.4,-177.6 632.4,-177.6 632.4,-146.4 632.4,-146.4 632.4,-140.4 638.4,-134.4 644.4,-134.4 644.4,-134.4 711.86,-134.4 711.86,-134.4 717.86,-134.4 723.86,-140.4 723.86,-146.4 723.86,-146.4 723.86,-177.6 723.86,-177.6 723.86,-183.6 717.86,-189.6 711.86,-189.6"></path>
+<text text-anchor="middle" x="678.13" y="-166.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 3: 攤牌</text>
+<text text-anchor="middle" x="678.13" y="-149.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text>
+</g>
+<!-- A2&#45;&gt;Outcome_Check_Bet_Call -->
+<g id="edge7" class="edge">
+<title>A2-&gt;Outcome_Check_Bet_Call</title>
+<path fill="none" stroke="black" d="M500.91,-132.31C535.64,-138.16 584.58,-146.41 622.07,-152.72"></path>
+<polygon fill="black" stroke="black" points="621.88,-156.24 632.32,-154.45 623.05,-149.34 621.88,-156.24"></polygon>
+<text text-anchor="middle" x="586.64" y="-154.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text>
+</g>
+<!-- Outcome_Check_Bet_Fold -->
+<g id="node9" class="node">
+<title>Outcome_Check_Bet_Fold</title>
+<path fill="#f5f5f5" stroke="black" d="M713.36,-115.6C713.36,-115.6 642.9,-115.6 642.9,-115.6 636.9,-115.6 630.9,-109.6 630.9,-103.6 630.9,-103.6 630.9,-72.4 630.9,-72.4 630.9,-66.4 636.9,-60.4 642.9,-60.4 642.9,-60.4 713.36,-60.4 713.36,-60.4 719.36,-60.4 725.36,-66.4 725.36,-72.4 725.36,-72.4 725.36,-103.6 725.36,-103.6 725.36,-109.6 719.36,-115.6 713.36,-115.6"></path>
+<text text-anchor="middle" x="678.13" y="-92.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 4: B 獲勝</text>
+<text text-anchor="middle" x="678.13" y="-75.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(A 棄牌)</text>
+</g>
+<!-- A2&#45;&gt;Outcome_Check_Bet_Fold -->
+<g id="edge8" class="edge">
+<title>A2-&gt;Outcome_Check_Bet_Fold</title>
+<path fill="none" stroke="black" d="M500.91,-117.69C535.18,-111.91 583.3,-103.81 620.59,-97.53"></path>
+<polygon fill="black" stroke="black" points="621.52,-100.92 630.8,-95.81 620.36,-94.02 621.52,-100.92"></polygon>
+<text text-anchor="middle" x="586.64" y="-110.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text>
+</g>
+</g>
 </svg>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;1: Full Game Tree: Player B can Bet after A Checks</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-full-game-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Full Game Tree: Player B can Bet after A Checks
+</figcaption>
 </figure>
 </div>
 </div>
@@ -139,7 +190,7 @@ A2-&gt;Outcome_Check_Bet_Fold
 <section id="player-a-的期望值" class="level3">
 <h3 class="anchored" data-anchor-id="player-a-的期望值">Player A 的期望值</h3>
 <p>遊戲有五種結局，我們寫個表來看看他們分別對 Player A 的 payoff 是多少：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 41%">
 <col style="width: 18%">
@@ -232,10 +283,14 @@ A2-&gt;Outcome_Check_Bet_Fold
 <p>所以問題已經約化到只剩最後一個函數: <img src="https://latex.codecogs.com/png.latex?a_1(x)">，要取多少可以最大化 Lagrangian。</p>
 <p>先來看看完整的 Lagrangian，我們先在沒有 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:z1z2-equations%7D"> 約束下解，也就是這邊的等式對於一般的 <img src="https://latex.codecogs.com/png.latex?y_1%5E*,%20z_1%5E*,%20z_2%5E*"> 都成立 (順便研究 Player A 的攻擊策略): <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A&amp;%5Cmathcal%7BL%7D(a_1,%20a_2,%20b_1,%20b_2)%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cint_0%5E1%0A%5Cleft%5B%0A%5Cbegin%7Baligned%7D%0A%20%20%20%20&amp;%20a_1(x)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7By%3Ey_1%5E*%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5CBig)%20%5C%5C%0A%20%20%20%20+%20&amp;%20a_1(x)%20%5Ccdot%20(1%20-%20%5Cmathbb%7B1%7D_%7By%3Ey_1%5E*%7D)%20%5Ccdot%20P%20%5C%5C%0A%20%20%20%20+%20&amp;%20(1%20-%20a_1(x))%20%5Ccdot%20(%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20+%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20(%5Cmathbb%7B1%7D_%7Bx%3Ex_2%5E*%7D)%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5CBig)%20%5C%5C%0A%20%20%20%20+%20&amp;%20(1%20-%20a_1(x))%20%5Ccdot%20(1%20-%20%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20-%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20P%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%0A%5Cend%7Baligned%7D%0A%5Cright%5D%20dy%20%5C,%20dx%20%20%5C%5C%0A&amp;=%20%20%5Cint_0%5E1%20%5Cint_0%5E1%20%5Cunderbrace%7B%5CBig%5B%20(%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20+%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Ex_2%5E*%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5CBig)%20+%20(1%20-%20%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20-%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20P%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20%5CBig%5D%7D_%7BJ(x,y)%7D%20dy%20%5C,%20dx%20%5C%5C%0A&amp;%5Cquad%20+%20%5Cint_0%5E1%20%5Ctextcolor%7Bred%7D%7Ba_1(x)%7D%20%5Ccdot%20%5Cunderbrace%7B%5Cleft(%20%5Cint_0%5E1%0A%5Cleft%5B%0A%5Cbegin%7Baligned%7D%0A%20%20%20%20&amp;%20%5Cmathbb%7B1%7D_%7By%3Ey_1%5E*%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5CBig)%20+%20(1%20-%20%5Cmathbb%7B1%7D_%7By%3Ey_1%5E*%7D)%20%5Ccdot%20P%20%5C%5C%0A%20%20%20%20&amp;%20-%20(%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20+%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Ex_2%5E*%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5CBig)%20%5C%5C%0A%20%20%20%20&amp;%20-%20(1%20-%20%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20-%20%5Cmathbb%7B1%7D_%7By%20%3E%20z_2%5E*%7D)%20%5Ccdot%20P%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%0A%5Cend%7Baligned%7D%0A%5Cright%5D%20dy%20%5Cright)%7D_%7BG(x)%7D%20dx%0A%5Cend%7Balign%7D%0A"> 有些些混亂，我們把大於的符號一律改成小於的方向，看比較清楚。</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathcal%7BL%7D(a_1,%20a_2,%20b_1,%20b_2)%20&amp;=%20%5Cint_0%5E1%20%5Cint_0%5E1%20J(x,y)%20%5C,%20dy%20%5C,%20dx%20+%20%5Cint_0%5E1%20%5Ctextcolor%7Bred%7D%7Ba_1(x)%7D%20%5Ccdot%20G(x)%20%5C,%20dx%20%5C%5C%0A%5Ctext%7B%E5%85%B6%E4%B8%AD%7D%20%5Cquad%0AJ(x,y)%20&amp;=%20(%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20+%20%5Cmathbb%7B1%7D_%7Bz_2%5E*%20%3C%20y%7D)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx_2%5E*%20%3C%20x%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7By%20%3C%20x%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%20%3C%20y%7D%20%5CBig)%20+%20%5Cmathbb%7B1%7D_%7Bz_1%5E*%20%5Cle%20y%20%5Cle%20z_2%5E*%7D%20%5Ccdot%20P%20%5Cmathbb%7B1%7D_%7By%20%3C%20x%7D%20%5C%5C%0AG(x)%20&amp;=%20%5Cint_0%5E1%0A%5Cleft%5B%0A%5Cbegin%7Baligned%7D%0A%20%20%20%20&amp;%20%5Cmathbb%7B1%7D_%7By_1%5E*%20%3C%20y%7D%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7By%20%3C%20x%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%20%3C%20y%7D%20%5CBig)%20+%20P%20%5Cmathbb%7B1%7D_%7By%20%5Cle%20y_1%5E*%7D%20%5C%5C%0A%20%20%20%20&amp;%20-%20%5Cmathbb%7B1%7D_%7Bx_2%5E*%20%3C%20x%7D%20%5Ccdot%20(%5Cmathbb%7B1%7D_%7By%20%3C%20z_1%5E*%7D%20+%20%5Cmathbb%7B1%7D_%7Bz_2%5E*%20%3C%20y%7D)%20%5Ccdot%20%5CBig(%20(P+B)%5Cmathbb%7B1%7D_%7By%20%3C%20x%7D%20-%20B%5Cmathbb%7B1%7D_%7Bx%20%3C%20y%7D%20%5CBig)%20%5C%5C%0A%20%20%20%20&amp;%20-%20P%20%5Cmathbb%7B1%7D_%7Bz_1%5E*%20%5Cle%20y%20%5Cle%20z_2%5E*%7D%20%5Ccdot%20%5Cmathbb%7B1%7D_%7By%20%3C%20x%7D%0A%5Cend%7Baligned%7D%0A%5Cright%5D%20dy%0A%5Cend%7Balign%7D%0A"> 好，雖然有點小複雜，但這都是 indicator function，積分通常可以直接算出來。</p>
-<div id="fig-jxy-region" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/lesson_7/integral_region_Jxy.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: <img src="https://latex.codecogs.com/png.latex?J(x,y)"> Integral Region</figcaption>
+<div id="fig-jxy-region" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jxy-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/lesson_7/integral_region_Jxy.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jxy-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <img src="https://latex.codecogs.com/png.latex?J(x,y)"> Integral Region
+</figcaption>
 </figure>
 </div>
 <p>我們先假設有 <img src="https://latex.codecogs.com/png.latex?z_1%5E*%20%5Cleq%20x_2%5E*%20%5Cleq%20z_2%5E*">， <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cint_0%5E1%20%5Cint_0%5E1%20J(x,y)%20%5C,%20dy%20%5C,%20dx%0A&amp;=%20P%5Ccdot%20(z_2%5E*%20-%20z_1%5E*)(1-%5Cfrac%7Bz_2%5E*%20+%20z_1%5E*%7D%7B2%7D)%20%5C%5C%0A&amp;%5Cquad%20+%20(P+B)%5Ccdot%20%5Cleft(%20%5Cfrac%7B(1-z_2%5E*)%5E2%7D%7B2%7D%20+%20z_1%5E*(1-x_2%5E*)%20%5Cright)%20%5C%5C%0A&amp;%5Cquad%20-%20B%20%5Ccdot%20(1-z_2%5E*)(%5Cfrac%7B1+z_2%5E*%7D%7B2%7D%20-%20x_2%5E*)%20%5C%5C%0A&amp;=%20P%20%5Ccdot%20%5Cleft%5B%20%5Cfrac%7B(1-z_1%5E*)%5E2%7D%7B2%7D%20+%20z_1%5E*(1-x_2%5E*)%20%5Cright%5D%20+%20B%20%5Ccdot%20%5Cleft%5B%20z_1%5E*(1-x_2%5E*)%20-%20(1-z_2%5E*)(z_2%5E*%20-%20x_2%5E*)%20%5Cright%5D%0A%5Cend%7Baligned%7D%0A"></p>
@@ -257,13 +312,14 @@ A2-&gt;Outcome_Check_Bet_Fold
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_7_comparison_full.html</guid>
-  <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 22 Dec 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 6 - 極化的範圍 (Polarized Range) - 比大小遊戲</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/poker/lesson_6_comparison.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -297,56 +353,85 @@ A2-&gt;Outcome_Check_Bet_Fold
 </blockquote>
 <p>也就是說只有 Player A 可以進攻，Player B 只能被動回應。</p>
 <p>這樣一來，遊戲流程就變成：</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-game-tree-highlighted" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-game-tree-highlighted" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-game-tree-highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <svg width="672" height="480" viewbox="0.00 0.00 501.85 217.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 213.4)">
-<title>
-GT_Highlight_Bigger
-</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-213.4 497.85,-213.4 497.85,4 -4,4"></polygon> <!-- A --> <g id="node1" class="node">
-<title>
-A
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="54.71" cy="-57" rx="54.93" ry="54.93"></ellipse> <text text-anchor="middle" x="54.71" y="-52.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B --> <g id="node2" class="node">
-<title>
-B
-</title>
-<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="263.1" cy="-150" rx="54.33" ry="54.33"></ellipse> <text text-anchor="middle" x="263.1" y="-145.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A&#45;&gt;B --> <g id="edge1" class="edge">
-<title>
-A-&gt;B
-</title>
-<path fill="none" stroke="black" d="M104.89,-79.16C134.6,-92.55 172.64,-109.69 203.85,-123.75"></path> <polygon fill="black" stroke="black" points="202.75,-127.09 213.31,-128.01 205.63,-120.71 202.75,-127.09"></polygon> <text text-anchor="middle" x="157.52" y="-117.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- Outcome_Check --> <g id="node3" class="node">
-<title>
-Outcome_Check
-</title>
-<polygon fill="#ffebee" stroke="transparent" points="219.6,-14 219.6,-64 306.6,-64 306.6,-14 219.6,-14"></polygon> <text text-anchor="start" x="226.61" y="-46.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 1 (強制攤牌)</text> <text text-anchor="start" x="250.68" y="-24" font-family="Helvetica, Arial, sans-serif" font-size="10.00">池底: P</text> <polygon fill="none" stroke="red" stroke-width="2" points="220.6,-15 220.6,-63 305.6,-63 305.6,-15 220.6,-15"></polygon> </g> <!-- A&#45;&gt;Outcome_Check --> <g id="edge2" class="edge">
-<title>
-A-&gt;Outcome_Check
-</title>
-<path fill="none" stroke="red" stroke-width="2" stroke-dasharray="5,2" d="M109.4,-52.32C135.68,-50.03 167.56,-47.25 195.39,-44.82"></path> <polygon fill="red" stroke="red" stroke-width="2" points="195.78,-48.3 205.44,-43.94 195.17,-41.32 195.78,-48.3"></polygon> <text text-anchor="middle" x="157.52" y="-54.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00" fill="red"> 過牌 (Check) </text> </g> <!-- Outcome_Call --> <g id="node4" class="node">
-<title>
-Outcome_Call
-</title>
-<path fill="#f5f5f5" stroke="black" d="M480.13,-209.3C480.13,-209.3 422.58,-209.3 422.58,-209.3 416.58,-209.3 410.58,-203.3 410.58,-197.3 410.58,-197.3 410.58,-170.7 410.58,-170.7 410.58,-164.7 416.58,-158.7 422.58,-158.7 422.58,-158.7 480.13,-158.7 480.13,-158.7 486.13,-158.7 492.13,-164.7 492.13,-170.7 492.13,-170.7 492.13,-197.3 492.13,-197.3 492.13,-203.3 486.13,-209.3 480.13,-209.3"></path> <text text-anchor="middle" x="451.35" y="-187.6" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 2: 攤牌</text> <text text-anchor="middle" x="451.35" y="-173.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">(池底: P+2B)</text> </g> <!-- B&#45;&gt;Outcome_Call --> <g id="edge3" class="edge">
-<title>
-B-&gt;Outcome_Call
-</title>
-<path fill="none" stroke="black" d="M316.48,-159.56C342.79,-164.36 374.51,-170.15 400.46,-174.89"></path> <polygon fill="black" stroke="black" points="400,-178.37 410.47,-176.72 401.26,-171.48 400,-178.37"></polygon> <text text-anchor="middle" x="364.73" y="-176.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_Fold --> <g id="node5" class="node">
-<title>
-Outcome_Fold
-</title>
-<path fill="#f5f5f5" stroke="black" d="M481.85,-140.3C481.85,-140.3 420.85,-140.3 420.85,-140.3 414.85,-140.3 408.85,-134.3 408.85,-128.3 408.85,-128.3 408.85,-101.7 408.85,-101.7 408.85,-95.7 414.85,-89.7 420.85,-89.7 420.85,-89.7 481.85,-89.7 481.85,-89.7 487.85,-89.7 493.85,-95.7 493.85,-101.7 493.85,-101.7 493.85,-128.3 493.85,-128.3 493.85,-134.3 487.85,-140.3 481.85,-140.3"></path> <text text-anchor="middle" x="451.35" y="-118.6" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 3: A 獲勝</text> <text text-anchor="middle" x="451.35" y="-104.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">(B 放棄)</text> </g> <!-- B&#45;&gt;Outcome_Fold --> <g id="edge4" class="edge">
-<title>
-B-&gt;Outcome_Fold
-</title>
-<path fill="none" stroke="black" d="M316.48,-140.16C342.22,-135.32 373.14,-129.51 398.77,-124.69"></path> <polygon fill="black" stroke="black" points="399.49,-128.12 408.67,-122.83 398.2,-121.24 399.49,-128.12"></polygon> <text text-anchor="middle" x="364.73" y="-138.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> </g>
+<title>GT_Highlight_Bigger</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-213.4 497.85,-213.4 497.85,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="54.71" cy="-57" rx="54.93" ry="54.93"></ellipse>
+<text text-anchor="middle" x="54.71" y="-52.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="263.1" cy="-150" rx="54.33" ry="54.33"></ellipse>
+<text text-anchor="middle" x="263.1" y="-145.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge1" class="edge">
+<title>A-&gt;B</title>
+<path fill="none" stroke="black" d="M104.89,-79.16C134.6,-92.55 172.64,-109.69 203.85,-123.75"></path>
+<polygon fill="black" stroke="black" points="202.75,-127.09 213.31,-128.01 205.63,-120.71 202.75,-127.09"></polygon>
+<text text-anchor="middle" x="157.52" y="-117.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text>
+</g>
+<!-- Outcome_Check -->
+<g id="node3" class="node">
+<title>Outcome_Check</title>
+<polygon fill="#ffebee" stroke="transparent" points="219.6,-14 219.6,-64 306.6,-64 306.6,-14 219.6,-14"></polygon>
+<text text-anchor="start" x="226.61" y="-46.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 1 (強制攤牌)</text>
+<text text-anchor="start" x="250.68" y="-24" font-family="Helvetica, Arial, sans-serif" font-size="10.00">池底: P</text>
+<polygon fill="none" stroke="red" stroke-width="2" points="220.6,-15 220.6,-63 305.6,-63 305.6,-15 220.6,-15"></polygon>
+</g>
+<!-- A&#45;&gt;Outcome_Check -->
+<g id="edge2" class="edge">
+<title>A-&gt;Outcome_Check</title>
+<path fill="none" stroke="red" stroke-width="2" stroke-dasharray="5,2" d="M109.4,-52.32C135.68,-50.03 167.56,-47.25 195.39,-44.82"></path>
+<polygon fill="red" stroke="red" stroke-width="2" points="195.78,-48.3 205.44,-43.94 195.17,-41.32 195.78,-48.3"></polygon>
+<text text-anchor="middle" x="157.52" y="-54.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00" fill="red"> 過牌 (Check) </text>
+</g>
+<!-- Outcome_Call -->
+<g id="node4" class="node">
+<title>Outcome_Call</title>
+<path fill="#f5f5f5" stroke="black" d="M480.13,-209.3C480.13,-209.3 422.58,-209.3 422.58,-209.3 416.58,-209.3 410.58,-203.3 410.58,-197.3 410.58,-197.3 410.58,-170.7 410.58,-170.7 410.58,-164.7 416.58,-158.7 422.58,-158.7 422.58,-158.7 480.13,-158.7 480.13,-158.7 486.13,-158.7 492.13,-164.7 492.13,-170.7 492.13,-170.7 492.13,-197.3 492.13,-197.3 492.13,-203.3 486.13,-209.3 480.13,-209.3"></path>
+<text text-anchor="middle" x="451.35" y="-187.6" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 2: 攤牌</text>
+<text text-anchor="middle" x="451.35" y="-173.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">(池底: P+2B)</text>
+</g>
+<!-- B&#45;&gt;Outcome_Call -->
+<g id="edge3" class="edge">
+<title>B-&gt;Outcome_Call</title>
+<path fill="none" stroke="black" d="M316.48,-159.56C342.79,-164.36 374.51,-170.15 400.46,-174.89"></path>
+<polygon fill="black" stroke="black" points="400,-178.37 410.47,-176.72 401.26,-171.48 400,-178.37"></polygon>
+<text text-anchor="middle" x="364.73" y="-176.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text>
+</g>
+<!-- Outcome_Fold -->
+<g id="node5" class="node">
+<title>Outcome_Fold</title>
+<path fill="#f5f5f5" stroke="black" d="M481.85,-140.3C481.85,-140.3 420.85,-140.3 420.85,-140.3 414.85,-140.3 408.85,-134.3 408.85,-128.3 408.85,-128.3 408.85,-101.7 408.85,-101.7 408.85,-95.7 414.85,-89.7 420.85,-89.7 420.85,-89.7 481.85,-89.7 481.85,-89.7 487.85,-89.7 493.85,-95.7 493.85,-101.7 493.85,-101.7 493.85,-128.3 493.85,-128.3 493.85,-134.3 487.85,-140.3 481.85,-140.3"></path>
+<text text-anchor="middle" x="451.35" y="-118.6" font-family="Helvetica, Arial, sans-serif" font-size="12.00">結局 3: A 獲勝</text>
+<text text-anchor="middle" x="451.35" y="-104.2" font-family="Helvetica, Arial, sans-serif" font-size="12.00">(B 放棄)</text>
+</g>
+<!-- B&#45;&gt;Outcome_Fold -->
+<g id="edge4" class="edge">
+<title>B-&gt;Outcome_Fold</title>
+<path fill="none" stroke="black" d="M316.48,-140.16C342.22,-135.32 373.14,-129.51 398.77,-124.69"></path>
+<polygon fill="black" stroke="black" points="399.49,-128.12 408.67,-122.83 398.2,-121.24 399.49,-128.12"></polygon>
+<text text-anchor="middle" x="364.73" y="-138.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text>
+</g>
+</g>
 </svg>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;1: Simplified Game Tree for High Card Game</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-game-tree-highlighted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Simplified Game Tree for High Card Game
+</figcaption>
 </figure>
 </div>
 </div>
@@ -384,10 +469,14 @@ B-&gt;Outcome_Fold
 <li>(注意，若 Player A 選擇過牌，則 Player B 也必須過牌，這個情況就跟 Player B 的策略無關了)</li>
 </ul></li>
 </ul>
-<div id="fig-strategy-functions" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/lesson_6/strategy_functions.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Strategy Functions</figcaption>
+<div id="fig-strategy-functions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-strategy-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/lesson_6/strategy_functions.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strategy-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Strategy Functions
+</figcaption>
 </figure>
 </div>
 <p>當兩個 Player 的策略給定後，就可以算這個 game 的期望值了。</p>
@@ -396,7 +485,7 @@ B-&gt;Outcome_Fold
 <section id="player-a-的期望值" class="level3">
 <h3 class="anchored" data-anchor-id="player-a-的期望值">Player A 的期望值</h3>
 <p>如圖Figure&nbsp;1 所示，遊戲有三種結局，我們寫個表來看看他們分別對 Player A 的 payoff 是多少：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 26%">
@@ -439,17 +528,21 @@ B-&gt;Outcome_Fold
 <li>若最終分析出來，Player A 的期望值小於 <img src="https://latex.codecogs.com/png.latex?P/2">，此時把放池底的 <img src="https://latex.codecogs.com/png.latex?P/2"> 算進去，整體期望值變成負的了! 那 Player A 就 不應該參與這個遊戲。也就是退回到「玩/不玩」 這個遊戲這個決策節點來思考，不玩的期望值就是單純的 0。當然，如果不玩會被女朋友罵的話，那就另當別論了。所以這個一個 local optimum 的分析</li>
 </ul>
 <p>因為是連續的均勻分布，所以 <img src="https://latex.codecogs.com/png.latex?x%20=%20y"> 的機率為 0，我們先忽略不計。但若是離散版本，則需要把平手的情況也考慮進去，因為此時若是結局 3，Player A 仍然賺到。</p>
-<div id="fig-game-space" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/lesson_6/game_space_crosshair.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Game Space</figcaption>
+<div id="fig-game-space" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-game-space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/lesson_6/game_space_crosshair.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-game-space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Game Space
+</figcaption>
 </figure>
 </div>
 <p><strong>積分表示法:</strong></p>
 <p>當給了 <img src="https://latex.codecogs.com/png.latex?a(x)"> 與 <img src="https://latex.codecogs.com/png.latex?b(y)"> 後，這個遊戲的期望值就固定下來了: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A&amp;%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D%20:=%20%5Cmathcal%7BL%7D(a(x),%20b(y))%20%20%5C%5C%0A&amp;=%20%5Cint_0%5E1%20%5Cint_0%5E1%20%5CBigg%5B%20%5C%5C%0A&amp;%5Cquad%20(1%20-%20a(x))%20%5Ccdot%20P%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20%20&amp;%5Cqquad%5Ctext%7B(%E7%B5%90%E5%B1%80%201:%20Player%20A%20check)%7D%20%20%5C%5C%20%20%0A&amp;%5Cquad%20+%20a(x)%20%5Ccdot%20b(y)%20%5Ccdot%20(%20(P%20+%20B)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20+%20(-B)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20)%20%20%20&amp;%5Cqquad%5Ctext%7B(%E7%B5%90%E5%B1%80%202:%20Player%20A%20bet,%20Player%20B%20call)%7D%20%20%5C%5C%20%20%0A&amp;%5Cquad%20+%20a(x)%20%5Ccdot%20(1%20-%20b(y))%20%5Ccdot%20P%20%20%20&amp;%5Cqquad%5Ctext%7B(%E7%B5%90%E5%B1%80%203:%20Player%20A%20bet,%20Player%20B%20fold)%7D%20%20%5C%5C%0A&amp;%5Cquad%20%5CBigg%5D%20dy%20dx%20%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
 <p>我們用了 指示函數(indicator function): <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7B1%7D_%7Bx%3Ey%7D"> 來表示「牌面大小比較」的條件。當然，也可以寫成分段的積分，但這樣寫起來，簡直像是直接從上面的表格搬下來的一樣，清楚多了。</p>
 <p>我們再寫一次表格形式:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 26%">
@@ -509,10 +602,14 @@ B-&gt;Outcome_Fold
 <p>如圖Figure&nbsp;4 。</p>
 <p>從 <img src="https://latex.codecogs.com/png.latex?%5Ceqref%7Beq:hy_formula%7D"> 可以看出使 <img src="https://latex.codecogs.com/png.latex?h(y%5E*)%20=%200"> 的點 <img src="https://latex.codecogs.com/png.latex?y%5E*">，會滿足面積比公式 <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cint_0%5E%7By%5E*%7D%20a(x)%20%5C,%20dx%7D%7B%5Cint_%7By%5E*%7D%5E1%20a(x)%20%5C,%20dx%7D%20=%20%5Cfrac%7BB%7D%7BP%20+%20B%7D%20%20%5Ctag%7B2%7D%5Clabel%7Beq:area_ratio%7D%0A"></p>
 <p>有了 <img src="https://latex.codecogs.com/png.latex?y%5E*"> 後，可以將 <img src="https://latex.codecogs.com/png.latex?h(y)"> 寫成 <img src="https://latex.codecogs.com/png.latex?%0Ah(y)%20=%20-(P+2B)%20%5Cint_%7By%5E*%7D%5Ey%20a(x)%20%5C,%20dx%20%20%5Ctag%7B3%7D%5Clabel%7Beq:hy_from_y_star%7D%0A"></p>
-<div id="fig-bluff-value-ratio" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/lesson_6/bluff_value_ratio_2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: <img src="https://latex.codecogs.com/png.latex?h(y)"> and <img src="https://latex.codecogs.com/png.latex?a(x)"></figcaption>
+<div id="fig-bluff-value-ratio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bluff-value-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/lesson_6/bluff_value_ratio_2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bluff-value-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: <img src="https://latex.codecogs.com/png.latex?h(y)"> and <img src="https://latex.codecogs.com/png.latex?a(x)">
+</figcaption>
 </figure>
 </div>
 <p>帶回去 Lagrangian: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathcal%7BL%7D(a(x),%20b(y))%0A=%20&amp;%20%5Cint_0%5E1%20%5Cint_0%5E1%20%5CBigg%5B%0A(1%20-%20a(x))%20%5Ccdot%20P%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Ey%7D%20+%20a(x)%20%5Ccdot%20P%20%20%0A%5CBigg%5D%20dy%20dx%20+%20%5Cint_0%5E1%20%5Ctextcolor%7Bred%7D%7Bb(y)%7D%20%5Ccdot%20%5Ctextcolor%7Bgreen%7D%7Bh(y)%7D%20%5C,%20dy%20%5C%5C%0A=%20&amp;%20%5Cfrac%7BP%7D%7B2%7D%20+%20P%20%5Ccdot%20%5Cint_0%5E1%20%5Cint_0%5E1%20%20a(x)%20%5Ccdot%20%5Cmathbb%7B1%7D_%7Bx%3Cy%7D%20%5C,%20dy%20dx%20+%20%5Cint_0%5E1%20%5Ctextcolor%7Bred%7D%7Bb(y)%7D%20%5Ccdot%20%5Ctextcolor%7Bgreen%7D%7Bh(y)%7D%20%5C,%20dy%20%5C%5C%0A%5Cend%7Baligned%7D%0A"></p>
@@ -533,10 +630,14 @@ B-&gt;Outcome_Fold
 <li>第三項是負的，代表 在 <img src="https://latex.codecogs.com/png.latex?%5Cint_%7By%5E*%7D%5E1%20a(x)"> 面積 固定之下，我們要最小化 <img src="https://latex.codecogs.com/png.latex?%5Cint_%7By%5E*%7D%5E1%20a(x)%20(1%20-%20x)%20%5C,%20dx">，也就是把 <img src="https://latex.codecogs.com/png.latex?a(x)"> 往右邊 (大牌面) 集中。</li>
 </ul>
 <p>所以結果變成</p>
-<div id="fig-polarized-range" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/lesson_6/polarized_range_plot.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Polarized Range</figcaption>
+<div id="fig-polarized-range" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polarized-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/lesson_6/polarized_range_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polarized-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Polarized Range
+</figcaption>
 </figure>
 </div>
 <p>但我們目前只知道比例 (<img src="https://latex.codecogs.com/png.latex?B:(P+B)">)，還有形狀 (往兩邊集中)，卻不知道具體值是多少。 所以要解 <img src="https://latex.codecogs.com/png.latex?a(x)"> 的 boundary 位置。</p>
@@ -562,13 +663,14 @@ B-&gt;Outcome_Fold
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_6_comparison.html</guid>
-  <pubDate>Sun, 14 Dec 2025 00:00:00 GMT</pubDate>
+  <pubDate>Sat, 13 Dec 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 5 - 雙曲面 Payoff</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/poker/lesson_5_hyperbolic_payoff.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -594,7 +696,7 @@ B-&gt;Outcome_Fold
 <p>這邊兩個機率 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 跟 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">，若直接硬算，那就會是跟上一篇一樣。但是其實只要算 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20=%20%7B0,%201%7D">, <img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20%7B0,%201%7D"> 四種極端情況即可，因為剩下的情況會是這兩種的 <strong>mixed strategy</strong>。</p>
 <ul>
 <li><p>若 Player B 拿到 Nuts，則 B 一定會 bet。在兩種極端狀況下，Player A 的期望值 payoff：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 39%">
 <col style="width: 29%">
@@ -616,7 +718,7 @@ B-&gt;Outcome_Fold
 </tbody>
 </table></li>
 <li><p>若 Player B 拿到 Air。在四種極端狀況下，Player A 的期望值 payoff：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 48%">
 <col style="width: 25%">
@@ -650,10 +752,14 @@ B-&gt;Outcome_Fold
 <li>Senario 3: Player B 拿到 Air，假設 Player B 總是過牌 (honest check)</li>
 </ul>
 <p>那麼對 Player A 來說，這三種情況的 payoff 分別是：</p>
-<div id="fig-lesson5-seesaw" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/visualize_seesaw.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Seesaw Payoff</figcaption>
+<div id="fig-lesson5-seesaw" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lesson5-seesaw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/visualize_seesaw.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lesson5-seesaw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Seesaw Payoff
+</figcaption>
 </figure>
 </div>
 <p>因為 Player A 要最大化 payoff，所以會選數值大的 (翹翹板高處)。</p>
@@ -662,7 +768,7 @@ B-&gt;Outcome_Fold
 <section id="雙曲面" class="level3">
 <h3 class="anchored" data-anchor-id="雙曲面">雙曲面</h3>
 <p>假設 Player B 拿到 Nuts 的機率是 <img src="https://latex.codecogs.com/png.latex?r"> (此處 <img src="https://latex.codecogs.com/png.latex?r=1/5">)，那麼一個 average over Player B 手牌的 Player A payoff 表格，即是兩個表的加權平均：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 48%">
 <col style="width: 25%">
@@ -689,7 +795,7 @@ B-&gt;Outcome_Fold
 </tbody>
 </table>
 <p>先來簡化一下符號，將上面的 payoff 寫成矩陣 <img src="https://latex.codecogs.com/png.latex?X%20=%20%5BX_%7B%5Cbeta%20%5Calpha%7D%5D">：</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th></th>
@@ -714,20 +820,28 @@ B-&gt;Outcome_Fold
 <p>既然已經知道 Pure Strategy 的 <strong>所有可能</strong> 情況，那麼 mix strategy 就是這些情況的 convex linear combination，而 <img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Cbeta%20%5Cin%20%5B0,%201%5D"> 就是權重。</p>
 <p>所以在 mix strategy 時， Player A 的 payoff 期望值就是： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D%20&amp;%20=%20%5Calpha%20%5Cbeta%20X_%7B11%7D%20+%20%5Calpha%20(1-%5Cbeta)%20X_%7B01%7D%20+%20(1-%5Calpha)%20%5Cbeta%20X_%7B10%7D%20+%20(1-%5Calpha)(1-%5Cbeta)%20X_%7B00%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:hyperbolic_payoff%7D%20%5C%5C%0A%5Cend%7Balign%7D%0A"></p>
 <p>將 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5B%5Ctext%7BPayoff%7D_A%5D"> 視為一個 <img src="https://latex.codecogs.com/png.latex?%5Calpha,%20%5Cbeta"> 的函數，畫在三維空間中的話，就是一個雙曲面 (hyperbolic surface)：</p>
-<div id="fig-lesson5-hyperbolic_heatmap" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/hyperbolic_heatmap.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Hyperbolic Payoff Surface</figcaption>
+<div id="fig-lesson5-hyperbolic_heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lesson5-hyperbolic_heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/hyperbolic_heatmap.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lesson5-hyperbolic_heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Hyperbolic Payoff Surface
+</figcaption>
 </figure>
 </div>
 <p>這是一個標準的雙曲面 (hyperbolic paraboloid)，中間有個鞍點 (saddle point)。</p>
 <p>雖然是個二次函數，但當固定其中一個變數 (例如 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">)，截面其實是一條直線。可以將雙曲面想成是一條直線一邊旋轉一邊平移所掃出來的曲面。</p>
 <p>當我們看 Side View 時 (相 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 這個維度投影掉)，可以明顯看出這個直線掃出的感覺，這不就是剛剛的翹翹板? 沒錯，這個雙曲面其實就是把三個翹翹板「合體」起來的結果。</p>
 <p>讓我們 zoom in 看一下這個投影在 <img src="https://latex.codecogs.com/png.latex?%5Calpha">-<img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 平面圖，其實也就是把 payoff 畫成 heatmap：</p>
-<div id="fig-lesson5-payoff_landscape" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/payoff_landscape.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: 2D Payoff Surface - Heatmap</figcaption>
+<div id="fig-lesson5-payoff_landscape" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lesson5-payoff_landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/payoff_landscape.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lesson5-payoff_landscape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: 2D Payoff Surface - Heatmap
+</figcaption>
 </figure>
 </div>
 <p>這張圖 Figure&nbsp;3 很視覺化了驗證了之前推導的結果:</p>
@@ -750,7 +864,7 @@ B-&gt;Outcome_Fold
 <h3 class="anchored" data-anchor-id="講回翹翹板">講回翹翹板</h3>
 <p>我們再次回到翹翹板的圖像，原本翹翹板中間的桿子是沒有實質意義的，但現在剛好可以想成是線性的插值。</p>
 <p><img src="https://your-website-url.example.com/posts/poker/images/visualize_seesaw.png" class="img-fluid"></p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th></th>
@@ -789,13 +903,14 @@ B-&gt;Outcome_Fold
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_5_hyperbolic_payoff.html</guid>
-  <pubDate>Sat, 06 Dec 2025 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 05 Dec 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 4 - 如何詐唬</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -816,10 +931,14 @@ B-&gt;Outcome_Fold
 <li>A 的手牌是: A♠ A♣ K♣ 9♦ 7♦ 6♥ [?]</li>
 <li>B 的手牌是: K♠ 9♠ 8♠ 7♠ 4♦ 2♦ [?]</li>
 </ul>
-<div id="fig-seven-card-stud" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/poker_L4_page.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Seven-card stud</figcaption>
+<div id="fig-seven-card-stud" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-seven-card-stud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/poker_L4_page.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seven-card-stud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Seven-card stud
+</figcaption>
 </figure>
 </div>
 <p>目前 A 有一對 A，B 有高牌 K。若 B 的最後一張牌沒能組成同花 (flush)，那麼 A 就會贏。若 B 可以組成同花，那麼 A 也不可以組出更強的牌，所以 B 會贏。</p>
@@ -961,13 +1080,14 @@ B-&gt;Outcome_Fold
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_4_bluff_value_ratio.html</guid>
-  <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day9： Poisson Summation Formula</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_9.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -1014,7 +1134,7 @@ B-&gt;Outcome_Fold
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/normal-distribution/images/psf.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Poisson Summation Formula</figcaption>
+<figcaption>Poisson Summation Formula</figcaption>
 </figure>
 </div>
 </section>
@@ -1042,13 +1162,14 @@ B-&gt;Outcome_Fold
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_9.html</guid>
-  <pubDate>Sun, 30 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Sat, 29 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day8： C n 取 k</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_8.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -1117,7 +1238,7 @@ B-&gt;Outcome_Fold
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/normal-distribution/images/image.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
+<figcaption>Figure 1: <img src="https://latex.codecogs.com/png.latex?H(x)"> vs <img src="https://latex.codecogs.com/png.latex?%5Cln(2)%20-%202%5Cleft(%5Cfrac%7B1%7D%7B2%7D%20-%20x%5Cright)%5E2"></figcaption>
 </figure>
 </div>
 
@@ -1127,7 +1248,7 @@ B-&gt;Outcome_Fold
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_8.html</guid>
-  <pubDate>Sat, 29 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 3 - hands 組合數</title>
@@ -1138,11 +1259,12 @@ B-&gt;Outcome_Fold
 
 
 
+
 <p>今天我們來算一下 同花順、四條、葫蘆、同花、順子、三條、兩對、一對、散牌 在撲克中出現的機率。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://your-website-url.example.com/posts/poker/images/poker_cardprob_57.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Poker Counts Takeaway</figcaption>
+<figcaption>Poker Counts Takeaway</figcaption>
 </figure>
 </div>
 <p><strong>同花順 (straight flush) 的方法數:</strong> 在一副標準的 52 張撲克牌中，有 4 種花色，每種花色有 13 張牌。同花順是指五張連續數字且同花色的牌。首先，我們可以有 10 種不同的同花順組合（A-5, 2-6, …, 10-A）。 每種花色有 1 種組合，所以同花順的組合數量為： <img src="https://latex.codecogs.com/png.latex?%0A4%20%5Ctimes%2010%20=%2040%0A"></p>
@@ -1157,9 +1279,8 @@ B-&gt;Outcome_Fold
 <p>檢查一下所有手牌組合數量的總和是否等於 52 張牌中選 5 張的總組合數： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbinom%7B52%7D%7B5%7D%20=%202598960%0A"></p>
 <p>而各手牌組合數量總和為： <img src="https://latex.codecogs.com/png.latex?%0A40%20+%20624%20+%203744%20+%205108%20+%2010200%20+%2054912%20+%20123552%20+%201098240%20+%201302540%20=%202598960%0A"> 符合預期!</p>
 <p><strong>直方圖:</strong></p>
-<div id="fig-poker-hand-counts" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="93" data-source-offset="-14" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb1-93">Plotly <span class="op" style="color: #5E5E5E;
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="93" data-source-offset="-14" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb1-93">Plotly <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="pp" style="color: #AD0000;
 background-color: null;
@@ -1300,6 +1421,7 @@ font-style: inherit;">// 繪製直方圖</span></span>
 <span id="cb1-107">{</span>
 <span id="cb1-108">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> div <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> DOM<span class="op" style="color: #5E5E5E;
@@ -1313,6 +1435,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-109">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> totalCombos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -1346,6 +1469,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -1363,6 +1487,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> (d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -1399,6 +1524,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
@@ -1546,48 +1672,69 @@ font-style: inherit;">staticPlot</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">true</span></span>
 <span id="cb1-131">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-132">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-133">}</span></code></pre></div>
+<span id="cb1-133">}</span></code></pre></div></div>
+<div id="fig-poker-hand-counts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-poker-hand-counts-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
-<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-poker-hand-counts-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
-<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-poker-hand-counts-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-poker-hand-counts-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-poker-hand-counts-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-3" data-nodetype="expression">
 
 </div>
-<figcaption class="figure-caption">(c) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-poker-hand-counts-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
 </figure>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;1: 撲克手牌組合數量直方圖</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-hand-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 撲克手牌組合數量直方圖
+</figcaption>
 </figure>
+</div>
 </div>
 <section id="texas-holdem" class="level3">
 <h3 class="anchored" data-anchor-id="texas-holdem">Texas Hold’em</h3>
@@ -1612,9 +1759,8 @@ font-style: inherit;">;</span></span>
 <hr>
 <p><strong>德州撲克手牌分佈直方圖:</strong></p>
 <p>我們將上述 7 選 5 的數據更新到圖表中，你會發現分佈趨勢與標準 5 張牌撲克有所不同，特別是葫蘆與同花的順序對調，以及散牌數量的驟降。</p>
-<div id="fig-texas-holdem-counts" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212">texasHandTypes <span class="op" style="color: #5E5E5E;
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-21" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212">texasHandTypes <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [</span>
 <span id="cb2-213">  <span class="co" style="color: #5E5E5E;
@@ -1750,6 +1896,7 @@ font-style: inherit;">// 繪製直方圖</span></span>
 <span id="cb2-225">{</span>
 <span id="cb2-226">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> div <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> DOM<span class="op" style="color: #5E5E5E;
@@ -1763,6 +1910,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-227">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> totalCombos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -1796,6 +1944,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -1813,6 +1962,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> (d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -1849,6 +1999,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
@@ -1996,44 +2147,61 @@ font-style: inherit;">staticPlot</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">true</span></span>
 <span id="cb2-249">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-250">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> div<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-251">}</span></code></pre></div>
+<span id="cb2-251">}</span></code></pre></div></div>
+<div id="fig-texas-holdem-counts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-texas-holdem-counts-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-texas-holdem-counts-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-2-1" data-nodetype="declaration">
 
 </div>
-<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-texas-holdem-counts-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-texas-holdem-counts-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-2-2" data-nodetype="expression">
 
 </div>
-<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-texas-holdem-counts-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
 </figure>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-texas-holdem-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 德州撲克 (7選5) 手牌組合數量直方圖
+</figcaption>
 </figure>
+</div>
 </div>
 <hr>
 </section>
 <section id="總結與洞察" class="level3">
 <h3 class="anchored" data-anchor-id="總結與洞察">總結與洞察</h3>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Card Type</th>
@@ -2102,7 +2270,7 @@ font-style: inherit;">;</span></span>
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_3_count.html</guid>
-  <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 27 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 2 - 一次只能買到一張牌</title>
@@ -2113,16 +2281,21 @@ font-style: inherit;">;</span></span>
 
 
 
+
 <p>假設 limit Texas Hold’em 中，大小盲注是 30/60，目前翻出三張牌(the flop)，彩池中有 90 元，輪到 Player A 行動。翻牌是 A♥ K♦ 7♥。</p>
 <ul>
 <li>Player A 手上有 A♠ K♠。</li>
 <li>Player B 手上有 J♥ 3♥。</li>
 </ul>
 <p>現在 Player A bet 60 元，Player B 該如何決定要不要跟注 (call) 呢?</p>
-<div id="fig-poker-game-status" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/poker_buyonecard-processed.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Poker Game</figcaption>
+<div id="fig-poker-game-status" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/poker_buyonecard-processed.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-game-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Poker Game
+</figcaption>
 </figure>
 </div>
 <hr>
@@ -2149,10 +2322,11 @@ font-style: inherit;">;</span></span>
 <li>如果第五張牌沒讓 Player B 組成 flush (機率 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B36%7D%7B44%7D">)，Player B 就輸掉這手牌。這邊的 EV 是 <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B33%7D%7B45%7D%20%5Ctimes%20%5Cfrac%7B36%7D%7B44%7D%20%5Ctimes%20(-120)%20=%20-72"> 元。</li>
 </ul></li>
 </ol>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-decision-tree" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-decision-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-decision-tree">graph TD
     %% 定義節點樣式
@@ -2175,7 +2349,10 @@ font-style: inherit;">;</span></span>
     style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
 </pre>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Player A bet 60 on Turn and bet 60 on River
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2185,10 +2362,11 @@ font-style: inherit;">;</span></span>
 <section id="if-player-a-checks-on-the-river" class="level3">
 <h3 class="anchored" data-anchor-id="if-player-a-checks-on-the-river">If Player A checks on the River:</h3>
 <p>我們可以看一下如果 Player A 在第四張牌後不繼續下注，Player B 輸的話就只損失 60 元，但贏的話可以贏 150 元，這樣 Player B 的 EV 會變成正的。</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-decision-tree-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-decision-tree-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-decision-tree-2">graph TD
     %% 定義節點樣式
@@ -2211,7 +2389,10 @@ font-style: inherit;">;</span></span>
     style B2 fill:#ccffcc, stroke:#00cc00,stroke-width:2px
 </pre>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;3: Player A checks on the River</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decision-tree-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Player A checks on the River
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2228,7 +2409,7 @@ font-style: inherit;">;</span></span>
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_2.html</guid>
-  <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 26 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Poker Lesson 1 - 池底賠率 (Pot Odds)</title>
@@ -2239,15 +2420,20 @@ font-style: inherit;">;</span></span>
 
 
 
+
 <p>先來談談賭博中最小的一步，要 <strong>繼續遊戲 (call)</strong> 還是 <strong>忍痛放棄 (fold)</strong>。</p>
 <p>所謂的 Pot Odds，指的是你為了繼續參與遊戲 (call 或 raise) 所需要投入的金額，和你可能贏得的彩池 (pot) 之間的比例。</p>
 <p>舉例來說，假設彩池中有 100 美元，而你需要投入 20 美元來繼續參與遊戲，那麼你的 Pot Odds 就是 20:100，或者簡化為 1:5。</p>
 <p>那我們該如何判斷是否該繼續參與呢? 假設我們目前評估勝率為 <img src="https://latex.codecogs.com/png.latex?p">，那麼我們可以計算出期望值 (Expected Value, EV)： <img src="https://latex.codecogs.com/png.latex?%0AEV%20=%20p%20%5Ctimes%20%5Ctext%7BPot%20Size%7D%20-%20(1%20-%20p)%20%5Ctimes%20%5Ctext%7BCost%20to%20Call%7D%20%5Ctag%7B1%7D%5Clabel%7Beq:ev-pot-odds%7D%0A"> 若 <img src="https://latex.codecogs.com/png.latex?EV%20%3E%200">，表示長期下來這是一個有利可圖的決策，反之則不然。也就是我們希望 <img src="https://latex.codecogs.com/png.latex?%0Ap%20%3E%20%5Cfrac%7B%5Ctext%7BCost%20to%20Call%7D%7D%7B%5Ctext%7BPot%20Size%7D%20+%20%5Ctext%7BCost%20to%20Call%7D%7D%20%5Ctag%7B2%7D%5Clabel%7Beq:pot-odds-threshold%7D%0A"></p>
 <p>在上面例子中，就是 <img src="https://latex.codecogs.com/png.latex?20%20/%20(100%20+%2020)%20=%201/6%20%5Capprox%2016.67%5C%25">。也就是說，如果我們認為自己的勝率超過 16.67%，那麼繼續參與遊戲是有利可圖的。</p>
-<div id="fig-poker-pot-odds" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/poker/images/poker_potodds_20-processed.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Poker Pot Odds</figcaption>
+<div id="fig-poker-pot-odds" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://your-website-url.example.com/posts/poker/images/poker_potodds_20-processed.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poker-pot-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Poker Pot Odds
+</figcaption>
 </figure>
 </div>
 <section id="odds-vs-probability" class="level3">
@@ -2265,7 +2451,7 @@ font-style: inherit;">;</span></span>
  ]]></description>
   <category>Poker</category>
   <guid>https://your-website-url.example.com/posts/poker/lesson_1_pot_odds.html</guid>
-  <pubDate>Wed, 26 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 25 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day7：Hermite Polynomials</title>
@@ -2276,12 +2462,13 @@ font-style: inherit;">;</span></span>
 
 
 
+
 <p>今天回到我們的小數學風格，談點輕鬆的 Hermite Polynomials。</p>
 <p>如同其他正交多項式，Hermite polynomial也是一組正交多項式。我們來看一下他的生成函數 (generating function)： <img src="https://latex.codecogs.com/png.latex?%0Ae%5E%7Bxt%20-%20%5Cfrac%7Bt%5E2%7D%7B2%7D%7D%20:=%20%5Csum_%7Bn=0%7D%5E%7B%5Cinfty%7D%20%5Ctext%7BHe%7D_n(x)%20%5Cfrac%7Bt%5En%7D%7Bn!%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:hermite-generating%7D%0A"></p>
 <p>欸，這個生成函數根本就是常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(x,1)"> 的 MGF (moment generating function)！</p>
 <p>所以說，第 <img src="https://latex.codecogs.com/png.latex?n"> 階 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BHe%7D_n(x)"> 的定義其實就是常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(x,1)"> 的 n-th moment 乘上 <img src="https://latex.codecogs.com/png.latex?n!">。</p>
 <p>這邊我們用的是 機率學家的埃爾米特多項式 (probabilists’ Hermite polynomials)，另外還有物理學家的 (physicists’ Hermite polynomials)，記做 <img src="https://latex.codecogs.com/png.latex?H_n(x)">，其中 <img src="https://latex.codecogs.com/png.latex?H_n(x)%20=%202%5E%7B%5Cfrac%7Bn%7D%7B2%7D%7D%20%5Ctext%7BHe%7D_n(%5Csqrt%7B2%7Dx)">，也就是在定義上差了兩倍的標準差。本質上是一樣的，所以我們先專注在前者。</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th><img src="https://latex.codecogs.com/png.latex?n"></th>
@@ -2317,10 +2504,10 @@ font-style: inherit;">;</span></span>
 </tr>
 </tbody>
 </table>
-<div id="fig-hermite-polynomials" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="43" data-source-offset="-45" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb1-43"><span class="kw" style="color: #003B4F;
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="43" data-source-offset="-45" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb1-43"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">He</span>(n<span class="op" style="color: #5E5E5E;
@@ -2328,12 +2515,14 @@ background-color: null;
 font-style: inherit;">,</span> x) {</span>
 <span id="cb1-44">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
@@ -2341,23 +2530,27 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-45">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-46">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
@@ -2371,12 +2564,14 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-47">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
@@ -2392,12 +2587,14 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-48">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
@@ -2421,6 +2618,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-49">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
@@ -2436,6 +2634,7 @@ background-color: null;
 font-style: inherit;">=</span> {</span>
 <span id="cb1-54">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> points <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
@@ -2443,8 +2642,10 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-55">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
@@ -2488,6 +2689,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">forEach</span>(n <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb1-57">      points<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2536,6 +2738,7 @@ font-style: inherit;">;</span></span>
 <span id="cb1-63">  }</span>
 <span id="cb1-64">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> points<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -2558,6 +2761,7 @@ font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
@@ -2567,6 +2771,7 @@ font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
@@ -2609,6 +2814,7 @@ font-style: inherit;">legend</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">true</span> }<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="co" style="color: #5E5E5E;
@@ -2673,39 +2879,58 @@ background-color: null;
 font-style: inherit;">2</span> </span>
 <span id="cb1-81">    })</span>
 <span id="cb1-82">  ]</span>
-<span id="cb1-83">})</span></code></pre></div>
+<span id="cb1-83">})</span></code></pre></div></div>
+<div id="fig-hermite-polynomials" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-hermite-polynomials-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
-<figcaption class="figure-caption">(a) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-hermite-polynomials-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
-<figcaption class="figure-caption">(b) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="fig-hermite-polynomials-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-hermite-polynomials-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-1-3" data-nodetype="expression">
 
 </div>
-<figcaption class="figure-caption">(c) <strong>?(caption)</strong></figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-hermite-polynomials-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c)
+</figcaption>
 </figure>
 </div>
 </div>
-<figcaption class="figure-caption">Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hermite-polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 機率學家的 Hermite 多項式 (He₀ - He₄)
+</figcaption>
 </figure>
+</div>
 </div>
 <section id="計算-hermite-多項式" class="level3">
 <h3 class="anchored" data-anchor-id="計算-hermite-多項式">計算 Hermite 多項式</h3>
@@ -2750,7 +2975,7 @@ font-style: inherit;">2</span> </span>
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_7.html</guid>
-  <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 24 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day6：Chi-squared Test</title>
@@ -2761,10 +2986,11 @@ font-style: inherit;">2</span> </span>
 
 
 
+
 <section id="chi-squared-test-複習" class="level3">
 <h3 class="anchored" data-anchor-id="chi-squared-test-複習">Chi-squared Test 複習</h3>
 <p>假設我們有個 contingency table (列聯表) 如下：</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th></th>
@@ -2800,7 +3026,7 @@ font-style: inherit;">2</span> </span>
 </table>
 <p>我們想知道 Group A 跟 Group B 在這三個 category 上是否有顯著差異 (independence)。我們可以使用 Chi-squared test 來檢驗這個假設。</p>
 <p><strong>步驟一、計算期望值 (Expected Counts)</strong>： 根據獨立性的假設，也就是這個 contingency table 是一個 rank 1 矩陣，我們可以計算每個 cell 的期望值：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
 <col style="width: 25%">
@@ -2862,7 +3088,7 @@ font-style: inherit;">2</span> </span>
 <h3 class="anchored" data-anchor-id="interactive-finite-chi-square-cdf-log-scale">Interactive: Finite Chi-Square CDF (Log Scale)</h3>
 <p>Adjust <img src="https://latex.codecogs.com/png.latex?n"> to see how the discrete CDF steps approximate the smooth curve.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="154" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 153;"><span id="cb1-154">viewof n <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="154" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 153;"><span id="cb1-154">viewof n <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2898,7 +3124,7 @@ font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Sample Size (n)"</span>})</span></code></pre></div>
+font-style: inherit;">"Sample Size (n)"</span>})</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -2908,7 +3134,7 @@ font-style: inherit;">"Sample Size (n)"</span>})</span></code></pre></div>
 <div class="panel-fill panel-grid">
 <div class="g-col-24">
 <div class="cell panel-fill">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="163" data-source-offset="-29" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb2-163">probs <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="163" data-source-offset="-29" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb2-163">probs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
 background-color: null;
@@ -2938,6 +3164,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(p <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> p <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> n)</span>
@@ -2951,6 +3178,7 @@ background-color: null;
 font-style: inherit;">// Recursive function to get partitions (compositions of integer n)</span></span>
 <span id="cb2-170"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">getCompositions</span>(target<span class="op" style="color: #5E5E5E;
@@ -2958,17 +3186,20 @@ background-color: null;
 font-style: inherit;">,</span> bins) {</span>
 <span id="cb2-171">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (bins <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">===</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> [[target]]<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-172">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> results <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []<span class="op" style="color: #5E5E5E;
@@ -2976,8 +3207,10 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-173">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span> (<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> i <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -2993,6 +3226,7 @@ background-color: null;
 font-style: inherit;">++</span>) {</span>
 <span id="cb2-174">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> sub <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
@@ -3014,6 +3248,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">forEach</span>(s <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> results<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
@@ -3028,6 +3263,7 @@ font-style: inherit;">;</span></span>
 <span id="cb2-176">  }</span>
 <span id="cb2-177">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> results<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -3052,25 +3288,30 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(counts <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-184">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// Factorial helper</span></span>
 <span id="cb2-185">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> fact <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> (num) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-186">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (num <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
@@ -3078,6 +3319,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-187">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> r <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -3087,8 +3329,10 @@ background-color: null;
 font-style: inherit;">;</span> </span>
 <span id="cb2-188">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">for</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> i<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
@@ -3108,6 +3352,7 @@ background-color: null;
 font-style: inherit;">;</span> </span>
 <span id="cb2-189">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> r<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -3118,6 +3363,7 @@ background-color: null;
 font-style: inherit;">// Multinomial Prob</span></span>
 <span id="cb2-193">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> denom <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -3127,6 +3373,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-194">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> probTerm <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -3142,6 +3389,7 @@ font-style: inherit;">forEach</span>((c<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-196">    denom <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3168,6 +3416,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-199">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> p <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> (<span class="fu" style="color: #4758AB;
@@ -3185,6 +3434,7 @@ background-color: null;
 font-style: inherit;">// Chi Sq Statistic</span></span>
 <span id="cb2-202">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> q <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -3200,6 +3450,7 @@ font-style: inherit;">forEach</span>((c<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-204">    q <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3226,6 +3477,7 @@ font-style: inherit;">;</span></span>
 <span id="cb2-206">  </span>
 <span id="cb2-207">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> {<span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">q</span><span class="op" style="color: #5E5E5E;
@@ -3253,10 +3505,12 @@ background-color: null;
 font-style: inherit;">// A. Group by Q (sum probabilities for identical Q statistics)</span></span>
 <span id="cb2-214">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> map <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">new</span> <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">Map</span>()<span class="op" style="color: #5E5E5E;
@@ -3268,9 +3522,11 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">forEach</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-216">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> key <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d<span class="op" style="color: #5E5E5E;
@@ -3288,6 +3544,7 @@ background-color: null;
 font-style: inherit;">;</span> </span>
 <span id="cb2-217">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> existing <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> map<span class="op" style="color: #5E5E5E;
@@ -3325,6 +3582,7 @@ background-color: null;
 font-style: inherit;">// B. Sort by Q</span></span>
 <span id="cb2-222">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> sorted <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -3339,6 +3597,7 @@ font-style: inherit;">,</span> ([q<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> p]) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> ({<span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">q</span><span class="op" style="color: #5E5E5E;
@@ -3359,6 +3618,7 @@ font-style: inherit;">sort</span>((a<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span>b) <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> a<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -3378,6 +3638,7 @@ background-color: null;
 font-style: inherit;">// C. Calculate Cumulative Sum</span></span>
 <span id="cb2-225">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> cumSum <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
@@ -3387,12 +3648,14 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-226">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> sorted<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> {</span>
 <span id="cb2-227">    cumSum <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3408,6 +3671,7 @@ background-color: null;
 font-style: inherit;">// Log scale fix: If Q is exactly 0, bump it to 0.01 so it shows up on log axis</span></span>
 <span id="cb2-229">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> plotQ <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d<span class="op" style="color: #5E5E5E;
@@ -3433,6 +3697,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-230">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> {</span>
 <span id="cb2-231">      <span class="dt" style="color: #AD0000;
 background-color: null;
@@ -3495,6 +3760,7 @@ font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span></span>
@@ -3537,6 +3803,7 @@ font-style: inherit;">max</span>(groupedCDF<span class="op" style="color: #5E5E5
 background-color: null;
 font-style: inherit;">,</span> d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -3670,6 +3937,7 @@ font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">:</span> d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">`Q: </span><span class="sc" style="color: #5E5E5E;
@@ -3735,6 +4003,7 @@ font-style: inherit;">max</span>(groupedCDF<span class="op" style="color: #5E5E5
 background-color: null;
 font-style: inherit;">,</span> d <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="at" style="color: #657422;
@@ -3753,6 +4022,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(x <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> ({<span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
@@ -3888,7 +4158,7 @@ font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"gray"</span>})</span>
 <span id="cb2-266">  ]</span>
-<span id="cb2-267">})</span></code></pre></div>
+<span id="cb2-267">})</span></code></pre></div></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -3964,13 +4234,14 @@ font-style: inherit;">"gray"</span>})</span>
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_6.html</guid>
-  <pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 20 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day5：獨立性的量尺: Cumulant</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_5.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3982,7 +4253,7 @@ font-style: inherit;">"gray"</span>})</span>
 <p>還記得動差生成函數 (Moment Generating Function, MGF) 定義為： <img src="https://latex.codecogs.com/png.latex?%20%20%0AM_X(t)%20=%20%5Cmathbb%7BE%7D%5Be%5E%7BtX%7D%5D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cmathbb%7BE%7D%5BX%5E%7Bk%7D%5D%20%5Cfrac%7Bt%5Ek%7D%7Bk!%7D%0A"> 名符其實，他就是「動差」的生成函數，因為對 <img src="https://latex.codecogs.com/png.latex?M_X(t)"> 做泰勒展開 (Taylor Expansion) 後，係數正好是各階 <strong>動差</strong> (moment)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu_k'%20:=%20%5Cmathbb%7BE%7D%5BX%5Ek%5D%20=%20M_X%5E%7B(k)%7D(0)%20=%20%5Cleft.%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20M_X(t)%20%5Cright%7C_%7Bt=0%7D%20%20%5Ctag%7B1%7D%5Clabel%7Beq:moment_def_1%7D%0A"> 另外一種比較常用的是減掉常數項的<strong>中心動差</strong> (central moment)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu_k%20:=%20%5Cmathbb%7BE%7D%5B(X%20-%20%5Cmathbb%7BE%7D%5BX%5D)%5Ek%5D%0A"></p>
 <p>不過呢，有時候因為動差函數不存在 (例如 Cauchy 分佈)，我們會改用一定會存在的特徵函數 (Characteristic Function, CF)： <img src="https://latex.codecogs.com/png.latex?%0A%5Cphi_X(t)%20=%20%5Cmathbb%7BE%7D%5Be%5E%7BitX%7D%5D%20=%20%5Csum_%7Bk=0%7D%5E%7B%5Cinfty%7D%20%5Cmathbb%7BE%7D%5BX%5E%7Bk%7D%5D%20%5Cfrac%7B(it)%5Ek%7D%7Bk!%7D%0A"> 所以也可以用 <img src="https://latex.codecogs.com/png.latex?%5Cphi_X(t)"> 來計算動差： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu_k'%20=%20%5Cmathbb%7BE%7D%5BX%5Ek%5D%20=%20%5Cfrac%7B1%7D%7Bi%5Ek%7D%20%5Cphi_X%5E%7B(k)%7D(0)%20=%20%5Cleft.%20%5Cfrac%7B1%7D%7Bi%5Ek%7D%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20%5Cphi_X(t)%20%5Cright%7C_%7Bt=0%7D%20%20%5Ctag%7B2%7D%5Clabel%7Beq:moment_def_2%7D%0A"> 至於 central moment， <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu_k%20=%20%5Cmathbb%7BE%7D%5B(X%20-%20%5Cmathbb%7BE%7D%5BX%5D)%5Ek%5D%20=%20%5Cfrac%7B1%7D%7Bi%5Ek%7D%20%5Cfrac%7Bd%5Ek%7D%7Bdt%5Ek%7D%20%5Cleft%5B%20e%5E%7B-it%20%5Cmu_1'%7D%20%5Cphi_X(t)%20%5Cright%5D_%7Bt=0%7D%0A"> 這邊要稍微注意一下，CF 是個複數值函數，所以其實是個複變函數的微分!</p>
 <p><strong>舉例說明</strong>：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 4%">
 <col style="width: 14%">
@@ -4042,7 +4313,7 @@ font-style: inherit;">"gray"</span>})</span>
 <p>取了 <img src="https://latex.codecogs.com/png.latex?%5Clog"> 的好處就是：<strong>如果 <img src="https://latex.codecogs.com/png.latex?X"> 跟 <img src="https://latex.codecogs.com/png.latex?Y"> 獨立，那麼 <img src="https://latex.codecogs.com/png.latex?K_%7BX+Y%7D(t)%20=%20K_X(t)%20+%20K_Y(t)"></strong>。這點跟 MGF 不同，因為 MGF 是乘法關係 (<img src="https://latex.codecogs.com/png.latex?M_%7BX+Y%7D(t)%20=%20M_X(t)%20M_Y(t)">)。</p>
 <p>所以對於 moment 來說，兩個獨立隨機變數相加的第 <img src="https://latex.codecogs.com/png.latex?n"> 階動差，會是兩個變數各自前 <img src="https://latex.codecogs.com/png.latex?n"> 階動差的 convolution (加上一些組合係數)。 但對於 cumulant 來說，兩個獨立隨機變數相加的第 <img src="https://latex.codecogs.com/png.latex?n"> 階 cumulant，會是兩個變數各自第 <img src="https://latex.codecogs.com/png.latex?n"> 階 cumulant 的<strong>直接相加</strong>： <img src="https://latex.codecogs.com/png.latex?%0A%5Ckappa_n(X%20+%20Y)%20=%20%5Ckappa_n(X)%20+%20%5Ckappa_n(Y)%20%5Cquad%20%5Ctext%7Bif%20%7D%20X%20%5Cperp%20Y%20%20%5Ctag%7B6%7D%5Clabel%7Beq:cumulant_indep_add%7D%0A"></p>
 <p><strong>舉例說明</strong>：</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 18%">
@@ -4113,20 +4384,21 @@ font-style: inherit;">"gray"</span>})</span>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-lukacs1970" class="csl-entry">
 Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 </div>
 </div></section></div> ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_5.html</guid>
-  <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 18 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day4：充分統計量與消息理論</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_4.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4199,12 +4471,12 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_4.html</guid>
-  <pubDate>Mon, 17 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Sun, 16 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>最短的向量</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1116-shortest_vector/index.html</link>
+  <link>https://your-website-url.example.com/posts/2025-1116-shortest_vector/</link>
   <description><![CDATA[ 
 
 
@@ -4224,14 +4496,15 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
   <category>Cryptography</category>
   <category>NP-Reduction</category>
   <category>Linear Algebra</category>
-  <guid>https://your-website-url.example.com/posts/2025-1116-shortest_vector/index.html</guid>
-  <pubDate>Sun, 16 Nov 2025 00:00:00 GMT</pubDate>
+  <guid>https://your-website-url.example.com/posts/2025-1116-shortest_vector/</guid>
+  <pubDate>Sat, 15 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>10 Types of Common Distributions</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1114-distribution_10/index.html</link>
+  <link>https://your-website-url.example.com/posts/2025-1114-distribution_10/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4239,9 +4512,13 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 <p>Let’s list 10 common continuous probability distributions along with their probability density functions (PDFs), I’ve ignored the constant normalization factors for simplicity. Here’s a summary table:</p>
 <section id="continuous-probability-distributions-table" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-probability-distributions-table">Continuous Probability Distributions Table</h3>
-<div id="tbl-simple" class="anchored">
-<table class="table">
-<caption>Table&nbsp;1: My Distribution Table</caption>
+<div id="tbl-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: My Distribution Table
+</figcaption>
+<div aria-describedby="tbl-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -4356,6 +4633,8 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <ul>
 <li><img src="https://latex.codecogs.com/png.latex?%7B%5Cdisplaystyle%20K_%7B%5Cnu%20%7D%7D"> is the <a href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions:_I%CE%B1,_K%CE%B1">modified Bessel function of the second kind</a>.</li>
 <li><img src="https://latex.codecogs.com/png.latex?%7B%7D_1F_1(a;%20b;%20z)"> is the <a href="https://en.wikipedia.org/wiki/Confluent_hypergeometric_function">confluent hypergeometric function</a>.</li>
@@ -4364,9 +4643,13 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 <section id="discrete-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="discrete-distributions">Discrete Distributions</h3>
 <p>Here are lists for common discrete probability distributions:</p>
-<div id="tbl-discrete" class="anchored">
-<table class="table">
-<caption>Table&nbsp;2: My Discrete Distribution Table</caption>
+<div id="tbl-discrete" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: My Discrete Distribution Table
+</figcaption>
+<div aria-describedby="tbl-discrete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
 <col style="width: 13%">
@@ -4436,6 +4719,8 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <hr>
 </section>
 <section id="relationships" class="level3">
@@ -4489,14 +4774,15 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>statistic</category>
   <category>Cheat Sheet</category>
-  <guid>https://your-website-url.example.com/posts/2025-1114-distribution_10/index.html</guid>
-  <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+  <guid>https://your-website-url.example.com/posts/2025-1114-distribution_10/</guid>
+  <pubDate>Thu, 13 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day3：多變量常態分佈</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_3.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4543,13 +4829,14 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_3.html</guid>
-  <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 13 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day2：特徵函數(CF)與傅立葉變換</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_2.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4707,12 +4994,324 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_2.html</guid>
-  <pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 12 Nov 2025 16:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Conjugate Prior</title>
+  <dc:creator>Tai-Ning Liao</dc:creator>
+  <link>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="什麼是共軛分佈從丟硬幣開始說起" class="level3">
+<h3 class="anchored" data-anchor-id="什麼是共軛分佈從丟硬幣開始說起">什麼是共軛分佈？從丟硬幣開始說起</h3>
+<p>在貝氏統計 (Bayesian statistics) 中，我們經常需要估計一個未知參數的機率分佈。</p>
+<p>讓我們從一個最經典的問題開始：<strong>丟硬幣</strong>。</p>
+<p>假設我們有一枚硬幣，它有 <img src="https://latex.codecogs.com/png.latex?p"> 的機率正面朝上。我們不知道 <img src="https://latex.codecogs.com/png.latex?p"> 究竟是多少（可能是一枚完美的硬幣，<img src="https://latex.codecogs.com/png.latex?p=0.5">，也可能是一枚被動過手腳的硬幣）。</p>
+<p>為了估計 <img src="https://latex.codecogs.com/png.latex?p">，我們開始做實驗：連續丟這枚硬幣。 假設我們總共丟了 <img src="https://latex.codecogs.com/png.latex?N"> 次，結果是 <strong><img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面</strong>和 <strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面</strong>（其中 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20+%20%5Cbeta%20=%20N">）。</p>
+<p>現在，問題來了：我們對 <img src="https://latex.codecogs.com/png.latex?p"> 的<strong>最佳</strong>估計是什麼？</p>
+<hr>
+</section>
+<section id="什麼才算最好的估計" class="level3">
+<h3 class="anchored" data-anchor-id="什麼才算最好的估計">什麼才算「最好」的估計？</h3>
+<p>要回答這個問題，我們必須先釐清「最好」是什麼意思。在統計學上，至少有兩種截然不同的思考流派。</p>
+<p><strong>觀點一：最大似然估計 (Maximum Likelihood Estimation, MLE)</strong></p>
+<p>這是「頻率學派」的觀點。他們會問：</p>
+<blockquote class="blockquote">
+<p>哪一個 <img src="https://latex.codecogs.com/png.latex?p"> 值，最有可能產生我們<strong>觀測到的實驗結果</strong>（<img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面，<img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面）？</p>
+</blockquote>
+<p>我們把觀測到的數據 (Data) 稱為 <img src="https://latex.codecogs.com/png.latex?D">。這個觀點的目標是找到一個 <img src="https://latex.codecogs.com/png.latex?p">，來最大化「給定 <img src="https://latex.codecogs.com/png.latex?p"> 之後，觀測到 <img src="https://latex.codecogs.com/png.latex?D">」的機率。這個機率在統計上稱為<strong>似然 (Likelihood)</strong>。</p>
+<p>寫成數學式，我們要找的就是： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Barg%7D%5Cmax_%7Bp%7D%20%7B%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%7D%0A"></p>
+<p>（在這個硬幣問題中，<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20=%20p%5E%5Calpha%20(1-p)%5E%5Cbeta">。懂微積分的話，你會發現答案是 <img src="https://latex.codecogs.com/png.latex?p%20=%20%5Cfrac%7B%5Calpha%7D%7B%5Calpha+%5Cbeta%7D">，這非常直觀。）</p>
+<p><strong>觀點二：貝氏推論 (Bayesian Inference)</strong></p>
+<p>這是「貝氏學派」的觀點。他們會說：</p>
+<blockquote class="blockquote">
+<p>在我們開始丟硬幣<strong>之前</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> 就已經有一些<strong>初步的信念</strong>（比如，它可能是一枚公平硬幣，所以 <img src="https://latex.codecogs.com/png.latex?p"> 應該在 0.5 附近）。</p>
+<p>然後，我們利用實驗數據 <img src="https://latex.codecogs.com/png.latex?D"> 來<strong>更新</strong>這個信念。</p>
+</blockquote>
+<p>在這個框架下，<img src="https://latex.codecogs.com/png.latex?p"> 不再是一個固定的未知數，而是<strong>一個隨機變數</strong>，它自己也有一個機率分佈。</p>
+<p>這裡有三個核心概念：</p>
+<ol type="1">
+<li><strong>事前分佈 (Prior Distribution) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">：</strong> 在觀測到任何數據<strong>之前</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> 的信念分佈。</li>
+<li><strong>似然 (Likelihood) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)">：</strong> 同 MLE，代表「在某個 <img src="https://latex.codecogs.com/png.latex?p"> 之下，觀測到數據 <img src="https://latex.codecogs.com/png.latex?D">」的機率。</li>
+<li><strong>事後分佈 (Posterior Distribution) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)">：</strong> 在觀測到數據 <img src="https://latex.codecogs.com/png.latex?D"> <strong>之後</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> <strong>更新後的信念</strong>分佈。</li>
+</ol>
+<hr>
+<p><strong>貝氏定理：更新信念的關鍵</strong></p>
+<p>貝氏學派的精髓，就是透過「貝氏定理」來完成這個信念的更新：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Ccdot%20%5Cmathbb%7BP%7D(p)%7D%7B%5Cmathbb%7BP%7D(D)%7D%0A"></p>
+<p>這個公式可能看起來有點嚇人，但它的核心思想很簡單：</p>
+<blockquote class="blockquote">
+<p><strong>事後分佈 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 似然 <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> 事前分佈</strong> (Posterior <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> Likelihood <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> Prior)</p>
+</blockquote>
+</section>
+<section id="為什麼我們需要共軛分佈" class="level3">
+<h3 class="anchored" data-anchor-id="為什麼我們需要共軛分佈">為什麼我們需要「共軛分佈」？</h3>
+<p>貝氏推論非常強大，但它有個很現實的數學問題：</p>
+<p>要計算事後分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)">，我們需要計算分母 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)">。 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)%20=%20%5Cint%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cmathbb%7BP%7D(p)%20%5Ctext%7Bd%7Dp">。這個積分（或離散情況下的加總）常常<strong>非常複雜</strong>，甚至算不出來。</p>
+<p>這就讓早期的統計學家很頭痛。直到他們發現了一個「捷徑」。</p>
+<p><strong>想像一下：</strong></p>
+<p>如果我們<strong>精心挑選</strong>一個「事前分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">，使得它在乘上「似然函數」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)"> 之後，得到的「事後分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)"> …</p>
+<p>…<strong>竟然跟原來的「事前分佈」長得一模一樣</strong>（只是參數不同了）！</p>
+<p>這就太神奇了！這代表：</p>
+<ol type="1">
+<li><strong>計算超級簡單：</strong> 我們不需要去算那個可怕的積分，只需要套用簡單的「參數更新規則」就好。</li>
+<li><strong>迭代更新：</strong> 這次得到的「事後分佈」可以當作下一次實驗的「事前分佈」，形成一個不斷學習的循環。</li>
+</ol>
+<p>這種「事前分佈」與「事後分佈」<strong>同屬於一個機率分佈家族</strong>的特性，就稱為<strong>共軛 (Conjugacy)</strong>。</p>
+<p>我們稱：</p>
+<blockquote class="blockquote">
+<p><strong>這個「事前分佈」(Prior) 是該「似然函數」(Likelihood) 的「共軛事前分佈」(Conjugate Prior)。</strong></p>
+</blockquote>
+<p>回到我們最初的硬幣問題。</p>
+<p>我們的「似然函數」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)"> 是一個<strong>二項分佈 (Binomial Distribution)</strong> 的形式。</p>
+<p>那麼，是否存在一個機率分佈，是二項分佈的「共軛事前分佈」呢？</p>
+<p>答案是：<strong>有！</strong></p>
+<hr>
+</section>
+<section id="數學推導為什麼-beta-是二項分佈的共軛" class="level3">
+<h3 class="anchored" data-anchor-id="數學推導為什麼-beta-是二項分佈的共軛">數學推導：為什麼 Beta 是二項分佈的共軛？</h3>
+<p><strong>第 1 步：定義我們的「似然」 (Likelihood)</strong></p>
+<p>我們的實驗是丟硬幣，得到了 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面。 給定一個特定的 <img src="https://latex.codecogs.com/png.latex?p">（正面機率），發生這件事的機率（即「似然」）是一個<strong>二項分佈 (Binomial Distribution)</strong>：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20=%20%5Cbinom%7B%5Calpha+%5Cbeta%7D%7B%5Calpha%7D%20p%5E%5Calpha%20(1-p)%5E%5Cbeta%0A"></p>
+<p>在貝氏推導中，我們只關心這個公式「作為 <img src="https://latex.codecogs.com/png.latex?p"> 的函數」長什麼樣子。那個 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B%5Calpha+%5Cbeta%7D%7B%5Calpha%7D"> 是一個常數（跟 <img src="https://latex.codecogs.com/png.latex?p"> 無關），所以我們可以把它合併到 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> (正比於) 符號中：</p>
+<blockquote class="blockquote">
+<p><strong>Likelihood: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cpropto%20p%5E%5Calpha%20(1-p)%5E%5Cbeta"></strong></p>
+</blockquote>
+<p><strong>第 2 步：介紹主角「Beta 分佈」</strong></p>
+<p>現在，我們需要尋找一個「事前分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">，它乘上 <img src="https://latex.codecogs.com/png.latex?p%5E%5Calpha%20(1-p)%5E%5Cbeta"> 之後，長得會跟自己很像。</p>
+<p>仔細看 <img src="https://latex.codecogs.com/png.latex?p%5E%5Calpha%20(1-p)%5E%5Cbeta"> 這個形式… 如果我們的「事前分佈」也長成「<img src="https://latex.codecogs.com/png.latex?p"> 的幾次方」乘上「<img src="https://latex.codecogs.com/png.latex?(1-p)"> 的幾次方」，那它們相乘時，不就可以很漂亮地合併指數嗎？</p>
+<p>這正是 <strong>Beta 分佈</strong>登場的時刻！</p>
+<p>Beta 分佈的機率密度函數 (PDF) 定義在 <img src="https://latex.codecogs.com/png.latex?p%20%5Cin%20%5B0,%201%5D"> 之間（這剛好就是機率 <img src="https://latex.codecogs.com/png.latex?p"> 的合理範圍），它有兩個<strong>超參數 (hyperparameters)</strong>，我們叫它們 <img src="https://latex.codecogs.com/png.latex?a"> 和 <img src="https://latex.codecogs.com/png.latex?b">：</p>
+<blockquote class="blockquote">
+<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20=%20%5Ctext%7BBeta%7D(p%20%5Cmid%20a,%20b)%20=%20%5Cfrac%7B1%7D%7BB(a,%20b)%7D%20p%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D"></strong></p>
+</blockquote>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?a"> 和 <img src="https://latex.codecogs.com/png.latex?b"> 必須大於 0。</li>
+<li><img src="https://latex.codecogs.com/png.latex?B(a,%20b)"> 是一個常數（Beta 函數，<img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5CGamma(a)%5CGamma(b)%7D%7B%5CGamma(a+b)%7D">），用來確保整個分佈的總機率積分為 1。</li>
+<li><strong>直觀上</strong>，你可以把 <img src="https://latex.codecogs.com/png.latex?a"> 想像成我們在實驗前「信念中」的正面次數， <img src="https://latex.codecogs.com/png.latex?b"> 想像成「信念中」的反面次數。</li>
+</ul>
+<p>和似然函數一樣，在 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 的世界裡，我們可以暫時忽略常數 <img src="https://latex.codecogs.com/png.latex?B(a,%20b)">：</p>
+<blockquote class="blockquote">
+<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20%5Cpropto%20p%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D"></strong></p>
+</blockquote>
+<p><strong>第 3 步：施展貝氏魔法！(推導事後分佈)</strong></p>
+<p>我們把 Likelihood 和 Prior 相乘：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20&amp;%5Cpropto%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Ctimes%20%5Cmathbb%7BP%7D(p)%20%20%5C%5C%0A&amp;%5Cpropto%20%5Bp%5E%5Calpha%20(1-p)%5E%5Cbeta%5D%20%5Ctimes%20%5Bp%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D%5D%20%20%5C%5C%0A&amp;%5Cpropto%20p%5E%7B(%5Calpha%20+%20a)%20-%201%7D%20%5Ctimes%20(1-p)%5E%7B(%5Cbeta%20+%20b)%20-%201%7D%0A%5Cend%7Baligned%7D%0A"></p>
+<p><strong>第 4 步：揭曉答案</strong></p>
+<p>請停下來，仔細看看我們得到的結果：</p>
+<p><strong>事後分佈: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20%5Cpropto%20p%5E%7B(a%20+%20%5Calpha)%20-%201%7D%20%5Ccdot%20(1-p)%5E%7B(b%20+%20%5Cbeta)%20-%201%7D"></strong></p>
+<p>再回頭看看我們的事前分佈：</p>
+<p><strong>事前分佈: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20%5Cpropto%20p%5E%7Ba%20-%201%7D%20%5Ccdot%20(1-p)%5E%7Bb%20-%201%7D"></strong></p>
+<p><strong>它們的數學形式一模一樣！</strong></p>
+<p>這證明了事後分佈<strong>仍然是一個 Beta 分佈</strong>。只不過，它的參數從 <img src="https://latex.codecogs.com/png.latex?(a,%20b)"> 更新成了 <img src="https://latex.codecogs.com/png.latex?(a%20+%20%5Calpha,%20b%20+%20%5Cbeta)">。</p>
+<hr>
+</section>
+<section id="結論" class="level3">
+<h3 class="anchored" data-anchor-id="結論">結論：</h3>
+<p>這個推導告訴我們一個美妙的更新規則：</p>
+<blockquote class="blockquote">
+<p>如果你對 <img src="https://latex.codecogs.com/png.latex?p"> 的「事前信念」是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a,%20b)">，</p>
+<p>接著你觀測到了 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面，</p>
+<p>那麼你對 <img src="https://latex.codecogs.com/png.latex?p"> 的「事後信念」<strong>就是</strong> <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a%20+%20%5Calpha,%20b%20+%20%5Cbeta)">。</p>
+</blockquote>
+<p><strong>這就是共軛的魔力！</strong></p>
+<ul>
+<li><strong>無需計算複雜積分：</strong> 我們完全繞過了 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)%20=%20%5Cint%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cmathbb%7BP%7D(p)%20%5Ctext%7Bd%7Dp"> 這個大魔王。</li>
+<li><strong>直觀的更新：</strong> 我們的信念更新規則變成了<strong>簡單的加法</strong>。
+<ul>
+<li>新的 “正面” 參數 = 舊的 “正面” 信念 + 觀測到的正面次數</li>
+<li>新的 “反面” 參數 = 舊的 “反面” 信念 + 觀測到的反面次數</li>
+</ul></li>
+<li><strong>迭代學習：</strong> 這個新的 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a+%5Calpha,%20b+%5Cbeta)"> 分佈可以立刻作為下一次實驗的「事前分佈」，讓我們不斷地、無縫地用新數據更新我們的信念。</li>
+</ul>
+<p>這完美地展示了貝氏統計如何將「先驗知識」與「觀測數據」優雅地結合起來。</p>
+</section>
+<section id="共軛分佈二估計事件的發生率-gamma-與-poisson-的共舞" class="level2">
+<h2 class="anchored" data-anchor-id="共軛分佈二估計事件的發生率-gamma-與-poisson-的共舞">共軛分佈（二）：估計事件的「發生率」— Gamma 與 Poisson 的共舞</h2>
+<p>如果我們要估計的不是一個 0 到 1 的機率，而是一個**「率」 (rate)** 呢？例如：</p>
+<ul>
+<li>一個客服中心，平均<strong>每小時</strong>接到多少通電話？</li>
+<li>一個路口，平均<strong>每 10 分鐘</strong>會經過多少輛車？</li>
+<li>你的程式碼，平均<strong>每 1000 行</strong>有多少個 bug？</li>
+</ul>
+<p>這些事件的共同點是，它們在一個連續區間（時間、空間）內發生，我們可以去「計數」(count)，理論上發生的次數可以 是 0, 1, 2, … 一直到無限大。</p>
+<p>這類「計數」問題，正是 <strong>Poisson 分佈</strong>的主場。而當我們想對 Poisson 分佈的「率」(<img src="https://latex.codecogs.com/png.latex?%5Clambda">) 進行貝氏推論時，就輪到它的共軛夥伴——<strong>Gamma 分佈</strong>——登場了。</p>
+<p><strong>第一步：我們的「似然」— Poisson 分佈</strong></p>
+<p>和之前一樣，貝氏推論的第一步是建立我們的<strong>似然 (Likelihood)</strong>。</p>
+<p>我們要估計的核心參數是 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> (lambda)，代表「單位時間（或單位空間）內的平均事件發生率」。</p>
+<p><strong>Poisson 分佈</strong>告訴我們，如果平均率是 <img src="https://latex.codecogs.com/png.latex?%5Clambda">，那麼在一個單位時間內，實際觀測到 <img src="https://latex.codecogs.com/png.latex?k"> 次事件的機率為：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(k%20%5Cmid%20%5Clambda)%20=%20%5Cfrac%7B%5Clambda%5Ek%20e%5E%7B-%5Clambda%7D%7D%7Bk!%7D%0A"> 假設我們進行了 <img src="https://latex.codecogs.com/png.latex?n"> 次觀測（例如，我們觀察了 <img src="https://latex.codecogs.com/png.latex?n"> 個小時），得到的數據是 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20x_2,%20%5Cdots,%20x_n%5C%7D">，其中 <img src="https://latex.codecogs.com/png.latex?x_i"> 是第 <img src="https://latex.codecogs.com/png.latex?i"> 個小時觀測到的事件次數。</p>
+<p>「給定 <img src="https://latex.codecogs.com/png.latex?%5Clambda">」，觀測到這整組數據 <img src="https://latex.codecogs.com/png.latex?D"> 的聯合機率（似然）就是把所有機率乘起來： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20=%20%5Cprod_%7Bi=1%7D%5En%20%5Cfrac%7B%5Clambda%5E%7Bx_i%7D%20e%5E%7B-%5Clambda%7D%7D%7Bx_i!%7D%0A"></p>
+<p>在貝氏推論中，我們只關心和 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 相關的項。把上式重新整理：</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20&amp;%5Cpropto%20%5Cleft(%20%5Cprod_%7Bi=1%7D%5En%20%5Clambda%5E%7Bx_i%7D%20%5Cright)%20%5Cleft(%20%5Cprod_%7Bi=1%7D%5En%20e%5E%7B-%5Clambda%7D%20%5Cright)%20%5C%5C%0A&amp;%5Cpropto%20%5Clambda%5E%7B%5Csum%20x_i%7D%20%5Ccdot%20e%5E%7B-n%5Clambda%7D%0A%5Cend%7Baligned%7D%0A"></p>
+<p>令 <img src="https://latex.codecogs.com/png.latex?S%20=%20%5Csum%20x_i">（我們觀測到的<strong>總事件數</strong>），我們的似然函數可以簡潔地表示為：</p>
+<blockquote class="blockquote">
+<p><strong>Likelihood: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20%5Cpropto%20%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D"></strong></p>
+</blockquote>
+<p><strong>第二步：我們的「事前」— Gamma 分佈</strong></p>
+<p>現在，我們需要為 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 選擇一個<strong>事前分佈 (Prior)</strong>。 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 作為一個「率」，它必須大於 0。我們需要一個定義在 <img src="https://latex.codecogs.com/png.latex?(0,%20%5Cinfty)"> 上的機率分佈。</p>
+<p>更重要的是，我們希望這個事前分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Clambda)"> 乘上似然 <img src="https://latex.codecogs.com/png.latex?%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D"> 之後，能得到一個形式相同的分佈。</p>
+<p>看看似然的形式：<img src="https://latex.codecogs.com/png.latex?%5Clambda"> 的某次方，再乘以 <img src="https://latex.codecogs.com/png.latex?e"> 的 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 負次方。 什麼分佈長這樣呢？ 答案就是 <strong>Gamma 分佈</strong>！</p>
+<p>Gamma 分佈由兩個超參數 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> (shape, 形狀) 和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> (rate, 率) 定義：</p>
+<blockquote class="blockquote">
+<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Clambda)%20=%20%5Ctext%7BGamma%7D(%5Clambda%20%5Cmid%20%5Calpha,%20%5Cbeta)%20%5Cpropto%20%5Clambda%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cbeta%5Clambda%7D"></strong></p>
+</blockquote>
+<p><strong>直觀解釋 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">：</strong> 你可以把 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 想像成你的「事前信念中的<strong>總事件數</strong>」，而 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 是「事前信念中的<strong>總觀測單位數</strong>」。 例如，如果你「猜」這個率 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 大約是 5（例如 5 通電話 / 1 小時），你可以設 <img src="https://latex.codecogs.com/png.latex?%5Calpha=5,%20%5Cbeta=1">。</p>
+<p><strong>第三步：貝氏魔法！推導「事後分佈」</strong></p>
+<p>我們再次使出貝氏定理的武器：</p>
+<blockquote class="blockquote">
+<p><strong>事後分佈 (Posterior) <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 似然 (Likelihood) <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> 事前分佈 (Prior)</strong></p>
+</blockquote>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(%5Clambda%20%5Cmid%20D)%20&amp;%5Cpropto%20%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20%5Ctimes%20%5Cmathbb%7BP%7D(%5Clambda)%20%5C%5C%0A&amp;%5Cpropto%20%5B%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D%5D%20%5Ctimes%20%5B%5Clambda%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cbeta%5Clambda%7D%5D%20%20%5C%5C%0A&amp;%5Cpropto%20%5Clambda%5E%7B(S%20+%20%5Calpha)%20-%201%7D%20%5Ccdot%20e%5E%7B-(n%20+%20%5Cbeta)%5Clambda%7D%0A%5Cend%7Baligned%7D%0A"></p>
+<p>它是不是 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 的 (某數 - 1) 次方，再乘以 <img src="https://latex.codecogs.com/png.latex?e"> 的 (負某數) <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 次方？ <strong>這正是一個新的 Gamma 分佈！</strong></p>
+<hr>
+<section id="結論優雅的更新規則" class="level3">
+<h3 class="anchored" data-anchor-id="結論優雅的更新規則">結論：優雅的更新規則</h3>
+<p>我們證明了：</p>
+<blockquote class="blockquote">
+<p>如果你的事前信念是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha,%20%5Cbeta)">，</p>
+<p>接著你觀測了 <img src="https://latex.codecogs.com/png.latex?n"> 個單位，總共發生了 <img src="https://latex.codecogs.com/png.latex?S%20=%20%5Csum%20x_i"> 次事件，</p>
+<p>你的事後信念就會更新為 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha_%7B%5Ctext%7Bnew%7D%7D,%20%5Cbeta_%7B%5Ctext%7Bnew%7D%7D)">。</p>
+</blockquote>
+<p>更新規則超級簡單，只是加法：</p>
+<ul>
+<li><strong><img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Calpha%20+%20S"></strong> (舊的事件數 + 新觀測到的事件數)</li>
+<li><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Cbeta%20+%20n"></strong> (舊的觀測單位 + 新觀測的單位數)</li>
+</ul>
+<p>舉個例子：</p>
+<ol type="1">
+<li><strong>事前 (Prior)：</strong> 你是新來的客服經理，你<strong>猜測</strong>客服中心平均每小時接 10 通電話。你對這個猜測不太確定，所以你設定了 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha=10,%20%5Cbeta=1)"> 當作你的事前信念。（信念強度 = 1 小時的觀測）</li>
+<li><strong>數據 (Data)：</strong> 你實際去觀測了 5 個小時（<img src="https://latex.codecogs.com/png.latex?n=5">），接到的電話數分別是 <img src="https://latex.codecogs.com/png.latex?%5C%7B12,%208,%2011,%2010,%209%5C%7D">。</li>
+<li><strong>似然 (Likelihood)：</strong> 觀測單位 <img src="https://latex.codecogs.com/png.latex?n=5">。觀測總數 <img src="https://latex.codecogs.com/png.latex?S%20=%2012+8+11+10+9%20=%2050">。</li>
+<li><strong>事後 (Posterior)：</strong></li>
+</ol>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Calpha%20+%20S%20=%2010%20+%2050%20=%2060"></li>
+<li><img src="https://latex.codecogs.com/png.latex?%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Cbeta%20+%20n%20=%201%20+%205%20=%206"></li>
+<li>你更新後的信念是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(60,%206)">。</li>
+</ul>
+<p>Gamma 分佈的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20/%20%5Cbeta">。</p>
+<ul>
+<li>你<strong>原先</strong>的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha/%5Cbeta%20=%2010%20/%201%20=%2010"> 通/小時。</li>
+<li>你<strong>更新後</strong>的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20/%20%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%2060%20/%206%20=%2010"> 通/小時。</li>
+</ul>
+<p>在這個例子中，你的平均估計沒有變，因為你的觀測數據 (50/5 = 10) 剛好符合你的猜測！但是，你的<strong>信心</strong>大大增加了（Gamma(60, 6) 是一個比 Gamma(10, 1) 更尖、更窄的分佈），因為你的信念現在是基於 6 個小時的數據，而不僅僅是 1 個小時的猜測。</p>
+<div style="text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/Gamma_60_6.png" class="img-fluid figure-img" width="400"></p>
+<figcaption>圖一： Gamma(10,1) 與 Gamma(60,6) 的比較</figcaption>
+</figure>
+</div>
+</div>
+<p>這就是 Gamma-Poisson 共軛家族的美妙之處：它提供了一個直觀且計算簡單的方法，讓我們不斷用新的「計數數據」來更新我們對「事件發生率」的信念。</p>
+<hr>
+</section>
+</section>
+<section id="共軛分佈三估計常態分佈的平均值與變異數-normal-inverse-gamma" class="level2">
+<h2 class="anchored" data-anchor-id="共軛分佈三估計常態分佈的平均值與變異數-normal-inverse-gamma">共軛分佈（三）：估計常態分佈的平均值與變異數 (Normal-Inverse-Gamma)</h2>
+<p>在前面的文章中，我們學會了如何：</p>
+<ol type="1">
+<li>用 <strong>Beta-Binomial</strong> 估計<strong>機率</strong> (0 到 1 之間)。</li>
+<li>用 <strong>Gamma-Poisson</strong> 估計<strong>頻率</strong> (大於 0 的計數)。</li>
+</ol>
+<p>現在，我們要來處理統計學中最常見的問題：估計一個<strong>平均值 (mean)</strong>。</p>
+<ul>
+<li>一群學生的<strong>平均身高</strong>是多少？</li>
+<li>一批產品的<strong>平均壽命</strong>是多久？</li>
+<li>某支股票的<strong>平均日報酬率</strong>是多少？</li>
+</ul>
+<p>這些測量值——身高、時間、報酬率——都是<strong>連續變數</strong>。而說到連續變數，統計學的王者，<strong>常態分佈 (Normal Distribution)</strong> <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)">，就該登場了。</p>
+<p><strong>挑戰：兩個未知數</strong></p>
+<p>。但這裡有一個挑戰。不像 Binomial (只有 <img src="https://latex.codecogs.com/png.latex?p">) 或 Poisson (只有 <img src="https://latex.codecogs.com/png.latex?%5Clambda">) 只有一個參數，常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)"> 描述了兩個我們都不知道的參數：</p>
+<ol type="1">
+<li>平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu">：我們主要想估計的目標。</li>
+<li>變異數 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">：數據的波動程度，我們通常也不知道。</li>
+</ol>
+<p>我們希望能建立一個貝氏模型，讓我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的「信念」在看到新數據 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20...,%20x_n%5C%7D"> 後，能自動更新。</p>
+<p><strong>暖身: 從最大概似估計 (MLE) 看起</strong></p>
+<p>在進入貝氏模型之前，讓我們先用傳統的「最大概似估計 (Maximum Likelihood Estimation, MLE)」來暖身。這能幫助我們理解 Likelihood Function 的長相。</p>
+<p>假設 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20...,%20x_n%5C%7D"> 來自 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)">，Likelihood Function 為： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)%20&amp;=%20%5Cprod_%7Bi=1%7D%5En%20%5Cleft(%20%5Cfrac%7B1%7D%7B%5Csigma%5Csqrt%7B2%5Cpi%7D%7De%5E%7B-%5Cfrac%7B(x_i-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%20%5Cright)%20%20%5C%5C%0A&amp;%5Cpropto%20%5Cfrac%7B1%7D%7B%5Csigma%5En%7D%20e%5E%7B-%5Cfrac%7B%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%0A%5Cend%7Balign%7D%0A"> 為了方便計算，我們取其負對數 (Negative Log-Likelihood): <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%20%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))%0A&amp;=%20%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20n%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"> 這邊constant的意思是跟 <img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma"> 無關。</p>
+<p>用 maximal likelihood 的觀點，這個 <img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma"> 的極值發生在哪裡? 我們記等式左邊這個 log-likelihood 為 <img src="https://latex.codecogs.com/png.latex?f%20=%20-%20%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))">。令其偏微分各自為0。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20%5Cmu%7D%20&amp;=%20%20%5Cfrac%7B1%7D%7B%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(%5Cmu%20-%20x_i)%20=%200%20%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20%5Csigma%7D%20&amp;=%20%20-%5Cfrac%7B1%7D%7B%5Csigma%5E3%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20%5Cfrac%7Bn%7D%7B%5Csigma%7D%20=%200%20%20%0A%5Cend%7Balign%7D%0A"> 解出來為 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Chat%7B%5Cmu%7D%20&amp;=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi=1%7D%5En%20x_i%20=%20%5Coverline%7Bx%7D%20%5C%5C%0A%5Chat%7B%5Csigma%7D%5E2%20&amp;=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Coverline%7Bx%7D)%5E2%20%20%0A%5Cend%7Balign%7D%0A"> (可以驗證一下，二階導數矩陣正定，所以 <img src="https://latex.codecogs.com/png.latex?f"> 是取到最小值)</p>
+<blockquote class="blockquote">
+<p>題外話：為什麼是除以 <img src="https://latex.codecogs.com/png.latex?n"> 而不是 <img src="https://latex.codecogs.com/png.latex?n-1">？ 一般說的樣本標準差是「除以 <img src="https://latex.codecogs.com/png.latex?n-1">」這裡推導出來怎麼是除以 <img src="https://latex.codecogs.com/png.latex?n">? 難道推導錯誤了嗎? 沒有，若要最大化似然，確實應該要除以 <img src="https://latex.codecogs.com/png.latex?n">，而一般常用的除以 <img src="https://latex.codecogs.com/png.latex?n-1">，那是我們希望這個 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 是個無偏估計 (unbiased-estimation)。也就是說我們希望 <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5B%5Ctilde%7B%5Csigma%7D%5E2%5D%20=%20%5Csigma%5E2%0A"> 把期望值的定義寫出來，也就是 <img src="https://latex.codecogs.com/png.latex?%0A%5Cint%20%5Ctilde%7B%5Csigma%7D%5E2%20%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)%20%20dx_1...dx_n%20=%20%5Csigma%5E2%0A"> 也就是一般的樣本標準差 <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Csigma%7D%5E2%20=%20%5Cfrac%7B1%7D%7Bn-1%7D%20%5Csum_%7Bi=1%7D%5En%20(x_i-%5Coverline%7Bx%7D)%5E2">，是在所有無偏估計中，擁有最小variance的 (Why?)</p>
+</blockquote>
+<section id="貝式解法-normal-inverse-gamma-nig-模型" class="level3">
+<h3 class="anchored" data-anchor-id="貝式解法-normal-inverse-gamma-nig-模型">貝式解法: Normal-Inverse-Gamma (NIG) 模型</h3>
+<p>好了，拉回我們的正題：貝氏更新。我們要找一個共軛事前分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)">，使得它乘上 Likelihood <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)"> 之後，得到的 Posterior <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D)"> 仍然和 Prior 具有相同的形式。這個神奇的 Prior 就是 Normal-Inverse-Gamma (NIG) 分佈。它由四個超參數 <img src="https://latex.codecogs.com/png.latex?(%5Cmu_0,%20%5Ckappa_0,%20%5Calpha_0,%20%5Cbeta_0)"> 定義，其結構如下：</p>
+<ol type="1">
+<li>對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念：我們假設 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 服從一個 Inverse-Gamma 分佈: <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(%5Csigma%5E2)%20%5Cpropto%20(%5Csigma%5E2)%5E%7B-%5Calpha_0-1%7De%5E%7B-%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%7D%0A"></li>
+<li>對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 的信念 (給定 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">)：我們假設 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 服從一個常態分佈，但這個常態分佈的變異數取決於 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(%5Cmu%20%5Cmid%20%5Csigma%5E2)%20%5Csim%20%5Cmathcal%7BN%7D(%5Cmu_0,%20%5Csigma%5E2/%5Ckappa_0)%0A%5Cpropto%20%5Cfrac%7B1%7D%7B%5Csigma%20/%5Csqrt%7B%5Ckappa_0%7D%20%7D%20e%5E%7B-%5Cfrac%7B(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%20/%20%5Ckappa_0%7D%7D%0A"></li>
+</ol>
+<p>這樣就描述了我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)"> 的 joint distribution， <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)%0A&amp;=%20%5Cmathbb%7BP%7D(%5Csigma%5E2)%20%5Ccdot%20%5Cmathbb%7BP%7D(%5Cmu%20%5Cmid%20%5Csigma%5E2)%20%5C%5C%0A&amp;%5Cpropto%20%20(%5Csigma%5E2)%5E%7B-%5Calpha_0-1%7De%5E%7B-%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%7D%20%5Cfrac%7B1%7D%7B%5Csigma%20/%5Csqrt%7B%5Ckappa_0%7D%20%7D%20e%5E%7B-%5Cfrac%7B(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%20/%20%5Ckappa_0%7D%7D%0A%5Cend%7Balign%7D%0A"> 一樣是取negative log-likelihood看比較清楚: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2))%0A&amp;=%20%20%5Cfrac%7B%5Ckappa_0(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%7D%20+%20%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%20+%20(2%5Calpha_0%20+%203)%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"></p>
+<p>精彩的來了，我們要算經過一筆資料 <img src="https://latex.codecogs.com/png.latex?D"> 更新後的事後分布是否也是一樣的形式呢? 而四個超參數 <img src="https://latex.codecogs.com/png.latex?(%5Calpha_0,%20%5Cbeta_0,%20%5Cmu_0,%20%5Ckappa_0)"> 會如何變動呢?</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D))%0A&amp;=%20-%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))%20-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2))%20+%20%5Ctext%7Bconstant%7D%20%5C%5C%0A&amp;=%20%20%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20n%20%5Cln(%5Csigma)%20%5C%5C%0A&amp;%5Cqquad%20+%20%5Cfrac%7B%5Ckappa_0(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%7D%20+%20%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%20+%20(2%5Calpha_0%20+%203)%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%20%5C%5C%0A&amp;=%20%5Cleft(%20%5Cfrac%7Bn+%5Ckappa_0%7D%7B2%5Csigma%5E2%7D%20%5Cright)%5Cmu%5E2%0A+%20%5Cleft(%20-%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i)%20+%20%5Ckappa_0%20%5Cmu_0%7D%7B%5Csigma%5E2%7D%20%5Cright)%5Cmu%20%5C%5C%0A&amp;%5Cqquad%20+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%5Csigma%5E2%7D%0A+%20(n+2%5Calpha_0+3)%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"> 比較一下係數，可以依序解出 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Ckappa_n%20&amp;=%20n%20+%20%5Ckappa_0%20%20%5C%5C%0A%5Cmu_n%20&amp;=%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i)%20+%20%5Ckappa_0%20%5Cmu_0%7D%7Bn+%5Ckappa_0%7D%20%20%5C%5C%0A%5Calpha_n%20&amp;=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D%20%20%5C%5C%0A%5Cbeta_n%20&amp;=%20-%5Cleft(%20%5Cfrac%7Bn+%5Ckappa_0%7D%7B2%7D%20%5Cright)%5Cmu_n%5E2%0A+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%7D%20%5Cquad%5Ctext%7B(by%20completing%20the%20square)%7D%20%5C%5C%0A&amp;=%20-%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%20+%20%5Ckappa_0%20%5Cmu_0)%5E2%7D%7B2(n+%5Ckappa_0)%7D%20+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%7D%0A%5Cend%7Balign%7D%0A"></p>
+</section>
+<section id="總結更新規則與直觀解釋" class="level3">
+<h3 class="anchored" data-anchor-id="總結更新規則與直觀解釋">總結：更新規則與直觀解釋</h3>
+<p>我們成功了！Posterior <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D)"> 確實保持了 Normal-Inverse-Gamma (NIG) 的形式，其超參數 <img src="https://latex.codecogs.com/png.latex?(%5Cmu_n,%20%5Ckappa_n,%20%5Calpha_n,%20%5Cbeta_n)"> 透過以下規則更新：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">超參數</th>
+<th style="text-align: left;">事前 (Prior)</th>
+<th style="text-align: left;">事後 (Posterior) 更新規則</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n%20=%20%5Ckappa_0%20+%20n"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_n"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_0"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_n%20=%20%5Cfrac%7B%5Ckappa_0%20%5Cmu_0%20+%20n%5Coverline%7Bx%7D%7D%7B%5Ckappa_0%20+%20n%7D"> (其中 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D%20=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum%20x_i">)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_n"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_0"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_n%20=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_0"></td>
+<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n%20=%20%5Cbeta_0%20+%20%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi=1%7D%5En%20(x_i%20-%20%5Coverline%7Bx%7D)%5E2%20+%20%5Cfrac%7Bn%5Ckappa_0%7D%7B2(n+%5Ckappa_0)%7D(%5Coverline%7Bx%7D%20-%20%5Cmu_0)%5E2"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>這代表什麼？</strong>，讓我們來直觀地解讀這些更新規則：</p>
+<ul>
+<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n%20=%20%5Ckappa_0%20+%20n"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 的信心（<img src="https://latex.codecogs.com/png.latex?%5Ckappa">）等於「先前的信心」加上「新數據的點數」。這非常合理。</p></li>
+<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Cmu_n%20=%20%5Cfrac%7B%5Ckappa_0%20%5Cmu_0%20+%20n%5Coverline%7Bx%7D%7D%7B%5Ckappa_0%20+%20n%7D"></strong>： <strong>這是最漂亮的一條規則！</strong> 我們更新後的平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu_n">，是「先前平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu_0">」和「數據平均值 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D">」的<strong>加權平均</strong>。 權重分別是 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0">（先前的信心）和 <img src="https://latex.codecogs.com/png.latex?n">（數據的數量）。如果 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"> 很小（不確定的 prior），<img src="https://latex.codecogs.com/png.latex?%5Cmu_n"> 就會很接近 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D">。如果 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"> 很大（強烈的 prior），<img src="https://latex.codecogs.com/png.latex?%5Cmu_n"> 就會很接近 <img src="https://latex.codecogs.com/png.latex?%5Cmu_0">。</p></li>
+<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Calpha_n%20=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念（<img src="https://latex.codecogs.com/png.latex?%5Calpha">）也隨著數據點 <img src="https://latex.codecogs.com/png.latex?n"> 而增加。</p></li>
+<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n%20=%20%5Cbeta_0%20+%20%5Cdots"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念（<img src="https://latex.codecogs.com/png.latex?%5Cbeta">）更新，等於「先前的 <img src="https://latex.codecogs.com/png.latex?%5Cbeta_0">」加上「數據內部的變異 <img src="https://latex.codecogs.com/png.latex?%5Csum%20(x_i%20-%20%5Coverline%7Bx%7D)%5E2">」再加上「數據平均值與先前平均值之間的差異 <img src="https://latex.codecogs.com/png.latex?(%5Coverline%7Bx%7D%20-%20%5Cmu_0)%5E2">」。這也完全符合直覺。</p></li>
+</ul>
+<p>至此，我們完成推導了常態分佈的共軛模型！它讓我們能夠在 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 都未知的情況下，優雅地更新我們的信念。</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>statistic</category>
+  <guid>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/</guid>
+  <pubDate>Tue, 11 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>聊聊 Error Correcting Code (ECC) 的基石：Linear Code</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1112-linear_code/index.html</link>
+  <link>https://your-website-url.example.com/posts/2025-1112-linear_code/</link>
   <description><![CDATA[ 
 
 
@@ -4954,325 +5553,15 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>Cryptography</category>
   <category>Linear Algebra</category>
-  <guid>https://your-website-url.example.com/posts/2025-1112-linear_code/index.html</guid>
-  <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Conjugate Prior</title>
-  <dc:creator>Tai-Ning Liao</dc:creator>
-  <link>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="什麼是共軛分佈從丟硬幣開始說起" class="level3">
-<h3 class="anchored" data-anchor-id="什麼是共軛分佈從丟硬幣開始說起">什麼是共軛分佈？從丟硬幣開始說起</h3>
-<p>在貝氏統計 (Bayesian statistics) 中，我們經常需要估計一個未知參數的機率分佈。</p>
-<p>讓我們從一個最經典的問題開始：<strong>丟硬幣</strong>。</p>
-<p>假設我們有一枚硬幣，它有 <img src="https://latex.codecogs.com/png.latex?p"> 的機率正面朝上。我們不知道 <img src="https://latex.codecogs.com/png.latex?p"> 究竟是多少（可能是一枚完美的硬幣，<img src="https://latex.codecogs.com/png.latex?p=0.5">，也可能是一枚被動過手腳的硬幣）。</p>
-<p>為了估計 <img src="https://latex.codecogs.com/png.latex?p">，我們開始做實驗：連續丟這枚硬幣。 假設我們總共丟了 <img src="https://latex.codecogs.com/png.latex?N"> 次，結果是 <strong><img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面</strong>和 <strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面</strong>（其中 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20+%20%5Cbeta%20=%20N">）。</p>
-<p>現在，問題來了：我們對 <img src="https://latex.codecogs.com/png.latex?p"> 的<strong>最佳</strong>估計是什麼？</p>
-<hr>
-</section>
-<section id="什麼才算最好的估計" class="level3">
-<h3 class="anchored" data-anchor-id="什麼才算最好的估計">什麼才算「最好」的估計？</h3>
-<p>要回答這個問題，我們必須先釐清「最好」是什麼意思。在統計學上，至少有兩種截然不同的思考流派。</p>
-<p><strong>觀點一：最大似然估計 (Maximum Likelihood Estimation, MLE)</strong></p>
-<p>這是「頻率學派」的觀點。他們會問：</p>
-<blockquote class="blockquote">
-<p>哪一個 <img src="https://latex.codecogs.com/png.latex?p"> 值，最有可能產生我們<strong>觀測到的實驗結果</strong>（<img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面，<img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面）？</p>
-</blockquote>
-<p>我們把觀測到的數據 (Data) 稱為 <img src="https://latex.codecogs.com/png.latex?D">。這個觀點的目標是找到一個 <img src="https://latex.codecogs.com/png.latex?p">，來最大化「給定 <img src="https://latex.codecogs.com/png.latex?p"> 之後，觀測到 <img src="https://latex.codecogs.com/png.latex?D">」的機率。這個機率在統計上稱為<strong>似然 (Likelihood)</strong>。</p>
-<p>寫成數學式，我們要找的就是： <img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7Barg%7D%5Cmax_%7Bp%7D%20%7B%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%7D%0A"></p>
-<p>（在這個硬幣問題中，<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20=%20p%5E%5Calpha%20(1-p)%5E%5Cbeta">。懂微積分的話，你會發現答案是 <img src="https://latex.codecogs.com/png.latex?p%20=%20%5Cfrac%7B%5Calpha%7D%7B%5Calpha+%5Cbeta%7D">，這非常直觀。）</p>
-<p><strong>觀點二：貝氏推論 (Bayesian Inference)</strong></p>
-<p>這是「貝氏學派」的觀點。他們會說：</p>
-<blockquote class="blockquote">
-<p>在我們開始丟硬幣<strong>之前</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> 就已經有一些<strong>初步的信念</strong>（比如，它可能是一枚公平硬幣，所以 <img src="https://latex.codecogs.com/png.latex?p"> 應該在 0.5 附近）。</p>
-<p>然後，我們利用實驗數據 <img src="https://latex.codecogs.com/png.latex?D"> 來<strong>更新</strong>這個信念。</p>
-</blockquote>
-<p>在這個框架下，<img src="https://latex.codecogs.com/png.latex?p"> 不再是一個固定的未知數，而是<strong>一個隨機變數</strong>，它自己也有一個機率分佈。</p>
-<p>這裡有三個核心概念：</p>
-<ol type="1">
-<li><strong>事前分佈 (Prior Distribution) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">：</strong> 在觀測到任何數據<strong>之前</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> 的信念分佈。</li>
-<li><strong>似然 (Likelihood) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)">：</strong> 同 MLE，代表「在某個 <img src="https://latex.codecogs.com/png.latex?p"> 之下，觀測到數據 <img src="https://latex.codecogs.com/png.latex?D">」的機率。</li>
-<li><strong>事後分佈 (Posterior Distribution) <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)">：</strong> 在觀測到數據 <img src="https://latex.codecogs.com/png.latex?D"> <strong>之後</strong>，我們對 <img src="https://latex.codecogs.com/png.latex?p"> <strong>更新後的信念</strong>分佈。</li>
-</ol>
-<hr>
-<p><strong>貝氏定理：更新信念的關鍵</strong></p>
-<p>貝氏學派的精髓，就是透過「貝氏定理」來完成這個信念的更新：</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20=%20%5Cfrac%7B%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Ccdot%20%5Cmathbb%7BP%7D(p)%7D%7B%5Cmathbb%7BP%7D(D)%7D%0A"></p>
-<p>這個公式可能看起來有點嚇人，但它的核心思想很簡單：</p>
-<blockquote class="blockquote">
-<p><strong>事後分佈 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 似然 <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> 事前分佈</strong> (Posterior <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> Likelihood <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> Prior)</p>
-</blockquote>
-</section>
-<section id="為什麼我們需要共軛分佈" class="level3">
-<h3 class="anchored" data-anchor-id="為什麼我們需要共軛分佈">為什麼我們需要「共軛分佈」？</h3>
-<p>貝氏推論非常強大，但它有個很現實的數學問題：</p>
-<p>要計算事後分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)">，我們需要計算分母 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)">。 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)%20=%20%5Cint%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cmathbb%7BP%7D(p)%20%5Ctext%7Bd%7Dp">。這個積分（或離散情況下的加總）常常<strong>非常複雜</strong>，甚至算不出來。</p>
-<p>這就讓早期的統計學家很頭痛。直到他們發現了一個「捷徑」。</p>
-<p><strong>想像一下：</strong></p>
-<p>如果我們<strong>精心挑選</strong>一個「事前分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">，使得它在乘上「似然函數」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)"> 之後，得到的「事後分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)"> …</p>
-<p>…<strong>竟然跟原來的「事前分佈」長得一模一樣</strong>（只是參數不同了）！</p>
-<p>這就太神奇了！這代表：</p>
-<ol type="1">
-<li><strong>計算超級簡單：</strong> 我們不需要去算那個可怕的積分，只需要套用簡單的「參數更新規則」就好。</li>
-<li><strong>迭代更新：</strong> 這次得到的「事後分佈」可以當作下一次實驗的「事前分佈」，形成一個不斷學習的循環。</li>
-</ol>
-<p>這種「事前分佈」與「事後分佈」<strong>同屬於一個機率分佈家族</strong>的特性，就稱為<strong>共軛 (Conjugacy)</strong>。</p>
-<p>我們稱：</p>
-<blockquote class="blockquote">
-<p><strong>這個「事前分佈」(Prior) 是該「似然函數」(Likelihood) 的「共軛事前分佈」(Conjugate Prior)。</strong></p>
-</blockquote>
-<p>回到我們最初的硬幣問題。</p>
-<p>我們的「似然函數」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)"> 是一個<strong>二項分佈 (Binomial Distribution)</strong> 的形式。</p>
-<p>那麼，是否存在一個機率分佈，是二項分佈的「共軛事前分佈」呢？</p>
-<p>答案是：<strong>有！</strong></p>
-<hr>
-</section>
-<section id="數學推導為什麼-beta-是二項分佈的共軛" class="level3">
-<h3 class="anchored" data-anchor-id="數學推導為什麼-beta-是二項分佈的共軛">數學推導：為什麼 Beta 是二項分佈的共軛？</h3>
-<p><strong>第 1 步：定義我們的「似然」 (Likelihood)</strong></p>
-<p>我們的實驗是丟硬幣，得到了 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面。 給定一個特定的 <img src="https://latex.codecogs.com/png.latex?p">（正面機率），發生這件事的機率（即「似然」）是一個<strong>二項分佈 (Binomial Distribution)</strong>：</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20=%20%5Cbinom%7B%5Calpha+%5Cbeta%7D%7B%5Calpha%7D%20p%5E%5Calpha%20(1-p)%5E%5Cbeta%0A"></p>
-<p>在貝氏推導中，我們只關心這個公式「作為 <img src="https://latex.codecogs.com/png.latex?p"> 的函數」長什麼樣子。那個 <img src="https://latex.codecogs.com/png.latex?%5Cbinom%7B%5Calpha+%5Cbeta%7D%7B%5Calpha%7D"> 是一個常數（跟 <img src="https://latex.codecogs.com/png.latex?p"> 無關），所以我們可以把它合併到 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> (正比於) 符號中：</p>
-<blockquote class="blockquote">
-<p><strong>Likelihood: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cpropto%20p%5E%5Calpha%20(1-p)%5E%5Cbeta"></strong></p>
-</blockquote>
-<p><strong>第 2 步：介紹主角「Beta 分佈」</strong></p>
-<p>現在，我們需要尋找一個「事前分佈」<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)">，它乘上 <img src="https://latex.codecogs.com/png.latex?p%5E%5Calpha%20(1-p)%5E%5Cbeta"> 之後，長得會跟自己很像。</p>
-<p>仔細看 <img src="https://latex.codecogs.com/png.latex?p%5E%5Calpha%20(1-p)%5E%5Cbeta"> 這個形式… 如果我們的「事前分佈」也長成「<img src="https://latex.codecogs.com/png.latex?p"> 的幾次方」乘上「<img src="https://latex.codecogs.com/png.latex?(1-p)"> 的幾次方」，那它們相乘時，不就可以很漂亮地合併指數嗎？</p>
-<p>這正是 <strong>Beta 分佈</strong>登場的時刻！</p>
-<p>Beta 分佈的機率密度函數 (PDF) 定義在 <img src="https://latex.codecogs.com/png.latex?p%20%5Cin%20%5B0,%201%5D"> 之間（這剛好就是機率 <img src="https://latex.codecogs.com/png.latex?p"> 的合理範圍），它有兩個<strong>超參數 (hyperparameters)</strong>，我們叫它們 <img src="https://latex.codecogs.com/png.latex?a"> 和 <img src="https://latex.codecogs.com/png.latex?b">：</p>
-<blockquote class="blockquote">
-<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20=%20%5Ctext%7BBeta%7D(p%20%5Cmid%20a,%20b)%20=%20%5Cfrac%7B1%7D%7BB(a,%20b)%7D%20p%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D"></strong></p>
-</blockquote>
-<ul>
-<li><img src="https://latex.codecogs.com/png.latex?a"> 和 <img src="https://latex.codecogs.com/png.latex?b"> 必須大於 0。</li>
-<li><img src="https://latex.codecogs.com/png.latex?B(a,%20b)"> 是一個常數（Beta 函數，<img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5CGamma(a)%5CGamma(b)%7D%7B%5CGamma(a+b)%7D">），用來確保整個分佈的總機率積分為 1。</li>
-<li><strong>直觀上</strong>，你可以把 <img src="https://latex.codecogs.com/png.latex?a"> 想像成我們在實驗前「信念中」的正面次數， <img src="https://latex.codecogs.com/png.latex?b"> 想像成「信念中」的反面次數。</li>
-</ul>
-<p>和似然函數一樣，在 <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 的世界裡，我們可以暫時忽略常數 <img src="https://latex.codecogs.com/png.latex?B(a,%20b)">：</p>
-<blockquote class="blockquote">
-<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20%5Cpropto%20p%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D"></strong></p>
-</blockquote>
-<p><strong>第 3 步：施展貝氏魔法！(推導事後分佈)</strong></p>
-<p>我們把 Likelihood 和 Prior 相乘：</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20&amp;%5Cpropto%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Ctimes%20%5Cmathbb%7BP%7D(p)%20%20%5C%5C%0A&amp;%5Cpropto%20%5Bp%5E%5Calpha%20(1-p)%5E%5Cbeta%5D%20%5Ctimes%20%5Bp%5E%7Ba-1%7D%20(1-p)%5E%7Bb-1%7D%5D%20%20%5C%5C%0A&amp;%5Cpropto%20p%5E%7B(%5Calpha%20+%20a)%20-%201%7D%20%5Ctimes%20(1-p)%5E%7B(%5Cbeta%20+%20b)%20-%201%7D%0A%5Cend%7Baligned%7D%0A"></p>
-<p><strong>第 4 步：揭曉答案</strong></p>
-<p>請停下來，仔細看看我們得到的結果：</p>
-<p><strong>事後分佈: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p%20%5Cmid%20D)%20%5Cpropto%20p%5E%7B(a%20+%20%5Calpha)%20-%201%7D%20%5Ccdot%20(1-p)%5E%7B(b%20+%20%5Cbeta)%20-%201%7D"></strong></p>
-<p>再回頭看看我們的事前分佈：</p>
-<p><strong>事前分佈: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(p)%20%5Cpropto%20p%5E%7Ba%20-%201%7D%20%5Ccdot%20(1-p)%5E%7Bb%20-%201%7D"></strong></p>
-<p><strong>它們的數學形式一模一樣！</strong></p>
-<p>這證明了事後分佈<strong>仍然是一個 Beta 分佈</strong>。只不過，它的參數從 <img src="https://latex.codecogs.com/png.latex?(a,%20b)"> 更新成了 <img src="https://latex.codecogs.com/png.latex?(a%20+%20%5Calpha,%20b%20+%20%5Cbeta)">。</p>
-<hr>
-</section>
-<section id="結論" class="level3">
-<h3 class="anchored" data-anchor-id="結論">結論：</h3>
-<p>這個推導告訴我們一個美妙的更新規則：</p>
-<blockquote class="blockquote">
-<p>如果你對 <img src="https://latex.codecogs.com/png.latex?p"> 的「事前信念」是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a,%20b)">，</p>
-<p>接著你觀測到了 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 次正面和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 次反面，</p>
-<p>那麼你對 <img src="https://latex.codecogs.com/png.latex?p"> 的「事後信念」<strong>就是</strong> <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a%20+%20%5Calpha,%20b%20+%20%5Cbeta)">。</p>
-</blockquote>
-<p><strong>這就是共軛的魔力！</strong></p>
-<ul>
-<li><strong>無需計算複雜積分：</strong> 我們完全繞過了 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D)%20=%20%5Cint%20%5Cmathbb%7BP%7D(D%20%5Cmid%20p)%20%5Cmathbb%7BP%7D(p)%20%5Ctext%7Bd%7Dp"> 這個大魔王。</li>
-<li><strong>直觀的更新：</strong> 我們的信念更新規則變成了<strong>簡單的加法</strong>。
-<ul>
-<li>新的 “正面” 參數 = 舊的 “正面” 信念 + 觀測到的正面次數</li>
-<li>新的 “反面” 參數 = 舊的 “反面” 信念 + 觀測到的反面次數</li>
-</ul></li>
-<li><strong>迭代學習：</strong> 這個新的 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BBeta%7D(a+%5Calpha,%20b+%5Cbeta)"> 分佈可以立刻作為下一次實驗的「事前分佈」，讓我們不斷地、無縫地用新數據更新我們的信念。</li>
-</ul>
-<p>這完美地展示了貝氏統計如何將「先驗知識」與「觀測數據」優雅地結合起來。</p>
-</section>
-<section id="共軛分佈二估計事件的發生率-gamma-與-poisson-的共舞" class="level2">
-<h2 class="anchored" data-anchor-id="共軛分佈二估計事件的發生率-gamma-與-poisson-的共舞">共軛分佈（二）：估計事件的「發生率」— Gamma 與 Poisson 的共舞</h2>
-<p>如果我們要估計的不是一個 0 到 1 的機率，而是一個**「率」 (rate)** 呢？例如：</p>
-<ul>
-<li>一個客服中心，平均<strong>每小時</strong>接到多少通電話？</li>
-<li>一個路口，平均<strong>每 10 分鐘</strong>會經過多少輛車？</li>
-<li>你的程式碼，平均<strong>每 1000 行</strong>有多少個 bug？</li>
-</ul>
-<p>這些事件的共同點是，它們在一個連續區間（時間、空間）內發生，我們可以去「計數」(count)，理論上發生的次數可以 是 0, 1, 2, … 一直到無限大。</p>
-<p>這類「計數」問題，正是 <strong>Poisson 分佈</strong>的主場。而當我們想對 Poisson 分佈的「率」(<img src="https://latex.codecogs.com/png.latex?%5Clambda">) 進行貝氏推論時，就輪到它的共軛夥伴——<strong>Gamma 分佈</strong>——登場了。</p>
-<p><strong>第一步：我們的「似然」— Poisson 分佈</strong></p>
-<p>和之前一樣，貝氏推論的第一步是建立我們的<strong>似然 (Likelihood)</strong>。</p>
-<p>我們要估計的核心參數是 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> (lambda)，代表「單位時間（或單位空間）內的平均事件發生率」。</p>
-<p><strong>Poisson 分佈</strong>告訴我們，如果平均率是 <img src="https://latex.codecogs.com/png.latex?%5Clambda">，那麼在一個單位時間內，實際觀測到 <img src="https://latex.codecogs.com/png.latex?k"> 次事件的機率為：</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(k%20%5Cmid%20%5Clambda)%20=%20%5Cfrac%7B%5Clambda%5Ek%20e%5E%7B-%5Clambda%7D%7D%7Bk!%7D%0A"> 假設我們進行了 <img src="https://latex.codecogs.com/png.latex?n"> 次觀測（例如，我們觀察了 <img src="https://latex.codecogs.com/png.latex?n"> 個小時），得到的數據是 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20x_2,%20%5Cdots,%20x_n%5C%7D">，其中 <img src="https://latex.codecogs.com/png.latex?x_i"> 是第 <img src="https://latex.codecogs.com/png.latex?i"> 個小時觀測到的事件次數。</p>
-<p>「給定 <img src="https://latex.codecogs.com/png.latex?%5Clambda">」，觀測到這整組數據 <img src="https://latex.codecogs.com/png.latex?D"> 的聯合機率（似然）就是把所有機率乘起來： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20=%20%5Cprod_%7Bi=1%7D%5En%20%5Cfrac%7B%5Clambda%5E%7Bx_i%7D%20e%5E%7B-%5Clambda%7D%7D%7Bx_i!%7D%0A"></p>
-<p>在貝氏推論中，我們只關心和 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 相關的項。把上式重新整理：</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20&amp;%5Cpropto%20%5Cleft(%20%5Cprod_%7Bi=1%7D%5En%20%5Clambda%5E%7Bx_i%7D%20%5Cright)%20%5Cleft(%20%5Cprod_%7Bi=1%7D%5En%20e%5E%7B-%5Clambda%7D%20%5Cright)%20%5C%5C%0A&amp;%5Cpropto%20%5Clambda%5E%7B%5Csum%20x_i%7D%20%5Ccdot%20e%5E%7B-n%5Clambda%7D%0A%5Cend%7Baligned%7D%0A"></p>
-<p>令 <img src="https://latex.codecogs.com/png.latex?S%20=%20%5Csum%20x_i">（我們觀測到的<strong>總事件數</strong>），我們的似然函數可以簡潔地表示為：</p>
-<blockquote class="blockquote">
-<p><strong>Likelihood: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20%5Cpropto%20%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D"></strong></p>
-</blockquote>
-<p><strong>第二步：我們的「事前」— Gamma 分佈</strong></p>
-<p>現在，我們需要為 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 選擇一個<strong>事前分佈 (Prior)</strong>。 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 作為一個「率」，它必須大於 0。我們需要一個定義在 <img src="https://latex.codecogs.com/png.latex?(0,%20%5Cinfty)"> 上的機率分佈。</p>
-<p>更重要的是，我們希望這個事前分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Clambda)"> 乘上似然 <img src="https://latex.codecogs.com/png.latex?%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D"> 之後，能得到一個形式相同的分佈。</p>
-<p>看看似然的形式：<img src="https://latex.codecogs.com/png.latex?%5Clambda"> 的某次方，再乘以 <img src="https://latex.codecogs.com/png.latex?e"> 的 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 負次方。 什麼分佈長這樣呢？ 答案就是 <strong>Gamma 分佈</strong>！</p>
-<p>Gamma 分佈由兩個超參數 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> (shape, 形狀) 和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> (rate, 率) 定義：</p>
-<blockquote class="blockquote">
-<p><strong>Prior: <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Clambda)%20=%20%5Ctext%7BGamma%7D(%5Clambda%20%5Cmid%20%5Calpha,%20%5Cbeta)%20%5Cpropto%20%5Clambda%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cbeta%5Clambda%7D"></strong></p>
-</blockquote>
-<p><strong>直觀解釋 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 和 <img src="https://latex.codecogs.com/png.latex?%5Cbeta">：</strong> 你可以把 <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 想像成你的「事前信念中的<strong>總事件數</strong>」，而 <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> 是「事前信念中的<strong>總觀測單位數</strong>」。 例如，如果你「猜」這個率 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 大約是 5（例如 5 通電話 / 1 小時），你可以設 <img src="https://latex.codecogs.com/png.latex?%5Calpha=5,%20%5Cbeta=1">。</p>
-<p><strong>第三步：貝氏魔法！推導「事後分佈」</strong></p>
-<p>我們再次使出貝氏定理的武器：</p>
-<blockquote class="blockquote">
-<p><strong>事後分佈 (Posterior) <img src="https://latex.codecogs.com/png.latex?%5Cpropto"> 似然 (Likelihood) <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> 事前分佈 (Prior)</strong></p>
-</blockquote>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0A%5Cmathbb%7BP%7D(%5Clambda%20%5Cmid%20D)%20&amp;%5Cpropto%20%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Clambda)%20%5Ctimes%20%5Cmathbb%7BP%7D(%5Clambda)%20%5C%5C%0A&amp;%5Cpropto%20%5B%5Clambda%5ES%20e%5E%7B-n%5Clambda%7D%5D%20%5Ctimes%20%5B%5Clambda%5E%7B%5Calpha-1%7D%20e%5E%7B-%5Cbeta%5Clambda%7D%5D%20%20%5C%5C%0A&amp;%5Cpropto%20%5Clambda%5E%7B(S%20+%20%5Calpha)%20-%201%7D%20%5Ccdot%20e%5E%7B-(n%20+%20%5Cbeta)%5Clambda%7D%0A%5Cend%7Baligned%7D%0A"></p>
-<p>它是不是 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 的 (某數 - 1) 次方，再乘以 <img src="https://latex.codecogs.com/png.latex?e"> 的 (負某數) <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 次方？ <strong>這正是一個新的 Gamma 分佈！</strong></p>
-<hr>
-<section id="結論優雅的更新規則" class="level3">
-<h3 class="anchored" data-anchor-id="結論優雅的更新規則">結論：優雅的更新規則</h3>
-<p>我們證明了：</p>
-<blockquote class="blockquote">
-<p>如果你的事前信念是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha,%20%5Cbeta)">，</p>
-<p>接著你觀測了 <img src="https://latex.codecogs.com/png.latex?n"> 個單位，總共發生了 <img src="https://latex.codecogs.com/png.latex?S%20=%20%5Csum%20x_i"> 次事件，</p>
-<p>你的事後信念就會更新為 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha_%7B%5Ctext%7Bnew%7D%7D,%20%5Cbeta_%7B%5Ctext%7Bnew%7D%7D)">。</p>
-</blockquote>
-<p>更新規則超級簡單，只是加法：</p>
-<ul>
-<li><strong><img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Calpha%20+%20S"></strong> (舊的事件數 + 新觀測到的事件數)</li>
-<li><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Cbeta%20+%20n"></strong> (舊的觀測單位 + 新觀測的單位數)</li>
-</ul>
-<p>舉個例子：</p>
-<ol type="1">
-<li><strong>事前 (Prior)：</strong> 你是新來的客服經理，你<strong>猜測</strong>客服中心平均每小時接 10 通電話。你對這個猜測不太確定，所以你設定了 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(%5Calpha=10,%20%5Cbeta=1)"> 當作你的事前信念。（信念強度 = 1 小時的觀測）</li>
-<li><strong>數據 (Data)：</strong> 你實際去觀測了 5 個小時（<img src="https://latex.codecogs.com/png.latex?n=5">），接到的電話數分別是 <img src="https://latex.codecogs.com/png.latex?%5C%7B12,%208,%2011,%2010,%209%5C%7D">。</li>
-<li><strong>似然 (Likelihood)：</strong> 觀測單位 <img src="https://latex.codecogs.com/png.latex?n=5">。觀測總數 <img src="https://latex.codecogs.com/png.latex?S%20=%2012+8+11+10+9%20=%2050">。</li>
-<li><strong>事後 (Posterior)：</strong></li>
-</ol>
-<ul>
-<li><img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Calpha%20+%20S%20=%2010%20+%2050%20=%2060"></li>
-<li><img src="https://latex.codecogs.com/png.latex?%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%20%5Cbeta%20+%20n%20=%201%20+%205%20=%206"></li>
-<li>你更新後的信念是 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGamma%7D(60,%206)">。</li>
-</ul>
-<p>Gamma 分佈的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha%20/%20%5Cbeta">。</p>
-<ul>
-<li>你<strong>原先</strong>的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha/%5Cbeta%20=%2010%20/%201%20=%2010"> 通/小時。</li>
-<li>你<strong>更新後</strong>的期望值是 <img src="https://latex.codecogs.com/png.latex?%5Calpha_%7B%5Ctext%7Bnew%7D%7D%20/%20%5Cbeta_%7B%5Ctext%7Bnew%7D%7D%20=%2060%20/%206%20=%2010"> 通/小時。</li>
-</ul>
-<p>在這個例子中，你的平均估計沒有變，因為你的觀測數據 (50/5 = 10) 剛好符合你的猜測！但是，你的<strong>信心</strong>大大增加了（Gamma(60, 6) 是一個比 Gamma(10, 1) 更尖、更窄的分佈），因為你的信念現在是基於 6 個小時的數據，而不僅僅是 1 個小時的猜測。</p>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/Gamma_60_6.png" class="img-fluid figure-img" width="400"></p>
-<figcaption class="figure-caption">圖一： Gamma(10,1) 與 Gamma(60,6) 的比較</figcaption>
-</figure>
-</div>
-</div>
-<p>這就是 Gamma-Poisson 共軛家族的美妙之處：它提供了一個直觀且計算簡單的方法，讓我們不斷用新的「計數數據」來更新我們對「事件發生率」的信念。</p>
-<hr>
-</section>
-</section>
-<section id="共軛分佈三估計常態分佈的平均值與變異數-normal-inverse-gamma" class="level2">
-<h2 class="anchored" data-anchor-id="共軛分佈三估計常態分佈的平均值與變異數-normal-inverse-gamma">共軛分佈（三）：估計常態分佈的平均值與變異數 (Normal-Inverse-Gamma)</h2>
-<p>在前面的文章中，我們學會了如何：</p>
-<ol type="1">
-<li>用 <strong>Beta-Binomial</strong> 估計<strong>機率</strong> (0 到 1 之間)。</li>
-<li>用 <strong>Gamma-Poisson</strong> 估計<strong>頻率</strong> (大於 0 的計數)。</li>
-</ol>
-<p>現在，我們要來處理統計學中最常見的問題：估計一個<strong>平均值 (mean)</strong>。</p>
-<ul>
-<li>一群學生的<strong>平均身高</strong>是多少？</li>
-<li>一批產品的<strong>平均壽命</strong>是多久？</li>
-<li>某支股票的<strong>平均日報酬率</strong>是多少？</li>
-</ul>
-<p>這些測量值——身高、時間、報酬率——都是<strong>連續變數</strong>。而說到連續變數，統計學的王者，<strong>常態分佈 (Normal Distribution)</strong> <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)">，就該登場了。</p>
-<p><strong>挑戰：兩個未知數</strong></p>
-<p>。但這裡有一個挑戰。不像 Binomial (只有 <img src="https://latex.codecogs.com/png.latex?p">) 或 Poisson (只有 <img src="https://latex.codecogs.com/png.latex?%5Clambda">) 只有一個參數，常態分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)"> 描述了兩個我們都不知道的參數：</p>
-<ol type="1">
-<li>平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu">：我們主要想估計的目標。</li>
-<li>變異數 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">：數據的波動程度，我們通常也不知道。</li>
-</ol>
-<p>我們希望能建立一個貝氏模型，讓我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的「信念」在看到新數據 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20...,%20x_n%5C%7D"> 後，能自動更新。</p>
-<p><strong>暖身: 從最大概似估計 (MLE) 看起</strong></p>
-<p>在進入貝氏模型之前，讓我們先用傳統的「最大概似估計 (Maximum Likelihood Estimation, MLE)」來暖身。這能幫助我們理解 Likelihood Function 的長相。</p>
-<p>假設 <img src="https://latex.codecogs.com/png.latex?D%20=%20%5C%7Bx_1,%20...,%20x_n%5C%7D"> 來自 <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BN%7D(%5Cmu,%20%5Csigma%5E2)">，Likelihood Function 為： <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)%20&amp;=%20%5Cprod_%7Bi=1%7D%5En%20%5Cleft(%20%5Cfrac%7B1%7D%7B%5Csigma%5Csqrt%7B2%5Cpi%7D%7De%5E%7B-%5Cfrac%7B(x_i-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%20%5Cright)%20%20%5C%5C%0A&amp;%5Cpropto%20%5Cfrac%7B1%7D%7B%5Csigma%5En%7D%20e%5E%7B-%5Cfrac%7B%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%7D%7B2%5Csigma%5E2%7D%7D%0A%5Cend%7Balign%7D%0A"> 為了方便計算，我們取其負對數 (Negative Log-Likelihood): <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%20%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))%0A&amp;=%20%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20n%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"> 這邊constant的意思是跟 <img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma"> 無關。</p>
-<p>用 maximal likelihood 的觀點，這個 <img src="https://latex.codecogs.com/png.latex?%5Cmu,%20%5Csigma"> 的極值發生在哪裡? 我們記等式左邊這個 log-likelihood 為 <img src="https://latex.codecogs.com/png.latex?f%20=%20-%20%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))">。令其偏微分各自為0。 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20%5Cmu%7D%20&amp;=%20%20%5Cfrac%7B1%7D%7B%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(%5Cmu%20-%20x_i)%20=%200%20%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20%5Csigma%7D%20&amp;=%20%20-%5Cfrac%7B1%7D%7B%5Csigma%5E3%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20%5Cfrac%7Bn%7D%7B%5Csigma%7D%20=%200%20%20%0A%5Cend%7Balign%7D%0A"> 解出來為 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Chat%7B%5Cmu%7D%20&amp;=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi=1%7D%5En%20x_i%20=%20%5Coverline%7Bx%7D%20%5C%5C%0A%5Chat%7B%5Csigma%7D%5E2%20&amp;=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Coverline%7Bx%7D)%5E2%20%20%0A%5Cend%7Balign%7D%0A"> (可以驗證一下，二階導數矩陣正定，所以 <img src="https://latex.codecogs.com/png.latex?f"> 是取到最小值)</p>
-<blockquote class="blockquote">
-<p>題外話：為什麼是除以 <img src="https://latex.codecogs.com/png.latex?n"> 而不是 <img src="https://latex.codecogs.com/png.latex?n-1">？ 一般說的樣本標準差是「除以 <img src="https://latex.codecogs.com/png.latex?n-1">」這裡推導出來怎麼是除以 <img src="https://latex.codecogs.com/png.latex?n">? 難道推導錯誤了嗎? 沒有，若要最大化似然，確實應該要除以 <img src="https://latex.codecogs.com/png.latex?n">，而一般常用的除以 <img src="https://latex.codecogs.com/png.latex?n-1">，那是我們希望這個 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 是個無偏估計 (unbiased-estimation)。也就是說我們希望 <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5B%5Ctilde%7B%5Csigma%7D%5E2%5D%20=%20%5Csigma%5E2%0A"> 把期望值的定義寫出來，也就是 <img src="https://latex.codecogs.com/png.latex?%0A%5Cint%20%5Ctilde%7B%5Csigma%7D%5E2%20%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)%20%20dx_1...dx_n%20=%20%5Csigma%5E2%0A"> 也就是一般的樣本標準差 <img src="https://latex.codecogs.com/png.latex?%5Ctilde%7B%5Csigma%7D%5E2%20=%20%5Cfrac%7B1%7D%7Bn-1%7D%20%5Csum_%7Bi=1%7D%5En%20(x_i-%5Coverline%7Bx%7D)%5E2">，是在所有無偏估計中，擁有最小variance的 (Why?)</p>
-</blockquote>
-<section id="貝式解法-normal-inverse-gamma-nig-模型" class="level3">
-<h3 class="anchored" data-anchor-id="貝式解法-normal-inverse-gamma-nig-模型">貝式解法: Normal-Inverse-Gamma (NIG) 模型</h3>
-<p>好了，拉回我們的正題：貝氏更新。我們要找一個共軛事前分佈 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)">，使得它乘上 Likelihood <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2)"> 之後，得到的 Posterior <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D)"> 仍然和 Prior 具有相同的形式。這個神奇的 Prior 就是 Normal-Inverse-Gamma (NIG) 分佈。它由四個超參數 <img src="https://latex.codecogs.com/png.latex?(%5Cmu_0,%20%5Ckappa_0,%20%5Calpha_0,%20%5Cbeta_0)"> 定義，其結構如下：</p>
-<ol type="1">
-<li>對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念：我們假設 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 服從一個 Inverse-Gamma 分佈: <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(%5Csigma%5E2)%20%5Cpropto%20(%5Csigma%5E2)%5E%7B-%5Calpha_0-1%7De%5E%7B-%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%7D%0A"></li>
-<li>對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 的信念 (給定 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">)：我們假設 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 服從一個常態分佈，但這個常態分佈的變異數取決於 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2">： <img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BP%7D(%5Cmu%20%5Cmid%20%5Csigma%5E2)%20%5Csim%20%5Cmathcal%7BN%7D(%5Cmu_0,%20%5Csigma%5E2/%5Ckappa_0)%0A%5Cpropto%20%5Cfrac%7B1%7D%7B%5Csigma%20/%5Csqrt%7B%5Ckappa_0%7D%20%7D%20e%5E%7B-%5Cfrac%7B(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%20/%20%5Ckappa_0%7D%7D%0A"></li>
-</ol>
-<p>這樣就描述了我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)"> 的 joint distribution， <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2)%0A&amp;=%20%5Cmathbb%7BP%7D(%5Csigma%5E2)%20%5Ccdot%20%5Cmathbb%7BP%7D(%5Cmu%20%5Cmid%20%5Csigma%5E2)%20%5C%5C%0A&amp;%5Cpropto%20%20(%5Csigma%5E2)%5E%7B-%5Calpha_0-1%7De%5E%7B-%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%7D%20%5Cfrac%7B1%7D%7B%5Csigma%20/%5Csqrt%7B%5Ckappa_0%7D%20%7D%20e%5E%7B-%5Cfrac%7B(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%20/%20%5Ckappa_0%7D%7D%0A%5Cend%7Balign%7D%0A"> 一樣是取negative log-likelihood看比較清楚: <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2))%0A&amp;=%20%20%5Cfrac%7B%5Ckappa_0(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%7D%20+%20%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%20+%20(2%5Calpha_0%20+%203)%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"></p>
-<p>精彩的來了，我們要算經過一筆資料 <img src="https://latex.codecogs.com/png.latex?D"> 更新後的事後分布是否也是一樣的形式呢? 而四個超參數 <img src="https://latex.codecogs.com/png.latex?(%5Calpha_0,%20%5Cbeta_0,%20%5Cmu_0,%20%5Ckappa_0)"> 會如何變動呢?</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D))%0A&amp;=%20-%5Cln(%5Cmathbb%7BP%7D(D%20%5Cmid%20%5Cmu,%20%5Csigma%5E2))%20-%5Cln(%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2))%20+%20%5Ctext%7Bconstant%7D%20%5C%5C%0A&amp;=%20%20%5Cfrac%7B1%7D%7B2%5Csigma%5E2%7D%5Csum_%7Bi=1%7D%5En%20(x_i-%5Cmu)%5E2%20+%20n%20%5Cln(%5Csigma)%20%5C%5C%0A&amp;%5Cqquad%20+%20%5Cfrac%7B%5Ckappa_0(%5Cmu-%5Cmu_0)%5E2%7D%7B2%5Csigma%5E2%7D%20+%20%5Cfrac%7B%5Cbeta_0%7D%7B%5Csigma%5E2%7D%20+%20(2%5Calpha_0%20+%203)%20%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%20%5C%5C%0A&amp;=%20%5Cleft(%20%5Cfrac%7Bn+%5Ckappa_0%7D%7B2%5Csigma%5E2%7D%20%5Cright)%5Cmu%5E2%0A+%20%5Cleft(%20-%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i)%20+%20%5Ckappa_0%20%5Cmu_0%7D%7B%5Csigma%5E2%7D%20%5Cright)%5Cmu%20%5C%5C%0A&amp;%5Cqquad%20+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%5Csigma%5E2%7D%0A+%20(n+2%5Calpha_0+3)%5Cln(%5Csigma)%20+%20%5Ctext%7Bconstant%7D%0A%5Cend%7Balign%7D%0A"> 比較一下係數，可以依序解出 <img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Ckappa_n%20&amp;=%20n%20+%20%5Ckappa_0%20%20%5C%5C%0A%5Cmu_n%20&amp;=%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i)%20+%20%5Ckappa_0%20%5Cmu_0%7D%7Bn+%5Ckappa_0%7D%20%20%5C%5C%0A%5Calpha_n%20&amp;=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D%20%20%5C%5C%0A%5Cbeta_n%20&amp;=%20-%5Cleft(%20%5Cfrac%7Bn+%5Ckappa_0%7D%7B2%7D%20%5Cright)%5Cmu_n%5E2%0A+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%7D%20%5Cquad%5Ctext%7B(by%20completing%20the%20square)%7D%20%5C%5C%0A&amp;=%20-%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%20+%20%5Ckappa_0%20%5Cmu_0)%5E2%7D%7B2(n+%5Ckappa_0)%7D%20+%20%5Cfrac%7B(%5Csum_%7Bi=1%7D%5En%20x_i%5E2)%20+%20%5Ckappa_0%20%5Cmu_0%5E2%20+%202%5Cbeta_0%7D%7B2%7D%0A%5Cend%7Balign%7D%0A"></p>
-</section>
-<section id="總結更新規則與直觀解釋" class="level3">
-<h3 class="anchored" data-anchor-id="總結更新規則與直觀解釋">總結：更新規則與直觀解釋</h3>
-<p>我們成功了！Posterior <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BP%7D(%5Cmu,%20%5Csigma%5E2%20%5Cmid%20D)"> 確實保持了 Normal-Inverse-Gamma (NIG) 的形式，其超參數 <img src="https://latex.codecogs.com/png.latex?(%5Cmu_n,%20%5Ckappa_n,%20%5Calpha_n,%20%5Cbeta_n)"> 透過以下規則更新：</p>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">超參數</th>
-<th style="text-align: left;">事前 (Prior)</th>
-<th style="text-align: left;">事後 (Posterior) 更新規則</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n%20=%20%5Ckappa_0%20+%20n"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_n"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_0"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cmu_n%20=%20%5Cfrac%7B%5Ckappa_0%20%5Cmu_0%20+%20n%5Coverline%7Bx%7D%7D%7B%5Ckappa_0%20+%20n%7D"> (其中 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D%20=%20%5Cfrac%7B1%7D%7Bn%7D%5Csum%20x_i">)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_n"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_0"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Calpha_n%20=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_0"></td>
-<td style="text-align: left;"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n%20=%20%5Cbeta_0%20+%20%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi=1%7D%5En%20(x_i%20-%20%5Coverline%7Bx%7D)%5E2%20+%20%5Cfrac%7Bn%5Ckappa_0%7D%7B2(n+%5Ckappa_0)%7D(%5Coverline%7Bx%7D%20-%20%5Cmu_0)%5E2"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>這代表什麼？</strong>，讓我們來直觀地解讀這些更新規則：</p>
-<ul>
-<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Ckappa_n%20=%20%5Ckappa_0%20+%20n"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 的信心（<img src="https://latex.codecogs.com/png.latex?%5Ckappa">）等於「先前的信心」加上「新數據的點數」。這非常合理。</p></li>
-<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Cmu_n%20=%20%5Cfrac%7B%5Ckappa_0%20%5Cmu_0%20+%20n%5Coverline%7Bx%7D%7D%7B%5Ckappa_0%20+%20n%7D"></strong>： <strong>這是最漂亮的一條規則！</strong> 我們更新後的平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu_n">，是「先前平均值 <img src="https://latex.codecogs.com/png.latex?%5Cmu_0">」和「數據平均值 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D">」的<strong>加權平均</strong>。 權重分別是 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0">（先前的信心）和 <img src="https://latex.codecogs.com/png.latex?n">（數據的數量）。如果 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"> 很小（不確定的 prior），<img src="https://latex.codecogs.com/png.latex?%5Cmu_n"> 就會很接近 <img src="https://latex.codecogs.com/png.latex?%5Coverline%7Bx%7D">。如果 <img src="https://latex.codecogs.com/png.latex?%5Ckappa_0"> 很大（強烈的 prior），<img src="https://latex.codecogs.com/png.latex?%5Cmu_n"> 就會很接近 <img src="https://latex.codecogs.com/png.latex?%5Cmu_0">。</p></li>
-<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Calpha_n%20=%20%5Calpha_0%20+%20%5Cfrac%7Bn%7D%7B2%7D"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念（<img src="https://latex.codecogs.com/png.latex?%5Calpha">）也隨著數據點 <img src="https://latex.codecogs.com/png.latex?n"> 而增加。</p></li>
-<li><p><strong><img src="https://latex.codecogs.com/png.latex?%5Cbeta_n%20=%20%5Cbeta_0%20+%20%5Cdots"></strong>： 我們對 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 的信念（<img src="https://latex.codecogs.com/png.latex?%5Cbeta">）更新，等於「先前的 <img src="https://latex.codecogs.com/png.latex?%5Cbeta_0">」加上「數據內部的變異 <img src="https://latex.codecogs.com/png.latex?%5Csum%20(x_i%20-%20%5Coverline%7Bx%7D)%5E2">」再加上「數據平均值與先前平均值之間的差異 <img src="https://latex.codecogs.com/png.latex?(%5Coverline%7Bx%7D%20-%20%5Cmu_0)%5E2">」。這也完全符合直覺。</p></li>
-</ul>
-<p>至此，我們完成推導了常態分佈的共軛模型！它讓我們能夠在 <img src="https://latex.codecogs.com/png.latex?%5Cmu"> 和 <img src="https://latex.codecogs.com/png.latex?%5Csigma%5E2"> 都未知的情況下，優雅地更新我們的信念。</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>statistic</category>
-  <guid>https://your-website-url.example.com/posts/2025-1112-conjugacy_prior/index.html</guid>
-  <pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate>
+  <guid>https://your-website-url.example.com/posts/2025-1112-linear_code/</guid>
+  <pubDate>Tue, 11 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 <item>
   <title>一天證明一個 Normal Distribution 的性質 Day1：高斯積分與最大化熵(Entropy)</title>
   <dc:creator>Tai-Ning Liao</dc:creator>
   <link>https://your-website-url.example.com/posts/normal-distribution/day_1.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -5310,7 +5599,7 @@ Lukacs, Eugene. 1970. <em>Characteristic Functions</em>. 2nd ed. Griffin.
  ]]></description>
   <category>Normal Distribution</category>
   <guid>https://your-website-url.example.com/posts/normal-distribution/day_1.html</guid>
-  <pubDate>Tue, 11 Nov 2025 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 10 Nov 2025 16:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
