@@ -372,12 +372,13 @@ B-&gt;Outcome_Fold
 <p>好，現在 <span class="math inline">\(\mathbb{E}[\text{Payoff}_A] = \mathcal{L}(a(x), b(y))\)</span> 是一個 <span class="math inline">\(a(x)\)</span> 與 <span class="math inline">\(b(y)\)</span> 的泛函 (functional)。</p>
 <p>回顧 Min-Max 原理，Player A 的任務是調整 <span class="math inline">\(a(x)\)</span> 來<strong>最大化</strong> <span class="math inline">\(\mathcal{L}\)</span>，而 Player B 的任務是調整 <span class="math inline">\(b(y)\)</span> 來<strong>最小化</strong> <span class="math inline">\(\mathcal{L}\)</span>。</p>
 <p>推導這個 Min-Max 解需要用到變分法的觀念，大概要花 20 分鐘的時間。</p>
-<p>但在此之前，先讓我們靜靜地看著他，欣賞一下。</p>
+<p>但我們先看一下這個式子。</p>
 <p>回想上一篇中，調整 <span class="math inline">\(\alpha\)</span> 與 <span class="math inline">\(\beta\)</span> 來最大化/最小化期望值的過程。</p>
 <p>而現在我們要調整的，變成是無限維度的函數 <span class="math inline">\(a(x)\)</span> 與 <span class="math inline">\(b(y)\)</span>。</p>
 <p>若是離散版本，則可以把 <span class="math inline">\(a(x)\)</span> 與 <span class="math inline">\(b(y)\)</span> 就是定義在有限個點上的向量 (13維向量)，但記得討論相等 <span class="math inline">\((x=y)\)</span> 的情況。</p>
 <p>而我們在 Part2 中用了 Pure Strategy 的線性組合，發現了雙曲面和翹翹板的圖像。</p>
-<p>但若要考慮所有 Pure Strategy 的凸包頂點，則是所有取值為 0 或 1 的函數 <span class="math inline">\(a(x)\)</span> 與 <span class="math inline">\(b(y)\)</span>，那是 <span class="math inline">\(2^{\mathbb{R}}\)</span>。這有些不切實際了。</p>
+<p>但若要考慮所有 Pure Strategy 的凸包頂點，則是所有取值為 0 或 1 的函數 <span class="math inline">\(a(x)\)</span> 與 <span class="math inline">\(b(y)\)</span>，那是 <span class="math inline">\(2^{\mathbb{R}}\)</span>。那行不通。</p>
+<p>所以這邊翹翹板的圖像又變了。</p>
 </section>
 <section id="變分法" class="level3">
 <h3 class="anchored" data-anchor-id="變分法">變分法</h3>

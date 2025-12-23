@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tai-Ning Liao">
+<meta name="dcterms.date" content="2025-12-23">
+
+<title>0^0 - Poker Lesson 7 - 比大小遊戲 (完整版)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">0^0</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TaiNing1237/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Poker Lesson 7 - 比大小遊戲 (完整版)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Poker</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tai-Ning Liao </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 23, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>今天我們繼續比大小遊戲，但是上次假設，若先手 Player A check，則強制攤牌。這次我們來討論更一般的情況: Player B 可以選擇主動下注。</p>
+<p>不過我們還是先忽略可以加注 (raise) 的情況。</p>
+<section id="遊戲規則-01-連續版本" class="level3">
+<h3 class="anchored" data-anchor-id="遊戲規則-01-連續版本">遊戲規則: [0,1] 連續版本</h3>
+<ul>
+<li><strong>玩家</strong>：Player A 與 Player B。</li>
+<li><strong>底池 (Pot)</strong>：<span class="math inline">\(P\)</span> 元（可視為雙方起始強迫下注 <span class="math inline">\(P/2\)</span>）。</li>
+<li><strong>發牌</strong>：雙方從 <span class="math inline">\([0,1]\)</span> 均勻分布抽取一個數字作為自己的牌面數字，彼此互不知情。</li>
+<li><strong>攤牌時勝負判定</strong>：
+<ul>
+<li>數字較大者獲勝，贏走底池。</li>
+<li>若數字相同則平手，雙方拿回各自的下注。</li>
+</ul></li>
+<li><strong>下注流程</strong>：
+<ul>
+<li>設定每次下注金額為 <span class="math inline">\(B\)</span> 元。</li>
+<li>Player A（先手）：可以選擇 <strong>下注 (Bet)</strong> 或 <strong>過牌 (Check)</strong>。</li>
+<li>若 Player A 選擇 <strong>過牌 (Check)</strong>，則輪到 Player B 行動，B 同樣可以選擇 <strong>下注</strong> 或 <strong>過牌</strong>。</li>
+<li>若 Player A 選擇 <strong>下注 (Bet)</strong>，則輪到 Player B 行動，B 可以選擇 <strong>跟注 (Call)</strong> 或 <strong>棄牌 (Fold)</strong>。</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-full-game-tree" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 733.49 327.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 323.8)">
+<title>
+GT_Advanced
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-323.8 729.49,-323.8 729.49,4 -4,4"></polygon> <!-- A1 --> <g id="node1" class="node">
+<title>
+A1
+</title>
+<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="44.81" cy="-168" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="44.81" y="-163.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B1 --> <g id="node2" class="node">
+<title>
+B1
+</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-222" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-217.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B1 --> <g id="edge1" class="edge">
+<title>
+A1-&gt;B1
+</title>
+<path fill="none" stroke="black" d="M88.32,-180.52C114.99,-188.38 149.55,-198.57 177.75,-206.88"></path> <polygon fill="black" stroke="black" points="176.85,-210.26 187.43,-209.73 178.83,-203.55 176.85,-210.26"></polygon> <text text-anchor="middle" x="137.72" y="-205.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- B2 --> <g id="node3" class="node">
+<title>
+B2
+</title>
+<ellipse fill="white" stroke="#1565c0" stroke-width="2" cx="230.07" cy="-115" rx="44.04" ry="44.04"></ellipse> <text text-anchor="middle" x="230.07" y="-110.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player B</text> </g> <!-- A1&#45;&gt;B2 --> <g id="edge4" class="edge">
+<title>
+A1-&gt;B2
+</title>
+<path fill="none" stroke="black" d="M88.32,-155.71C114.99,-147.99 149.55,-138 177.75,-129.84"></path> <polygon fill="black" stroke="black" points="178.8,-133.18 187.43,-127.04 176.85,-126.46 178.8,-133.18"></polygon> <text text-anchor="middle" x="137.72" y="-152.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_A_Bet_B_Call --> <g id="node5" class="node">
+<title>
+Outcome_A_Bet_B_Call
+</title>
+<path fill="#f5f5f5" stroke="black" d="M490.25,-319.6C490.25,-319.6 422.78,-319.6 422.78,-319.6 416.78,-319.6 410.78,-313.6 410.78,-307.6 410.78,-307.6 410.78,-276.4 410.78,-276.4 410.78,-270.4 416.78,-264.4 422.78,-264.4 422.78,-264.4 490.25,-264.4 490.25,-264.4 496.25,-264.4 502.25,-270.4 502.25,-276.4 502.25,-276.4 502.25,-307.6 502.25,-307.6 502.25,-313.6 496.25,-319.6 490.25,-319.6"></path> <text text-anchor="middle" x="456.52" y="-296.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 1: 攤牌</text> <text text-anchor="middle" x="456.52" y="-279.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Call --> <g id="edge2" class="edge">
+<title>
+B1-&gt;Outcome_A_Bet_B_Call
+</title>
+<path fill="none" stroke="black" d="M272.5,-234.92C308.58,-246.17 361.17,-262.57 400.72,-274.91"></path> <polygon fill="black" stroke="black" points="399.89,-278.32 410.48,-277.95 401.97,-271.63 399.89,-278.32"></polygon> <text text-anchor="middle" x="322.43" y="-262.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_A_Bet_B_Fold --> <g id="node6" class="node">
+<title>
+Outcome_A_Bet_B_Fold
+</title>
+<path fill="#f5f5f5" stroke="black" d="M492.02,-245.6C492.02,-245.6 421.02,-245.6 421.02,-245.6 415.02,-245.6 409.02,-239.6 409.02,-233.6 409.02,-233.6 409.02,-202.4 409.02,-202.4 409.02,-196.4 415.02,-190.4 421.02,-190.4 421.02,-190.4 492.02,-190.4 492.02,-190.4 498.02,-190.4 504.02,-196.4 504.02,-202.4 504.02,-202.4 504.02,-233.6 504.02,-233.6 504.02,-239.6 498.02,-245.6 492.02,-245.6"></path> <text text-anchor="middle" x="456.52" y="-222.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 2: A 獲勝</text> <text text-anchor="middle" x="456.52" y="-205.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(B 棄牌)</text> </g> <!-- B1&#45;&gt;Outcome_A_Bet_B_Fold --> <g id="edge3" class="edge">
+<title>
+B1-&gt;Outcome_A_Bet_B_Fold
+</title>
+<path fill="none" stroke="black" d="M274.35,-221.23C309.78,-220.6 360.18,-219.7 398.83,-219.01"></path> <polygon fill="black" stroke="black" points="398.96,-222.51 408.89,-218.83 398.83,-215.51 398.96,-222.51"></polygon> <text text-anchor="middle" x="322.43" y="-223.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> <!-- A2 --> <g id="node4" class="node">
+<title>
+A2
+</title>
+<ellipse fill="white" stroke="#15c043" stroke-width="2" cx="456.52" cy="-125" rx="44.63" ry="44.63"></ellipse> <text text-anchor="middle" x="456.52" y="-120.8" font-family="Helvetica, Arial, sans-serif" font-size="14.00">Player A</text> </g> <!-- B2&#45;&gt;A2 --> <g id="edge6" class="edge">
+<title>
+B2-&gt;A2
+</title>
+<path fill="none" stroke="black" d="M274.35,-116.93C310.6,-118.54 362.52,-120.86 401.49,-122.59"></path> <polygon fill="black" stroke="black" points="401.46,-126.1 411.61,-123.04 401.77,-119.1 401.46,-126.1"></polygon> <text text-anchor="middle" x="322.43" y="-123.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 下注 (Bet) </text> </g> <!-- Outcome_Check_Check --> <g id="node7" class="node">
+<title>
+Outcome_Check_Check
+</title>
+<path fill="#f5f5f5" stroke="black" d="M530.52,-62C530.52,-62 382.52,-62 382.52,-62 376.52,-62 370.52,-56 370.52,-50 370.52,-50 370.52,-12 370.52,-12 370.52,-6 376.52,0 382.52,0 382.52,0 530.52,0 530.52,0 536.52,0 542.52,-6 542.52,-12 542.52,-12 542.52,-50 542.52,-50 542.52,-56 536.52,-62 530.52,-62"></path> <text text-anchor="start" x="383.22" y="-37.4" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="14.00">結局 5: 攤牌 (Check-Back)</text> <text text-anchor="start" x="438.43" y="-16.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">池底: P</text> </g> <!-- B2&#45;&gt;Outcome_Check_Check --> <g id="edge5" class="edge">
+<title>
+B2-&gt;Outcome_Check_Check
+</title>
+<path fill="none" stroke="black" d="M271.72,-99.79C297.13,-90.28 330.95,-77.62 362.65,-65.76"></path> <polygon fill="black" stroke="black" points="364.27,-68.89 372.41,-62.1 361.82,-62.33 364.27,-68.89"></polygon> <text text-anchor="middle" x="322.43" y="-93.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 過牌 (Check) </text> </g> <!-- Outcome_Check_Bet_Call --> <g id="node8" class="node">
+<title>
+Outcome_Check_Bet_Call
+</title>
+<path fill="#f5f5f5" stroke="black" d="M711.86,-189.6C711.86,-189.6 644.4,-189.6 644.4,-189.6 638.4,-189.6 632.4,-183.6 632.4,-177.6 632.4,-177.6 632.4,-146.4 632.4,-146.4 632.4,-140.4 638.4,-134.4 644.4,-134.4 644.4,-134.4 711.86,-134.4 711.86,-134.4 717.86,-134.4 723.86,-140.4 723.86,-146.4 723.86,-146.4 723.86,-177.6 723.86,-177.6 723.86,-183.6 717.86,-189.6 711.86,-189.6"></path> <text text-anchor="middle" x="678.13" y="-166.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 3: 攤牌</text> <text text-anchor="middle" x="678.13" y="-149.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(池底: P+2B)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Call --> <g id="edge7" class="edge">
+<title>
+A2-&gt;Outcome_Check_Bet_Call
+</title>
+<path fill="none" stroke="black" d="M500.91,-132.31C535.64,-138.16 584.58,-146.41 622.07,-152.72"></path> <polygon fill="black" stroke="black" points="621.88,-156.24 632.32,-154.45 623.05,-149.34 621.88,-156.24"></polygon> <text text-anchor="middle" x="586.64" y="-154.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 跟注 (Call) </text> </g> <!-- Outcome_Check_Bet_Fold --> <g id="node9" class="node">
+<title>
+Outcome_Check_Bet_Fold
+</title>
+<path fill="#f5f5f5" stroke="black" d="M713.36,-115.6C713.36,-115.6 642.9,-115.6 642.9,-115.6 636.9,-115.6 630.9,-109.6 630.9,-103.6 630.9,-103.6 630.9,-72.4 630.9,-72.4 630.9,-66.4 636.9,-60.4 642.9,-60.4 642.9,-60.4 713.36,-60.4 713.36,-60.4 719.36,-60.4 725.36,-66.4 725.36,-72.4 725.36,-72.4 725.36,-103.6 725.36,-103.6 725.36,-109.6 719.36,-115.6 713.36,-115.6"></path> <text text-anchor="middle" x="678.13" y="-92.2" font-family="Helvetica, Arial, sans-serif" font-size="14.00">結局 4: B 獲勝</text> <text text-anchor="middle" x="678.13" y="-75.4" font-family="Helvetica, Arial, sans-serif" font-size="14.00">(A 棄牌)</text> </g> <!-- A2&#45;&gt;Outcome_Check_Bet_Fold --> <g id="edge8" class="edge">
+<title>
+A2-&gt;Outcome_Check_Bet_Fold
+</title>
+<path fill="none" stroke="black" d="M500.91,-117.69C535.18,-111.91 583.3,-103.81 620.59,-97.53"></path> <polygon fill="black" stroke="black" points="621.52,-100.92 630.8,-95.81 620.36,-94.02 621.52,-100.92"></polygon> <text text-anchor="middle" x="586.64" y="-110.3" font-family="Helvetica, Arial, sans-serif" font-size="11.00"> 棄牌 (Fold) </text> </g> </g>
+</svg>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;1: Full Game Tree: Player B can Bet after A Checks</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>有了之前的經驗，我們知道 Player A 的策略會變成兩個函數 <span class="math inline">\(a_1(x), a_2(x)\)</span>，Player B 的策略也是兩個函數 <span class="math inline">\(b_1(y), b_2(y)\)</span>，</p>
+<ul>
+<li><span class="math inline">\(a_1(x)\)</span>：Player A 在起始點的策略，決定是否下注 (Bet)。</li>
+<li><span class="math inline">\(b_1(y)\)</span>：Player B 在面對 Player A 下注 (A Bet) 時的策略，決定是否跟注 (Call)。</li>
+<li><span class="math inline">\(b_2(y)\)</span>：Player B 在面對 Player A 過牌 (A Check) 時的策略，決定是否偷底 (Bet)。</li>
+<li><span class="math inline">\(a_2(x)\)</span>：Player A 在面對 Player B 偷底 (B Bet) 時的策略，決定是否跟注 (Call)。</li>
+</ul>
+<p>根據這個設定本身，在 <span class="math inline">\(a_1(x)=1\)</span> 時，<span class="math inline">\(a_2(x)\)</span> 是多少都不影響結果。所以這本來就是 coupled 的一組策略函數。</p>
+</section>
+<section id="player-a-的期望值" class="level3">
+<h3 class="anchored" data-anchor-id="player-a-的期望值">Player A 的期望值</h3>
+<p>遊戲有五種結局，我們寫個表來看看他們分別對 Player A 的 payoff 是多少：</p>
+<table class="table">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 18%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">若 <span class="math inline">\(x &gt; y\)</span></th>
+<th style="text-align: center;">若 <span class="math inline">\(x = y\)</span></th>
+<th style="text-align: center;">若 <span class="math inline">\(x &lt; y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">結局 1 (A bet, B call)</td>
+<td style="text-align: center;"><span class="math inline">\(P+B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-B\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">結局 2 (A bet, B fold)</td>
+<td style="text-align: center;"><span class="math inline">\(P\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">結局 3 (A check, B bet, A call)</td>
+<td style="text-align: center;"><span class="math inline">\(P+B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-B\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">結局 4 (A check, B bet, A fold)</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">結局 5 (A check, B check)</td>
+<td style="text-align: center;"><span class="math inline">\(P\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(P/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>同樣的，我們忽略相等的情況 (機率為零)，然後寫一下機率密度:</p>
+<p><span class="math display">\[
+\begin{array}{|l|c|c|l|}
+\hline
+\textbf{結局路徑} &amp; \textbf{若 } x &gt; y &amp; \textbf{若 } x &lt; y &amp; \textbf{機率密度} \\
+\hline
+\text{1. A Bet, B Call} &amp; P+B &amp; -B &amp; a_1(x) \cdot b_1(y) \\
+\hline
+\text{2. A Bet, B Fold} &amp; P &amp; P &amp; a_1(x) \cdot (1 - b_1(y)) \\
+\hline
+\text{3. A Check, B Bet, A Call} &amp; P+B &amp; -B &amp; (1 - a_1(x)) \cdot b_2(y) \cdot a_2(x) \\
+\hline
+\text{4. A Check, B Bet, A Fold} &amp; 0 &amp; 0 &amp; (1 - a_1(x)) \cdot b_2(y) \cdot (1 - a_2(x)) \\
+\hline
+\text{5. A Check, B Check} &amp; P &amp; 0 &amp; (1 - a_1(x)) \cdot (1 - b_2(y)) \\
+\hline
+\end{array}
+\]</span></p>
+<p>接著利用這張表，我們將各結局的「機率密度」與「損益」相乘，並對所有可能的牌型 <span class="math inline">\(x, y\)</span> 積分，即可寫出 Player A 的期望值函數。</p>
+<p>我將第 4 項（結局 4）省略了，因為其損益為 0，對積分沒有貢獻。</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\mathbb{E}[\text{Payoff}_A] := \mathcal{L}(a_1, a_2, b_1, b_2) \\
+&amp;= \int_0^1 \int_0^1 \Bigg[ \\
+&amp;\quad a_1(x) \cdot b_1(y) \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big)
+&amp;\qquad\text{(結局 1: A Bet, B Call)} \\
+&amp;\quad + a_1(x) \cdot (1 - b_1(y)) \cdot P
+&amp;\qquad\text{(結局 2: A Bet, B Fold)} \\
+&amp;\quad + (1 - a_1(x)) \cdot b_2(y) \cdot a_2(x) \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big)
+&amp;\qquad\text{(結局 3: A Check, B Bet, A Call)} \\
+&amp;\quad + (1 - a_1(x)) \cdot (1 - b_2(y)) \cdot P \cdot \mathbb{1}_{x&gt;y}
+&amp;\qquad\text{(結局 5: A Check, B Check)} \\
+&amp;\quad \Bigg] dy \, dx
+\end{aligned}
+\]</span></p>
+</section>
+<section id="四個函數的變分" class="level2">
+<h2 class="anchored" data-anchor-id="四個函數的變分">四個函數的變分</h2>
+<p>我們從最裡面解回來，也就是說，我們先假設 <span class="math inline">\(a_1(x), b_1(y), b_2(y)\)</span> 已經定好了，然後我們來找出最佳的 <span class="math inline">\(a_2(x)\)</span> 來最大化 Lagrangian。</p>
+<p><strong>解 <span class="math inline">\(a_2(x)\)</span>:</strong></p>
+<p>只需要考慮包含 <span class="math inline">\(a_2(x)\)</span> 的項: <span class="math display">\[
+\begin{aligned}
+&amp;\int_0^1 \int_0^1 (1 - a_1(x)) \cdot b_2(y) \cdot \textcolor{red}{a_2(x)} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big)  dy \, dx  \\
+= &amp;\int_0^1 (1 - a_1(x)) \cdot \textcolor{red}{a_2(x)} \cdot  \underbrace{ \left( \int_0^1 b_2(y) \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) dy \right)}_{g(x)}  dx  \\
+\end{aligned}
+\]</span></p>
+<p>符合剛才的直覺，當 <span class="math inline">\(a_1(x)=1\)</span> 時，<span class="math inline">\(a_2(x)\)</span> 不影響結果。</p>
+<p>這個 <span class="math inline">\(g(x)\)</span> 的形式跟我們上一篇中的 <span class="math inline">\(h(y)\)</span> 幾乎一樣。這也很合理，因為我們從最後一步開始解，而上一次就是單純解最後一步。</p>
+<p>來快速算一下這個 <span class="math inline">\(g(x)\)</span>: <span class="math display">\[
+\begin{aligned}
+g(0) &amp;= -B \cdot \int_0^1 b_2(y) dy \\
+g(1) &amp;= (P+B) \cdot \int_0^1 b_2(y) dy \\
+g(x)' &amp;= (P + 2B) \cdot b_2(x) \geq 0 \\
+\end{aligned}
+\]</span></p>
+<p>這個 <span class="math inline">\(g(x)\)</span> 是從負值遞增，然後過零點，最後變成正值的函數。</p>
+<p>那麼 <span class="math inline">\(a_2(x)\)</span> 就是 <span class="math display">\[
+a_2(x) = \begin{cases}
+0, &amp; g(x) &lt; 0 \\
+1, &amp; g(x) &gt; 0 \\
+\text{Any}, &amp; (1-a_1(x)) \cdot g(x) = 0 \\
+\end{cases}
+\]</span> 既然其他點可以取任意值，不妨假設 <span class="math display">\[
+a_2(x) = \mathbb{1}_{x &gt; x_2^*}  \tag{1}\label{eq:a2-strategy}
+\]</span> 其中 <span class="math inline">\(x_2^*\)</span> 是使 <span class="math inline">\(g(x_2^*)=0\)</span> 的解。也就是 <span class="math display">\[
+\frac{\int_0^{x_2^*} b_2(y) dy}{\int_{x_2^*}^1 b_2(y) dy} = \frac{B}{P+B}  \tag{2}\label{eq:x2-ratio}
+\]</span></p>
+<p>解出 <span class="math inline">\(a_2(x)\)</span> 後，接著解 <span class="math inline">\(b_1(y)\)</span> 或 <span class="math inline">\(b_2(y)\)</span> 都可以。因為沒有相依性。</p>
+<p><strong>解 <span class="math inline">\(b_1(x)\)</span>:</strong></p>
+<p>只需要考慮包含 <span class="math inline">\(b_1(y)\)</span> 的項: <span class="math display">\[
+\begin{aligned}
+&amp;\int_0^1 \int_0^1 a_1(x) \cdot \textcolor{red}{b_1(y)} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} -P \Big)  dy \, dx  \\
+= &amp;\int_0^1 \textcolor{red}{b_1(y)} \cdot \underbrace{ \left( \int_0^1 a_1(x) \Big( B\mathbb{1}_{x&gt;y} - (P+B)\mathbb{1}_{x&lt;y} \Big) dx \right)}_{h(y)}  dy  \\
+\end{aligned}
+\]</span> 再來一次， <span class="math display">\[
+\begin{aligned}
+h(0) &amp;= B \cdot \int_0^1 a_1(x) dx \\
+h(1) &amp;= -(P+B) \cdot \int_0^1 a_1(x) dx \\
+h(y)' &amp;= -(P+2B) \cdot a_1(y) \leq 0 \\
+\end{aligned}
+\]</span> 而 <span class="math inline">\(b_1(y)\)</span> 要最小化它，所以存在一個切分點 <span class="math inline">\(y_1^*\)</span> 使得 <span class="math display">\[
+b_1(y) = \mathbb{1}_{y &gt; y_1^*}  \tag{3}\label{eq:b1-strategy}
+\]</span> 其中 <span class="math inline">\(y_1^*\)</span> 是使 <span class="math inline">\(h(y_1^*)=0\)</span> 的解。也就是 <span class="math display">\[
+\frac{\int_0^{y_1^*} a_1(x) dx}{\int_{y_1^*}^1 a_1(x) dx} = \frac{B}{P+B}  \tag{4}\label{eq:y1-ratio}
+\]</span> 這邊確實就跟上一篇一模一樣了，因為上一篇也有這個分支。</p>
+<p><strong>解 <span class="math inline">\(b_2(y)\)</span>:</strong></p>
+<p>考慮包含 <span class="math inline">\(b_2(y)\)</span> 的項，此時把剛剛解的 <span class="math inline">\(a_2(x)\)</span> 帶進去: <span class="math display">\[
+\begin{aligned}
+&amp;\int_0^1 \int_0^1 (1 - a_1(x)) \cdot \textcolor{red}{b_2(y)} \cdot \Big[ \mathbb{1}_{x &gt; x_2^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) - P\mathbb{1}_{x&gt;y}  \Big]  dy \, dx  \\
+= &amp;\int_0^1 \textcolor{red}{b_2(y)} \cdot \left( \int_0^1 (1 - a_1(x)) \cdot \Big[ \mathbb{1}_{x &gt; x_2^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) - P\mathbb{1}_{x&gt;y}  \Big] dx \right)  dy  \\
+\end{aligned}
+\]</span> 這邊稍微複雜一點，因為 <span class="math inline">\(x_2^*\)</span> 其實是根據 <span class="math inline">\(b_2(y)\)</span> 決定的 (依照切分比例)。所以不能將 <span class="math inline">\(x_2^*\)</span> 當成常數來看待。</p>
+<p>交換一下順序，我們假設 <span class="math inline">\(x_2^*\)</span> 是固定的，現在將 <span class="math inline">\(b_2(y)\)</span> 拆成兩個區間來做變分，但有面積的條件: <span class="math display">\[
+\int_0^{x_2^*} b_2(y) dy : \int_{x_2^*}^1 b_2(y) dy = B : (P+B)
+\]</span> 所以上面變成 <span class="math display">\[
+\begin{aligned}
+&amp;\int_0^{1} \textcolor{red}{b_2(y)} \cdot \left( \int_0^1 (1 - a_1(x)) \cdot \Big[ \mathbb{1}_{x &gt; x_2^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) - P\mathbb{1}_{x&gt;y}  \Big] dx \right)  dy \\
+= &amp;\int_0^{x_2^*} \textcolor{red}{b_2(y)} \cdot \underbrace{\left( \int_0^1 (1 - a_1(x)) \cdot \Big[ (P+B)\mathbb{1}_{x &gt; x_2^*} - P\mathbb{1}_{x&gt;y}  \Big] dx \right)}_{k_1(y)}  dy \\
+&amp;+ \int_{x_2^*}^{1} \textcolor{red}{b_2(y)} \cdot \underbrace{\left( \int_0^1 (1 - a_1(x)) \cdot \Big[ (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&gt;x_2^*}\mathbb{1}_{x&lt;y} - P\mathbb{1}_{x&gt;y}  \Big] dx \right)}_{k_2(y)}  dy \\
+\end{aligned}
+\]</span> 如此一來又變回熟悉的形式了。 <span class="math display">\[
+\begin{aligned}
+k_1(0) &amp;= (P+B) \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx - P \cdot \int_0^1 (1 - a_1(x)) dx \\
+&amp;= B \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx - P \cdot \int_0^{x_2^*} (1 - a_1(x)) dx \\
+k_1(x_2^*) &amp;= B \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx \geq 0  \\
+k_1(y)' &amp;= P \cdot (1 - a_1(y)) \geq 0 \\
+\end{aligned}
+\]</span> 以及 <span class="math display">\[
+\begin{aligned}
+k_2(x_2^*) &amp;= B \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx \geq 0 \\
+k_2(1) &amp;= -B \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx \leq 0 \\
+k_2(y)' &amp;= -2B \cdot (1-a_1(y)) \leq 0 \\
+\end{aligned}
+\]</span> 因此， <span class="math inline">\(k_2(y), k_1(y)\)</span> 這兩個函數，分別是遞增與遞減，而 <span class="math inline">\(b_2(y)\)</span> 要最小化整個式子，所以 <span class="math inline">\(b_2(y)\)</span> 是極化的策略 (不妨假設<span class="math inline">\(k_1(0)&lt;0\)</span>，否則的話就取 <span class="math inline">\(z_1^*=0\)</span> 即可，我們要解的是形狀): <span class="math display">\[
+b_2(y) = \mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{y &gt; z_2^*}  \tag{5}\label{eq:b2-strategy}
+\]</span> 其中 <span class="math inline">\(z_1^*, z_2^*\)</span> 是使得 <span class="math inline">\(k_1(z_1^*)=0, k_2(z_2^*)=0\)</span> 的解。</p>
+<p>假設確實有 <span class="math inline">\(k_1(0)&lt;0\)</span>，那麼 <span class="math display">\[
+\int_{z_1^*}^{x_2^*} (1 - a_1(x)) dx = \frac{B}{P} \cdot \int_{x_2^*}^1 (1 - a_1(x)) dx  \tag{6}\label{eq:z1-ratio}
+\]</span> 以及 <span class="math display">\[
+\frac{\int_{x_2^*}^{z_2^*} (1 - a_1(x)) dx}{\int_{z_2^*}^1 (1 - a_1(x)) dx} = \frac{k_2(x_2^*)}{-k_2(1)} = \frac{B}{B} = 1  \tag{7}\label{eq:z2-ratio}
+\]</span> 因此， <span class="math inline">\(z_1^*, z_2^*\)</span> 是依照 <span class="math inline">\(a_1(x)\)</span> 定義的。</p>
+<p>等等，還有面積的條件需要滿足。但已經沒有自由度可以用了。也就是說最好的 <span class="math inline">\(b_2(y) = \mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{y &gt; z_2^*}\)</span> 並不一定滿足面積比是 <span class="math inline">\(B:P+B\)</span> 這個條件。</p>
+<p>但我們現在假設 Player A 固定，所以 <span class="math inline">\(a_2(x)\)</span> 是固定的。所以理解為，我們猜測 <span class="math inline">\(a_2(x)\)</span> 的形狀，在這樣條件下來看 <span class="math inline">\(b_1(y), b_2(y)\)</span> 可以打出的最佳進攻策略是什麼，而不需要滿足面積條件 <span class="math inline">\(\eqref{eq:x2-ratio}\)</span> 。所以以上的推導依然成立。</p>
+<p><strong>解 <span class="math inline">\(a_1(x)\)</span>:</strong></p>
+<p>這邊解 <span class="math inline">\(a_1(x)\)</span> 有兩種視角:</p>
+<ol type="1">
+<li><strong>最佳進攻策略</strong>: 對於任意<strong>固定</strong>函數 <span class="math inline">\(b_1(y), b_2(y)\)</span>，我們來看如何攻擊這組 <span class="math inline">\(b_1, b_2\)</span> (最大化 Lagrangian)。但上面的討論告訴我們，我們不用解最一般的情形，可以假設它的形狀是 <span class="math inline">\(\eqref{eq:b1-strategy}\)</span>, <span class="math inline">\(\eqref{eq:b2-strategy}\)</span>。</li>
+<li><strong>最佳防守策略</strong>: 將上面解出的 <span class="math inline">\(b_1(y), b_2(y)\)</span> 帶回 Lagrangian，然後解 <span class="math inline">\(a_1(x)\)</span> 來最大化 Lagrangian，也就是被 Player B 已知 <span class="math inline">\(a_1(x)\)</span> 的情形之下，要如何防守的概念，因為這裡 <span class="math inline">\(b_1(y), b_2(y)\)</span> <strong>可以</strong>隨著 <span class="math inline">\(a_1(x)\)</span> 改變而改變。</li>
+</ol>
+<p>這兩種視角都挺重要的，也都有意義。但因為 Nash Equilibrium 是在講最佳防守，所以我們先用第二種視角來看。</p>
+<p>如果從 Player A 的防守視角來看，當固定 <span class="math inline">\(a_1(x)\)</span> 和 <span class="math inline">\(x_2^*\)</span> 且被 Player B 已知的情形下，Player B 對於 <span class="math inline">\(b_1(y), b_2(y)\)</span> 的最佳攻擊策略是什麼? 利用 <span class="math inline">\(\eqref{eq:b1-strategy}\)</span>, <span class="math inline">\(\eqref{eq:b2-strategy}\)</span>，我們將期約化為三個變數:</p>
+<ul>
+<li><span class="math inline">\(y_1^*\)</span>: 把 <span class="math inline">\(a_1(x)\)</span> 底下的面積切成 <span class="math inline">\(B : (P+B)\)</span> 的比例。</li>
+<li><span class="math inline">\(z_1^*, z_2^*\)</span>: 先從 <span class="math inline">\(x_2^*\)</span> 切開，然後選擇 <span class="math inline">\(z_1^*\)</span> 滿足 <span class="math inline">\(\eqref{eq:z1-ratio}\)</span>，接著選擇 <span class="math inline">\(z_2^*\)</span> 滿足 <span class="math inline">\(\eqref{eq:z2-ratio}\)</span>。</li>
+</ul>
+<p>這樣確實是 Player B 對 Player A 最嚴厲的攻擊。但有個風險，因為沒有滿足 <span class="math inline">\(\eqref{eq:x2-ratio}\)</span>，所以如果 Player A 改變 <span class="math inline">\(x_2^*\)</span>，就可以對 Player B 進行剝削。(至於這一來一往是正的還是負的? 感覺不好估計)</p>
+<p>我們換個角度想，Player B 能不能選 <span class="math inline">\(z_1^*, z_2^*\)</span> 使得就算 Player A 改變 <span class="math inline">\(x_2^*\)</span> 也不會被剝削?</p>
+<p>也就是要把 <span class="math inline">\(z_1^*, z_2^*\)</span> 選成跟 <span class="math inline">\(x_2^*\)</span> 無關的形式。回頭看看 <span class="math inline">\(\eqref{eq:z1-ratio}\)</span>, <span class="math inline">\(\eqref{eq:z2-ratio}\)</span>，我們發現只要滿足下面的條件就可以了: <span class="math display">\[
+\begin{cases}
+\displaystyle \int_{\textcolor{red}{z_1^*}}^{\textcolor{red}{z_2^*}} (1 - a_1(x)) dx : \int_{\textcolor{red}{z_2^*}}^1 (1 - a_1(x)) dx = (B + \frac{P}{2}) : \frac{P}{2}   \\
+\displaystyle \textcolor{red}{z_1^*} : (1 - \textcolor{red}{z_2^*}) = B : (P+B)
+\end{cases} \tag{9}\label{eq:z1z2-equations}
+\]</span> 這邊很巧妙把 <span class="math inline">\(B:P\)</span> 和 <span class="math inline">\(1:1\)</span>，變成了 <span class="math inline">\(B + \frac{P}{2} : \frac{P}{2}\)</span>，如此一來就跟 <span class="math inline">\(x_2^*\)</span> 無關，而多出來的自由度可以讓 Player B 調整 <span class="math inline">\(z_1^*, z_2^*\)</span> 來滿足面積條件 <span class="math inline">\(\eqref{eq:x2-ratio}\)</span>。</p>
+<p>這邊有點一直交換 Min-Max的順序來論證，應該是對的。</p>
+<p>現在我們得到小結論，Player B 只要知道 <span class="math inline">\(a_1(x)\)</span>，就可以選出一組 <span class="math inline">\(b_1(y), b_2(y)\)</span> (也就是 <span class="math inline">\(y_1^*, z_1^*, z_2^*\)</span>) 來攻擊 Player A。</p>
+<p>所以問題已經約化到只剩最後一個函數: <span class="math inline">\(a_1(x)\)</span>，要取多少可以最大化 Lagrangian。</p>
+<p>先來看看完整的 Lagrangian，我們先在沒有 <span class="math inline">\(\eqref{eq:z1z2-equations}\)</span> 約束下解，也就是這邊的等式對於一般的 <span class="math inline">\(y_1^*, z_1^*, z_2^*\)</span> 都成立 (順便研究 Player A 的攻擊策略): <span class="math display">\[
+\begin{align}
+&amp;\mathcal{L}(a_1, a_2, b_1, b_2)  \\
+&amp;= \int_0^1 \int_0^1
+\left[
+\begin{aligned}
+    &amp; a_1(x) \cdot \mathbb{1}_{y&gt;y_1^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) \\
+    + &amp; a_1(x) \cdot (1 - \mathbb{1}_{y&gt;y_1^*}) \cdot P \\
+    + &amp; (1 - a_1(x)) \cdot (\mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{y &gt; z_2^*}) \cdot (\mathbb{1}_{x&gt;x_2^*}) \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) \\
+    + &amp; (1 - a_1(x)) \cdot (1 - \mathbb{1}_{y &lt; z_1^*} - \mathbb{1}_{y &gt; z_2^*}) \cdot P \mathbb{1}_{x&gt;y}
+\end{aligned}
+\right] dy \, dx  \\
+&amp;=  \int_0^1 \int_0^1 \underbrace{\Big[ (\mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{y &gt; z_2^*}) \cdot \mathbb{1}_{x&gt;x_2^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) + (1 - \mathbb{1}_{y &lt; z_1^*} - \mathbb{1}_{y &gt; z_2^*}) \cdot P \mathbb{1}_{x&gt;y} \Big]}_{J(x,y)} dy \, dx \\
+&amp;\quad + \int_0^1 \textcolor{red}{a_1(x)} \cdot \underbrace{\left( \int_0^1
+\left[
+\begin{aligned}
+    &amp; \mathbb{1}_{y&gt;y_1^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) + (1 - \mathbb{1}_{y&gt;y_1^*}) \cdot P \\
+    &amp; - (\mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{y &gt; z_2^*}) \cdot \mathbb{1}_{x&gt;x_2^*} \cdot \Big( (P+B)\mathbb{1}_{x&gt;y} - B\mathbb{1}_{x&lt;y} \Big) \\
+    &amp; - (1 - \mathbb{1}_{y &lt; z_1^*} - \mathbb{1}_{y &gt; z_2^*}) \cdot P \mathbb{1}_{x&gt;y}
+\end{aligned}
+\right] dy \right)}_{G(x)} dx
+\end{align}
+\]</span> 有些些混亂，我們把大於的符號一律改成小於的方向，看比較清楚。</p>
+<p><span class="math display">\[
+\begin{align}
+\mathcal{L}(a_1, a_2, b_1, b_2) &amp;= \int_0^1 \int_0^1 J(x,y) \, dy \, dx + \int_0^1 \textcolor{red}{a_1(x)} \cdot G(x) \, dx \\
+\text{其中} \quad
+J(x,y) &amp;= (\mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{z_2^* &lt; y}) \cdot \mathbb{1}_{x_2^* &lt; x} \cdot \Big( (P+B)\mathbb{1}_{y &lt; x} - B\mathbb{1}_{x &lt; y} \Big) + \mathbb{1}_{z_1^* \le y \le z_2^*} \cdot P \mathbb{1}_{y &lt; x} \\
+G(x) &amp;= \int_0^1
+\left[
+\begin{aligned}
+    &amp; \mathbb{1}_{y_1^* &lt; y} \cdot \Big( (P+B)\mathbb{1}_{y &lt; x} - B\mathbb{1}_{x &lt; y} \Big) + P \mathbb{1}_{y \le y_1^*} \\
+    &amp; - \mathbb{1}_{x_2^* &lt; x} \cdot (\mathbb{1}_{y &lt; z_1^*} + \mathbb{1}_{z_2^* &lt; y}) \cdot \Big( (P+B)\mathbb{1}_{y &lt; x} - B\mathbb{1}_{x &lt; y} \Big) \\
+    &amp; - P \mathbb{1}_{z_1^* \le y \le z_2^*} \cdot \mathbb{1}_{y &lt; x}
+\end{aligned}
+\right] dy
+\end{align}
+\]</span> 好，雖然有點小複雜，但這都是 indicator function，積分通常可以直接算出來。</p>
+<div id="fig-jxy-region" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/lesson_7/integral_region_Jxy.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: <span class="math inline">\(J(x,y)\)</span> Integral Region</figcaption>
+</figure>
+</div>
+<p>我們先假設有 <span class="math inline">\(z_1^* \leq x_2^* \leq z_2^*\)</span>， <span class="math display">\[
+\begin{aligned}
+\int_0^1 \int_0^1 J(x,y) \, dy \, dx
+&amp;= P\cdot (z_2^* - z_1^*)(1-\frac{z_2^* + z_1^*}{2}) \\
+&amp;\quad + (P+B)\cdot \left( \frac{(1-z_2^*)^2}{2} + z_1^*(1-x_2^*) \right) \\
+&amp;\quad - B \cdot (1-z_2^*)(\frac{1+z_2^*}{2} - x_2^*) \\
+&amp;= P \cdot \left[ \frac{(1-z_1^*)^2}{2} + z_1^*(1-x_2^*) \right] + B \cdot \left[ z_1^*(1-x_2^*) - (1-z_2^*)(z_2^* - x_2^*) \right]
+\end{aligned}
+\]</span></p>
+<p>已經有點醜了，再來試試看 <span class="math inline">\(G(x)\)</span>，注意到積分後半段跟剛才的 <span class="math inline">\(J(x,y)\)</span> 其實一樣，然後前半段相對簡單。 <span class="math display">\[
+\begin{align}
+G(x) &amp;= \underbrace{
+\begin{cases}
+(P+B)y_1^* - B &amp; \text{if } x \le y_1^* \\
+(P+2B)x - B(1+y_1^*) &amp; \text{if } x &gt; y_1^*
+\end{cases}
+}_{\text{Part 1: } y_1^* \text{ Dependent Terms}} \\
+&amp;\qquad +
+\underbrace{
+\begin{cases}
+0 &amp; \text{if } x &lt; z_1^* \\
+-P(x - z_1^*) &amp; \text{if } z_1^* \le x \le x_2^* \\
+-Px + B(1 - z_1^* - z_2^*) &amp; \text{if } x_2^* &lt; x &lt; z_2^* \\
+-(P+2B)x + B(1 - z_1^* + z_2^*) &amp; \text{if } x \ge z_2^*
+\end{cases}
+}_{\text{Part 2: } z_1^*, x_2^*, z_2^* \text{ Dependent Terms}}  \tag{8}\label{eq:Gx-pieces}
+\end{align}
+\]</span></p>
+<p>其實還不算是太醜(?)，基本上是由折線線段組成的，但在第二項 <span class="math inline">\(x=x_2^*\)</span> 有個(可能)不連續的點。而這個點若要連續，就是要滿足面積比例的條件!! <span class="math display">\[
+z_1^* : (1-z_2^*) = B : (P+B)
+\]</span></p>
+<p>現在我們使用 <span class="math inline">\(\eqref{eq:z1z2-equations}\)</span> 的條件，所以以下結果開始基於有面積比例的條件。</p>
+<p><span class="math inline">\(J(x,y)\)</span> 積分變得好看很多，而 <span class="math inline">\(G(x)\)</span> 第二項也會連續。因為前後兩段斜率相同，所以會直接變一段。</p>
+<p><span class="math display">\[
+\int_0^1 \int_0^1 J(x,y) \, dy \, dx =  \frac{P}{2}(1-z_1^*)^2 + B(1-z_2^*)^2
+\]</span> <span class="math display">\[
+\begin{align}
+G_1(x) &amp;= \begin{cases}
+(P+B)y_1^* - B &amp; \text{, if } x \le y_1^* \\
+(P+2B)x - B(1+y_1^*) &amp; \text{, if } x &gt; y_1^*
+\end{cases}  \\
+G_2(x) &amp;=
+\begin{cases}
+0 &amp; \text{, if } x &lt; z_1^* \\
+P(x - z_1^*) &amp; \text{, if } z_1^* \le x \le z_2^* \\
+(P+2B)(x+z_1^*) - 2B &amp; \text{, if } x \ge z_2^*
+\end{cases} \\
+G(x) &amp;= G_1(x) - G_2(x) \\
+\end{align}
+\]</span> 我們把 <span class="math inline">\(G\)</span> 拆分成兩個，第二個加了負號，這樣一來斜率都是正的了。還有做了一些簡單的代數代換，讀者可自行驗證。</p>
+<p>現在帶回 Lagrangian，這邊回憶一下，從推導過程可以發現 其實 <span class="math inline">\(G_2(x) = \int_0^1 J(x,y) dy\)</span> ，所以我們把常數項合併回去給 <span class="math inline">\(G_2\)</span>: <span class="math display">\[
+\begin{align}
+\mathcal{L}(a_1) &amp;= \int_0^1 \int_0^1 J(x,y) \, dy \, dx + \int_0^1 a_1(x) \cdot G(x) \, dx \\
+&amp;= \int_0^1 a_1(x) \cdot G_1(x) \, dx + \int_0^1 (1 - a_1(x)) \cdot G_2(x) \, dx \\
+\end{align}
+\]</span> 我們又回到了簡潔的式子，第一項就是 Player A bet 的情況，第二項是 Player A check 的情況。</p>
+<p>交換一下順序，假設 <span class="math inline">\(y_1^*\)</span> 固定，<span class="math inline">\(z_2^* = 1 - \frac{P+B}{B}z_1^*\)</span>。待會再回來解 <span class="math inline">\(y_1^*, z_1^*\)</span>。</p>
+<p>根據 <span class="math inline">\(\eqref{eq:z1z2-equations}\)</span>，在這兩個條件下，我們來看 <span class="math inline">\(a_1(x)\)</span> 要怎麼取可以最大化 Lagrangian。</p>
+<p><span class="math display">\[
+\begin{align}
+\mathcal{L}(a_1)
+&amp;=  \int_0^{y_1^*} a_1(x)\cdot \Big((P+B)y_1^* - B\Big) \, dx + \int_{y_1^*}^1 a_1(x) \cdot \Big( (P+2B)x - B(1+y_1^*) \Big) dx \\
+&amp;\quad + \int_{z_1^*}^{z_2^*} (1 - a_1(x)) \cdot P(x - z_1^*) \, dx \\
+&amp;\quad + \int_{z_2^*}^1 (1 - a_1(x)) \cdot \Big( (P+2B)(x+z_1^*) - 2B \Big) dx \\
+\end{align}
+\]</span> 神奇的是，Part 1 的 <span class="math inline">\(y_1^*\)</span> 自己消掉了，而 Part 2 的 <span class="math inline">\(z_1^*\)</span> 也自己消掉了。 $$ <span class="math display">\[\begin{align}
+\mathcal{L}(a_1)
+&amp;=  y_1^* \cdot \underbrace{\left(
+  \int_0^{y_1^*} a_1(x)\cdot(P+B) \, dx - \int_{y_1^*}^1 a_1(x) \cdot B dx \\
+  \right)}_{=0} \\
+&amp;\quad + (P+2B) \cdot \int_{y_1^*}^1 a_1(x) \cdot x \, dx - B \int_{0}^1 a_1(x) \, dx \\
+&amp;\quad + z_1^* \cdot \underbrace{\left(
+  \int_{z_1^*}^{z_2^*} (1 - a_1(x)) \cdot (-P) \, dx + \int_{z_2^*}^1 (1 - a_1(x)) \cdot (P+2B) \, dx
+  \right)}_{=0} \\
+&amp;\quad + (2P+2B) \cdot \int_{z_1^*}^1 (1 - a_1(x)) \cdot x \, dx - 2B \int_{z_2^*}^1 (1 - a_1(x)) \, dx \\
+
+&amp;= (P+2B) \cdot \int_{y_1^*}^1 a_1(x) \cdot x \, dx - B \int_{0}^1 a_1(x) \, dx \\
+&amp;\quad + 2(P+B) \cdot \int_{z_1^*}^1 (1 - a_1(x)) \cdot x \, dx - 2B \int_{z_2^*}^1 (1 - a_1(x)) \, dx
+\end{align}\]</span> $$</p>
+<p>居然剩下乾乾淨淨的四項，最後來解一下面積，直覺上 <span class="math inline">\(y_1^*\)</span> 應該在 <span class="math inline">\(z_1^*\)</span> 和 <span class="math inline">\(z_2^*\)</span> 之間，但等等可能還是要檢查一下其他狀況。我們假設面積 <span class="math display">\[
+\begin{aligned}
+\int_0^{z_1^*} a_1(x) dx &amp;= A_1 \\
+\int_{z_1^*}^{y_1^*} a_1(x) dx &amp;= A_2 \\
+\int_{y_1^*}^{z_2^*} a_1(x) dx &amp;= A_3 \\
+\int_{z_2^*}^1 a_1(x) dx &amp;= A_4 \\
+\end{aligned}
+\]</span> 現在在固定 <span class="math inline">\(z_1^*, y_1^*, z_2^*\)</span> 之下，去看面積要如何分配。先列一下等式 <span class="math display">\[
+\begin{aligned}
+\frac{A_1 + A_2}{A_3 + A_4} &amp;= \frac{B}{P+B}  \\
+\frac{z_2^*-z_1^* - A_2 - A_3}{1 - z_2^* - A_4} &amp;= \frac{2B + P}{P} \\
+\frac{z_1^*}{1 - z_2^*} &amp;= \frac{B}{P+B} \\
+\end{aligned}
+\]</span> 可以都用 <span class="math inline">\(A_4\)</span> 來表示: <span class="math display">\[
+A_2 + A_3 = z_2^*-z_1^* - (1 - z_2^* - A_4)\cdot \frac{2B + P}{P}
+\]</span></p>
+<p>繼續假設 <span class="math inline">\(z_1^* \le y_1^* \le z_2^*\)</span>，我們來看 Lagrangian: <span class="math display">\[
+\begin{aligned}
+\mathcal{L}(a_1)
+&amp;= -P \int_{z_1^*}^{1} a_1(x)\cdot x \, dx - (P+2B)  \int_{z_1^*}^{y_1^*} a_1(x)\cdot x \, dx \\
+&amp;\quad -B\cdot (A_1 + A_2 + A_3 + A_4) + 2B \cdot A_4 \\
+&amp;\quad + 2(P+B) \cdot \frac{1-(z_1^*)^2}{2} -2B \cdot (1 - z_2^*) \\
+\end{aligned}
+\]</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="TaiNing1237/quarto-blog" data-repo-id="R_kgDOQX3NUw" data-category="General" data-category-id="DIC_kwDOQX3NU84Cx6xN" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
